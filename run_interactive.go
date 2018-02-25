@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:58:41 5F2111                      [cmdx/run_interactive.go]
+// :v: 2018-02-25 01:19:16 280A3C                      [cmdx/run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -34,8 +34,8 @@ import "sort"        // standard
 import "sync"        // standard
 import str "strings" // standard
 
-import "github.com/balacode/zr" // Zirconium
-import "github.com/balacode/zr_fs"              // Zirconium
+import "github.com/balacode/zr"    // Zirconium
+import "github.com/balacode/zr_fs" // Zirconium
 
 // Runner joins all subfunctions used by runInteractive(),
 // so that their names don't clutter the project's namespace.

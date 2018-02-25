@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:58:41 6FBFA2                [cmdx/mark_errors_in_source.go]
+// :v: 2018-02-25 01:19:16 7A0504                [cmdx/mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -204,6 +204,6 @@ func saveFile(buildPath, filename string, lines []string) {
 	)
 } //                                                                    saveFile
 
-//TODO: use saveFile() in ase/zr_fs
+//TODO: use saveFile() in github.com/balacode/zr_fs
 
 //end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:38:12 0DAF5E                 [cmdx/rename_files_by_hash.go]
+// :v: 2018-02-25 01:19:16 10A929                 [cmdx/rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,8 +8,8 @@ package main
 import "path/filepath" // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr" // Zirconium
-import "ase/zr/whirl"           // Zirconium
+import "github.com/balacode/zr"       // Zirconium
+import "github.com/balacode/zr_whirl" // Zirconium
 
 // renameFilesByHash __
 func renameFilesByHash(cmd Command, args []string) {
