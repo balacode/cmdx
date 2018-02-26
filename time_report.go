@@ -3,6 +3,8 @@
 // :v: 2018-02-26 14:45:21 69E1CF                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
+// WORK-IN-PROGRESS: @2018-02-26 15:47
+
 package main
 
 // # Command Function
@@ -64,44 +66,8 @@ var trptIgnoreProjects = []string{
 // timeReport __
 func timeReport(cmd Command, args []string) {
 	var min, max string
-	/*
-		min, max = "2017-11-24", "2017-11-30"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
-		//
-		min, max = "2017-12-01", "2017-12-31"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
-		//
-		min, max = "2018-01-01", "2018-01-31"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
-	*/
 	min, max = "2017-11-24", "2018-02-18"
-	//``
-	/*
-		min, max = "2018-01-13", "2018-01-14"
-	*/
-	/*
-		trptMonthlySummary("AUTO", trptAuto, min, max, trptAutoLogFiles)
-	*/
 	trptMonthlySummary("MANUAL", trptManual, min, max, trptManualLogFiles)
-	return
-	//
-	min = dateStr(time.Now().Add(-24 * time.Hour))
-	max = dateStr(time.Now())
-	if len(args) == 1 {
-		if str.ToLower(args[0]) == "all" {
-			min = "2000-01-01"
-		} else {
-			min = dateStr(timeOf(args[0]))
-		}
-	}
-	if len(args) == 2 {
-		min = dateStr(timeOf(args[0]))
-		max = dateStr(timeOf(args[1]))
-	}
-	//trptSummaryByDateText(min, max, trptAutoLogFiles)
 } //                                                                  timeReport
 
 // -----------------------------------------------------------------------------
