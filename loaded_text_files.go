@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:46 EE7B2B                    [cmdx/loaded_text_files.go]
+// :v: 2018-02-26 14:45:21 A77B04                    [cmdx/loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,7 +9,7 @@ import "os"   // standard
 import "sort" // standard
 import "sync" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // LoadedTextFiles __
 type LoadedTextFiles struct {

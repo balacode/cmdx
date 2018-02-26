@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:46 D6A9A9                     [cmdx/match_words_test.go]
+// :v: 2018-02-26 14:45:21 7F36C2                     [cmdx/match_words_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,7 +16,7 @@ to generate a test coverage report for the whole module use:
 
 import "testing" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // go test --run Test_mtcw_matchWords_
 func Test_mtcw_matchWords_(t *testing.T) {

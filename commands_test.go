@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:46 F72496                        [cmdx/commands_test.go]
+// :v: 2018-02-26 14:45:21 C4133F                        [cmdx/commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,7 +18,7 @@ import "reflect"     // standard
 import "testing"     // standard
 import str "strings" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // -----------------------------------------------------------------------------
 

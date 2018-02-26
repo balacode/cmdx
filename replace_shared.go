@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:47 60CA71               [cmdx/replace_lines_in_files.go]
+// :v: 2018-02-26 14:45:21 6198F0               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,7 +8,7 @@ package main
 import "path/filepath" // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // getConfigBool __
 func getConfigBool(s, keyword string) (value, exists bool) {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:47 157FA4        [cmdx/replace_strings_in_files_test.go]
+// :v: 2018-02-26 14:45:21 F63211        [cmdx/replace_strings_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,7 +17,7 @@ to generate a test coverage report for the whole module use:
 import "sync"    // standard
 import "testing" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // go test --run Test_rsif_replaceStringsInFiles_
 func Test_rsif_replaceStringsInFiles_(t *testing.T) {

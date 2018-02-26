@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:46 B1F9A3                                 [cmdx/func.go]
+// :v: 2018-02-26 14:45:21 CB559C                                 [cmdx/func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,7 +17,7 @@ import "os"            // standard
 import "path/filepath" // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // filterLongLines __
 func filterLongLines(

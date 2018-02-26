@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:01:21 710089                             [cmdx/settings.go]
+// :v: 2018-02-26 14:45:21 8E9E51                             [cmdx/settings.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -12,7 +12,7 @@ package main
 // By default this compreises of all known text file extensions.
 var DefaultExts = env.TextFileExts()
 
-// DefaultLibPath specifies the default path of the Zirconium library.
+// DefaultLibPath specifies the default path of the Zircon-Go library.
 var DefaultLibPath = func() string {
 	if env.PathSeparator() == "/" {
 		return hardcodedDefaultLibPathOnLinux

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:47 813305               [cmdx/replace_lines_in_files.go]
+// :v: 2018-02-26 14:45:21 9B4C0B               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,7 +10,7 @@ import "sync"          // standard
 import "sync/atomic"   // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 //   DebugReplaceLinesInFiles
 //

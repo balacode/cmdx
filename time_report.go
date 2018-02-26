@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:01:21 90A5C1                          [cmdx/time_report.go]
+// :v: 2018-02-26 14:45:21 69E1CF                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,7 +36,7 @@ import "sort"        // standard
 import "time"        // standard
 import str "strings" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 type trptMode bool
 

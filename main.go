@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:46 520080                                 [cmdx/main.go]
+// :v: 2018-02-26 14:45:21 96B3DB                                 [cmdx/main.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,7 +10,7 @@ import "fmt"
 import "os"          // standard
 import str "strings" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // -----------------------------------------------------------------------------
 // # Main Function

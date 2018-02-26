@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-25 01:19:16 6FAAD7                         [cmdx/env_provider.go]
+// :v: 2018-02-26 14:45:21 02A745                         [cmdx/env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,8 +9,8 @@ import "fmt"       // standard
 import "os"        // standard
 import "io/ioutil" // standard
 
-import "github.com/balacode/zr"    // Zirconium
-import "github.com/balacode/zr_fs" // Zirconium
+import "github.com/balacode/zr"    // Zircon-Go
+import "github.com/balacode/zr_fs" // Zircon-Go
 
 var env EnvProvider = Env{}
 

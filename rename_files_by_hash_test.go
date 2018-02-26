@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:37:47 384337            [cmdx/rename_files_by_hash_test.go]
+// :v: 2018-02-26 14:45:21 C844BC            [cmdx/rename_files_by_hash_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,7 +16,7 @@ to generate a test coverage report for the whole module use:
 
 import "testing" // standard
 
-import "github.com/balacode/zr" // Zirconium
+import "github.com/balacode/zr" // Zircon-Go
 
 // go test --run Test_rfbh_renameFilesByHash_
 func Test_rfbh_renameFilesByHash_(t *testing.T) {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:58:41 282CF8                        [cmdx/words_in_file.go]
+// :v: 2018-02-26 14:45:21 182272                        [cmdx/words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,7 +8,7 @@ package main
 import "unicode"     // standard
 import str "strings" // standard
 
-import "github.com/balacode/zr_fs" // Zirconium
+import "github.com/balacode/zr_fs" // Zircon-Go
 
 // wordsInFile __
 // run cmdx with 'fw' or 'file-words'
@@ -77,7 +77,7 @@ func wordsInFile(cmd Command, args []string) {
 	}
 } //                                                              wordsInFile
 
-//TODO: create Words() function in Zirconium lib
+//TODO: create Words() function in Zircon-Go lib
 
 //TODO: create a text module or 'tstr'.
 

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-25 01:19:16 24CD78                   [cmdx/mark_time_in_files.go]
+// :v: 2018-02-26 14:45:21 3A85CC                   [cmdx/mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -26,8 +26,8 @@ import "regexp"        // standard
 import "time"          // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr"    // Zirconium
-import "github.com/balacode/zr_fs" // Zirconium
+import "github.com/balacode/zr"    // Zircon-Go
+import "github.com/balacode/zr_fs" // Zircon-Go
 
 // -----------------------------------------------------------------------------
 // # Command Handler
