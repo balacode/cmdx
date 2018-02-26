@@ -1,9 +1,13 @@
 # cmdx
-Multi-purpose command line tool to manage files and process source code
+A command line tool to manage files and process source code.
 
 This tool is a sort of Swiss-Army-Knife for managing files and text processing.
 I wanted to avoid having too many little command line utilities,
 so I created CMDX which means Command-line Extensions.
+
+Below is a brief summary of the available commands. 
+
+I am in the process of adding a detailed explanation for the usage of each command. In the meantime, you can check the source code or ask me directly. Your questions will help make the documentation more concise.
 
 ## File Manipulation Commands:
 
@@ -19,13 +23,13 @@ Lists all identical files in /source folder.
 cmdx dd /source /target  
 Lists all files in /target that have identical files in /source.  
 
-**RD: Rename Duplicate Files**  
+**RD (ren-dup): Rename Duplicate Files**  
 cmdx rd /source /target  
 Given two folders: /source and /target, this command  
 finds files in /target that are identical to files in  
 /source and renames them to their file names in /source.  
 
-**RH: Rename-Hash**  
+**RH (ren-hash): Rename-Hash**  
 Renames files by prefixing their name with a hash.  
 
 ## Text Manipulation Commands:
@@ -41,27 +45,30 @@ markers, fix the error, and delete the comment when the error
 is fixed.
 
 **MT (mark-time):**  
-Changes timestamps in source files. Requires path
+Changes timestamps in source files.  
+Requires paths (in hardcoded.go) to be set up.  
 
 **RL (rep-lines):**  
-Replaces lines in file(s). Requires <command-file>
+Replaces lines in file(s). Requires <command-file>.  
+This command allows you to replace several blocks of code at once.  
 
 **RS (replace-strings):**  
-Replaces strings in file(s). Requires <command-file>
+Replaces strings in file(s). Requires <command-file>.
+
 
 **SF (sort-file):**  
-cmdx sf <filename>
-Sorts all the lines in a file.
-And makes sure each line is unique.
+cmdx sf <filename>  
+Sorts all the lines in a file.  
+And makes sure each line is unique.  
 
 ## Other Commands:  
 More specifics on these commands will be provided later.  
 
-**RT (rep-time)**  
+**RT (rep-time):**  
 Replaces time entries in log files.  
 
-**RI (run)**  
+**RI (run):**  
 Runs the tool in source-code interactive mode.  
 
-**TR (time-report)**  
+**TR (time-report):**  
 Summarizes time from log files and presents it in a calendar format.  
