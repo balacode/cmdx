@@ -193,7 +193,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 	}
 	// create a sorted array of keys
 	var times = make([]string, 0, len(m))
-	for key, _ := range m {
+	for key := range m {
 		times = append(times, key)
 	}
 	times = sortUniqueStrings(times)
