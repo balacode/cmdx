@@ -25,28 +25,31 @@ Instead it compares the contents of files with identical sizes.
 Lists duplicate files in the specified folder (or source and target folders).  
 Does not delete or change any files.  
 
+To list all identical files in /source folder:  
+
     cmdx ld /source
 
-Lists all identical files in /source folder.  
+To list list all files in */target* that have identical files in */source*:
 
-cmdx ld /source /target  
-Lists all files in /target that have identical files in /source.  
+    cmdx ld /source /target
 
 **RD (ren-dup): Rename Duplicate Files**  
 
+Given two folder paths: */source* and */target*,  
+this command finds files in /target that are identical to files  
+in /source and renames them to their file names in /source:  
+
     cmdx rd /source /target
-
-Given two folders: /source and /target, this command  
-finds files in /target that are identical to files in  
-/source and renames them to their file names in /source.  
-
+    
 **RH (ren-hash): Rename-Hash**  
 Renames files by prefixing their name with a hash.  
 
 ## Text Manipulation Commands:
 
 **FW (file-words):**   
-Lists all words with alphanumeric characters from {file}.
+Lists all words with alphanumeric characters from {file}:
+
+    cmdx fw {file}
 
 **ME (mark-errors):**   
 Inserts build errors as comments at the source of the error,
@@ -60,7 +63,7 @@ To make this command work, send the output of the
 
     go build -gcflags="-e" 2> build.log
 
-Then, run the mark-errors command with the name of the log:
+Then, run the mark-errors command with the name of the build log:
 
     cmdx mark-errors -buildlog=.\build.log
 
