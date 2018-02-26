@@ -12,15 +12,23 @@ I am in the process of adding a detailed explanation for the usage of each comma
 ## File Manipulation Commands:
 
 **DD (del-dup): Delete Duplicates**  
+
 cmdx dd /source /target  
+
+Deletes all files in /target that already exist in /source.  
+The command does not care about file names.  
+Instead it compares the contents of files with identical sizes.  
+
+** :sos: Use this command with care: files are deleted at once, without going to trash can! **  
 
 **LD (list-dup): List Duplicate Files**  
-Helps you to find duplicate files.  
+Lists duplicate files in the specified folder (or source and target folders).  
+Does not delete or change any files.  
 
-cmdx dd /source  
+cmdx ld /source  
 Lists all identical files in /source folder.  
 
-cmdx dd /source /target  
+cmdx ld /source /target  
 Lists all files in /target that have identical files in /source.  
 
 **RD (ren-dup): Rename Duplicate Files**  
