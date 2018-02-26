@@ -19,7 +19,7 @@ Deletes all files in /target that already exist in /source.
 The command does not care about file names.  
 Instead it compares the contents of files with identical sizes.  
 
-** :sos: Use this command with care: files are deleted at once, without going to trash can! **  
+ :exclamation: **Use this command with care: files are deleted at once, without going to trash can!**
 
 **LD (list-dup): List Duplicate Files**  
 Lists duplicate files in the specified folder (or source and target folders).  
