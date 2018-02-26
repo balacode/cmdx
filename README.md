@@ -1,4 +1,4 @@
-# cmdx
+# cmdx :nut_and_bolt:
 A command line tool to manage files and process source code.
 
 This tool is a sort of Swiss-Army-Knife for managing files and text processing.
@@ -35,7 +35,7 @@ Renames files by prefixing their name with a hash.
 ## Text Manipulation Commands:
 
 **FW (file-words):**   
-Lists all words with alphanumeric characters from <file>.
+Lists all words with alphanumeric characters from {file}.
 
 **ME (mark-errors):**   
 Inserts build errors as comments at the source of the error,
@@ -49,15 +49,14 @@ Changes timestamps in source files.
 Requires paths (in hardcoded.go) to be set up.  
 
 **RL (rep-lines):**  
-Replaces lines in file(s). Requires <command-file>.  
+Replaces lines in file(s). Requires {command-file}.  
 This command allows you to replace several blocks of code at once.  
 
 **RS (replace-strings):**  
-Replaces strings in file(s). Requires <command-file>.
-
+Replaces strings in file(s). Requires {command-file}.
 
 **SF (sort-file):**  
-cmdx sf <filename>  
+cmdx sf {filename}  
 Sorts all the lines in a file.  
 And makes sure each line is unique.  
 
