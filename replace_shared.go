@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 6198F0               [cmdx/replace_lines_in_files.go]
+// :v: 2018-02-26 23:09:04 624A9E               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,8 +16,8 @@ func getConfigBool(s, keyword string) (value, exists bool) {
 	s = str.ToUpper(s)
 	keyword = str.ToUpper(keyword)
 	for i, ar := range [][]string{
-		[]string{"0", "FALSE", "OFF", "IGNORE"},
-		[]string{"1", "TRUE", "ON", "MATCH"},
+		{"0", "FALSE", "OFF", "IGNORE"},
+		{"1", "TRUE", "ON", "MATCH"},
 	} {
 		for _, match := range ar {
 			if str.HasPrefix(s, keyword+" "+match) {
