@@ -5,9 +5,9 @@ This tool is a sort of Swiss-Army-Knife for managing files and text processing.
 I wanted to avoid having too many little command line utilities,
 so I created CMDX which means Command-line Extensions.
 
-Below is a brief summary of the available commands. 
+*I am in the process of adding a detailed explanation for the usage of each command. In the meantime, you can check the source code or ask me directly. Your questions will help make the documentation more concise.*
 
-I am in the process of adding a detailed explanation for the usage of each command. In the meantime, you can check the source code or ask me directly. Your questions will help make the documentation more concise.
+Below is a brief summary of the available commands.  
 
 ## File Manipulation Commands:
 
@@ -19,7 +19,7 @@ Deletes all files in /target that already exist in /source.
 The command does not care about file names.  
 Instead it compares the contents of files with identical sizes.  
 
-**Use this command with care: files are deleted at once, without going to trash can** :exclamation:
+**Use this command with care: files are deleted without going to trash can** :exclamation:
 
 **LD (list-dup): List Duplicate Files**  
 Lists duplicate files in the specified folder (or source and target folders).  
@@ -63,9 +63,24 @@ To make this command work, send the output of the
 
     go build -gcflags="-e" 2> build.log
 
-Then, run the mark-errors command with the name of the build log:
+The `=gcflags="-e"` option instructs the Go compiler to
+output all build errors. Without this option, the compiler
+stops reporting errors after about 10 errors.
+
+Next, run the mark-errors command with the name of the build log:
 
     cmdx mark-errors -buildlog=.\build.log
+
+After you run the command, you will see comments such as the following:
+
+```go
+    func main() {
+        var args = os.Args
+        if len(args) = 1 {
+                   //^ syntax error: len(args) = 1 used as value
+        }
+    ...
+```
 
 **MT (mark-time):**  
 Changes timestamps in source files.  
@@ -76,14 +91,40 @@ Replaces lines in file(s). Requires {command-file}.
 This command allows you to replace several blocks of code at once.  
 
 **RS (replace-strings):**  
-Replaces strings in file(s). Requires {command-file}.
+Makes multiple (different) replacements simultaneously in multiple files.
+You can make thousands of simultaneous replacements as the command
+uses goroutines to search and replace multiple files concurrently
+once they are loaded in RAM.
+
+    cmdx rs replacements.repl
+
+The path, the types of files and the replacements are
+specified in a replacements file. Example replacements file:
+
+    mark ~~
+    path x:\path
+    case on
+    word on
+
+    ~~ comment
+
+    find1 ~~ replace1
+    find2 ~~ replace2
+    for (var i = 0; i < 10; i++) {  ~~  for i := 0; i < 10; i++ {
+
+- mark: the delimiter to denote comments and separate seach and replacement text.
+- path: the replacement path (also replaces subfolders). You can only specify one path, for now.
+- case: set 'on' to match case, or 'off' to ignore case.
+- word: set 'on' to match whole words, or 'off' to replace substrings.
+- comments start with the marker.
+- text to find is on the left of '~~' and the replacement text on the right. You can list as many replacements as needed.
 
 **SF (sort-file):**  
 
     cmdx sf {filename}
 
-Sorts all the lines in a file.  
-And makes sure each line is unique.  
+Sorts all lines in a file and deletes duplicate lines.
+This command is useful for sorting log files, dictionary lists, etc.
 
 ## Other Commands:  
 More specifics on these commands will be provided later.  
@@ -96,3 +137,28 @@ Runs the tool in source-code interactive mode.
 
 **TR (time-report):**  
 Summarizes time from log files and presents it in a calendar format.  
+For example:  
+
+    2018 FEBRUARY
+    *--------------------------------------------------------------*
+    |  Mon   |  Tue   |  Wed   |  Thu   |  Fri   |  Sat   |  Sun   |
+    |--------|--------|--------|--------|--------|--------|--------|
+    |        |        |        | 1      | 2      | 3      | 4      |
+    |        |        |        |   8.44 |   7.55 |   6.66 |   5.77 |
+    |--------|--------|--------|--------|--------|--------|--------|
+    | 5      | 6      | 7      | 8      | 9      | 10     | 11     |
+    |   4.88 |   3.99 |   2.15 |   1.54 |      0 |      1 |      2 |
+    |--------|--------|--------|--------|--------|--------|--------|
+    | 12     | 13     | 14     | 15     | 16     | 17     | 18     |
+    |      3 |      4 |      5 |      6 |      7 |      8 |      9 |
+    |--------|--------|--------|--------|--------|--------|--------|
+    | 19     | 20     | 21     | 22     | 23     | 24     | 25     |
+    |     10 |        |        |        |        |        |        |
+    |--------|--------|--------|--------|--------|--------|--------|
+    | 26     | 27     | 28     |        |        |        |        |
+    |        |        |        |        |        |        |        |
+    |--------|--------|--------|--------|--------|--------|--------|
+    |        |        |        |        |        |        |        |
+    |        |        |        |        |        |        |        |
+    *--------------------------------------------------------------*
+    95.98
