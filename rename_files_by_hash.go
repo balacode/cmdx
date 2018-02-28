@@ -1,15 +1,15 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 B3B81A                 [cmdx/rename_files_by_hash.go]
+// :v: 2018-02-28 14:22:33 F92B1A                 [cmdx/rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
 
+import "crypto/sha512" // standard
 import "path/filepath" // standard
 import str "strings"   // standard
 
-import "github.com/balacode/zr"       // Zircon-Go
-import "github.com/balacode/zr_whirl" // Zircon-Go
+import "github.com/balacode/zr" // Zircon-Go
 
 // renameFilesByHash __
 func renameFilesByHash(cmd Command, args []string) {
@@ -37,7 +37,7 @@ func renameFilesByHash(cmd Command, args []string) {
 				continue
 			}
 			var hash = zr.HexStringOfBytes(zr.FoldXorBytes(
-				whirl.HashOfBytes(data, []byte{}), 4,
+				hashOfBytes(data, []byte{}), 4,
 			))
 			hash = str.ToLower(hash)
 			// skip filenames that already contain the hash
@@ -54,5 +54,15 @@ func renameFilesByHash(cmd Command, args []string) {
 		}
 	}
 } //                                                           renameFilesByHash
+
+// hashOfBytes returns the SHA-512 hash of a byte slice.
+// It also requires a 'salt' argument.
+func hashOfBytes(ar []byte, salt []byte) []byte {
+	var input []byte
+	input = append(input, salt[:]...)
+	input = append(input, ar...)
+	var hash = sha512.Sum512(input)
+	return hash[:]
+} //                                                                 hashOfBytes
 
 //end
