@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 3A85CC                   [cmdx/mark_time_in_files.go]
+// :v: 2018-02-28 14:06:54 F03EB3                   [cmdx/mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -37,11 +37,11 @@ import "github.com/balacode/zr_fs" // Zircon-Go
 func markTimeInFiles(cmd Command, args []string) {
 	var changeTime = true
 	for _, arg := range args {
-		switch str.ToLower(str.Trim(arg, zr.SPACES+"-/")) {
+		switch str.ToLower(str.Trim(arg, SPACES+"-/")) {
 		case "hash-only":
 			changeTime = false
 		default:
-			env.Printf("unknown argument '%s'"+zr.LF, arg)
+			env.Printf("unknown argument '%s'"+LF, arg)
 			return
 		}
 	}
@@ -60,13 +60,13 @@ func autoTimeLog(path string, timestamp string) {
 	//
 	// show timestamp and file
 	var filename = filepath.Base(path)
-	env.Printf("on %s %s"+zr.LF, timestamp, filename)
+	env.Printf("on %s %s"+LF, timestamp, filename)
 	//
 	//
 	var logPath = str.ToLower(getTimeLogPath(path))
 	//
 	// the entry written in the log file:
-	var entry = str.ToLower(timestamp + " " + path + zr.LF)
+	var entry = str.ToLower(timestamp + " " + path + LF)
 	if str.Contains(entry, logPath) {
 		entry = str.Replace(entry, logPath, "", -1)
 	}

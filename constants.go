@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 01:01:21 8579A4                            [cmdx/constants.go]
+// :v: 2018-02-28 14:11:36 3299C8                            [cmdx/constants.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -26,8 +26,15 @@ MRK |  line text     y      paste results here: n
 MRK |                                                                 WAITING...
 MRK  ---------------------------------------------------------------------------
 `
+// CR is a string with a single carriage return
+// character (decimal 13, hex 0D)
+const CR = "\r"
 
 // LF specifies a line feed string ("\n").
 const LF = "\n"
+
+// SPACES is a string of all white-space characters,
+// which includes spaces, tabs, and newline characters.
+const SPACES = " \a\b\f\n\r\t\v"
 
 //eof

@@ -1,14 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 23:09:04 624A9E               [cmdx/replace_lines_in_files.go]
+// :v: 2018-02-28 14:00:21 0EA51C               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import "path/filepath" // standard
 import str "strings"   // standard
-
-import "github.com/balacode/zr" // Zircon-Go
 
 // getConfigBool __
 func getConfigBool(s, keyword string) (value, exists bool) {
@@ -51,12 +49,12 @@ func readConfigFileLines(configFile string) (configLines []string) {
 		return []string{}
 	}
 	var s = string(data)
-	s = str.Trim(s, zr.SPACES)
-	s = str.Replace(s, "\r"+zr.LF, zr.LF, -1)
-	for str.Contains(s, zr.LF+zr.LF) {
-		s = str.Replace(s, zr.LF+zr.LF, zr.LF, -1)
+	s = str.Trim(s, SPACES)
+	s = str.Replace(s, CR+LF, LF, -1)
+	for str.Contains(s, LF+LF) {
+		s = str.Replace(s, LF+LF, LF, -1)
 	}
-	configLines = str.Split(s, zr.LF)
+	configLines = str.Split(s, LF)
 	configLines = append(configLines, "") // initiates replacement
 	return configLines
 } //                                                         readConfigFileLines

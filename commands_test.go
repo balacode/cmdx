@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 C4133F                        [cmdx/commands_test.go]
+// :v: 2018-02-28 14:06:54 C1186F                        [cmdx/commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -47,7 +47,7 @@ func Test_cmds_AllCategories_(t *testing.T) {
 		var exist bool
 		//
 		// category must be consistent and not zero-length
-		if len(str.Trim(cat, zr.SPACES)) == 0 {
+		if len(str.Trim(cat, SPACES)) == 0 {
 			t.Error("Invalid category: '" + cat + "'")
 		}
 		// category must be unique

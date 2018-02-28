@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 96B3DB                                 [cmdx/main.go]
+// :v: 2018-02-28 14:00:21 A71CC3                                 [cmdx/main.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,8 +9,6 @@ import "fmt"
 
 import "os"          // standard
 import str "strings" // standard
-
-import "github.com/balacode/zr" // Zircon-Go
 
 // -----------------------------------------------------------------------------
 // # Main Function
@@ -22,12 +20,12 @@ func main() {
 		const Format = "%-3s  %-11s  %-65s" //               layout and headings
 		var Div = str.Repeat("-", 80)
 		env.Print(
-			Div, zr.LF,
-			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), zr.LF,
-			Div, zr.LF,
+			Div, LF,
+			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), LF,
+			Div, LF,
 		)
 		for cat := 1; cat <= 3; cat++ { //            group commands by category
-			env.Print(zr.LF, str.ToUpper(AllCategories[cat])+":", zr.LF)
+			env.Print(LF, str.ToUpper(AllCategories[cat])+":", LF)
 			for _, cmd := range AllCommands {
 				if cmd.Category == cat {
 					env.Println(fmt.Sprintf(Format,

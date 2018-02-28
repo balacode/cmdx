@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 85B28C                         [cmdx/replace_time.go]
+// :v: 2018-02-28 14:00:21 152A9E                         [cmdx/replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,8 +8,6 @@ package main
 import "bytes"       // standard
 import "regexp"      // standard
 import str "strings" // standard
-
-import "github.com/balacode/zr" // Zircon-Go
 
 // replaceTime __
 func replaceTime(cmd Command, args []string) {
@@ -30,8 +28,8 @@ func replaceTime(cmd Command, args []string) {
 			if !done {
 				return
 			}
-			var content = str.Trim(string(data), zr.SPACES)
-			ar = str.Split(content, zr.LF)
+			var content = str.Trim(string(data), SPACES)
+			ar = str.Split(content, LF)
 		}
 		for _, s := range ar {
 			if len(s) < 16 {
@@ -49,8 +47,8 @@ func replaceTime(cmd Command, args []string) {
 		if !done {
 			return
 		}
-		var s = str.Trim(string(data), zr.SPACES)
-		toLines = str.Split(s, zr.LF)
+		var s = str.Trim(string(data), SPACES)
+		toLines = str.Split(s, LF)
 	}
 	var out bytes.Buffer
 	{
@@ -64,18 +62,18 @@ func replaceTime(cmd Command, args []string) {
 				tmPrev = tm
 				if from, exist := fromLines[tm]; exist {
 					for _, s := range from {
-						out.WriteString(s + zr.LF)
+						out.WriteString(s + LF)
 					}
 					continue
 				}
 			}
-			out.WriteString(s + zr.LF)
+			out.WriteString(s + LF)
 		}
 	}
 	if !env.WriteFile(toFile, out.Bytes()) {
 		return
 	}
-	env.Printf("written '%s'"+zr.LF, toFile)
+	env.Printf("written '%s'"+LF, toFile)
 } //                                                                 replaceTime
 
 //end

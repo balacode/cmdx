@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 74946C                      [cmdx/run_interactive.go]
+// :v: 2018-02-28 14:11:36 B197F0                      [cmdx/run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -100,7 +100,7 @@ loop:
 func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 	var b = 0 // <- remaining lines in block
 	for i, s := range lines {
-		var ts = str.ToUpper(str.Trim(s, zr.SPACES))
+		var ts = str.ToUpper(str.Trim(s, SPACES))
 		switch {
 		case str.HasPrefix(ts, CommandMark+BB): // begin block
 			b = -1
@@ -155,7 +155,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			s = zr.ReplaceI(s, CommandMark+BC, CommandMark+" DONE "+BC)
 			lines[ln] = s
 			env.Println(str.Repeat("~", len(file.Path+":")))
-			env.Println(file.Path + ":" + zr.LF + zr.LF + zr.LF)
+			env.Println(file.Path + ":" + LF + LF + LF)
 			for _, s := range ob.getMarkedBlocks(file.Lines) {
 				env.Println(s)
 			}
@@ -230,7 +230,7 @@ func (ob Runner) stripErrorMarks(
 ) {
 	modLines = make([]string, 0, len(lines))
 	for _, s := range lines {
-		if str.HasPrefix(str.Trim(s, zr.SPACES), ErrorMark) {
+		if str.HasPrefix(str.Trim(s, SPACES), ErrorMark) {
 			altered = true
 			continue
 		}
@@ -263,14 +263,14 @@ loop:
 			for _, line := range file.Lines {
 				line = str.ToUpper(line)
 				if str.Contains(line, id) {
-					fmt.Print("regenerating non-unique ID:", id, zr.LF)
+					fmt.Print("regenerating non-unique ID:", id, LF)
 					continue loop
 				}
 				lineCount++
 			}
 		}
 		fmt.Print(
-			"Created ID:", id, " (checked ", lineCount, " LOC)", zr.LF,
+			"Created ID:", id, " (checked ", lineCount, " LOC)", LF,
 		)
 		modLines[ln] = s[:col] + id + s[col+len(CommandMark+ID):]
 		break

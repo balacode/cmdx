@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 23:09:04 66DEE1                          [cmdx/time_report.go]
+// :v: 2018-02-28 14:11:36 2FC2B5                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -189,7 +189,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 		}
 		// store each line in a unique date+time key
 		// (any previous entry with same date+time gets overwritten)
-		m[line[:19]] = str.Trim(line[20:], zr.SPACES+"/\\")
+		m[line[:19]] = str.Trim(line[20:], SPACES+"/\\")
 	}
 	// create a sorted array of keys
 	var times = make([]string, 0, len(m))

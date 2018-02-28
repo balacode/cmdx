@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 CB559C                                 [cmdx/func.go]
+// :v: 2018-02-28 14:00:21 E00BD0                                 [cmdx/func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,8 +16,6 @@ package main
 import "os"            // standard
 import "path/filepath" // standard
 import str "strings"   // standard
-
-import "github.com/balacode/zr" // Zircon-Go
 
 // filterLongLines __
 func filterLongLines(
@@ -49,7 +47,7 @@ func getFilesMap(dir, filter string) FilesMap {
 				return nil
 			}
 			if err != nil {
-				env.Printf("in path %s: %s"+zr.LF, path, err)
+				env.Printf("in path %s: %s"+LF, path, err)
 				return nil
 			}
 			if info.IsDir() {
@@ -89,7 +87,7 @@ func splitArgsFilter(args []string) (retArgs []string, filter string) {
 
 // trim removes all leading and trailing white-spaces from a string
 func trim(s string) string {
-	return str.Trim(s, zr.SPACES)
+	return str.Trim(s, SPACES)
 } //                                                                        trim
 
 //end

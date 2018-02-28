@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 23:09:04 D3E8DE             [cmdx/replace_strings_in_files.go]
+// :v: 2018-02-28 14:06:54 2DCA8C             [cmdx/replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -49,12 +49,12 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			return
 		}
 		var s = string(data)
-		s = str.Trim(s, zr.SPACES)
-		s = str.Replace(s, "\r"+zr.LF, zr.LF, -1)
-		for str.Contains(s, zr.LF+zr.LF) {
-			s = str.Replace(s, zr.LF+zr.LF, zr.LF, -1)
+		s = str.Trim(s, SPACES)
+		s = str.Replace(s, "\r"+LF, LF, -1)
+		for str.Contains(s, LF+LF) {
+			s = str.Replace(s, LF+LF, LF, -1)
 		}
-		configLines = str.Split(s, zr.LF)
+		configLines = str.Split(s, LF)
 		configLines = append(configLines, "") // initiates replacement
 	}
 	var path = DefaultPath
@@ -87,7 +87,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 	}
 	env.Println(str.Repeat("-", 80))
 	for lineNo, s := range configLines {
-		s = str.Trim(s, zr.SPACES)
+		s = str.Trim(s, SPACES)
 		// blank lines initiate replacement:
 		if s == "" && len(items) > 0 {
 			env.Println(str.Repeat("-", 80))
@@ -110,16 +110,16 @@ func replaceStringsInFiles(cmd Command, args []string) {
 		}
 		// lines that begin with the marker are configuration or comments:
 		if str.HasPrefix(s, mark) {
-			s = str.Trim(s[len(mark):], zr.SPACES)
+			s = str.Trim(s[len(mark):], SPACES)
 			switch {
 			case str.HasPrefix(s, "path"):
-				path = str.Trim(s[5:], zr.SPACES)
+				path = str.Trim(s[5:], SPACES)
 				env.Println("SET PATH:", path)
 			case str.HasPrefix(s, "exts"):
 				exts = str.Fields(s[5:])
 				env.Println("SET EXTS:", exts)
 			case str.HasPrefix(s, "mark"):
-				mark = str.Trim(s[5:], zr.SPACES)
+				mark = str.Trim(s[5:], SPACES)
 				if mark == "" {
 					mark = DefaultMark
 				}
@@ -151,8 +151,8 @@ func replaceStringsInFiles(cmd Command, args []string) {
 		var i = str.Index(s, mark)
 		if i > 0 {
 			var item = ReplItem{
-				Find:     str.Trim(s[:i], zr.SPACES),
-				Repl:     str.Trim(s[i+len(mark):], zr.SPACES),
+				Find:     str.Trim(s[:i], SPACES),
+				Repl:     str.Trim(s[i+len(mark):], SPACES),
 				CaseMode: caseMode,
 				WordMode: wordMode,
 			}
