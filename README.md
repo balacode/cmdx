@@ -10,7 +10,7 @@ Use `go get` to install the utility and its dependencies. (If you use `git clone
 
     go get github.com/balacode/cmdx
     
-This will also install github.com/balacode/zr and github.com/balacode/zr_fs library (Zircon-Go) which CMDX uses. Once installed, change to `{go src path}/github.com/balacode/cmdx` and type `go build`.
+This will also install *github.com/balacode/zr* and *github.com/balacode/zr_fs* libraries (Zircon-Go) which CMDX uses. Once installed, change to `{go src path}/github.com/balacode/cmdx` and type `go build`.
 
 ## Usage Guide:
 
