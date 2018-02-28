@@ -1,0 +1,27 @@
+# ------------------------------------------------------------------------------
+# (c) balarabe@protonmail.com                                     License: GPLv3
+# :v: 2018-02-28 14:19:26 3CD5F3                                    [.gitignore]
+# ------------------------------------------------------------------------------
+
+# ignore temp. files and drafts
+*.go_
+*`*
+__*
+
+# ignore backup files
+*.go~
+
+# ignore logs, etc.
+*.log
+cover.out
+
+# ignore auxiliary files
+.idea
+
+# ignore binary files:
+*.exe
+*.exe*
+*.zip
+app
+
+#end
