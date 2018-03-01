@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 137074                               [cmdx/module.go]
+// :v: 2018-03-01 12:57:33 86DC74                               [cmdx/module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -60,12 +60,6 @@ const DebugReplaceLines = false
 
 // ShowProgressIndicator __
 const ShowProgressIndicator = false
-
-// UseNewVersion __
-const UseNewVersion = true
-
-// UseOldVersion __
-const UseOldVersion = false
 
 // VL is zr.VerboseLog() but is used only for debugging.
 var VL = zr.VerboseLog
