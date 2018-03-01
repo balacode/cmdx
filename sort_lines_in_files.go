@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-01 10:15:28 9347A4                      [cmdx/sort_file_lines.go]
+// :v: 2018-03-01 16:51:36 4F7414                      [cmdx/sort_file_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "sort"        // standard
-import str "strings" // standard
+import "sort"    // standard
+import "strings" // standard
 
 // sortFileLines sorts all the lines in the specified file, removing
 // non-unique lines. This command can be used to keep log files sorted.
@@ -18,7 +18,7 @@ func sortFileLines(cmd Command, args []string) {
 	// read the file
 	var filename = args[0]
 	var lines = env.ReadFileLines(filename)
-	var oldContent = str.Join(lines, "\n")
+	var oldContent = strings.Join(lines, "\n")
 	//
 	// remove non-unique lines
 	if true {
@@ -35,7 +35,7 @@ func sortFileLines(cmd Command, args []string) {
 	sort.Strings(lines)
 	//
 	// don't save if nothing changed
-	if str.Join(lines, "\n") == oldContent {
+	if strings.Join(lines, "\n") == oldContent {
 		return
 	}
 	// save the file

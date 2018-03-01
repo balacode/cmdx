@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 182272                        [cmdx/words_in_file.go]
+// :v: 2018-03-01 16:51:36 316FDE                        [cmdx/words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "unicode"     // standard
-import str "strings" // standard
+import "strings" // standard
+import "unicode" // standard
 
 import "github.com/balacode/zr_fs" // Zircon-Go
 
@@ -71,7 +71,7 @@ func wordsInFile(cmd Command, args []string) {
 		},
 	)
 	// read fragments from file, store words in map
-	var gap = str.Repeat(" ", 10)
+	var gap = strings.Repeat(" ", 10)
 	for word, count := range words {
 		env.Println(word, gap, count)
 	}

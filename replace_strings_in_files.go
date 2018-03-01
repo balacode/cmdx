@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 12:57:33 FEFF4C             [cmdx/replace_strings_in_files.go]
+// :v: 2018-03-01 16:51:36 AFF406             [cmdx/replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,8 +8,8 @@ package main
 import "fmt"
 
 import "path/filepath" // standard
+import "strings"       // standard
 import "sync"          // standard
-import str "strings"   // standard
 
 import "github.com/balacode/zr" // Zircon-Go
 
@@ -68,24 +68,24 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			return
 		}
 		var s = string(data)
-		s = str.Trim(s, SPACES)
-		s = str.Replace(s, "\r"+LF, LF, -1)
-		for str.Contains(s, LF+LF) {
-			s = str.Replace(s, LF+LF, LF, -1)
+		s = strings.Trim(s, SPACES)
+		s = strings.Replace(s, "\r"+LF, LF, -1)
+		for strings.Contains(s, LF+LF) {
+			s = strings.Replace(s, LF+LF, LF, -1)
 		}
-		configLines = str.Split(s, LF)
+		configLines = strings.Split(s, LF)
 		configLines = append(configLines, "") // initiates replacement
 	}
 	//
 	// each item:
 	var items = []ReplItem{}
-	env.Println(str.Repeat("-", 80))
+	env.Println(strings.Repeat("-", 80))
 	for lineNo, s := range configLines {
-		s = str.Trim(s, SPACES)
+		s = strings.Trim(s, SPACES)
 		//
 		// blank lines initiate replacement:
 		if s == "" && len(items) > 0 {
-			env.Println(str.Repeat("-", 80))
+			env.Println(strings.Repeat("-", 80))
 			var task sync.WaitGroup
 			task.Add(1)
 			var cmd = ReplCmd{
@@ -100,20 +100,20 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			continue
 		}
 		// skip lines that don't contain marker:
-		if !str.Contains(s, cfg.mark) {
+		if !strings.Contains(s, cfg.mark) {
 			continue
 		}
 		// lines that begin with the marker are configuration or comments:
-		if str.HasPrefix(s, cfg.mark) {
+		if strings.HasPrefix(s, cfg.mark) {
 			setReplConfig(s, &cfg)
 			continue
 		}
 		// lines that contain but don't begin with the marker are replacements
-		var i = str.Index(s, cfg.mark)
+		var i = strings.Index(s, cfg.mark)
 		if i > 0 {
 			var item = ReplItem{
-				Find:     str.Trim(s[:i], SPACES),
-				Repl:     str.Trim(s[i+len(cfg.mark):], SPACES),
+				Find:     strings.Trim(s[:i], SPACES),
+				Repl:     strings.Trim(s[i+len(cfg.mark):], SPACES),
 				CaseMode: cfg.caseMode,
 				WordMode: cfg.wordMode,
 			}
@@ -140,14 +140,14 @@ func replaceStringsInFiles(cmd Command, args []string) {
 
 // getBool __
 func getBool(s, keyword string) (value, exists bool) {
-	s = str.ToUpper(s)
-	keyword = str.ToUpper(keyword)
+	s = strings.ToUpper(s)
+	keyword = strings.ToUpper(keyword)
 	for i, ar := range [][]string{
 		{"0", "FALSE", "OFF", "IGNORE"},
 		{"1", "TRUE", "ON", "MATCH"},
 	} {
 		for _, match := range ar {
-			if str.HasPrefix(s, keyword+" "+match) {
+			if strings.HasPrefix(s, keyword+" "+match) {
 				return i == 1, true
 			}
 		}
@@ -214,7 +214,7 @@ func replaceFileAsync(
 					var pc = fmt.Sprintf("c:%v w:%v %1.1f%%",
 						cm, wm, float64(int(max*float64(i)*10))/10)
 					if percent != pc {
-						env.Print(str.Repeat("\b", len(percent)), pc)
+						env.Print(strings.Repeat("\b", len(percent)), pc)
 						percent = pc
 					}
 				}
@@ -224,7 +224,7 @@ func replaceFileAsync(
 		content = newContent
 	}
 	if ShowProgressIndicator {
-		env.Print(str.Repeat("\b", len(percent)))
+		env.Print(strings.Repeat("\b", len(percent)))
 	}
 	if content == oldContent {
 		return
@@ -237,18 +237,18 @@ func replaceFileAsync(
 
 // setReplConfig __
 func setReplConfig(s string, cfg *replConfig) {
-	s = str.Trim(s[len(cfg.mark):], SPACES)
+	s = strings.Trim(s[len(cfg.mark):], SPACES)
 	switch {
-	case str.HasPrefix(s, "path"):
-		cfg.path = str.Trim(s[5:], SPACES)
+	case strings.HasPrefix(s, "path"):
+		cfg.path = strings.Trim(s[5:], SPACES)
 		env.Println("SET PATH:", cfg.path)
 	//
-	case str.HasPrefix(s, "exts"):
-		cfg.exts = str.Fields(s[5:])
+	case strings.HasPrefix(s, "exts"):
+		cfg.exts = strings.Fields(s[5:])
 		env.Println("SET EXTS:", cfg.exts)
 	//
-	case str.HasPrefix(s, "mark"):
-		cfg.mark = str.Trim(s[5:], SPACES)
+	case strings.HasPrefix(s, "mark"):
+		cfg.mark = strings.Trim(s[5:], SPACES)
 		if cfg.mark == "" {
 			cfg.mark = DefaultMark
 		}

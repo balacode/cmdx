@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-28 14:06:54 094085                        [cmdx/replace_lines.go]
+// :v: 2018-03-01 16:51:36 83F1F1                        [cmdx/replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "sort"        // standard
-import str "strings" // standard
+import "sort"    // standard
+import "strings" // standard
 
 import "github.com/balacode/zr" // Zircon-Go
 
@@ -144,9 +144,9 @@ func (M replaceLinesM) getTree(
 		var node = &ret
 		var last = len(find) - 1
 		for i, line := range find {
-			line = str.Trim(line, SPACES)
+			line = strings.Trim(line, SPACES)
 			if caseMode == zr.IgnoreCase {
-				line = str.ToLower(line)
+				line = strings.ToLower(line)
 			}
 			var _, exist = node.Sub[line]
 			var sub *FindReplLinesTree
@@ -185,9 +185,9 @@ func (M replaceLinesM) replaceMany(
 	var prev = 0
 	var ret []string
 	for i := 0; i < linesLen; i++ {
-		var line = str.Trim(lines[i], SPACES)
+		var line = strings.Trim(lines[i], SPACES)
 		if caseMode == zr.IgnoreCase {
-			line = str.ToLower(line)
+			line = strings.ToLower(line)
 		}
 		// check if the tree's branch has a key matching the current line
 		// if not, reset matching count and start over from root

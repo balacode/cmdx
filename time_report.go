@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 13:10:45 A5C674                          [cmdx/time_report.go]
+// :v: 2018-03-01 16:51:36 7D1868                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -31,11 +31,11 @@ package main
 //   dateTimeStr(val time.Time) string
 //   timeOf(val interface{}) time.Time
 
-import "fmt"         // standard
-import "reflect"     // standard
-import "sort"        // standard
-import "time"        // standard
-import str "strings" // standard
+import "fmt"     // standard
+import "reflect" // standard
+import "sort"    // standard
+import "strings" // standard
+import "time"    // standard
 
 import "github.com/balacode/zr" // Zircon-Go
 
@@ -188,7 +188,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 		}
 		// store each line in a unique date+time key
 		// (any previous entry with same date+time gets overwritten)
-		m[line[:19]] = str.Trim(line[20:], SPACES+"/\\")
+		m[line[:19]] = strings.Trim(line[20:], SPACES+"/\\")
 	}
 	// create a sorted array of keys
 	var times = make([]string, 0, len(m))
@@ -211,9 +211,9 @@ func trptGetTimeItems(lines []string) []TimeItem {
 
 // trptIsTimeStart __
 func trptIsTimeStart(s string) bool {
-	if str.HasPrefix(s, "IN ") ||
-		str.Contains(s, " IN ") ||
-		str.HasSuffix(s, " IN") {
+	if strings.HasPrefix(s, "IN ") ||
+		strings.Contains(s, " IN ") ||
+		strings.HasSuffix(s, " IN") {
 		return true
 	}
 	return false
@@ -249,7 +249,7 @@ func trptPrintFaults(ar []TimeItem) {
 		}
 		if spent > 3*time.Hour {
 			var s = fmt.Sprintf("(%s)", spent)
-			if !str.Contains(itm.Text, s) {
+			if !strings.Contains(itm.Text, s) {
 				env.Println("TOO LONG:", dateTimeStr(itm.Time), itm.Text, s)
 			}
 		}
@@ -270,7 +270,7 @@ func trptPrintTimeItems(entries []TimeItem) {
 		var date = dateStr(t.Time)
 		if date != prev {
 			if prev != "" {
-				env.Println(str.Repeat("-", 35))
+				env.Println(strings.Repeat("-", 35))
 				prt(prev, total.Hours(), total, "total")
 			}
 			env.Println()
@@ -282,11 +282,11 @@ func trptPrintTimeItems(entries []TimeItem) {
 		total += t.Spent
 	}
 	if prev != "" {
-		env.Println(str.Repeat("-", 35))
+		env.Println(strings.Repeat("-", 35))
 		prt(prev, total.Hours(), total, "total")
 	}
 	env.Println()
-	env.Println(str.Repeat("=", 35))
+	env.Println(strings.Repeat("=", 35))
 	prt(prev, grand.Hours(), grand, "grand total")
 } //                                                          trptPrintTimeItems
 
