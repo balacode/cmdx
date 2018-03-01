@@ -1,7 +1,7 @@
 # CMDX Tool
-A command line tool to manage files and process source code.
+A command line tool to process files and source code written in Go.
 
-This tool is a sort of Swiss-Army-Knife for managing files and text processing.
+This tool is like a Swiss-Army-Knife for managing files and text processing.
 I wanted to avoid having too many little command line utilities,
 so I created CMDX which means Command-line Extensions.
 
@@ -93,22 +93,21 @@ After you run the command, you will see comments such as the following:
 
 **MT (mark-time):**  
 Changes timestamps in source files.  
-Requires paths (in hardcoded.go) to be set up.  
+~~Requires paths (in hardcoded.go) to be set up.~~
 
 **RL (rep-lines):**  
-Replaces lines in file(s). Requires {command-file}.  
-This command allows you to replace several blocks of code at once.  
+Replaces multiple blocks of lines in multiple files simultaneously.
+Requires {command-file}.  
+
+    cmdx rl changes.repl
 
 **RS (replace-strings):**  
-Makes multiple (different) replacements simultaneously in multiple files.
-You can make thousands of simultaneous replacements as the command
-uses goroutines to search and replace multiple files concurrently
-once they are loaded in RAM.
+Makes multiple (different) replacements simultaneously in multiple files.  
+You can make thousands of simultaneous replacements as the command uses goroutines to search and replace concurrently once the files are loaded in RAM.
 
-    cmdx rs replacements.repl
+    cmdx rs changes.repl
 
-The path, the types of files and the replacements are
-specified in a replacements file. Example replacements file:
+The path, the types of files and the replacements are specified in a replacements file. Example replacements file:
 
     mark ~~
     path x:\path
@@ -132,11 +131,10 @@ specified in a replacements file. Example replacements file:
 
     cmdx sf {filename}
 
-Sorts all lines in a file and deletes duplicate lines.
-This command is useful for sorting log files, dictionary lists, etc.
+Sorts all lines in a file and deletes duplicate lines. This command is useful for sorting log files, dictionary lists, etc.  
 
 ## Other Commands:  
-More specifics on these commands will be provided later.  
+*More specifics on these commands will be provided later.*  
 
 **RT (rep-time):**  
 Replaces time entries in log files.  
