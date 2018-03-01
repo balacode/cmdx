@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-28 14:00:21 E00BD0                                 [cmdx/func.go]
+// :v: 2018-03-01 13:11:27 7B8BA3                                 [cmdx/func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,11 +10,13 @@ package main
 //       maxLineLength int,
 //   ) (ret []string)
 //   getFilesMap(dir, filter string) FilesMap
+//   sortUniqueStrings(a []string) []string
 //   splitArgsFilter(args []string) (retArgs []string, filter string)
 //   trim(s string) string
 
 import "os"            // standard
 import "path/filepath" // standard
+import "sort"          // standard
 import str "strings"   // standard
 
 // filterLongLines __
@@ -63,6 +65,21 @@ func getFilesMap(dir, filter string) FilesMap {
 	)
 	return ret
 } //                                                                 getFilesMap
+
+// sortUniqueStrings sorts string array 'a' and removes any repeated values
+func sortUniqueStrings(a []string) []string {
+	var unique = make(map[string]bool, len(a))
+	for _, s := range a {
+		unique[s] = true
+	}
+	var ret = make([]string, 0, len(unique))
+	for s := range unique {
+		ret = append(ret, s)
+	}
+	// sort the lines
+	sort.Strings(ret)
+	return ret
+} //                                                           sortUniqueStrings
 
 // splitArgsFilter extracts '-filter expr' or '--filter expr' from args,
 // and returns args with the option removed, and the extracted filter value.

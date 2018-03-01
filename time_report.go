@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-28 14:11:36 2FC2B5                          [cmdx/time_report.go]
+// :v: 2018-03-01 13:10:45 A5C674                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -29,7 +29,6 @@ package main
 // # Helper Functions
 //   dateStr(val time.Time) string
 //   dateTimeStr(val time.Time) string
-//   sortUniqueStrings(a []string) []string
 //   timeOf(val interface{}) time.Time
 
 import "fmt"         // standard
@@ -348,21 +347,6 @@ func dateStr(val time.Time) string {
 func dateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
 } //                                                                 dateTimeStr
-
-// sortUniqueStrings sorts string array 'a' and removes any repeated values
-func sortUniqueStrings(a []string) []string {
-	var unique = make(map[string]bool, len(a))
-	for _, s := range a {
-		unique[s] = true
-	}
-	var ret = make([]string, 0, len(unique))
-	for s := range unique {
-		ret = append(ret, s)
-	}
-	// sort the lines
-	sort.Strings(ret)
-	return ret
-} //                                                           sortUniqueStrings
 
 // timeOf converts any string-like value to time.Time without returning
 // an error if the conversion failed, in which case it logs an error
