@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-28 14:06:54 F22D03                [cmdx/mark_errors_in_source.go]
+// :v: 2018-03-01 13:03:06 DDF9EC                [cmdx/mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -26,6 +26,7 @@ import "github.com/balacode/zr" // Zircon-Go
 //
 // # Support (File Scope)
 //   isErrorComment(line string) bool
+//   isRepeatComment(msg string, lineNo int, lines []string) bool
 //   makePath(absPath, relPath string) string
 //   readBuildIssues(buildLog string) (ret []BuildIssue)
 //   removeOldErrorComments(lines []string) []string
@@ -71,14 +72,17 @@ func markErrorsInSource(cmd Command, args []string) {
 	}
 	var lines []string
 	var prevFile string
+	//
 	// iterate over issues array and insert error comments in the source file
 	// important: must be done in reverse order to keep existing line numbers)
 	for i := len(issues) - 1; i >= 0; i-- {
 		var issue = issues[i]
 		if prevFile != issue.File {
+			//
 			// save previous file, and load next file
 			saveFile(buildPath, prevFile, lines)
 			prevFile = issue.File
+			//
 			// read file into 'lines' array
 			var path = makePath(buildPath, issue.File)
 			var data, done = env.ReadFile(path)
@@ -99,10 +103,11 @@ func markErrorsInSource(cmd Command, args []string) {
 			lines = append(lines, msg)
 			continue
 		}
-		if trim(lines[issue.Line]) == trim(msg) {
+		// avoid repeating the same comment
+		if isRepeatComment(msg, issue.Line, lines) {
 			continue
 		}
-		{ // indent the error comment to match the error's column
+		{ // align the comment to the error's column
 			var gap = ""
 			var line = lines[issue.Line-1]
 			var max = len(line)
@@ -132,6 +137,26 @@ func isErrorComment(line string) bool {
 	return str.HasPrefix(find, ErrorMark) &&
 		str.Contains(find, ErrorEndMark)
 } //                                                              isErrorComment
+
+// isRepeatComment returns true if msg already
+// exists at or adjacent to the line at lineNo.
+func isRepeatComment(msg string, lineNo int, lines []string) bool {
+	msg = trim(msg)
+	//
+	// check on exact line
+	if trim(lines[lineNo]) == msg {
+		return true
+	}
+	// check preceding line
+	if (lineNo-1) >= 0 && trim(lines[lineNo-1]) == msg {
+		return true
+	}
+	// check following line
+	if (lineNo+1) < len(lines) && trim(lines[lineNo+1]) == msg {
+		return true
+	}
+	return false
+} //                                                             isRepeatComment
 
 // makePath combines an absolute and relative path,
 // returning an absolute path.
@@ -165,16 +190,23 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 		return nil
 	}
 	// fill issues array:
-	for _, s := range str.Split(string(data), LF) {
+	var m = map[string]bool{}
+	var lines = str.Split(string(data), LF)
+	for _, s := range lines {
 		var ar = str.Split(s, ":")
-		if len(ar) >= 4 {
-			ret = append(ret, BuildIssue{
-				File: trim(ar[0]),
-				Line: zr.Int(ar[1]),
-				Col:  zr.Int(ar[2]),
-				Msg:  trim(str.Join(ar[3:], ":")),
-			})
+		if len(ar) < 4 { //                                     skip short lines
+			continue
 		}
+		if _, exist := m[s]; exist { //                     skip repeated errors
+			continue
+		}
+		m[s] = true
+		ret = append(ret, BuildIssue{
+			File: trim(ar[0]),
+			Line: zr.Int(ar[1]),
+			Col:  zr.Int(ar[2]),
+			Msg:  trim(str.Join(ar[3:], ":")),
+		})
 	}
 	return ret
 } //                                                             readBuildIssues
