@@ -1,9 +1,18 @@
-# cmdx :nut_and_bolt:
+# CMDX Tool
 A command line tool to manage files and process source code.
 
 This tool is a sort of Swiss-Army-Knife for managing files and text processing.
 I wanted to avoid having too many little command line utilities,
 so I created CMDX which means Command-line Extensions.
+
+## Installation:
+Use `go get` to install the utility and its dependencies. (If you use `git clone`, you'll have to also clone `zr` and `zr_fs` manually and make sure they're in the github.com/balacode branch.)
+
+    go get github.com/balacode/cmdx
+    
+This will also install *github.com/balacode/zr* and *github.com/balacode/zr_fs* libraries (Zircon-Go) which CMDX uses. Once installed, change to `{go src path}/github.com/balacode/cmdx` and type `go build`.
+
+## Usage Guide:
 
 *I am in the process of adding a detailed explanation for the usage of each command. In the meantime, you can check the source code or ask me directly. Your questions will help make the documentation more concise.*
 
