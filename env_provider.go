@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 02A745                         [cmdx/env_provider.go]
+// :v: 2018-03-03 00:00:58 906847                         [cmdx/env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -12,6 +12,11 @@ import "io/ioutil" // standard
 import "github.com/balacode/zr"    // Zircon-Go
 import "github.com/balacode/zr_fs" // Zircon-Go
 
+// Env defines functions that interact with the app's environment.
+// All IO is channelled through calls on the 'env' variable.
+type Env struct{}
+
+// env is the one instance of Env
 var env EnvProvider = Env{}
 
 // PL is env.Println() but is used only for debugging.
@@ -20,7 +25,8 @@ var PL = env.Println
 // -----------------------------------------------------------------------------
 // # Interface
 
-// EnvProvider __
+// EnvProvider defines the app's environment provider interface,
+// i.e. all the input and output functions
 type EnvProvider interface {
 
 	// -------------------------------------------------------------------------
@@ -110,24 +116,21 @@ type EnvProvider interface {
 	TextFileExts() []string
 } //                                                                 EnvProvider
 
-// Env __
-type Env struct{}
-
 // -----------------------------------------------------------------------------
 // # Console Output
 
 // Print __
-func (ob Env) Print(a ...interface{}) (n int, err error) {
+func (Env) Print(a ...interface{}) (n int, err error) {
 	return fmt.Print(a...)
 }
 
 // Printf __
-func (ob Env) Printf(format string, a ...interface{}) (n int, err error) {
+func (Env) Printf(format string, a ...interface{}) (n int, err error) {
 	return fmt.Printf(format, a...)
 }
 
 // Println __
-func (ob Env) Println(a ...interface{}) (n int, err error) {
+func (Env) Println(a ...interface{}) (n int, err error) {
 	return fmt.Println(a...)
 }
 
@@ -138,7 +141,7 @@ func (ob Env) Println(a ...interface{}) (n int, err error) {
 // log file named 'run.log' saved in the program's current directory,
 // It also outputs the call stack (names and line numbers of callers.)
 // Returns an error value initialized with the message.
-func (ob Env) Error(args ...interface{}) error {
+func (Env) Error(args ...interface{}) error {
 	return zr.Error(args...)
 }
 
@@ -146,10 +149,10 @@ func (ob Env) Error(args ...interface{}) error {
 // # File Operations
 
 // DeleteFile deletes 'filename' and returns true if it no longer exists.
-func (ob Env) DeleteFile(filename string) bool {
+func (Env) DeleteFile(filename string) bool {
 	var err = os.Remove(filename)
 	if err != nil {
-		ob.Println("Failed deleting", filename, "due to:", err)
+		env.Println("Failed deleting", filename, "due to:", err)
 		return false
 	}
 	return true
@@ -158,11 +161,11 @@ func (ob Env) DeleteFile(filename string) bool {
 // ReadFile reads 'filename' from the disk and returns the entire
 // file contents in 'data' and true in 'done' if successful.
 // Otherwise returns an empty byte array and false.
-func (ob Env) ReadFile(filename string) (data []byte, done bool) {
+func (Env) ReadFile(filename string) (data []byte, done bool) {
 	var err error
 	data, err = ioutil.ReadFile(filename)
 	if err != nil {
-		ob.Println("Failed reading", filename, "due to:", err)
+		env.Println("Failed reading", filename, "due to:", err)
 		return []byte{}, false
 	}
 	return data, true
@@ -185,7 +188,7 @@ func (ob Env) ReadFile(filename string) (data []byte, done bool) {
 //            the reading position back.
 //
 // Returns an error if the file can't be opened or a read fails.
-func (ob Env) ReadFileChunks(
+func (Env) ReadFileChunks(
 	filename string,
 	chunkSize int64,
 	reader func(chunk []byte) int64,
@@ -194,36 +197,36 @@ func (ob Env) ReadFileChunks(
 }
 
 // ReadFileLines __
-func (ob Env) ReadFileLines(filename string) []string {
+func (Env) ReadFileLines(filename string) []string {
 	//TODO: add error return value to fs.ReadFileLines, add bool return here
 	return fs.ReadFileLines(filename)
 }
 
 // RenameFile __
-func (ob Env) RenameFile(oldpath, newpath string) bool {
+func (Env) RenameFile(oldpath, newpath string) bool {
 	var err = os.Rename(oldpath, newpath)
 	if err != nil {
-		ob.Println("Failed renaming", oldpath, " to ", newpath, "due to:", err)
+		env.Println("Failed renaming", oldpath, " to ", newpath, "due to:", err)
 		return false
 	}
 	return true
 }
 
 // WriteFile __
-func (ob Env) WriteFile(filename string, data []byte) bool {
+func (Env) WriteFile(filename string, data []byte) bool {
 	var err = ioutil.WriteFile(filename, data, 0644)
 	if err != nil {
-		ob.Println("Failed writing", filename, "due to:", err)
+		env.Println("Failed writing", filename, "due to:", err)
 		return false
 	}
 	return true
 }
 
 // WriteFileLines __
-func (ob Env) WriteFileLines(filename string, lines []string) bool {
+func (Env) WriteFileLines(filename string, lines []string) bool {
 	var err = fs.WriteFileLines(filename, lines)
 	if err != nil {
-		ob.Println("Failed writing", filename, "due to:", err)
+		env.Println("Failed writing", filename, "due to:", err)
 		return false
 	}
 	return true
@@ -233,39 +236,39 @@ func (ob Env) WriteFileLines(filename string, lines []string) bool {
 // # File System Info
 
 // FileExists returns true if the file given by 'path' exists.
-func (ob Env) FileExists(path string) bool {
+func (Env) FileExists(path string) bool {
 	return fs.FileExists(path)
 }
 
 // GetFilePaths returns a list of file names (with full path) contained
 // in folder 'dir' that match the given file extensions.
 // Extensions should be specified as: "ext", or ".ext", not "*.ext"
-func (ob Env) GetFilePaths(dir string, exts ...string) []string {
+func (Env) GetFilePaths(dir string, exts ...string) []string {
 	return fs.GetFilePaths(dir, exts...)
 }
 
 // Getwd returns the current working directory.
-func (ob Env) Getwd() string {
+func (Env) Getwd() string {
 	var dir, err = os.Getwd()
 	if err != nil {
-		ob.Println("Failed to determine working directory due to:", err)
+		env.Println("Failed to determine working directory due to:", err)
 		return ""
 	}
 	return dir
 }
 
 // PathSeparator __
-func (ob Env) PathSeparator() string {
+func (Env) PathSeparator() string {
 	return string(os.PathSeparator)
 }
 
 // NewDirWatcher __
-func (ob Env) NewDirWatcher(dir string) *fs.DirWatcher {
+func (Env) NewDirWatcher(dir string) *fs.DirWatcher {
 	return fs.NewDirWatcher(dir)
 }
 
 // TextFileExts returns a list of all text file extensions.
-func (ob Env) TextFileExts() []string {
+func (Env) TextFileExts() []string {
 	return fs.TextFileExts
 }
 
