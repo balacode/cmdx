@@ -1,12 +1,11 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 AFF406             [cmdx/replace_strings_in_files.go]
+// :v: 2018-03-03 00:08:47 B7EA82             [cmdx/replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "fmt"
-
+import "fmt"           // standard
 import "path/filepath" // standard
 import "strings"       // standard
 import "sync"          // standard
@@ -74,7 +73,9 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			s = strings.Replace(s, LF+LF, LF, -1)
 		}
 		configLines = strings.Split(s, LF)
-		configLines = append(configLines, "") // initiates replacement
+		//
+		// add a blank line to initiate replacement
+		configLines = append(configLines, "")
 	}
 	//
 	// each item:
