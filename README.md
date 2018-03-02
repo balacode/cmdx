@@ -1,4 +1,5 @@
 # CMDX Tool
+[![Go Report Card](https://goreportcard.com/badge/github.com/balacode/cmdx](https://goreportcard.com/report/github.com/balacode/cmdx)
 A command line tool to process files and source code written in Go.
 
 This tool is like a Swiss-Army-Knife for managing files and text processing.
