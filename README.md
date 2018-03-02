@@ -1,11 +1,9 @@
-# CMDX Tool
 [![Go Report Card](https://goreportcard.com/badge/github.com/balacode/cmdx)](https://goreportcard.com/report/github.com/balacode/cmdx)  
 
-A command line tool to process files and source code written in Go.
+# CMDX Tool
+A command line tool to process files and source code.
 
-This tool is like a Swiss-Army-Knife for managing files and text processing.
-I wanted to avoid having too many little command line utilities,
-so I created CMDX which means Command-line Extensions.
+This tool is like a Swiss-Army-Knife for managing files and text processing. I wanted to avoid having too many little command line utilities, so I created CMDX which means Command-line Extensions. It is written in Go and takes advantage of Go's concurrency.
 
 ## Installation:
 Use `go get` to install the utility and its dependencies. (If you use `git clone`, you'll have to also clone `zr` and `zr_fs` manually and make sure they're in the github.com/balacode branch.)
@@ -63,20 +61,15 @@ Lists all words with alphanumeric characters from {file}:
     cmdx fw {file}
 
 **ME (mark-errors):**   
-Inserts build errors as comments at the source of the error,
-so you don't need to manually look-up the line numbers and
-file names to edit. Just use your editor to find all error
-markers, fix the error, and delete the comment when the error
-is fixed.
+Inserts build errors as comments at the source of the error, so you don't need to manually look-up the line numbers and
+file names to edit. Just use your editor to find all error markers, fix the error, and delete the comment when the error is fixed.
 
 To make this command work, send the output of the
 `go build` or `go install` command to a build log file:
 
     go build -gcflags="-e" 2> build.log
 
-The `=gcflags="-e"` option instructs the Go compiler to
-output all build errors. Without this option, the compiler
-stops reporting errors after about 10 errors.
+The `=gcflags="-e"` option instructs the Go compiler to output all build errors. Without this option, the compiler stops reporting errors after about 10 errors.
 
 Next, run the mark-errors command with the name of the build log:
 
@@ -95,7 +88,6 @@ After you run the command, you will see comments such as the following:
 
 **MT (mark-time):**  
 Changes timestamps in source files.  
-~~Requires paths (in hardcoded.go) to be set up.~~
 
 **RL (rep-lines):**  
 Replaces multiple blocks of lines in multiple files simultaneously.
@@ -104,8 +96,7 @@ Requires {command-file}.
     cmdx rl changes.repl
 
 **RS (replace-strings):**  
-Makes multiple (different) replacements simultaneously in multiple files.  
-You can make thousands of simultaneous replacements as the command uses goroutines to search and replace concurrently once the files are loaded in RAM.
+Makes multiple (different) replacements simultaneously in multiple files. You can make thousands of simultaneous replacements as the command uses goroutines to search and replace concurrently once the files are loaded in RAM.
 
     cmdx rs changes.repl
 
