@@ -1,7 +1,7 @@
 # CMDX Tool  
 A command line tool to process files and source code.  
+[![Go Report Card](https://goreportcard.com/badge/github.com/balacode/cmdx)](https://goreportcard.com/report/github.com/balacode/cmdx)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  
-[![Go Report Card](https://goreportcard.com/badge/github.com/balacode/cmdx)](https://goreportcard.com/report/github.com/balacode/cmdx)  
 
 This tool is like a Swiss-Army-Knife for managing files and text processing. I wanted to avoid having too many little command line utilities, so I created CMDX which means Command-line Extensions. It is written in Go and takes advantage of Go's concurrency.
 
