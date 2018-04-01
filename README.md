@@ -1,9 +1,9 @@
-# CMDX Tool  
-A command line tool to process files and source code.  
-[![Go Report Card](https://goreportcard.com/badge/github.com/balacode/cmdx)](https://goreportcard.com/report/github.com/balacode/cmdx)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  
+# CMDX Tool
+A command line tool to manage files and process source code.
 
-This tool is like a Swiss-Army-Knife for managing files and text processing. I wanted to avoid having too many little command line utilities, so I created CMDX which means Command-line Extensions. It is written in Go and takes advantage of Go's concurrency.
+This tool is a sort of Swiss-Army-Knife for managing files and text processing.
+I wanted to avoid having too many little command line utilities,
+so I created CMDX which means Command-line Extensions.
 
 ## Installation:
 Use `go get` to install the utility and its dependencies. (If you use `git clone`, you'll have to also clone `zr` and `zr_fs` manually and make sure they're in the github.com/balacode branch.)
@@ -61,15 +61,20 @@ Lists all words with alphanumeric characters from {file}:
     cmdx fw {file}
 
 **ME (mark-errors):**   
-Inserts build errors as comments at the source of the error, so you don't need to manually look-up the line numbers and
-file names to edit. Just use your editor to find all error markers, fix the error, and delete the comment when the error is fixed.
+Inserts build errors as comments at the source of the error,
+so you don't need to manually look-up the line numbers and
+file names to edit. Just use your editor to find all error
+markers, fix the error, and delete the comment when the error
+is fixed.
 
 To make this command work, send the output of the
 `go build` or `go install` command to a build log file:
 
     go build -gcflags="-e" 2> build.log
 
-The `=gcflags="-e"` option instructs the Go compiler to output all build errors. Without this option, the compiler stops reporting errors after about 10 errors.
+The `=gcflags="-e"` option instructs the Go compiler to
+output all build errors. Without this option, the compiler
+stops reporting errors after about 10 errors.
 
 Next, run the mark-errors command with the name of the build log:
 
@@ -88,19 +93,22 @@ After you run the command, you will see comments such as the following:
 
 **MT (mark-time):**  
 Changes timestamps in source files.  
+Requires paths (in hardcoded.go) to be set up.  
 
 **RL (rep-lines):**  
-Replaces multiple blocks of lines in multiple files simultaneously.
-Requires {command-file}.  
-
-    cmdx rl changes.repl
+Replaces lines in file(s). Requires {command-file}.  
+This command allows you to replace several blocks of code at once.  
 
 **RS (replace-strings):**  
-Makes multiple (different) replacements simultaneously in multiple files. You can make thousands of simultaneous replacements as the command uses goroutines to search and replace concurrently once the files are loaded in RAM.
+Makes multiple (different) replacements simultaneously in multiple files.
+You can make thousands of simultaneous replacements as the command
+uses goroutines to search and replace multiple files concurrently
+once they are loaded in RAM.
 
-    cmdx rs changes.repl
+    cmdx rs replacements.repl
 
-The path, the types of files and the replacements are specified in a replacements file. Example replacements file:
+The path, the types of files and the replacements are
+specified in a replacements file. Example replacements file:
 
     mark ~~
     path x:\path
@@ -124,10 +132,11 @@ The path, the types of files and the replacements are specified in a replacement
 
     cmdx sf {filename}
 
-Sorts all lines in a file and deletes duplicate lines. This command is useful for sorting log files, dictionary lists, etc.  
+Sorts all lines in a file and deletes duplicate lines.
+This command is useful for sorting log files, dictionary lists, etc.
 
 ## Other Commands:  
-*More specifics on these commands will be provided later.*  
+More specifics on these commands will be provided later.  
 
 **RT (rep-time):**  
 Replaces time entries in log files.  
