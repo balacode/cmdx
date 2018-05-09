@@ -1,16 +1,18 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 703420               [cmdx/replace_lines_in_files.go]
+// :v: 2018-05-09 01:03:17 39A649               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "path/filepath" // standard
-import "strings"       // standard
-import "sync"          // standard
-import "sync/atomic"   // standard
+import (
+	"path/filepath"
+	"strings"
+	"sync"
+	"sync/atomic"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 //   DebugReplaceLinesInFiles
 //

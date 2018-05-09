@@ -1,14 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 83F1F1                        [cmdx/replace_lines.go]
+// :v: 2018-05-09 01:03:17 7150AE                        [cmdx/replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "sort"    // standard
-import "strings" // standard
+import (
+	"sort"
+	"strings"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 //  replaceLines(
 //      lines []string,

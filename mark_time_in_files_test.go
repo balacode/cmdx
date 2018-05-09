@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 FB9A7B              [cmdx/mark_time_in_files_test.go]
+// :v: 2018-05-09 01:03:17 55E8EB              [cmdx/mark_time_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -24,10 +24,12 @@ to generate a test coverage report for the whole module use:
     go tool cover -html=cover.out
 */
 
-import "time"    // standard
-import "testing" // standard
+import (
+	"testing"
+	"time"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // -----------------------------------------------------------------------------
 // # Command Handler

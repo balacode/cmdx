@@ -1,11 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-01 10:15:28 E59D8A               [cmdx/delete_identical_files.go]
+// :v: 2018-05-09 01:03:17 C5DEB8               [cmdx/delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "bytes" // standard
+import (
+	"bytes"
+)
 
 // deleteIdenticalFiles __
 func deleteIdenticalFiles(cmd Command, args []string) {

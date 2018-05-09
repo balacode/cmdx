@@ -1,13 +1,15 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:49:00 DB3124                          [cmdx/match_words.go]
+// :v: 2018-05-09 01:03:17 B948A4                          [cmdx/match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "strings" // standard
+import (
+	"strings"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // matchWords __
 func matchWords(cmd Command, args []string) {

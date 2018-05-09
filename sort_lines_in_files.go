@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 4F7414                      [cmdx/sort_file_lines.go]
+// :v: 2018-05-09 01:03:17 80BB44                      [cmdx/sort_file_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "sort"    // standard
-import "strings" // standard
+import (
+	"sort"
+	"strings"
+)
 
 // sortFileLines sorts all the lines in the specified file, removing
 // non-unique lines. This command can be used to keep log files sorted.

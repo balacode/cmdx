@@ -1,13 +1,15 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 D141D3                         [cmdx/replace_time.go]
+// :v: 2018-05-09 01:03:17 CF64BD                         [cmdx/replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "bytes"   // standard
-import "regexp"  // standard
-import "strings" // standard
+import (
+	"bytes"
+	"regexp"
+	"strings"
+)
 
 // replaceTime __
 func replaceTime(cmd Command, args []string) {

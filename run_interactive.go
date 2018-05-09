@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-04-01 11:43:30 681BAA                      [cmdx/run_interactive.go]
+// :v: 2018-05-09 01:23:02 6550A2                      [cmdx/run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -29,13 +29,15 @@ package main
 //   ) (altered bool)
 //   (ob Runner) insertUUID(ln, col int, modLines []string) (altered bool)
 
-import "fmt"     // standard
-import "sort"    // standard
-import "strings" // standard
-import "sync"    // standard
+import (
+	"fmt"
+	"sort"
+	"strings"
+	"sync"
 
-import "github.com/balacode/zr"    // Zircon-Go
-import "github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr"    // Zircon-Go
+	"github.com/balacode/zr-fs" // Zircon-Go
+)
 
 // Runner joins all subfunctions used by runInteractive(),
 // so that their names don't clutter the project's namespace.

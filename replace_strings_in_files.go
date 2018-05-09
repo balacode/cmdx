@@ -1,16 +1,18 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-03 00:08:47 B7EA82             [cmdx/replace_strings_in_files.go]
+// :v: 2018-05-09 01:03:17 AD6DB3             [cmdx/replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "fmt"           // standard
-import "path/filepath" // standard
-import "strings"       // standard
-import "sync"          // standard
+import (
+	"fmt"
+	"path/filepath"
+	"strings"
+	"sync"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // # Command Handler
 //   replaceStringsInFiles(cmd Command, args []string)

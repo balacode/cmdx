@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 DEF65D          [cmdx/rename_identical_files_test.go]
+// :v: 2018-05-09 01:03:17 EDCD10          [cmdx/rename_identical_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,9 +14,11 @@ to generate a test coverage report for the whole module use:
     go tool cover -html=cover.out
 */
 
-import "testing" // standard
+import (
+	"testing"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // go test --run Test_ridf_renameIdenticalFiles_
 func Test_ridf_renameIdenticalFiles_(t *testing.T) {

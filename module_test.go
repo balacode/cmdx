@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 54B3B4                          [cmdx/module_test.go]
+// :v: 2018-05-09 01:03:17 E628AC                          [cmdx/module_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,9 +14,11 @@ to generate a test coverage report for the whole module use:
     go tool cover -html=cover.out
 */
 
-import "testing" // standard
+import (
+	"testing"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // go test --run Test_mdle_
 func Test_mdle_(t *testing.T) {

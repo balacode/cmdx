@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-18 19:55:01 79C113                            [cmdx/time_item.go]
+// :v: 2018-05-09 01:03:17 C32775                            [cmdx/time_item.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "fmt"  // standard
-import "time" // standard
+import (
+	"fmt"
+	"time"
+)
 
 // TimeItem __
 type TimeItem struct {

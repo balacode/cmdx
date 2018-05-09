@@ -1,11 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-24 00:34:19 BFB61E                 [cmdx/list_identical_files.go]
+// :v: 2018-05-09 01:03:17 FAEF0F                 [cmdx/list_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "bytes" // standard
+import (
+	"bytes"
+)
 
 // listIdenticalFiles __
 func listIdenticalFiles(cmd Command, args []string) {

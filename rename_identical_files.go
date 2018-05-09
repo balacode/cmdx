@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-01 10:15:28 28C7AB               [cmdx/rename_identical_files.go]
+// :v: 2018-05-09 01:03:17 020C7B               [cmdx/rename_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "bytes"         // standard
-import "path/filepath" // standard
+import (
+	"bytes"
+	"path/filepath"
+)
 
 // renameIdenticalFiles __
 func renameIdenticalFiles(cmd Command, args []string) {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 F4EBC4          [cmdx/delete_identical_files_test.go]
+// :v: 2018-05-09 01:03:17 A814DB          [cmdx/delete_identical_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,9 +14,11 @@ to generate a test coverage report for the whole module use:
     go tool cover -html=cover.out
 */
 
-import "testing" // standard
+import (
+	"testing"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // go test --run Test_dlif_deleteIdenticalFiles_
 func Test_dlif_deleteIdenticalFiles_(t *testing.T) {

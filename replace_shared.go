@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 0F87F7               [cmdx/replace_lines_in_files.go]
+// :v: 2018-05-09 01:03:17 EFE1F0               [cmdx/replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "path/filepath" // standard
-import "strings"       // standard
+import (
+	"path/filepath"
+	"strings"
+)
 
 // getConfigBool __
 func getConfigBool(s, keyword string) (value, exists bool) {

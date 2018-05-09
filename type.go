@@ -1,13 +1,15 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 F1A97F                                 [cmdx/type.go]
+// :v: 2018-05-09 01:03:17 416538                                 [cmdx/type.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "time" // standard
+import (
+	"time"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // -----------------------------------------------------------------------------
 // # Types

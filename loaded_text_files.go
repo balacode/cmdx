@@ -1,15 +1,17 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 A77B04                    [cmdx/loaded_text_files.go]
+// :v: 2018-05-09 01:03:17 E14464                    [cmdx/loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "os"   // standard
-import "sort" // standard
-import "sync" // standard
+import (
+	"os"
+	"sort"
+	"sync"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // LoadedTextFiles __
 type LoadedTextFiles struct {

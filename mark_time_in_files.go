@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-04-01 11:43:30 73B4F9                   [cmdx/mark_time_in_files.go]
+// :v: 2018-05-09 01:03:17 A10013                   [cmdx/mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,18 +16,20 @@ package main
 //   processFile(path, name string, modTime time.Time) error
 //   replaceVersion(s, path, filename string, modTime time.Time) string
 
-import "fmt"
+import (
+	"fmt"
 
-import "hash/crc32"    // standard
-import "log"           // standard
-import "os"            // standard
-import "path/filepath" // standard
-import "regexp"        // standard
-import "strings"       // standard
-import "time"          // standard
+	"hash/crc32"
+	"log"
+	"os"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"time"
 
-import "github.com/balacode/zr"    // Zircon-Go
-import "github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr"    // Zircon-Go
+	"github.com/balacode/zr-fs" // Zircon-Go
+)
 
 // -----------------------------------------------------------------------------
 // # Command Handler

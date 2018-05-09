@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 C3F9A0                        [cmdx/commands_test.go]
+// :v: 2018-05-09 01:03:17 812063                        [cmdx/commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,11 +14,13 @@ to generate a test coverage report for the whole module use:
     go tool cover -html=cover.out
 */
 
-import "reflect" // standard
-import "strings" // standard
-import "testing" // standard
+import (
+	"reflect"
+	"strings"
+	"testing"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // -----------------------------------------------------------------------------
 

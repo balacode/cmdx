@@ -1,14 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-04-01 11:43:31 A2DC71                        [cmdx/words_in_file.go]
+// :v: 2018-05-09 01:03:17 1A03FF                        [cmdx/words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "strings" // standard
-import "unicode" // standard
+import (
+	"strings"
+	"unicode"
 
-import "github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr-fs" // Zircon-Go
+)
 
 // wordsInFile __
 // run cmdx with 'fw' or 'file-words'

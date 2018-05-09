@@ -1,15 +1,17 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-04-01 11:43:30 46487D                [cmdx/mark_errors_in_source.go]
+// :v: 2018-05-09 01:03:17 F1A341                [cmdx/mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-import "flag"    // standard
-import "path"    // standard
-import "strings" // standard
+import (
+	"flag"
+	"path"
+	"strings"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 /*
    to test this manually:

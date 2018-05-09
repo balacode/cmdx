@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 7D1868                          [cmdx/time_report.go]
+// :v: 2018-05-09 01:23:02 96296E                          [cmdx/time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -31,13 +31,15 @@ package main
 //   dateTimeStr(val time.Time) string
 //   timeOf(val interface{}) time.Time
 
-import "fmt"     // standard
-import "reflect" // standard
-import "sort"    // standard
-import "strings" // standard
-import "time"    // standard
+import (
+	"fmt"
+	"reflect"
+	"sort"
+	"strings"
+	"time"
 
-import "github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 type trptMode bool
 

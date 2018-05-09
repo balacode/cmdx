@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 16:51:36 B55512                                 [cmdx/func.go]
+// :v: 2018-05-09 01:03:17 203184                                 [cmdx/func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,10 +14,12 @@ package main
 //   splitArgsFilter(args []string) (retArgs []string, filter string)
 //   trim(s string) string
 
-import "os"            // standard
-import "path/filepath" // standard
-import "sort"          // standard
-import "strings"       // standard
+import (
+	"os"
+	"path/filepath"
+	"sort"
+	"strings"
+)
 
 // filterLongLines __
 func filterLongLines(

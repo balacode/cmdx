@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-03-01 12:57:33 86DC74                               [cmdx/module.go]
+// :v: 2018-05-09 01:03:17 EF97DF                               [cmdx/module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -9,7 +9,9 @@
 // various useful command-line utilities in one executable.
 package main
 
-import "github.com/balacode/zr" // Zircon-Go
+import (
+	"github.com/balacode/zr" // Zircon-Go
+)
 
 // -----------------------------------------------------------------------------
 // # Constants: Source Markers
