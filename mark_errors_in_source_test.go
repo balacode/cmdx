@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 042EBD           [cmdx/mark_errors_in_source_test.go]
+// :v: 2018-05-24 03:05:23 25F770           cmdx/[mark_errors_in_source_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,7 +17,7 @@ to generate a test coverage report for the whole module use:
 import (
 	"testing"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 /*

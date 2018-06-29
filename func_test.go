@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 EC8935                            [cmdx/func_test.go]
+// :v: 2018-05-24 03:05:23 80DF24                            cmdx/[func_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,7 +17,7 @@ to generate a test coverage report for the whole module use:
 import (
 	"testing"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // go test --run Test_func_getFilesMap_

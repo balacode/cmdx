@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 32CFE2            cmdx/[rename_files_by_hash_test.go]
+// :v: 2018-05-24 03:05:23 CD745B                     cmdx/[merge_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 /*
-to test all items in rename_files_by_hash.go use:
-    go test --run Test_rfbh_
+to test all items in merge_files.go use:
+    go test --run Test_mgfl_
 
 to generate a test coverage report for the whole module use:
     go test -coverprofile cover.out
@@ -20,18 +20,18 @@ import (
 	"github.com/balacode/zr"
 )
 
-// go test --run Test_rfbh_renameFilesByHash_
-func Test_rfbh_renameFilesByHash_(t *testing.T) {
+// go test --run Test_mgfl_mergeFiles_
+func Test_mgfl_mergeFiles_(t *testing.T) {
 	zr.TBegin(t)
-	// renameFilesByHash(cmd Command, args []string)
+	// mergeFiles(cmd Command, args []string)
 	//
 	var test = func(
 		// in:
 		cmd Command, args []string,
 	) {
-		renameFilesByHash(cmd, args)
+		mergeFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                Test_rfbh_renameFilesByHash_
+} //                                                       Test_mgfl_mergeFiles_
 
 //end

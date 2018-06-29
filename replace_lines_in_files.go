@@ -1,17 +1,17 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 39A649               [cmdx/replace_lines_in_files.go]
+// :v: 2018-05-28 14:11:34 E80F55               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
 	"path/filepath"
-	"strings"
+	str "strings"
 	"sync"
 	"sync/atomic"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 //   DebugReplaceLinesInFiles
@@ -32,7 +32,7 @@ import (
 //       findRepls []FindReplLines,
 //   )
 //   (M replaceLinesInFilesM) trimBlankLines(lines []string) []string
-//   (M replaceLinesInFilesM) trimStrings(strs []string) []string
+//   (M replaceLinesInFilesM) trimStrings(ar []string) []string
 
 // DebugReplaceLinesInFiles displays arguments and the
 // return value  to the console, when set to true
@@ -53,7 +53,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 		return
 	}
 	var M replaceLinesInFilesM
-	var divider = strings.Repeat("-", 80)
+	var divider = str.Repeat("-", 80)
 	var configFile = args[0]
 	var pathExtsMap = map[string][]FindReplLines{}
 	var findRepls = M.getFindRepls(env.ReadFileLines(configFile))
@@ -68,7 +68,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	// group batches of items by their path and extensions (using a map)
 	for _, it := range findRepls {
 		// join path and extensions list to give a map key
-		var key = it.Path + LF + strings.Join(it.Exts, LF)
+		var key = it.Path + LF + str.Join(it.Exts, LF)
 		pathExtsMap[key] = append(pathExtsMap[key], it)
 	}
 	env.Println(divider)
@@ -77,7 +77,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	var task sync.WaitGroup
 	var changesAtomic int32
 	for key, items := range pathExtsMap {
-		var ar = strings.Split(key, LF) // read details back from key
+		var ar = str.Split(key, LF) // read details back from key
 		var path = ar[0]
 		var exts = ar[1:]
 		var fileList = env.GetFilePaths(path, exts...)
@@ -89,7 +89,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 			if !done {
 				continue
 			}
-			var lines = strings.Split(string(data), "\n")
+			var lines = str.Split(string(data), "\n")
 			task.Add(1)
 			go M.replaceFileAsync(&task, &changesAtomic,
 				filename, lines, items)
@@ -127,17 +127,17 @@ func (M replaceLinesInFilesM) getFindRepls(
 	var replGroup []string
 	for _, line := range configLines {
 		// lines that begin with the marker are configuration or comments:
-		if strings.HasPrefix(line, mark) {
-			line = strings.Trim(line[len(mark):], SPACES)
+		if str.HasPrefix(line, mark) {
+			line = str.Trim(line[len(mark):], SPACES)
 			switch {
-			case strings.HasPrefix(line, "path"):
-				path = strings.Trim(line[5:], SPACES)
+			case str.HasPrefix(line, "path"):
+				path = str.Trim(line[5:], SPACES)
 				env.Println("SET PATH:", path)
-			case strings.HasPrefix(line, "exts"):
-				exts = strings.Fields(line[5:])
+			case str.HasPrefix(line, "exts"):
+				exts = str.Fields(line[5:])
 				env.Println("SET EXTS:", exts)
-			case strings.HasPrefix(line, "mark"):
-				mark = strings.Trim(line[5:], SPACES)
+			case str.HasPrefix(line, "mark"):
+				mark = str.Trim(line[5:], SPACES)
 				if mark == "" {
 					mark = DefaultMark
 				}
@@ -154,11 +154,11 @@ func (M replaceLinesInFilesM) getFindRepls(
 			case hasConfigBool(line, "undo"):
 				undo, _ = getConfigBool(line, "undo")
 				env.Println("SET UNDO:", undo)
-			case strings.HasPrefix(line, "<"): // find lines
+			case str.HasPrefix(line, "<"): // find lines
 				mode = FindMode
-			case strings.HasPrefix(line, ">"): // replace with lines
+			case str.HasPrefix(line, ">"): // replace with lines
 				mode = ReplMode
-			case strings.HasPrefix(line, "."):
+			case str.HasPrefix(line, "."):
 				mode = FreeMode
 				var it = FindReplLines{
 					Path:      path,
@@ -238,23 +238,23 @@ func (M replaceLinesInFilesM) replaceFileAsync(
 // Lines that only contain white spaces are treated as blank lines.
 func (M replaceLinesInFilesM) trimBlankLines(lines []string) []string {
 	// trim leading blank lines
-	for len(lines) > 0 && strings.Trim(lines[0], SPACES) == "" {
+	for len(lines) > 0 && str.Trim(lines[0], SPACES) == "" {
 		lines = lines[1:]
 	}
 	// trim trailing blank lines
 	for len(lines) > 0 &&
-		strings.Trim(lines[len(lines)-1], SPACES) == "" {
+		str.Trim(lines[len(lines)-1], SPACES) == "" {
 		lines = lines[:len(lines)-1]
 	}
 	return lines
 } //                                                              trimBlankLines
 
 // trimStrings removes leading and trailing spaces from each line in strs.
-func (M replaceLinesInFilesM) trimStrings(strs []string) []string {
-	for i, s := range strs {
-		strs[i] = strings.Trim(s, SPACES)
+func (M replaceLinesInFilesM) trimStrings(ar []string) []string {
+	for i, s := range ar {
+		ar[i] = str.Trim(s, SPACES)
 	}
-	return strs
+	return ar
 } //                                                                 trimStrings
 
 //end

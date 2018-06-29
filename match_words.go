@@ -1,14 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 B948A4                          [cmdx/match_words.go]
+// :v: 2018-05-28 13:59:12 40FE6A                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
-	"strings"
+	str "strings"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // matchWords __
@@ -27,20 +27,20 @@ func matchWords(cmd Command, args []string) {
 			return
 		}
 		var s = string(data)
-		s = strings.Replace(s, "\r"+LF, LF, -1)
-		for strings.Contains(s, LF+LF) {
-			s = strings.Replace(s, LF+LF, LF, -1)
+		s = str.Replace(s, "\r"+LF, LF, -1)
+		for str.Contains(s, LF+LF) {
+			s = str.Replace(s, LF+LF, LF, -1)
 		}
-		words = strings.Split(s, LF)
+		words = str.Split(s, LF)
 	}
 	for _, word := range words {
 		if len(word) != length {
 			continue
 		}
-		word = strings.ToLower(word)
+		word = str.ToLower(word)
 		var used = 0
-		var letters = strings.Split(letterSet, "")
-		for _, wordLetter := range strings.Split(word, "") {
+		var letters = str.Split(letterSet, "")
+		for _, wordLetter := range str.Split(word, "") {
 			for i, letter := range letters {
 				if wordLetter == letter {
 					used++

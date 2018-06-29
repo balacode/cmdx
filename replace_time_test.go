@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 D8C173                    [cmdx/replace_time_test.go]
+// :v: 2018-05-24 03:05:23 7279AC                    cmdx/[replace_time_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,7 +17,7 @@ to generate a test coverage report for the whole module use:
 import (
 	"testing"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // go test --run Test_rptm_replaceTime_

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 FAEF0F                 [cmdx/list_identical_files.go]
+// :v: 2018-05-09 01:03:17 EBA18A                 cmdx/[list_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main

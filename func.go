@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 203184                                 [cmdx/func.go]
+// :v: 2018-05-28 13:59:12 3D99E0                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,7 +18,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
-	"strings"
+	str "strings"
 )
 
 // filterLongLines __
@@ -29,8 +29,8 @@ func filterLongLines(
 	ret []string,
 ) {
 	for i, s := range lines {
-		if strings.Contains(s, "\t") {
-			s = strings.Replace(s, "\t", "    ", -1)
+		if str.Contains(s, "\t") {
+			s = str.Replace(s, "\t", "    ", -1)
 		}
 		var n = len(s)
 		if n > longerThan && n < LongestLine {
@@ -42,12 +42,12 @@ func filterLongLines(
 
 // getFilesMap __
 func getFilesMap(dir, filter string) FilesMap {
-	filter = strings.ToLower(filter)
+	filter = str.ToLower(filter)
 	var ret = make(FilesMap, 1000)
 	//TODO: use fs.WalkPath() instead of this; then remove "os" dependency
 	filepath.Walk(
 		dir, func(path string, info os.FileInfo, err error) error {
-			if strings.Contains(path, "$RECYCLE.BIN") {
+			if str.Contains(path, "$RECYCLE.BIN") {
 				return nil
 			}
 			if err != nil {
@@ -57,7 +57,7 @@ func getFilesMap(dir, filter string) FilesMap {
 			if info.IsDir() {
 				return nil
 			}
-			if strings.Index(strings.ToLower(path), filter) == -1 {
+			if str.Index(str.ToLower(path), filter) == -1 {
 				return nil
 			}
 			var size = info.Size()
@@ -89,7 +89,7 @@ func splitArgsFilter(args []string) (retArgs []string, filter string) {
 	//
 	var endArg = len(args) - 1
 	for i := 0; i <= endArg; i++ {
-		var arg = strings.ToLower(args[i])
+		var arg = str.ToLower(args[i])
 		if arg == "-filter" || arg == "--filter" {
 			if i == endArg {
 				env.Println(arg + " is missing its value")
@@ -106,7 +106,7 @@ func splitArgsFilter(args []string) (retArgs []string, filter string) {
 
 // trim removes all leading and trailing white-spaces from a string
 func trim(s string) string {
-	return strings.Trim(s, SPACES)
+	return str.Trim(s, SPACES)
 } //                                                                        trim
 
 //end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 812063                        [cmdx/commands_test.go]
+// :v: 2018-05-28 13:59:12 BD6216                        cmdx/[commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,10 +16,10 @@ to generate a test coverage report for the whole module use:
 
 import (
 	"reflect"
-	"strings"
+	str "strings"
 	"testing"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // -----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ func Test_cmds_AllCategories_(t *testing.T) {
 		var exist bool
 		//
 		// category must be consistent and not zero-length
-		if len(strings.Trim(cat, SPACES)) == 0 {
+		if len(str.Trim(cat, SPACES)) == 0 {
 			t.Error("Invalid category: '" + cat + "'")
 		}
 		// category must be unique

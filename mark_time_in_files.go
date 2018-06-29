@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 A10013                   [cmdx/mark_time_in_files.go]
+// :v: 2018-05-28 14:11:34 190B85                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,17 +18,16 @@ package main
 
 import (
 	"fmt"
-
 	"hash/crc32"
 	"log"
 	"os"
 	"path/filepath"
 	"regexp"
-	"strings"
+	str "strings"
 	"time"
 
-	"github.com/balacode/zr"    // Zircon-Go
-	"github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr"
+	"github.com/balacode/zr-fs"
 )
 
 // -----------------------------------------------------------------------------
@@ -39,7 +38,7 @@ import (
 func markTimeInFiles(cmd Command, args []string) {
 	var changeTime = true
 	for _, arg := range args {
-		switch strings.ToLower(strings.Trim(arg, SPACES+"-/")) {
+		switch str.ToLower(str.Trim(arg, SPACES+"-/")) {
 		case "hash-only":
 			changeTime = false
 		default:
@@ -65,14 +64,14 @@ func autoTimeLog(path string, timestamp string) {
 	env.Printf("on %s %s"+LF, timestamp, filename)
 	//
 	//
-	var logPath = strings.ToLower(getTimeLogPath(path))
+	var logPath = str.ToLower(getTimeLogPath(path))
 	//
 	// the entry written in the log file:
-	var entry = strings.ToLower(timestamp + " " + path + LF)
-	if strings.Contains(entry, logPath) {
-		entry = strings.Replace(entry, logPath, "", -1)
+	var entry = str.ToLower(timestamp + " " + path + LF)
+	if str.Contains(entry, logPath) {
+		entry = str.Replace(entry, logPath, "", -1)
 	}
-	entry = strings.Replace(entry, "\\", "/", -1)
+	entry = str.Replace(entry, "\\", "/", -1)
 	//
 	// append to autotime.log
 	logPath += env.PathSeparator() + "autotime.log"
@@ -90,12 +89,12 @@ func checksum(s string) string {
 
 // getTimeLogPath __
 func getTimeLogPath(path string) string {
-	path = strings.ToLower(path)
+	path = str.ToLower(path)
 	var max = -1
 	var ret string
 	for _, s := range TimeLogPaths {
-		s = strings.ToLower(s)
-		if !strings.Contains(path, s) || len(s) < max {
+		s = str.ToLower(s)
+		if !str.Contains(path, s) || len(s) < max {
 			continue
 		}
 		ret = s
@@ -180,12 +179,12 @@ func replaceVersion(s, path, filename string, modTime time.Time) string {
 	}
 	var body = s[loc[1]:]
 	var chk = checksum(body)
-	if strings.Contains(s, chk) { // exit if there are no changes
+	if str.Contains(s, chk) { // exit if there are no changes
 		return ""
 	}
 	var isTimed = true
 	for _, s := range IgnoreFilenamesWith {
-		if strings.Contains(strings.ToLower(path), s) {
+		if str.Contains(str.ToLower(path), s) {
 			isTimed = false
 			break
 		}

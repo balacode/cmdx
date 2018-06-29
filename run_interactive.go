@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:23:02 6550A2                      [cmdx/run_interactive.go]
+// :v: 2018-05-28 13:59:12 C3BAD9                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,11 +32,11 @@ package main
 import (
 	"fmt"
 	"sort"
-	"strings"
+	str "strings"
 	"sync"
 
-	"github.com/balacode/zr"    // Zircon-Go
-	"github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr"
+	"github.com/balacode/zr-fs"
 )
 
 // Runner joins all subfunctions used by runInteractive(),
@@ -71,7 +71,7 @@ loop:
 			for i := range changedFilenames {
 				var file = ob.memFiles.GetFile(changedFilenames[i])
 				for _, find := range IgnoreFilenamesWith {
-					if strings.Contains(strings.ToLower(file.Path), find) {
+					if str.Contains(str.ToLower(file.Path), find) {
 						continue loop
 					}
 				}
@@ -102,17 +102,17 @@ loop:
 func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 	var b = 0 // <- remaining lines in block
 	for i, s := range lines {
-		var ts = strings.ToUpper(strings.Trim(s, SPACES))
+		var ts = str.ToUpper(str.Trim(s, SPACES))
 		switch {
-		case strings.HasPrefix(ts, CommandMark+BB): // begin block
+		case str.HasPrefix(ts, CommandMark+BB): // begin block
 			b = -1
-		case strings.HasPrefix(ts, CommandMark+BE), // block end
-			strings.HasPrefix(ts, CommandMark+EB): // end block
+		case str.HasPrefix(ts, CommandMark+BE), // block end
+			str.HasPrefix(ts, CommandMark+EB): // end block
 			ret = append(ret, []string{"", "", ""}...) // three blank lines
 			b = 0
-		case strings.HasSuffix(ts, CommandMark+LT):
+		case str.HasSuffix(ts, CommandMark+LT):
 			//TODO: IMPLEMENT
-		case strings.HasPrefix(ts, CommandMark) &&
+		case str.HasPrefix(ts, CommandMark) &&
 			zr.IsNumber(ts[len(CommandMark):]):
 			b = zr.Int(ts[len(CommandMark):])
 		case b != 0:
@@ -136,7 +136,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 	for ln < len(lines) {
 		var altered bool
 		s = lines[ln]
-		if !strings.Contains(s, CommandMark) {
+		if !str.Contains(s, CommandMark) {
 			ln++
 			continue
 		}
@@ -156,12 +156,18 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			s = zr.ReplaceI(s, CommandMark+CB, CommandMark+" DONE "+CB)
 			s = zr.ReplaceI(s, CommandMark+BC, CommandMark+" DONE "+BC)
 			lines[ln] = s
-			env.Println(strings.Repeat("~", len(file.Path+":")))
+			env.Println(str.Repeat("~", len(file.Path+":")))
 			env.Println(file.Path + ":" + LF + LF + LF)
 			for _, s := range ob.getMarkedBlocks(file.Lines) {
 				env.Println(s)
 			}
 			env.Println()
+			//
+		case zr.ContainsI(s, CommandMark+FF): // Find in Files
+			var col = str.Index(str.ToUpper(s), CommandMark+FF)
+			var dlg = str.Replace(FindInFilesDialog, "MRK", CommandMark, -1)
+			lines[ln] = s[:col] + dlg + s[col+len(CommandMark+FF):]
+			altered = true
 			//
 		case zr.ContainsI(s, CommandMark+XE): // remove error markers
 			lines[ln] = zr.ReplaceI(s, CommandMark+XE, CommandMark+" DONE "+XE)
@@ -178,7 +184,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			{T, ob.insertTimestamp},
 			{UUID, ob.insertUUID},
 		} {
-			var col = strings.Index(strings.ToUpper(s), CommandMark+cmd.name)
+			var col = str.Index(str.ToUpper(s), CommandMark+cmd.name)
 			if col != -1 {
 				// modify lines in-place with handler
 				altered = cmd.handler(ln, col, lines)
@@ -226,7 +232,7 @@ func (ob Runner) stripErrorMarks(
 ) {
 	modLines = make([]string, 0, len(lines))
 	for _, s := range lines {
-		if strings.HasPrefix(strings.Trim(s, SPACES), ErrorMark) {
+		if str.HasPrefix(str.Trim(s, SPACES), ErrorMark) {
 			altered = true
 			continue
 		}
@@ -248,7 +254,7 @@ func (ob Runner) insertID(ln, col int, modLines []string) (altered bool) {
 	var id string
 loop:
 	for {
-		id = strings.ToUpper(zr.UUID()[:6])
+		id = str.ToUpper(zr.UUID()[:6])
 		if id[0] != 'E' {
 			continue
 		}
@@ -257,8 +263,8 @@ loop:
 		for _, filename := range ob.memFiles.GetAllFilenames() {
 			var file = ob.memFiles.GetFile(filename)
 			for _, line := range file.Lines {
-				line = strings.ToUpper(line)
-				if strings.Contains(line, id) {
+				line = str.ToUpper(line)
+				if str.Contains(line, id) {
 					fmt.Print("regenerating non-unique ID:", id, LF)
 					continue loop
 				}
@@ -281,7 +287,7 @@ func (ob Runner) insertTimestamp(ln, col int, lines []string) (altered bool) {
 	var s = lines[ln]
 	var aft = s[col+len(CommandMark+T):]
 	var now = zr.Timestamp()
-	if !strings.HasPrefix(aft, " ") {
+	if !str.HasPrefix(aft, " ") {
 		now += " "
 	}
 	lines[ln] = s[:col] + "//" + now + aft

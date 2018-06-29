@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 82DA04                         [cmdx/env_provider.go]
+// :v: 2018-05-24 03:05:23 B91964                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,8 +10,8 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/balacode/zr"    // Zircon-Go
-	"github.com/balacode/zr-fs" // Zircon-Go
+	"github.com/balacode/zr"
+	"github.com/balacode/zr-fs"
 )
 
 // Env defines functions that interact with the app's environment.

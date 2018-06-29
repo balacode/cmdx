@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 E14464                    [cmdx/loaded_text_files.go]
+// :v: 2018-05-24 03:05:23 A089C7                    cmdx/[loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,7 +10,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // LoadedTextFiles __

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-25 01:32:48 BC1845                             [cmdx/commands.go]
+// :v: 2018-05-10 00:44:48 40441F                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -78,6 +78,13 @@ var AllCommands = []Command{
 		FullName:  "list-dup",
 		ShortInfo: "List identical files: read <source>, list in <target>",
 		Handler:   listIdenticalFiles,
+		Category:  1,
+	},
+	{
+		ShortName: "mg",
+		FullName:  "merge",
+		ShortInfo: "Merge files in 'source=' into 'target=' (use merge.rgon)",
+		Handler:   mergeFiles,
 		Category:  1,
 	},
 	{

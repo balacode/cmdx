@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:23:02 96296E                          [cmdx/time_report.go]
+// :v: 2018-06-11 13:20:49 330185                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -35,10 +35,10 @@ import (
 	"fmt"
 	"reflect"
 	"sort"
-	"strings"
+	str "strings"
 	"time"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 type trptMode bool
@@ -53,7 +53,9 @@ var trptManualLogFiles = hardcodedManualLogFiles
 var trptIgnoreProjects = []string{
 	"cmdx",
 	"demo",
-	"dmd",
+	"dmd_app",
+	"dmd_label",
+	"dmd_spart",
 	"lsrv",
 	"priveda",
 	"tex2",
@@ -67,8 +69,44 @@ var trptIgnoreProjects = []string{
 // timeReport __
 func timeReport(cmd Command, args []string) {
 	var min, max string
+	/*
+		min, max = "2017-11-24", "2017-11-30"
+		trptMonthlySummary(min, max, trptAutoLogFiles)
+		trptMonthlySummary(min, max, trptManualLogFiles)
+		//
+		min, max = "2017-12-01", "2017-12-31"
+		trptMonthlySummary(min, max, trptAutoLogFiles)
+		trptMonthlySummary(min, max, trptManualLogFiles)
+		//
+		min, max = "2018-01-01", "2018-01-31"
+		trptMonthlySummary(min, max, trptAutoLogFiles)
+		trptMonthlySummary(min, max, trptManualLogFiles)
+	*/
 	min, max = "2017-11-24", "2018-02-18"
+	//``
+	/*
+		min, max = "2018-01-13", "2018-01-14"
+	*/
+	/*
+		trptMonthlySummary("AUTO", trptAuto, min, max, trptAutoLogFiles)
+	*/
 	trptMonthlySummary("MANUAL", trptManual, min, max, trptManualLogFiles)
+	return
+	//
+	min = dateStr(time.Now().Add(-24 * time.Hour))
+	max = dateStr(time.Now())
+	if len(args) == 1 {
+		if str.ToLower(args[0]) == "all" {
+			min = "2000-01-01"
+		} else {
+			min = dateStr(timeOf(args[0]))
+		}
+	}
+	if len(args) == 2 {
+		min = dateStr(timeOf(args[0]))
+		max = dateStr(timeOf(args[1]))
+	}
+	//trptSummaryByDateText(min, max, trptAutoLogFiles)
 } //                                                                  timeReport
 
 // -----------------------------------------------------------------------------
@@ -190,7 +228,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 		}
 		// store each line in a unique date+time key
 		// (any previous entry with same date+time gets overwritten)
-		m[line[:19]] = strings.Trim(line[20:], SPACES+"/\\")
+		m[line[:19]] = str.Trim(line[20:], SPACES+"/\\")
 	}
 	// create a sorted array of keys
 	var times = make([]string, 0, len(m))
@@ -213,9 +251,9 @@ func trptGetTimeItems(lines []string) []TimeItem {
 
 // trptIsTimeStart __
 func trptIsTimeStart(s string) bool {
-	if strings.HasPrefix(s, "IN ") ||
-		strings.Contains(s, " IN ") ||
-		strings.HasSuffix(s, " IN") {
+	if str.HasPrefix(s, "IN ") ||
+		str.Contains(s, " IN ") ||
+		str.HasSuffix(s, " IN") {
 		return true
 	}
 	return false
@@ -251,7 +289,7 @@ func trptPrintFaults(ar []TimeItem) {
 		}
 		if spent > 3*time.Hour {
 			var s = fmt.Sprintf("(%s)", spent)
-			if !strings.Contains(itm.Text, s) {
+			if !str.Contains(itm.Text, s) {
 				env.Println("TOO LONG:", dateTimeStr(itm.Time), itm.Text, s)
 			}
 		}
@@ -272,7 +310,7 @@ func trptPrintTimeItems(entries []TimeItem) {
 		var date = dateStr(t.Time)
 		if date != prev {
 			if prev != "" {
-				env.Println(strings.Repeat("-", 35))
+				env.Println(str.Repeat("-", 35))
 				prt(prev, total.Hours(), total, "total")
 			}
 			env.Println()
@@ -284,11 +322,11 @@ func trptPrintTimeItems(entries []TimeItem) {
 		total += t.Spent
 	}
 	if prev != "" {
-		env.Println(strings.Repeat("-", 35))
+		env.Println(str.Repeat("-", 35))
 		prt(prev, total.Hours(), total, "total")
 	}
 	env.Println()
-	env.Println(strings.Repeat("=", 35))
+	env.Println(str.Repeat("=", 35))
 	prt(prev, grand.Hours(), grand, "grand total")
 } //                                                          trptPrintTimeItems
 
@@ -388,7 +426,9 @@ func timeOf(val interface{}) time.Time {
 		}
 		return time.Time{}
 	case *string:
-		return timeOf(*val)
+		if val != nil {
+			return timeOf(*val)
+		}
 	case fmt.Stringer:
 		return timeOf(val.String())
 	}

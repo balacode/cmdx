@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 CF64BD                         [cmdx/replace_time.go]
+// :v: 2018-05-28 13:59:12 B6807D                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,7 +8,7 @@ package main
 import (
 	"bytes"
 	"regexp"
-	"strings"
+	str "strings"
 )
 
 // replaceTime __
@@ -30,8 +30,8 @@ func replaceTime(cmd Command, args []string) {
 			if !done {
 				return
 			}
-			var content = strings.Trim(string(data), SPACES)
-			ar = strings.Split(content, LF)
+			var content = str.Trim(string(data), SPACES)
+			ar = str.Split(content, LF)
 		}
 		for _, s := range ar {
 			if len(s) < 16 {
@@ -49,8 +49,8 @@ func replaceTime(cmd Command, args []string) {
 		if !done {
 			return
 		}
-		var s = strings.Trim(string(data), SPACES)
-		toLines = strings.Split(s, LF)
+		var s = str.Trim(string(data), SPACES)
+		toLines = str.Split(s, LF)
 	}
 	var out bytes.Buffer
 	{

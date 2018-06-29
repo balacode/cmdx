@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 F1EF6C                 [cmdx/rename_files_by_hash.go]
+// :v: 2018-05-28 13:59:12 CEEFC9                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,9 +8,9 @@ package main
 import (
 	"crypto/sha512"
 	"path/filepath"
-	"strings"
+	str "strings"
 
-	"github.com/balacode/zr" // Zircon-Go
+	"github.com/balacode/zr"
 )
 
 // renameFilesByHash __
@@ -40,10 +40,10 @@ func renameFilesByHash(cmd Command, args []string) {
 			var hash = zr.HexStringOfBytes(zr.FoldXorBytes(
 				hashOfBytes(data, []byte{}), 4,
 			))
-			hash = strings.ToLower(hash)
+			hash = str.ToLower(hash)
 			//
 			// skip filenames that already contain the hash
-			if strings.Contains(strings.ToLower(name), hash) {
+			if str.Contains(str.ToLower(name), hash) {
 				continue
 			}
 			var newName = hash + "." + name
