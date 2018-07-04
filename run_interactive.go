@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 C3BAD9                      cmdx/[run_interactive.go]
+// :v: 2018-07-04 12:44:13 392129                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -53,7 +53,7 @@ type Runner struct {
 // for changes. When it detects text processing commands,
 // it applies these commands to the applicable source files.
 func runInteractive(cmd Command, args []string) {
-	var refreshChan = fs.NewDirWatcher(RootPath).C
+	var refreshChan = fs.NewDirWatcher(RootPath).Chan
 	var quitChan = make(chan bool)
 	var fsMx sync.RWMutex // mutex for file system operations
 	var ob Runner
