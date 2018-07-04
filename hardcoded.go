@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-06-15 14:55:18 74B493                            cmdx/[hardcoded.go]
+// :v: 2018-06-15 14:55:18 A20927                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -33,11 +33,11 @@ var hardcodedTimeLogPaths = []string{
 	`X:\user\projects\code\go\src\base\client\dmd_app`,
 	`X:\user\projects\code\go\src\base\client\dmd_label`,
 	`X:\user\projects\code\go\src\base\client\dmd_spart`,
+	`X:\user\projects\code\go\src\base\client\dmo_app`,
 	`X:\user\projects\code\go\src\base\client\mnl`,
 	`X:\user\projects\code\go\src\base\client\tlg`,
 	`X:\user\projects\code\go\src\base_defer\gosql`,
 	`X:\user\projects\code\go\src\base`,
-	`X:\user\projects\code\go\src\dmo`,
 	`X:\user\projects\code\go\src`,
 }
 
