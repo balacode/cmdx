@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-06-15 14:55:18 A20927                            cmdx/[hardcoded.go]
+// :v: 2018-07-12 01:31:09 075C32                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -44,11 +44,11 @@ var hardcodedTimeLogPaths = []string{
 var hardcodedIgnoreFilenamesWith = []string{
 	".log",
 	".tmp",
-	"/_",
+	"/__",
 	"`" + "`",
 	"tmp.",
 	`/.idea/`,
-	`\_`,
+	`\__`,
 }
 
 const hardcodedWordListFile = `c:\__DEBDESK\words_alpha.txt`
