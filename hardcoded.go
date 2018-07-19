@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-07-12 22:21:17 BA8BF4                            cmdx/[hardcoded.go]
+// :v: 2018-07-19 14:58:11 DA101A                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -48,6 +48,8 @@ var hardcodedIgnoreFilenamesWith = []string{
 	".tmp",
 	"__",
 	"_app.js",
+	"_repl_lines.txt",
+	"_repl_strs.txt",
 	"_zr.js",
 	"`",
 	"tmp.",
