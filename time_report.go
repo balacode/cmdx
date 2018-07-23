@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-06-11 13:20:49 330185                          cmdx/[time_report.go]
+// :v: 2018-07-22 00:04:37 4B3152                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -54,8 +54,6 @@ var trptIgnoreProjects = []string{
 	"cmdx",
 	"demo",
 	"dmd_app",
-	"dmd_label",
-	"dmd_spart",
 	"lsrv",
 	"priveda",
 	"tex2",
