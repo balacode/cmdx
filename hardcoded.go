@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-07-22 00:04:37 AD7C32                            cmdx/[hardcoded.go]
+// :v: 2018-07-30 15:50:13 6A769A                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,7 +32,10 @@ var hardcodedTimeLogPaths = []string{
 	`X:\user\projects\code\android\autotime.log`,
 	`X:\user\projects\code\go\src\base\client\dmd_app`,
 	`X:\user\projects\code\go\src\base\client\dmo_app`,
+	`X:\user\projects\code\go\src\base\client\mkt_app`,
 	`X:\user\projects\code\go\src\base\client\mnl`,
+	`X:\user\projects\code\go\src\base\client\s11_app`,
+	`X:\user\projects\code\go\src\base\client\sul_app`,
 	`X:\user\projects\code\go\src\base\client\tlg`,
 	`X:\user\projects\code\go\src\base_defer\gosql`,
 	`X:\user\projects\code\go\src\base`,
