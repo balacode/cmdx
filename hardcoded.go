@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-07-30 15:50:13 6A769A                            cmdx/[hardcoded.go]
+// :v: 2018-11-04 12:46:35 4059B8                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -12,14 +12,18 @@ var hardcodedAutologFiles = []string{
 	`X:\user\projects\code\go\src\base\autotime.log`,
 	`X:\user\projects\code\go\src\base\autotime_2017.txt`,
 	`X:\user\projects\code\go\src\base\autotime_2018.txt`,
-	`X:\user\projects\code\go\src\base\client\mnl\autotime.log`,
-	`X:\user\projects\code\go\src\base\client\mnl\autotime_2017.txt`,
-	`X:\user\projects\code\go\src\base\client\mnl\autotime_2018.txt`,
+	`X:\user\projects\code\go\src\base\client\maqua\autotime.log`,
+	`X:\user\projects\code\go\src\base\client\maqua\autotime_2017.txt`,
+	`X:\user\projects\code\go\src\base\client\maqua\autotime_2018.txt`,
+	`X:\user\projects\code\go\src\base\client\mnlhq\autotime.log`,
+	`X:\user\projects\code\go\src\base\client\mnlhq\autotime_2017.txt`,
+	`X:\user\projects\code\go\src\base\client\mnlhq\autotime_2018.txt`,
 }
 
 var hardcodedManualLogFiles = []string{
+	`X:\user\projects\code\go\src\base\client\maqua\timelog.txt`,
+	`X:\user\projects\code\go\src\base\client\mnlhq\timelog.txt`,
 	`X:\user\projects\code\go\src\base\timelog.txt`,
-	`X:\user\projects\code\go\src\base\client\mnl\timelog.txt`,
 }
 
 const hardcodedDefaultLibPathOnLinux = `/x/user/projects/code/go/src/base`
@@ -29,11 +33,13 @@ const hardcodedDefaultLibPathOnWindows = `X:\user\projects\code\go\src\base`
 const hardcodedRootPath = `X:\user\projects\code\go\src\base`
 
 var hardcodedTimeLogPaths = []string{
-	`X:\user\projects\code\android\autotime.log`,
+	`X:\user\projects\code\android\Shila`,
+	`X:\user\projects\code\android\TheApp`,
 	`X:\user\projects\code\go\src\base\client\dmd_app`,
 	`X:\user\projects\code\go\src\base\client\dmo_app`,
-	`X:\user\projects\code\go\src\base\client\mkt_app`,
-	`X:\user\projects\code\go\src\base\client\mnl`,
+	`X:\user\projects\code\go\src\base\client\gsmmkt`,
+	`X:\user\projects\code\go\src\base\client\maqua`,
+	`X:\user\projects\code\go\src\base\client\mnlhq`,
 	`X:\user\projects\code\go\src\base\client\s11_app`,
 	`X:\user\projects\code\go\src\base\client\sul_app`,
 	`X:\user\projects\code\go\src\base\client\tlg`,
