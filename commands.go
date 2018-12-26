@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-10 00:44:48 40441F                             cmdx/[commands.go]
+// :v: 2018-12-26 05:38:15 543683                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -121,6 +121,13 @@ var AllCommands = []Command{
 		FullName:  "mark-time",
 		ShortInfo: "Change timestamps in source files. Requires path",
 		Handler:   markTimeInFiles,
+		Category:  2,
+	},
+	{
+		ShortName: "pb",
+		FullName:  "part-backup",
+		ShortInfo: "Continously back-up .part files streamed in current folder",
+		Handler:   partBackup,
 		Category:  2,
 	},
 	{
