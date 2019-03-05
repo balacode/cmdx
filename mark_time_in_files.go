@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 14:11:34 190B85                   cmdx/[mark_time_in_files.go]
+// :v: 2019-03-05 11:46:41 2AAC76                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -27,7 +27,7 @@ import (
 	"time"
 
 	"github.com/balacode/zr"
-	"github.com/balacode/zr-fs"
+	fs "github.com/balacode/zr-fs"
 )
 
 // -----------------------------------------------------------------------------

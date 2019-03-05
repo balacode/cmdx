@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-07-04 12:44:13 392129                      cmdx/[run_interactive.go]
+// :v: 2019-03-05 11:46:41 87B400                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,7 +36,7 @@ import (
 	"sync"
 
 	"github.com/balacode/zr"
-	"github.com/balacode/zr-fs"
+	fs "github.com/balacode/zr-fs"
 )
 
 // Runner joins all subfunctions used by runInteractive(),

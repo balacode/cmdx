@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 4E7CBD                          cmdx/[merge_files.go]
+// :v: 2019-03-05 11:23:23 CE4641                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	str "strings"
 
-	"github.com/balacode/zr-rgon"
+	rgon "github.com/balacode/zr-rgon"
 )
 
 // mergeFiles __

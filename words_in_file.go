@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 0E1577                        cmdx/[words_in_file.go]
+// :v: 2019-03-05 11:46:41 DC797A                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,7 +9,7 @@ import (
 	str "strings"
 	"unicode"
 
-	"github.com/balacode/zr-fs"
+	fs "github.com/balacode/zr-fs"
 )
 
 // wordsInFile __

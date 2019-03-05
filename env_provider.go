@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 B91964                         cmdx/[env_provider.go]
+// :v: 2019-03-05 11:46:41 782B3E                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -11,7 +11,7 @@ import (
 	"os"
 
 	"github.com/balacode/zr"
-	"github.com/balacode/zr-fs"
+	fs "github.com/balacode/zr-fs"
 )
 
 // Env defines functions that interact with the app's environment.
