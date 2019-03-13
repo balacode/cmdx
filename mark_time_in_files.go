@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-05 11:46:41 2AAC76                   cmdx/[mark_time_in_files.go]
+// :v: 2019-03-14 00:36:19 2B44DC                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,9 +36,12 @@ import (
 // markTimeInFiles __
 // The 'cmd' argument is not used.
 func markTimeInFiles(cmd Command, args []string) {
+	var repeat = false
 	var changeTime = true
 	for _, arg := range args {
 		switch str.ToLower(str.Trim(arg, SPACES+"-/")) {
+		case "repeat", "r":
+			repeat = true
 		case "hash-only":
 			changeTime = false
 		default:
@@ -47,9 +50,30 @@ func markTimeInFiles(cmd Command, args []string) {
 		}
 	}
 	var dir = env.Getwd()
-	if dir != "" {
-		processDir(dir, changeTime)
+	if dir == "" {
+		fmt.Println("Failed to determine current folder")
+		return
 	}
+	if repeat {
+		fmt.Println("running 'mt' command in repeat mode (every 29 sec.)")
+		ticker := time.NewTicker(time.Second * 29)
+		defer ticker.Stop()
+		stop := make(chan bool)
+		go func() {
+			// time.Sleep(24 * time.Hour)
+			// stop <- true
+		}()
+		for {
+			select {
+			case <-ticker.C: // sends time which is not used
+				processDir(dir, changeTime)
+			case <-stop:
+				return
+			}
+		}
+		return
+	}
+	processDir(dir, changeTime)
 } //                                                             markTimeInFiles
 
 // -----------------------------------------------------------------------------
