@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 14:11:34 E26B02             cmdx/[replace_strings_in_files.go]
+// :v: 2019-03-18 01:07:59 EF0679             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -46,7 +46,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 		env.Println("requires <command-file> parameter")
 		return
 	}
-	var cfg = replConfig{
+	cfg := replConfig{
 		configFile: args[0],
 		path:       DefaultPath,
 		exts:       DefaultExts,
@@ -64,11 +64,11 @@ func replaceStringsInFiles(cmd Command, args []string) {
 	}
 	env.Println("FILE:", cfg.configFile)
 	{
-		var data, done = env.ReadFile(cfg.configFile)
+		data, done := env.ReadFile(cfg.configFile)
 		if !done {
 			return
 		}
-		var s = string(data)
+		s := string(data)
 		s = str.Trim(s, SPACES)
 		s = str.Replace(s, "\r"+LF, LF, -1)
 		for str.Contains(s, LF+LF) {
@@ -81,7 +81,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 	}
 	//
 	// each item:
-	var items = []ReplItem{}
+	items := []ReplItem{}
 	env.Println(str.Repeat("-", 80))
 	for lineNo, s := range configLines {
 		s = str.Trim(s, SPACES)
@@ -91,7 +91,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			env.Println(str.Repeat("-", 80))
 			var task sync.WaitGroup
 			task.Add(1)
-			var cmd = ReplCmd{
+			cmd := ReplCmd{
 				Path:  cfg.path,
 				Exts:  cfg.exts,
 				Mark:  cfg.mark,
@@ -112,9 +112,9 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			continue
 		}
 		// lines that contain but don't begin with the marker are replacements
-		var i = str.Index(s, cfg.mark)
+		i := str.Index(s, cfg.mark)
 		if i > 0 {
-			var item = ReplItem{
+			item := ReplItem{
 				Find:     str.Trim(s[:i], SPACES),
 				Repl:     str.Trim(s[i+len(cfg.mark):], SPACES),
 				CaseMode: cfg.caseMode,
@@ -174,7 +174,7 @@ func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
 		defer task.Done()
 	}
 	for _, filename := range env.GetFilePaths(cmd.Path, cmd.Exts...) {
-		var data, done = env.ReadFile(filename)
+		data, done := env.ReadFile(filename)
 		if !done {
 			continue
 		}
@@ -199,10 +199,10 @@ func replaceFileAsync(
 	if filename == configFile {
 		return
 	}
-	var oldContent = content
-	var max = 100 / float64(len(items))
-	var percent = ""
-	var newContent = content
+	oldContent := content
+	max := 100 / float64(len(items))
+	percent := ""
+	newContent := content
 	//
 	for _, cm := range []zr.CaseMode{zr.MatchCase, zr.IgnoreCase} {
 		for _, wm := range []zr.WordMode{zr.MatchWord, zr.IgnoreWord} {
@@ -214,7 +214,7 @@ func replaceFileAsync(
 				finds = append(finds, it.Find)
 				repls = append(repls, it.Repl)
 				if ShowProgressIndicator {
-					var pc = fmt.Sprintf("c:%v w:%v %1.1f%%",
+					pc := fmt.Sprintf("c:%v w:%v %1.1f%%",
 						cm, wm, float64(int(max*float64(i)*10))/10)
 					if percent != pc {
 						env.Print(str.Repeat("\b", len(percent)), pc)
@@ -258,7 +258,7 @@ func setReplConfig(s string, cfg *replConfig) {
 		env.Println("SET MARK:", cfg.mark)
 	//
 	case hasBool(s, "case"):
-		var match, _ = getBool(s, "case")
+		match, _ := getBool(s, "case")
 		env.Println("SET CASE:", match)
 		if match {
 			cfg.caseMode = zr.MatchCase
@@ -271,7 +271,7 @@ func setReplConfig(s string, cfg *replConfig) {
 		env.Println("SET UNDO:", cfg.undo)
 	//
 	case hasBool(s, "word"):
-		var match, _ = getBool(s, "word")
+		match, _ := getBool(s, "word")
 		env.Println("SET WORD:", match)
 		if match {
 			cfg.wordMode = zr.MatchWord

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 9E2F0F                        cmdx/[replace_lines.go]
+// :v: 2019-03-18 01:07:59 C7166B                        cmdx/[replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -82,18 +82,18 @@ func replaceLines(
 		caseMode = zr.MatchCase
 	}
 	// copy [][]string to []Lines. Lis there a way to cast?
-	var findLines = make([]Lines, len(finds))
-	var replLines = make([]Lines, len(repls))
+	findLines := make([]Lines, len(finds))
+	replLines := make([]Lines, len(repls))
 	for i, find := range finds {
 		findLines = append(findLines, find)
 		replLines = append(replLines, repls[i])
 	}
 	// make replacements by batches with largest number of lines first
 	var M replaceLinesM
-	var descLineCounts, batches = M.getBatches(findLines, replLines)
+	descLineCounts, batches := M.getBatches(findLines, replLines)
 	for _, batchSize := range descLineCounts {
-		var b, _ = batches[batchSize]
-		var n = 0
+		b, _ := batches[batchSize]
+		n := 0
 		lines, n = M.replaceMany(lines, b.FindLines, b.ReplLines, caseMode)
 		changes += n
 	}
@@ -117,10 +117,10 @@ func (M replaceLinesM) getBatches(
 	[]int, map[int]*FindReplLinesBatch,
 ) {
 	var lineCounts []int
-	var batches = map[int]*FindReplLinesBatch{}
+	batches := map[int]*FindReplLinesBatch{}
 	for i, find := range finds {
-		var n = len(find)
-		var b, has = batches[n]
+		n := len(find)
+		b, has := batches[n]
 		if !has {
 			batches[n] = &FindReplLinesBatch{}
 			lineCounts = append(lineCounts, n)
@@ -143,14 +143,14 @@ func (M replaceLinesM) getTree(
 ) {
 	ret.Sub = make(map[string]*FindReplLinesTree)
 	for f, find := range finds {
-		var node = &ret
-		var last = len(find) - 1
+		node := &ret
+		last := len(find) - 1
 		for i, line := range find {
 			line = str.Trim(line, SPACES)
 			if caseMode == zr.IgnoreCase {
 				line = str.ToLower(line)
 			}
-			var _, exist = node.Sub[line]
+			_, exist := node.Sub[line]
 			var sub *FindReplLinesTree
 			if exist {
 				sub = node.Sub[line]
@@ -180,21 +180,21 @@ func (M replaceLinesM) replaceMany(
 	changedLines Lines,
 	changes int,
 ) {
-	var linesLen = len(lines)
-	var root = M.getTree(finds, repls, caseMode)
-	var node = &root // *tree pointing to current branch
-	var match = 0    // <- number of matching characters
-	var prev = 0
+	linesLen := len(lines)
+	root := M.getTree(finds, repls, caseMode)
+	node := &root // *tree pointing to current branch
+	match := 0    // <- number of matching characters
+	prev := 0
 	var ret []string
 	for i := 0; i < linesLen; i++ {
-		var line = str.Trim(lines[i], SPACES)
+		line := str.Trim(lines[i], SPACES)
 		if caseMode == zr.IgnoreCase {
 			line = str.ToLower(line)
 		}
 		// check if the tree's branch has a key matching the current line
 		// if not, reset matching count and start over from root
 		{
-			var sub, found = node.Sub[line]
+			sub, found := node.Sub[line]
 			if !found {
 				node = &root
 				i -= match
@@ -206,7 +206,7 @@ func (M replaceLinesM) replaceMany(
 		}
 		// even if found, keep matching if there are more matches to make.
 		// when node.FindLines is not empty, it's a leaf node, then proceed
-		var findLen = len(node.FindLines)
+		findLen := len(node.FindLines)
 		if findLen == 0 || findLen != match {
 			continue
 		}

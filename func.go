@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 3D99E0                                 cmdx/[func.go]
+// :v: 2019-03-18 01:07:59 3C90A1                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,7 +32,7 @@ func filterLongLines(
 		if str.Contains(s, "\t") {
 			s = str.Replace(s, "\t", "    ", -1)
 		}
-		var n = len(s)
+		n := len(s)
 		if n > longerThan && n < LongestLine {
 			ret = append(ret, lines[i])
 		}
@@ -43,7 +43,7 @@ func filterLongLines(
 // getFilesMap __
 func getFilesMap(dir, filter string) FilesMap {
 	filter = str.ToLower(filter)
-	var ret = make(FilesMap, 1000)
+	ret := make(FilesMap, 1000)
 	//TODO: use fs.WalkPath() instead of this; then remove "os" dependency
 	filepath.Walk(
 		dir, func(path string, info os.FileInfo, err error) error {
@@ -60,7 +60,7 @@ func getFilesMap(dir, filter string) FilesMap {
 			if str.Index(str.ToLower(path), filter) == -1 {
 				return nil
 			}
-			var size = info.Size()
+			size := info.Size()
 			ret[size] = append(ret[size], &PathAndSize{Path: path, Size: size})
 			return nil
 		},
@@ -70,11 +70,11 @@ func getFilesMap(dir, filter string) FilesMap {
 
 // sortUniqueStrings sorts string array 'a' and removes any repeated values
 func sortUniqueStrings(a []string) []string {
-	var unique = make(map[string]bool, len(a))
+	unique := make(map[string]bool, len(a))
 	for _, s := range a {
 		unique[s] = true
 	}
-	var ret = make([]string, 0, len(unique))
+	ret := make([]string, 0, len(unique))
 	for s := range unique {
 		ret = append(ret, s)
 	}
@@ -87,9 +87,9 @@ func sortUniqueStrings(a []string) []string {
 // and returns args with the option removed, and the extracted filter value.
 func splitArgsFilter(args []string) (retArgs []string, filter string) {
 	//
-	var endArg = len(args) - 1
+	endArg := len(args) - 1
 	for i := 0; i <= endArg; i++ {
-		var arg = str.ToLower(args[i])
+		arg := str.ToLower(args[i])
 		if arg == "-filter" || arg == "--filter" {
 			if i == endArg {
 				env.Println(arg + " is missing its value")

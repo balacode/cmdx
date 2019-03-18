@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 7279AC                    cmdx/[replace_time_test.go]
+// :v: 2019-03-18 01:07:59 DE8449                    cmdx/[replace_time_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_rptm_replaceTime_(t *testing.T) {
 	zr.TBegin(t)
 	// replaceTime(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

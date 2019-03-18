@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 14:11:34 91791C                                 cmdx/[main.go]
+// :v: 2019-03-18 01:07:59 0C9BD2                                 cmdx/[main.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,10 +16,10 @@ import (
 
 // main function: execution begins here
 func main() {
-	var args = os.Args
+	args := os.Args
 	if len(args) == 1 { //        show help if no command-line options specified
 		const Format = "%-3s  %-11s  %-65s" //               layout and headings
-		var Div = str.Repeat("-", 80)
+		Div := str.Repeat("-", 80)
 		env.Print(
 			Div, LF,
 			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), LF,
@@ -38,7 +38,7 @@ func main() {
 		return
 	}
 	// locate command to run in AllCommands
-	var cmdName = str.ToLower(args[1])
+	cmdName := str.ToLower(args[1])
 	//
 	// remove program [0] & command name [1]
 	args = args[2:]

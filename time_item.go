@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 3D488E                            cmdx/[time_item.go]
+// :v: 2019-03-18 01:07:59 1E0013                            cmdx/[time_item.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -20,8 +20,8 @@ type TimeItem struct {
 
 // String __
 func (ob *TimeItem) String() string {
-	var date = ob.Time.Format("2006-01-02")
-	var hours = ob.Spent.Hours()
+	date := ob.Time.Format("2006-01-02")
+	hours := ob.Spent.Hours()
 	return fmt.Sprintf("%s %7.2f %11s: %s", date, hours, ob.Spent, ob.Text)
 } //                                                                      String
 

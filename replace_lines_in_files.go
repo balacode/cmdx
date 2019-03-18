@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 14:11:34 E80F55               cmdx/[replace_lines_in_files.go]
+// :v: 2019-03-18 01:07:59 72FE47               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -53,10 +53,10 @@ func replaceLinesInFiles(cmd Command, args []string) {
 		return
 	}
 	var M replaceLinesInFilesM
-	var divider = str.Repeat("-", 80)
-	var configFile = args[0]
-	var pathExtsMap = map[string][]FindReplLines{}
-	var findRepls = M.getFindRepls(env.ReadFileLines(configFile))
+	divider := str.Repeat("-", 80)
+	configFile := args[0]
+	pathExtsMap := map[string][]FindReplLines{}
+	findRepls := M.getFindRepls(env.ReadFileLines(configFile))
 	var err error
 	//
 	configFile, err = filepath.Abs(configFile)
@@ -68,7 +68,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	// group batches of items by their path and extensions (using a map)
 	for _, it := range findRepls {
 		// join path and extensions list to give a map key
-		var key = it.Path + LF + str.Join(it.Exts, LF)
+		key := it.Path + LF + str.Join(it.Exts, LF)
 		pathExtsMap[key] = append(pathExtsMap[key], it)
 	}
 	env.Println(divider)
@@ -77,19 +77,19 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	var task sync.WaitGroup
 	var changesAtomic int32
 	for key, items := range pathExtsMap {
-		var ar = str.Split(key, LF) // read details back from key
-		var path = ar[0]
-		var exts = ar[1:]
-		var fileList = env.GetFilePaths(path, exts...)
+		ar := str.Split(key, LF) // read details back from key
+		path := ar[0]
+		exts := ar[1:]
+		fileList := env.GetFilePaths(path, exts...)
 		for _, filename := range fileList {
 			if filename == configFile {
 				continue // must not overwrite the config file itself
 			}
-			var data, done = env.ReadFile(filename)
+			data, done := env.ReadFile(filename)
 			if !done {
 				continue
 			}
-			var lines = str.Split(string(data), "\n")
+			lines := str.Split(string(data), "\n")
 			task.Add(1)
 			go M.replaceFileAsync(&task, &changesAtomic,
 				filename, lines, items)
@@ -98,7 +98,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	task.Wait()
 	//
 	// report total number of changes
-	var n = atomic.LoadInt32(&changesAtomic)
+	n := atomic.LoadInt32(&changesAtomic)
 	if n == 0 {
 		env.Println("NO CHANGES")
 	} else {
@@ -117,12 +117,12 @@ func (M replaceLinesInFilesM) getFindRepls(
 	const FindMode = 1
 	const ReplMode = 2
 	//
-	var mark = DefaultMark
-	var path = DefaultPath
-	var exts = DefaultExts
-	var undo = false
-	var mode = FreeMode
-	var caseMode = zr.MatchCase
+	mark := DefaultMark
+	path := DefaultPath
+	exts := DefaultExts
+	undo := false
+	mode := FreeMode
+	caseMode := zr.MatchCase
 	var findGroup []string
 	var replGroup []string
 	for _, line := range configLines {
@@ -144,7 +144,7 @@ func (M replaceLinesInFilesM) getFindRepls(
 				env.Println("SET MARK:", mark)
 			// booleans:
 			case hasConfigBool(line, "case"):
-				var match, _ = getConfigBool(line, "case")
+				match, _ := getConfigBool(line, "case")
 				env.Println("SET CASE:", match)
 				if match {
 					caseMode = zr.MatchCase
@@ -160,7 +160,7 @@ func (M replaceLinesInFilesM) getFindRepls(
 				mode = ReplMode
 			case str.HasPrefix(line, "."):
 				mode = FreeMode
-				var it = FindReplLines{
+				it := FindReplLines{
 					Path:      path,
 					Exts:      exts,
 					FindLines: M.trimBlankLines(M.trimStrings(findGroup)),
@@ -184,7 +184,7 @@ func (M replaceLinesInFilesM) getFindRepls(
 		}
 	}
 	if DebugReplaceLinesInFiles {
-		var pl = env.Println
+		pl := env.Println
 		pl("getFindRepls() RETURNS", len(ret), "ITEM(S):")
 		for i, it := range ret {
 			pl("ITEM", i)
@@ -209,7 +209,7 @@ func (M replaceLinesInFilesM) replaceFileAsync(
 	if task != nil {
 		defer task.Done()
 	}
-	var changes = 0
+	changes := 0
 	for _, caseMode := range []zr.CaseMode{zr.MatchCase, zr.IgnoreCase} {
 		var finds, repls [][]string
 		for _, it := range findRepls {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-12-26 05:37:09 BF2C5E                          cmdx/[part_backup.go]
+// :v: 2019-03-18 01:07:59 0A7CAD                          cmdx/[part_backup.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -16,7 +16,7 @@ import (
 
 // partBackup __
 func partBackup(cmd Command, args []string) {
-	var fileSize = func(filename string) int64 {
+	fileSize := func(filename string) int64 {
 		info, err := os.Stat(filename)
 		if err == nil {
 			return info.Size()
@@ -25,13 +25,13 @@ func partBackup(cmd Command, args []string) {
 	}
 	for {
 		for _, filename := range env.GetFilePaths(".", "*.part") {
-			var size = fileSize(filename)
-			var bak1 = filename + ".bak1"
+			size := fileSize(filename)
+			bak1 := filename + ".bak1"
 			if fileSize(bak1) > fileSize(filename) {
 				continue
 			}
 			fmt.Println(filename + " " + zr.ByteSizeString(size, false))
-			var bak2 = filename + ".bak2"
+			bak2 := filename + ".bak2"
 			if env.FileExists(bak2) {
 				env.DeleteFile(bak2)
 			}

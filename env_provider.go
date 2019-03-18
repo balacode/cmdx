@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-05 11:46:41 782B3E                         cmdx/[env_provider.go]
+// :v: 2019-03-18 01:07:59 C6EDCA                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -152,7 +152,7 @@ func (Env) Error(args ...interface{}) error {
 
 // DeleteFile deletes 'filename' and returns true if it no longer exists.
 func (Env) DeleteFile(filename string) bool {
-	var err = os.Remove(filename)
+	err := os.Remove(filename)
 	if err != nil {
 		env.Println("Failed deleting", filename, "due to:", err)
 		return false
@@ -206,7 +206,7 @@ func (Env) ReadFileLines(filename string) []string {
 
 // RenameFile __
 func (Env) RenameFile(oldpath, newpath string) bool {
-	var err = os.Rename(oldpath, newpath)
+	err := os.Rename(oldpath, newpath)
 	if err != nil {
 		env.Println("Failed renaming", oldpath, " to ", newpath, "due to:", err)
 		return false
@@ -216,7 +216,7 @@ func (Env) RenameFile(oldpath, newpath string) bool {
 
 // WriteFile __
 func (Env) WriteFile(filename string, data []byte) bool {
-	var err = ioutil.WriteFile(filename, data, 0644)
+	err := ioutil.WriteFile(filename, data, 0644)
 	if err != nil {
 		env.Println("Failed writing", filename, "due to:", err)
 		return false
@@ -226,7 +226,7 @@ func (Env) WriteFile(filename string, data []byte) bool {
 
 // WriteFileLines __
 func (Env) WriteFileLines(filename string, lines []string) bool {
-	var err = fs.WriteFileLines(filename, lines)
+	err := fs.WriteFileLines(filename, lines)
 	if err != nil {
 		env.Println("Failed writing", filename, "due to:", err)
 		return false
@@ -251,7 +251,7 @@ func (Env) GetFilePaths(dir string, exts ...string) []string {
 
 // Getwd returns the current working directory.
 func (Env) Getwd() string {
-	var dir, err = os.Getwd()
+	dir, err := os.Getwd()
 	if err != nil {
 		env.Println("Failed to determine working directory due to:", err)
 		return ""

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 E97614               cmdx/[delete_identical_files.go]
+// :v: 2019-03-18 01:07:59 81C9E2               cmdx/[delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -19,12 +19,12 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 	}
 	var toFilesMap map[int64][]*PathAndSize = getFilesMap(args[1], filter)
 	for size, fromFiles := range getFilesMap(args[0], filter) {
-		var toFiles = toFilesMap[size]
+		toFiles := toFilesMap[size]
 		if len(toFiles) == 0 {
 			continue
 		}
 		for _, from := range fromFiles {
-			var fromData, done = env.ReadFile(from.Path)
+			fromData, done := env.ReadFile(from.Path)
 			if !done {
 				continue
 			}
@@ -32,7 +32,7 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 				if to.Size < 0 {
 					continue
 				}
-				var toData, done = env.ReadFile(to.Path)
+				toData, done := env.ReadFile(to.Path)
 				if !done {
 					continue
 				}

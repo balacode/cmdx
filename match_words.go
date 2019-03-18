@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 40FE6A                          cmdx/[match_words.go]
+// :v: 2019-03-18 01:07:59 6449F5                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,16 +17,16 @@ func matchWords(cmd Command, args []string) {
 		env.Println("requires <word-length> and <letter-set> parameters")
 		return
 	}
-	var length = zr.Int(args[0])
-	var letterSet = args[1]
+	length := zr.Int(args[0])
+	letterSet := args[1]
 	// load word list
 	var words []string
 	{
-		var data, done = env.ReadFile(WordListFile)
+		data, done := env.ReadFile(WordListFile)
 		if !done {
 			return
 		}
-		var s = string(data)
+		s := string(data)
 		s = str.Replace(s, "\r"+LF, LF, -1)
 		for str.Contains(s, LF+LF) {
 			s = str.Replace(s, LF+LF, LF, -1)
@@ -38,8 +38,8 @@ func matchWords(cmd Command, args []string) {
 			continue
 		}
 		word = str.ToLower(word)
-		var used = 0
-		var letters = str.Split(letterSet, "")
+		used := 0
+		letters := str.Split(letterSet, "")
 		for _, wordLetter := range str.Split(word, "") {
 			for i, letter := range letters {
 				if wordLetter == letter {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 B6807D                         cmdx/[replace_time.go]
+// :v: 2019-03-18 01:07:59 3BAEE7                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -17,20 +17,20 @@ func replaceTime(cmd Command, args []string) {
 		env.Println("'replace-time' requires: <source file> and <target file>")
 		return
 	}
-	var fromFile = args[0]
-	var toFile = args[1]
-	var validTime = regexp.MustCompile( // YYYY-MM-DD hh:mm
+	fromFile := args[0]
+	toFile := args[1]
+	validTime := regexp.MustCompile( // YYYY-MM-DD hh:mm
 		"^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} ")
-	var fromLines = map[string][]string{}
+	fromLines := map[string][]string{}
 	var toLines []string
 	{ // fill 'fromLines' array
 		var ar []string
 		{
-			var data, done = env.ReadFile(fromFile)
+			data, done := env.ReadFile(fromFile)
 			if !done {
 				return
 			}
-			var content = str.Trim(string(data), SPACES)
+			content := str.Trim(string(data), SPACES)
 			ar = str.Split(content, LF)
 		}
 		for _, s := range ar {
@@ -40,16 +40,16 @@ func replaceTime(cmd Command, args []string) {
 			if !validTime.MatchString(s) {
 				continue
 			}
-			var tm = s[:16]
+			tm := s[:16]
 			fromLines[tm] = append(fromLines[tm], s)
 		}
 	}
 	{ // fill 'toLines' array
-		var data, done = env.ReadFile(toFile)
+		data, done := env.ReadFile(toFile)
 		if !done {
 			return
 		}
-		var s = str.Trim(string(data), SPACES)
+		s := str.Trim(string(data), SPACES)
 		toLines = str.Split(s, LF)
 	}
 	var out bytes.Buffer
@@ -57,7 +57,7 @@ func replaceTime(cmd Command, args []string) {
 		var tmPrev string
 		for _, s := range toLines {
 			if validTime.MatchString(s) {
-				var tm = s[:16]
+				tm := s[:16]
 				if tm == tmPrev {
 					continue
 				}

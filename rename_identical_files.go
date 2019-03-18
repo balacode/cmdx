@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-09 01:03:17 E9F631               cmdx/[rename_identical_files.go]
+// :v: 2019-03-18 01:07:59 0616B7               cmdx/[rename_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -42,31 +42,31 @@ files in <target> (the <source> is never changed). Run it with care.
 		env.Println("'rename' requires: <source dir> and <target dir>")
 		return
 	}
-	var toFilesMap = getFilesMap(args[1], filter)
+	toFilesMap := getFilesMap(args[1], filter)
 	for size, fromFiles := range getFilesMap(args[0], filter) {
-		var toFiles = toFilesMap[size]
+		toFiles := toFilesMap[size]
 		if len(toFiles) == 0 {
 			continue
 		}
 		for _, from := range fromFiles {
-			var fromName = filepath.Base(from.Path)
-			var fromData, done = env.ReadFile(from.Path)
+			fromName := filepath.Base(from.Path)
+			fromData, done := env.ReadFile(from.Path)
 			if !done {
 				continue
 			}
 			for i, to := range toFiles {
-				var toName = filepath.Base(to.Path)
+				toName := filepath.Base(to.Path)
 				if toName == fromName {
 					continue
 				}
-				var toData, done = env.ReadFile(to.Path)
+				toData, done := env.ReadFile(to.Path)
 				if !done {
 					continue
 				}
 				if !bytes.Equal(fromData, toData) {
 					continue
 				}
-				var renamedPath = filepath.Dir(to.Path) +
+				renamedPath := filepath.Dir(to.Path) +
 					env.PathSeparator() + fromName
 				env.RenameFile(to.Path, renamedPath)
 				env.Println("renamed", to.Path, " -> ", renamedPath)

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 2291C2               cmdx/[replace_lines_in_files.go]
+// :v: 2019-03-18 01:07:59 E7B2C0               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -46,11 +46,11 @@ func readConfigFileLines(configFile string) (configLines []string) {
 		return
 	}
 	env.Println("FILE:", configFile)
-	var data, done = env.ReadFile(configFile)
+	data, done := env.ReadFile(configFile)
 	if !done {
 		return []string{}
 	}
-	var s = string(data)
+	s := string(data)
 	s = str.Trim(s, SPACES)
 	s = str.Replace(s, CR+LF, LF, -1)
 	for str.Contains(s, LF+LF) {

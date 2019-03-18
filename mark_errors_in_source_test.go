@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 25F770           cmdx/[mark_errors_in_source_test.go]
+// :v: 2019-03-18 01:07:59 D332A5           cmdx/[mark_errors_in_source_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -38,7 +38,7 @@ func Test_meis_markErrorsInSource_(t *testing.T) {
 	zr.TBegin(t)
 	// markErrorsInSource(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {
@@ -56,13 +56,13 @@ func Test_meis_isErrorComment_(t *testing.T) {
 	zr.TBegin(t)
 	// isErrorComment(line string) bool
 	//
-	var test = func(
+	test := func(
 		// in:
 		line string,
 		// out expected:
 		ret bool,
 	) {
-		var retT = isErrorComment(line)
+		retT := isErrorComment(line)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("",
@@ -75,13 +75,13 @@ func Test_meis_makePath_(t *testing.T) {
 	zr.TBegin(t)
 	// makePath(absPath, relPath string) string
 	//
-	var test = func(
+	test := func(
 		// in:
 		absPath, relPath string,
 		// out expected:
 		ret string,
 	) {
-		var retT = makePath(absPath, relPath)
+		retT := makePath(absPath, relPath)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("", "",
@@ -94,13 +94,13 @@ func Test_meis_readBuildIssues_(t *testing.T) {
 	zr.TBegin(t)
 	// readBuildIssues(buildLog string) (ret []BuildIssue)
 	//
-	var test = func(
+	test := func(
 		// in:
 		buildLog string,
 		// out expected:
 		ret []BuildIssue,
 	) {
-		var retT = readBuildIssues(buildLog)
+		retT := readBuildIssues(buildLog)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("",
@@ -113,13 +113,13 @@ func Test_meis_removeOldErrorComments_(t *testing.T) {
 	zr.TBegin(t)
 	// removeOldErrorComments(lines []string) []string
 	//
-	var test = func(
+	test := func(
 		// in:
 		lines []string,
 		// out expected:
 		ret []string,
 	) {
-		var retT = removeOldErrorComments(lines)
+		retT := removeOldErrorComments(lines)
 		zr.TEqual(t, retT, (ret))
 	}
 	test([]string{},
@@ -132,7 +132,7 @@ func Test_meis_saveFile_(t *testing.T) {
 	zr.TBegin(t)
 	// saveFile(buildPath, filename string, lines []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		buildPath, filename string, lines []string,
 	) {

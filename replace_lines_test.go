@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 6F1358                   cmdx/[replace_lines_test.go]
+// :v: 2019-03-18 01:07:59 CFAFD2                   cmdx/[replace_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -30,7 +30,7 @@ func Test_rpln_replaceLines_(t *testing.T) {
 	//     caseMode zr.CaseMode,
 	// ) (changedLines []string, changes int)
 	//
-	var test = func(
+	test := func(
 		// in:
 		lines []string,
 		finds [][]string,
@@ -40,7 +40,7 @@ func Test_rpln_replaceLines_(t *testing.T) {
 		changedLines []string,
 		changes int, //
 	) {
-		var changedLinesT, changesT = replaceLines(
+		changedLinesT, changesT := replaceLines(
 			lines, finds, repls, caseMode,
 		)
 		zr.TEqual(t, changedLinesT, (changedLines))

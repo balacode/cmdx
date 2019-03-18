@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-05 11:46:41 87B400                      cmdx/[run_interactive.go]
+// :v: 2019-03-18 01:07:59 49A9DD                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -53,8 +53,8 @@ type Runner struct {
 // for changes. When it detects text processing commands,
 // it applies these commands to the applicable source files.
 func runInteractive(cmd Command, args []string) {
-	var refreshChan = fs.NewDirWatcher(RootPath).Chan
-	var quitChan = make(chan bool)
+	refreshChan := fs.NewDirWatcher(RootPath).Chan
+	quitChan := make(chan bool)
 	var fsMx sync.RWMutex // mutex for file system operations
 	var ob Runner
 	//
@@ -67,9 +67,9 @@ loop:
 	for {
 		select {
 		case <-refreshChan:
-			var changedFilenames = ob.memFiles.LoadAll(RootPath, &fsMx)
+			changedFilenames := ob.memFiles.LoadAll(RootPath, &fsMx)
 			for i := range changedFilenames {
-				var file = ob.memFiles.GetFile(changedFilenames[i])
+				file := ob.memFiles.GetFile(changedFilenames[i])
 				for _, find := range IgnoreFilenamesWith {
 					if str.Contains(str.ToLower(file.Path), find) {
 						continue loop
@@ -100,9 +100,9 @@ loop:
 // getMarkedBlocks filters lines, returning only these lines
 // contained between block beginning and ending markers
 func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
-	var b = 0 // <- remaining lines in block
+	b := 0 // <- remaining lines in block
 	for i, s := range lines {
-		var ts = str.ToUpper(str.Trim(s, SPACES))
+		ts := str.ToUpper(str.Trim(s, SPACES))
 		switch {
 		case str.HasPrefix(ts, CommandMark+BB): // begin block
 			b = -1
@@ -130,7 +130,7 @@ func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 	var ln int   // current line number
 	var s string // current line
-	var lines = make([]string, len(file.Lines))
+	lines := make([]string, len(file.Lines))
 	copy(lines, file.Lines)
 	//
 	for ln < len(lines) {
@@ -152,7 +152,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			//
 		case zr.ContainsI(s, CommandMark+BC), // blocks (marked) copy
 			zr.ContainsI(s, CommandMark+CB): // copy (marked) blocks
-			var s = lines[ln]
+			s := lines[ln]
 			s = zr.ReplaceI(s, CommandMark+CB, CommandMark+" DONE "+CB)
 			s = zr.ReplaceI(s, CommandMark+BC, CommandMark+" DONE "+BC)
 			lines[ln] = s
@@ -164,8 +164,8 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			env.Println()
 			//
 		case zr.ContainsI(s, CommandMark+FF): // Find in Files
-			var col = str.Index(str.ToUpper(s), CommandMark+FF)
-			var dlg = str.Replace(FindInFilesDialog, "MRK", CommandMark, -1)
+			col := str.Index(str.ToUpper(s), CommandMark+FF)
+			dlg := str.Replace(FindInFilesDialog, "MRK", CommandMark, -1)
 			lines[ln] = s[:col] + dlg + s[col+len(CommandMark+FF):]
 			altered = true
 			//
@@ -184,7 +184,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			{T, ob.insertTimestamp},
 			{UUID, ob.insertUUID},
 		} {
-			var col = str.Index(str.ToUpper(s), CommandMark+cmd.name)
+			col := str.Index(str.ToUpper(s), CommandMark+cmd.name)
 			if col != -1 {
 				// modify lines in-place with handler
 				altered = cmd.handler(ln, col, lines)
@@ -210,8 +210,8 @@ func (ob Runner) sortByModTime(
 	filesMap *map[string]*TextFile,
 ) {
 	sort.Slice(files, func(i, j int) bool {
-		var a = (*filesMap)[files[i]]
-		var b = (*filesMap)[files[j]]
+		a := (*filesMap)[files[i]]
+		b := (*filesMap)[files[j]]
 		//
 		// this should never occur
 		if a == nil || b == nil {
@@ -250,7 +250,7 @@ func (ob Runner) stripErrorMarks(
 // The ID is unique between all text files in RootPath.
 // Always returns true in altered.
 func (ob Runner) insertID(ln, col int, modLines []string) (altered bool) {
-	var s = modLines[ln]
+	s := modLines[ln]
 	var id string
 loop:
 	for {
@@ -259,9 +259,9 @@ loop:
 			continue
 		}
 		// check if the ID is unique
-		var lineCount = 0
+		lineCount := 0
 		for _, filename := range ob.memFiles.GetAllFilenames() {
-			var file = ob.memFiles.GetFile(filename)
+			file := ob.memFiles.GetFile(filename)
 			for _, line := range file.Lines {
 				line = str.ToUpper(line)
 				if str.Contains(line, id) {
@@ -284,9 +284,9 @@ loop:
 // replaces the command marker, and modifies lines in-place.
 // Always returns true in altered.
 func (ob Runner) insertTimestamp(ln, col int, lines []string) (altered bool) {
-	var s = lines[ln]
-	var aft = s[col+len(CommandMark+T):]
-	var now = zr.Timestamp()
+	s := lines[ln]
+	aft := s[col+len(CommandMark+T):]
+	now := zr.Timestamp()
 	if !str.HasPrefix(aft, " ") {
 		now += " "
 	}
@@ -298,7 +298,7 @@ func (ob Runner) insertTimestamp(ln, col int, lines []string) (altered bool) {
 // replaces the command marker, and modifies lines in-place.
 // Always returns true in altered.
 func (ob Runner) insertUUID(ln, col int, lines []string) (altered bool) {
-	var s = lines[ln]
+	s := lines[ln]
 	lines[ln] = s[:col] + zr.UUID() + s[col+len(CommandMark+UUID):]
 	return true
 } //                                                                  insertUUID

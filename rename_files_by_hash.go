@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 CEEFC9                 cmdx/[rename_files_by_hash.go]
+// :v: 2019-03-18 01:07:59 CC0277                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,12 +32,12 @@ func renameFilesByHash(cmd Command, args []string) {
 	}
 	for _, files := range getFilesMap(args[0], filter) {
 		for i, file := range files {
-			var name = filepath.Base(file.Path)
-			var data, done = env.ReadFile(file.Path)
+			name := filepath.Base(file.Path)
+			data, done := env.ReadFile(file.Path)
 			if !done {
 				continue
 			}
-			var hash = zr.HexStringOfBytes(zr.FoldXorBytes(
+			hash := zr.HexStringOfBytes(zr.FoldXorBytes(
 				hashOfBytes(data, []byte{}), 4,
 			))
 			hash = str.ToLower(hash)
@@ -46,8 +46,8 @@ func renameFilesByHash(cmd Command, args []string) {
 			if str.Contains(str.ToLower(name), hash) {
 				continue
 			}
-			var newName = hash + "." + name
-			var newPath = filepath.Dir(file.Path) +
+			newName := hash + "." + name
+			newPath := filepath.Dir(file.Path) +
 				env.PathSeparator() +
 				newName
 			env.RenameFile(file.Path, newPath)
@@ -63,7 +63,7 @@ func hashOfBytes(ar []byte, salt []byte) []byte {
 	var input []byte
 	input = append(input, salt[:]...)
 	input = append(input, ar...)
-	var hash = sha512.Sum512(input)
+	hash := sha512.Sum512(input)
 	return hash[:]
 } //                                                                 hashOfBytes
 

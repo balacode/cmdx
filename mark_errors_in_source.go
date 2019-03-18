@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 3B06AF                cmdx/[mark_errors_in_source.go]
+// :v: 2019-03-18 01:07:59 5CC2E8                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -50,7 +50,7 @@ func markErrorsInSource(cmd Command, args []string) {
 	//
 	// prepare paths
 	if buildPath == "" {
-		var path = env.Getwd()
+		path := env.Getwd()
 		if path == "" {
 			return
 		}
@@ -63,7 +63,7 @@ func markErrorsInSource(cmd Command, args []string) {
 		buildLog = buildPath + env.PathSeparator() + "build.log"
 	}
 	// get array with issues/errors
-	var issues = readBuildIssues(buildLog)
+	issues := readBuildIssues(buildLog)
 	if len(issues) == 0 {
 		return
 	}
@@ -78,7 +78,7 @@ func markErrorsInSource(cmd Command, args []string) {
 	// iterate over issues array and insert error comments in the source file
 	// important: must be done in reverse order to keep existing line numbers)
 	for i := len(issues) - 1; i >= 0; i-- {
-		var issue = issues[i]
+		issue := issues[i]
 		if prevFile != issue.File {
 			//
 			// save previous file, and load next file
@@ -86,8 +86,8 @@ func markErrorsInSource(cmd Command, args []string) {
 			prevFile = issue.File
 			//
 			// read file into 'lines' array
-			var path = makePath(buildPath, issue.File)
-			var data, done = env.ReadFile(path)
+			path := makePath(buildPath, issue.File)
+			data, done := env.ReadFile(path)
 			if !done {
 				return
 			}
@@ -100,7 +100,7 @@ func markErrorsInSource(cmd Command, args []string) {
 				}
 			}
 		}
-		var msg = ErrorMark + issue.Msg + ErrorEndMark
+		msg := ErrorMark + issue.Msg + ErrorEndMark
 		if issue.Line >= len(lines) {
 			lines = append(lines, msg)
 			continue
@@ -110,9 +110,9 @@ func markErrorsInSource(cmd Command, args []string) {
 			continue
 		}
 		{ // align the comment to the error's column
-			var gap = ""
-			var line = lines[issue.Line-1]
-			var max = len(line)
+			gap := ""
+			line := lines[issue.Line-1]
+			max := len(line)
 			for i := 0; i < (issue.Col-2) && i < max; i++ {
 				if line[i] == '\t' {
 					gap += "\t"
@@ -135,7 +135,7 @@ func markErrorsInSource(cmd Command, args []string) {
 
 // isErrorComment returns true if the given line is an error comment
 func isErrorComment(line string) bool {
-	var find = trim(line)
+	find := trim(line)
 	return str.HasPrefix(find, ErrorMark) && str.Contains(find, ErrorEndMark)
 } //                                                              isErrorComment
 
@@ -169,9 +169,9 @@ func makePath(absPath, relPath string) string {
 	case path.IsAbs(relPath):
 		ret = relPath
 	default:
-		var sep = env.PathSeparator()
-		var abs = str.Split(absPath, sep)
-		var rel = str.Split(relPath, sep)
+		sep := env.PathSeparator()
+		abs := str.Split(absPath, sep)
+		rel := str.Split(relPath, sep)
 		for len(rel) > 0 && rel[0] == ".." {
 			abs = abs[:len(abs)-1]
 			rel = rel[1:]
@@ -186,15 +186,15 @@ func makePath(absPath, relPath string) string {
 // and returns an array of issues.
 func readBuildIssues(buildLog string) (ret []BuildIssue) {
 	// load the build log file:
-	var data, done = env.ReadFile(buildLog)
+	data, done := env.ReadFile(buildLog)
 	if !done {
 		return nil
 	}
 	// fill issues array:
-	var m = map[string]bool{}
-	var lines = str.Split(string(data), LF)
+	m := map[string]bool{}
+	lines := str.Split(string(data), LF)
 	for _, s := range lines {
-		var ar = str.Split(s, ":")
+		ar := str.Split(s, ":")
 		if len(ar) < 4 { //                                     skip short lines
 			continue
 		}

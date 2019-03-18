@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 A089C7                    cmdx/[loaded_text_files.go]
+// :v: 2019-03-18 01:07:59 4973A5                    cmdx/[loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -49,9 +49,9 @@ func (ob *LoadedTextFiles) LoadAll(
 ) (
 	changedFiles []string,
 ) {
-	var paths = env.GetFilePaths(path, env.TextFileExts()...)
+	paths := env.GetFilePaths(path, env.TextFileExts()...)
 	for _, filename := range paths {
-		var _, changed = ob.LoadFile(filename, fsMx)
+		_, changed := ob.LoadFile(filename, fsMx)
 		if changed {
 			changedFiles = append(changedFiles, filename)
 		}
@@ -84,7 +84,7 @@ func (ob *LoadedTextFiles) LoadFile(
 		delete(ob.m, filename)
 		return nil, false
 	}
-	var info, err = os.Stat(filename)
+	info, err := os.Stat(filename)
 	if err != nil {
 		zr.Error("Stat failed on file", filename)
 		delete(ob.m, filename)
@@ -103,8 +103,8 @@ func (ob *LoadedTextFiles) LoadFile(
 // 'modFiles' is the slice of file names being sorted.
 func (ob *LoadedTextFiles) SortListByModTime(modFiles []string) {
 	sort.Slice(modFiles, func(i, j int) bool {
-		var a = ob.m[modFiles[i]]
-		var b = ob.m[modFiles[j]]
+		a := ob.m[modFiles[i]]
+		b := ob.m[modFiles[j]]
 		//
 		// this should never occur
 		if a == nil || b == nil {

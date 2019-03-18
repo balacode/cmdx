@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 A6F579                 cmdx/[sort_file_lines_test.go]
+// :v: 2019-03-18 01:07:59 06796D                 cmdx/[sort_file_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_sfln_sortFileLines_(t *testing.T) {
 	zr.TBegin(t)
 	// sortFileLines(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-07-22 00:04:37 4B3152                          cmdx/[time_report.go]
+// :v: 2019-03-18 01:07:59 F1793C                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -117,7 +117,7 @@ func trptMonthlySummary(
 	minDate, maxDate interface{},
 	files []string,
 ) {
-	var lines = trptMergeFiles(files)
+	lines := trptMergeFiles(files)
 	var items []TimeItem
 	items = trptGetTimeItems(lines)
 	items = trptFilterDates(items, minDate, maxDate)
@@ -127,7 +127,7 @@ func trptMonthlySummary(
 		trptPrintFaults(items)
 		items = trptCalcSpent(items, false)
 	}
-	var sums = trptSumByDate(items)
+	sums := trptSumByDate(items)
 	env.Println(caption)
 	var cal zr.Calendar
 	for _, itm := range sums {
@@ -142,7 +142,7 @@ func trptMonthlySummary(
 func trptSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	var items []TimeItem
 	{
-		var lines = trptMergeFiles(files)
+		lines := trptMergeFiles(files)
 		items = trptGetTimeItems(lines)
 		items = trptFilterDates(items, minDate, maxDate)
 		//
@@ -154,7 +154,7 @@ func trptSummaryByDateText(minDate, maxDate interface{}, files []string) {
 			env.Println(dateTimeStr(itm.Time), "->", itm.String())
 		}
 	}
-	var sum = trptSumByDateText(items)
+	sum := trptSumByDateText(items)
 	sort.Sort(TimeItemsByDateAndDescSpent(sum))
 	trptPrintTimeItems(sum)
 } //                                                       trptSummaryByDateText
@@ -194,12 +194,11 @@ func trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 // trptFilterDates __
 func trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
-	var min = timeOf(minDate).String()[:10]
-	var max = timeOf(maxDate).String()[:10]
+	min := timeOf(minDate).String()[:10]
+	max := timeOf(maxDate).String()[:10]
 	var ret []TimeItem
-	//
 	for _, t := range ar {
-		var date = dateStr(t.Time)
+		date := dateStr(t.Time)
 		if date >= min && date <= max {
 			ret = append(ret, t)
 		}
@@ -213,14 +212,14 @@ func trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 func trptGetTimeItems(lines []string) []TimeItem {
 	//
 	// read lines into a unique date+time map
-	var m = map[string]string{}
+	m := map[string]string{}
 	for _, line := range lines {
 		//
 		// ignore lines without date/time
 		if len(line) < 20 {
 			continue
 		}
-		var dt, err = time.Parse("2006-01-02 15:04:05", line[:19])
+		dt, err := time.Parse("2006-01-02 15:04:05", line[:19])
 		if err != nil || dt.IsZero() {
 			continue
 		}
@@ -229,7 +228,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 		m[line[:19]] = str.Trim(line[20:], SPACES+"/\\")
 	}
 	// create a sorted array of keys
-	var times = make([]string, 0, len(m))
+	times := make([]string, 0, len(m))
 	for key := range m {
 		times = append(times, key)
 	}
@@ -272,7 +271,7 @@ func trptPrintFaults(ar []TimeItem) {
 	var ptime time.Time // previous date and time
 	//
 	for _, itm := range ar {
-		var date = dateStr(itm.Time)
+		date := dateStr(itm.Time)
 		if trptIsTimeStart(itm.Text) {
 			pdate = date
 			ptime = itm.Time
@@ -286,7 +285,7 @@ func trptPrintFaults(ar []TimeItem) {
 			spent = itm.Time.Sub(ptime)
 		}
 		if spent > 3*time.Hour {
-			var s = fmt.Sprintf("(%s)", spent)
+			s := fmt.Sprintf("(%s)", spent)
 			if !str.Contains(itm.Text, s) {
 				env.Println("TOO LONG:", dateTimeStr(itm.Time), itm.Text, s)
 			}
@@ -301,11 +300,11 @@ func trptPrintTimeItems(entries []TimeItem) {
 	var prev string
 	var total time.Duration
 	var grand time.Duration
-	var prt = func(a ...interface{}) {
+	prt := func(a ...interface{}) {
 		env.Printf("%s %7.2f %11s: %s"+LF, a...)
 	}
 	for _, t := range entries {
-		var date = dateStr(t.Time)
+		date := dateStr(t.Time)
 		if date != prev {
 			if prev != "" {
 				env.Println(str.Repeat("-", 35))
@@ -332,9 +331,9 @@ func trptPrintTimeItems(entries []TimeItem) {
 func trptSumByDate(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
-	var m = map[string]*TimeItem{}
+	m := map[string]*TimeItem{}
 	for _, t := range items {
-		var dt = dateStr(t.Time)
+		dt := dateStr(t.Time)
 		if _, exist := m[dt]; !exist {
 			m[dt] = &TimeItem{Time: timeOf(dt)}
 		}
@@ -353,10 +352,10 @@ func trptSumByDate(items []TimeItem) (ret []TimeItem) {
 func trptSumByDateText(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
-	var m = map[string]*TimeItem{}
+	m := map[string]*TimeItem{}
 	for _, t := range items {
-		var date = dateStr(t.Time)
-		var k = date + "\t" + t.Text
+		date := dateStr(t.Time)
+		k := date + "\t" + t.Text
 		if _, exist := m[k]; !exist {
 			m[k] = &TimeItem{
 				Time: timeOf(date),

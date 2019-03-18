@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 AD5A0B        cmdx/[replace_strings_in_files_test.go]
+// :v: 2019-03-18 01:07:59 3E7749        cmdx/[replace_strings_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -26,7 +26,7 @@ func Test_rsif_replaceStringsInFiles_(t *testing.T) {
 	zr.TBegin(t)
 	// replaceStringsInFiles(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {
@@ -40,13 +40,13 @@ func Test_rsif_replaceAsync_(t *testing.T) {
 	zr.TBegin(t)
 	// replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd)
 	//
-	var test = func(
+	test := func(
 		// in:
 		task *sync.WaitGroup, configFile string, cmd ReplCmd,
 	) {
 		replaceAsync(task, configFile, cmd)
 	}
-	var cmd = ReplCmd{}
+	cmd := ReplCmd{}
 	test(nil, "", cmd)
 } //                                                     Test_rsif_replaceAsync_
 
@@ -60,7 +60,7 @@ func Test_rsif_replaceFileAsync_(t *testing.T) {
 	//  	items []ReplItem,
 	//  )
 	zr.TBegin(t)
-	var test = func(
+	test := func(
 		// in:
 		task *sync.WaitGroup,
 		configFile string,

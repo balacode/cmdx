@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 80DF24                            cmdx/[func_test.go]
+// :v: 2019-03-18 01:07:59 FA8087                            cmdx/[func_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,12 +25,12 @@ func Test_func_getFilesMap_(t *testing.T) {
 	zr.TBegin(t)
 	// getFilesMap(dir, filter string) FilesMap
 	//
-	var test = func(
+	test := func(
 		// in:
 		dir, filter string,
 		// out expected:
 		ret FilesMap) {
-		var retT = getFilesMap(dir, filter)
+		retT := getFilesMap(dir, filter)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("", "",
@@ -43,13 +43,13 @@ func Test_func_splitArgsFilter_(t *testing.T) {
 	zr.TBegin(t)
 	// splitArgsFilter(args []string) (retArgs []string, filter string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		args []string,
 		// out expected:
 		retArgs []string, filter string,
 	) {
-		var retArgsT, filterT = splitArgsFilter(args)
+		retArgsT, filterT := splitArgsFilter(args)
 		zr.TEqual(t, retArgsT, (retArgs))
 		zr.TEqual(t, filterT, (filter))
 	}
@@ -63,8 +63,8 @@ func Test_func_trim_(t *testing.T) {
 	zr.TBegin(t)
 	// trim(s string) string
 	//
-	var test = func(s string, ret string) {
-		var retT = trim(s)
+	test := func(s string, ret string) {
+		retT := trim(s)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("",

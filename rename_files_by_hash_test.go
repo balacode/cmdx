@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 32CFE2            cmdx/[rename_files_by_hash_test.go]
+// :v: 2019-03-18 01:07:59 555A60            cmdx/[rename_files_by_hash_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_rfbh_renameFilesByHash_(t *testing.T) {
 	zr.TBegin(t)
 	// renameFilesByHash(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

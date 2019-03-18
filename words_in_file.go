@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-05 11:46:41 DC797A                        cmdx/[words_in_file.go]
+// :v: 2019-03-18 01:07:59 7741D5                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -28,11 +28,11 @@ func wordsInFile(cmd Command, args []string) {
 		)
 		return
 	}
-	var filename = args[0]
+	filename := args[0]
 	//
-	var fragNo = 0
-	var word = [LongestWord]rune{}
-	var words = make(map[string]int)
+	fragNo := 0
+	word := [LongestWord]rune{}
+	words := make(map[string]int)
 	//
 	_ = fs.ReadFileChunks(filename, FileChunkSize+LongestWord,
 		func(chunk []byte) int64 {
@@ -43,7 +43,7 @@ func wordsInFile(cmd Command, args []string) {
 			var hasA bool
 			var hasD bool
 			for _, ch := range []rune(string(chunk)) {
-				var isA, isD = unicode.IsLetter(ch), unicode.IsDigit(ch)
+				isA, isD := unicode.IsLetter(ch), unicode.IsDigit(ch)
 				if isA {
 					hasA = true
 				}
@@ -57,7 +57,7 @@ func wordsInFile(cmd Command, args []string) {
 				}
 				if wordLen > 0 {
 					if hasA && !hasD && wordLen < LongestWord {
-						var s = string(word[:wordLen])
+						s := string(word[:wordLen])
 						if n, exist := words[s]; exist {
 							words[s] = n + 1
 						} else {
@@ -73,7 +73,7 @@ func wordsInFile(cmd Command, args []string) {
 		},
 	)
 	// read fragments from file, store words in map
-	var gap = str.Repeat(" ", 10)
+	gap := str.Repeat(" ", 10)
 	for word, count := range words {
 		env.Println(word, gap, count)
 	}

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 953A6E                  cmdx/[replace_shared_test.go]
+// :v: 2019-03-18 01:07:59 FFE9C8                  cmdx/[replace_shared_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,13 +25,13 @@ func Test_rsha_getConfigBool_(t *testing.T) {
 	zr.TBegin(t)
 	// getConfigBool(s, keyword string) (value, exists bool)
 	//
-	var test = func(
+	test := func(
 		// in:
 		s, keyword string,
 		// out:
 		value, exists bool,
 	) {
-		var valueT, existsT = getConfigBool(s, keyword)
+		valueT, existsT := getConfigBool(s, keyword)
 		zr.TEqual(t, valueT, (value))
 		zr.TEqual(t, existsT, (exists))
 	}
@@ -45,8 +45,8 @@ func Test_rsha_hasConfigBool_(t *testing.T) {
 	zr.TBegin(t)
 	// hasConfigBool(s, keyword string) (ret bool)
 	//
-	var test = func(s, keyword string, ret bool) {
-		var retT = hasConfigBool(s, keyword)
+	test := func(s, keyword string, ret bool) {
+		retT := hasConfigBool(s, keyword)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("", "",
@@ -59,13 +59,13 @@ func Test_rsha_readConfigFileLines_(t *testing.T) {
 	zr.TBegin(t)
 	// readConfigFileLines(configFile string) (configLines []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		configFile string,
 		// out:
 		configLines []string,
 	) {
-		var configLinesT = readConfigFileLines(configFile)
+		configLinesT := readConfigFileLines(configFile)
 		zr.TEqual(t, configLinesT, (configLines))
 	}
 	test("",

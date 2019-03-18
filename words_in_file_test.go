@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 094187                   cmdx/[words_in_file_test.go]
+// :v: 2019-03-18 01:07:59 F29CB3                   cmdx/[words_in_file_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_wdif_wordsInFile_(t *testing.T) {
 	zr.TBegin(t)
 	// wordsInFile(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

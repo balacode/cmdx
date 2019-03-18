@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 9D5B96              cmdx/[mark_time_in_files_test.go]
+// :v: 2019-03-18 01:07:59 270841              cmdx/[mark_time_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -39,7 +39,7 @@ func Test_mtif_markTimeInFiles_(t *testing.T) {
 	zr.TBegin(t)
 	// markTimeInFiles(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {
@@ -56,13 +56,13 @@ func Test_mtif_checksum_(t *testing.T) {
 	zr.TBegin(t)
 	// checksum(s string) string
 	//
-	var test = func(
+	test := func(
 		// in:
 		s string,
 		// out:
 		ret string,
 	) {
-		var retT = checksum(s)
+		retT := checksum(s)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("",
@@ -77,7 +77,7 @@ func Test_mtif_getTimeLogPath(t *testing.T) {
 	//
 	// these paths and filenames don't need to physically exist
 	// the function only processes strings, which are all specified here
-	var oldPaths = TimeLogPaths
+	oldPaths := TimeLogPaths
 	TimeLogPaths = []string{
 		`x:\tests`,
 		`x:\tests\sub`,
@@ -86,7 +86,7 @@ func Test_mtif_getTimeLogPath(t *testing.T) {
 		`x:\tests\sub\p3`,
 		`x:\tests\other`,
 	}
-	var fn = getTimeLogPath
+	fn := getTimeLogPath
 	zr.TEqual(t, fn(`x:\tests\sub\p2\main.go`),
 		`x:\tests\sub\p2`,
 	)
@@ -101,7 +101,7 @@ func Test_mtif_processDir_(t *testing.T) {
 	zr.TBegin(t)
 	// processDir(dir string, changeTime bool)
 	//
-	var test = func(
+	test := func(
 		// in:
 		dir string, changeTime bool,
 	) {
@@ -115,13 +115,13 @@ func Test_mtif_processFile_(t *testing.T) {
 	zr.TBegin(t)
 	// processFile(path, name string, modTime time.Time) error
 	//
-	var test = func(
+	test := func(
 		// in:
 		path, name string, modTime time.Time,
 		// out expected:
 		err error,
 	) {
-		var errT = processFile(path, name, modTime)
+		errT := processFile(path, name, modTime)
 		zr.TEqual(t, errT, (err))
 	}
 	test("", "", time.Time{},
@@ -134,13 +134,13 @@ func Test_mtif_replaceVersion_(t *testing.T) {
 	zr.TBegin(t)
 	// replaceVersion(s, path, filename string, modTime time.Time) string
 	//
-	var test = func(
+	test := func(
 		// in:
 		s, path, filename string, modTime time.Time,
 		// out expected:
 		ret string,
 	) {
-		var retT = replaceVersion(s, path, filename, modTime)
+		retT := replaceVersion(s, path, filename, modTime)
 		zr.TEqual(t, retT, (ret))
 	}
 	test("", "", "", time.Time{},

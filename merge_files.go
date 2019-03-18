@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-05 11:23:23 CE4641                          cmdx/[merge_files.go]
+// :v: 2019-03-18 01:07:59 450DE3                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,7 +18,7 @@ func mergeFiles(cmd Command, args []string) {
 	// read parameters
 	var from, to, mode string
 	{
-		var vars = []struct {
+		vars := []struct {
 			name string
 			val  *string
 		}{
@@ -47,7 +47,7 @@ func mergeFiles(cmd Command, args []string) {
 		}
 	}
 	// read the list of files in the mergefile
-	var path = from
+	path := from
 	if str.HasSuffix(path, ".rgon") {
 		from = filepath.Dir(from)
 	} else {
@@ -56,28 +56,28 @@ func mergeFiles(cmd Command, args []string) {
 		}
 		path += "merge.rgon"
 	}
-	var data, done = env.ReadFile(path)
+	data, done := env.ReadFile(path)
 	if !done {
 		return
 	}
-	var def, err = rgon.Parse(string(data))
+	def, err := rgon.Parse(string(data))
 	if err != nil {
 		env.Println("Failed parsing", path, "due to:", err)
 		return
 	}
-	var files = def.Objs("files")
+	files := def.Objs("files")
 	//
 	// store the files in a memory buffer
 	var buf bytes.Buffer
 	for _, iter := range files {
-		var filename = iter.Str("file")
-		var fileMode = iter.Str("mode")
+		filename := iter.Str("file")
+		fileMode := iter.Str("mode")
 		if fileMode != "" && fileMode != mode {
 			continue
 		}
-		var path = from + env.PathSeparator() + filename
+		path := from + env.PathSeparator() + filename
 		path = filepath.Clean(path)
-		var data, done = env.ReadFile(path)
+		data, done := env.ReadFile(path)
 		if !done {
 			return
 		}

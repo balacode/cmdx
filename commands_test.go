@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-28 13:59:12 BD6216                        cmdx/[commands_test.go]
+// :v: 2019-03-18 01:07:59 6FE9CF                        cmdx/[commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -41,7 +41,7 @@ func Test_cmds_consts_(t *testing.T) {
 
 // go test --run Test_cmds_AllCategories_
 func Test_cmds_AllCategories_(t *testing.T) {
-	var categories = make(map[string]bool, len(AllCategories))
+	categories := make(map[string]bool, len(AllCategories))
 	for key, cat := range AllCategories {
 		if key < 1 || key > 3 {
 			t.Error("Invalid category key:", key)
@@ -65,10 +65,10 @@ func Test_cmds_AllCategories_(t *testing.T) {
 
 // go test --run Test_cmds_AllCommands_
 func Test_cmds_AllCommands_(t *testing.T) {
-	var shortNames = make(map[string]bool, len(AllCommands))
-	var fullNames = make(map[string]bool, len(AllCommands))
-	var handlers = make(map[uintptr]bool, len(AllCommands))
-	var isValidName = func(s string) bool {
+	shortNames := make(map[string]bool, len(AllCommands))
+	fullNames := make(map[string]bool, len(AllCommands))
+	handlers := make(map[uintptr]bool, len(AllCommands))
+	isValidName := func(s string) bool {
 		for _, ch := range s {
 			if (ch < 'a' || ch > 'z') && ch != '-' {
 				return false
@@ -76,9 +76,9 @@ func Test_cmds_AllCommands_(t *testing.T) {
 		}
 		return true
 	}
-	var addressOf = func(value interface{}) uintptr {
+	addressOf := func(value interface{}) uintptr {
 		var ret uintptr
-		var refVal = reflect.ValueOf(value)
+		refVal := reflect.ValueOf(value)
 		switch refVal.Kind() {
 		case reflect.Chan, reflect.Func, reflect.Map, reflect.Ptr,
 			reflect.Slice, reflect.UnsafePointer:
@@ -121,7 +121,7 @@ func Test_cmds_AllCommands_(t *testing.T) {
 			t.Error("Handler must not be <nil> in", zr.DescribeStruct(&cmd))
 		}
 		// Handler must be unique
-		var addr = addressOf(cmd.Handler)
+		addr := addressOf(cmd.Handler)
 		_, exist = handlers[addr]
 		if exist {
 			t.Error("Non-unique Handler in", zr.DescribeStruct(&cmd))

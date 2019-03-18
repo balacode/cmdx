@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 05D45F                     cmdx/[match_words_test.go]
+// :v: 2019-03-18 01:07:59 E8B24E                     cmdx/[match_words_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_mtcw_matchWords_(t *testing.T) {
 	zr.TBegin(t)
 	// matchWords(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

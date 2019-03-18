@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 8B8DC0                 cmdx/[run_interactive_test.go]
+// :v: 2019-03-18 01:07:59 7500AA                 cmdx/[run_interactive_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -25,7 +25,7 @@ func Test_runi_runInteractive_(t *testing.T) {
 	zr.TBegin(t)
 	// runInteractive(cmd Command, args []string)
 	//
-	var test = func(
+	test := func(
 		// in:
 		cmd Command, args []string,
 	) {

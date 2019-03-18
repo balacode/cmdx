@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 DA046B                            cmdx/[main_test.go]
+// :v: 2019-03-18 01:07:59 1BFDA6                            cmdx/[main_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -28,7 +28,7 @@ func Test_main_(t *testing.T) {
 	zr.TBegin(t)
 	// main()
 	//
-	var test = func() {
+	test := func() {
 		//TODO: main()
 	}
 	test()
