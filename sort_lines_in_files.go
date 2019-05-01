@@ -1,13 +1,13 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 173DB1                      cmdx/[sort_file_lines.go]
+// :v: 2019-05-01 23:45:26 DD29D8                      cmdx/[sort_file_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
 	"sort"
-	str "strings"
+	"strings"
 )
 
 // sortFileLines sorts all the lines in the specified file, removing
@@ -20,7 +20,7 @@ func sortFileLines(cmd Command, args []string) {
 	// read the file
 	filename := args[0]
 	lines := env.ReadFileLines(filename)
-	oldContent := str.Join(lines, "\n")
+	oldContent := strings.Join(lines, "\n")
 	//
 	// remove non-unique lines
 	if true {
@@ -37,7 +37,7 @@ func sortFileLines(cmd Command, args []string) {
 	sort.Strings(lines)
 	//
 	// don't save if nothing changed
-	if str.Join(lines, "\n") == oldContent {
+	if strings.Join(lines, "\n") == oldContent {
 		return
 	}
 	// save the file

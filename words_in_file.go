@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 7741D5                        cmdx/[words_in_file.go]
+// :v: 2019-05-01 23:45:26 C12CD1                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
-	str "strings"
+	"strings"
 	"unicode"
 
 	fs "github.com/balacode/zr-fs"
@@ -73,7 +73,7 @@ func wordsInFile(cmd Command, args []string) {
 		},
 	)
 	// read fragments from file, store words in map
-	gap := str.Repeat(" ", 10)
+	gap := strings.Repeat(" ", 10)
 	for word, count := range words {
 		env.Println(word, gap, count)
 	}

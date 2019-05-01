@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 450DE3                          cmdx/[merge_files.go]
+// :v: 2019-05-01 23:45:26 6B574C                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,7 +8,7 @@ package main
 import (
 	"bytes"
 	"path/filepath"
-	str "strings"
+	"strings"
 
 	rgon "github.com/balacode/zr-rgon"
 )
@@ -28,7 +28,7 @@ func mergeFiles(cmd Command, args []string) {
 		}
 		for _, arg := range args {
 			for _, v := range vars {
-				if str.HasPrefix(arg, v.name) {
+				if strings.HasPrefix(arg, v.name) {
 					if *v.val != "" {
 						env.Println("duplicate parameter: '" + v.name + "'")
 						return
@@ -48,10 +48,10 @@ func mergeFiles(cmd Command, args []string) {
 	}
 	// read the list of files in the mergefile
 	path := from
-	if str.HasSuffix(path, ".rgon") {
+	if strings.HasSuffix(path, ".rgon") {
 		from = filepath.Dir(from)
 	} else {
-		if !str.HasSuffix(path, env.PathSeparator()) {
+		if !strings.HasSuffix(path, env.PathSeparator()) {
 			path += env.PathSeparator()
 		}
 		path += "merge.rgon"

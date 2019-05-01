@@ -1,12 +1,12 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 6449F5                          cmdx/[match_words.go]
+// :v: 2019-05-01 23:45:26 18BB2B                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
-	str "strings"
+	"strings"
 
 	"github.com/balacode/zr"
 )
@@ -27,20 +27,20 @@ func matchWords(cmd Command, args []string) {
 			return
 		}
 		s := string(data)
-		s = str.Replace(s, "\r"+LF, LF, -1)
-		for str.Contains(s, LF+LF) {
-			s = str.Replace(s, LF+LF, LF, -1)
+		s = strings.Replace(s, "\r"+LF, LF, -1)
+		for strings.Contains(s, LF+LF) {
+			s = strings.Replace(s, LF+LF, LF, -1)
 		}
-		words = str.Split(s, LF)
+		words = strings.Split(s, LF)
 	}
 	for _, word := range words {
 		if len(word) != length {
 			continue
 		}
-		word = str.ToLower(word)
+		word = strings.ToLower(word)
 		used := 0
-		letters := str.Split(letterSet, "")
-		for _, wordLetter := range str.Split(word, "") {
+		letters := strings.Split(letterSet, "")
+		for _, wordLetter := range strings.Split(word, "") {
 			for i, letter := range letters {
 				if wordLetter == letter {
 					used++

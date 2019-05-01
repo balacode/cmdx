@@ -1,26 +1,26 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 E7B2C0               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-01 23:45:26 C4F925               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
 	"path/filepath"
-	str "strings"
+	"strings"
 )
 
 // getConfigBool __
 func getConfigBool(s, keyword string) (value, exists bool) {
 	//TODO: apply this function in replaceStringsInFiles
-	s = str.ToUpper(s)
-	keyword = str.ToUpper(keyword)
+	s = strings.ToUpper(s)
+	keyword = strings.ToUpper(keyword)
 	for i, ar := range [][]string{
 		{"0", "FALSE", "OFF", "IGNORE"},
 		{"1", "TRUE", "ON", "MATCH"},
 	} {
 		for _, match := range ar {
-			if str.HasPrefix(s, keyword+" "+match) {
+			if strings.HasPrefix(s, keyword+" "+match) {
 				return i == 1, true
 			}
 		}
@@ -51,12 +51,12 @@ func readConfigFileLines(configFile string) (configLines []string) {
 		return []string{}
 	}
 	s := string(data)
-	s = str.Trim(s, SPACES)
-	s = str.Replace(s, CR+LF, LF, -1)
-	for str.Contains(s, LF+LF) {
-		s = str.Replace(s, LF+LF, LF, -1)
+	s = strings.Trim(s, SPACES)
+	s = strings.Replace(s, CR+LF, LF, -1)
+	for strings.Contains(s, LF+LF) {
+		s = strings.Replace(s, LF+LF, LF, -1)
 	}
-	configLines = str.Split(s, LF)
+	configLines = strings.Split(s, LF)
 	configLines = append(configLines, "") // initiates replacement
 	return configLines
 } //                                                         readConfigFileLines

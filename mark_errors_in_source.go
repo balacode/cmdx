@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 5CC2E8                cmdx/[mark_errors_in_source.go]
+// :v: 2019-05-01 23:45:26 556895                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -8,7 +8,7 @@ package main
 import (
 	"flag"
 	"path"
-	str "strings"
+	"strings"
 
 	"github.com/balacode/zr"
 )
@@ -92,10 +92,10 @@ func markErrorsInSource(cmd Command, args []string) {
 				return
 			}
 			// mark existing error comments (for later removal)
-			lines = str.Split(string(data), LF)
+			lines = strings.Split(string(data), LF)
 			for i, line := range lines {
 				if isErrorComment(line) {
-					lines[i] = str.Replace(lines[i],
+					lines[i] = strings.Replace(lines[i],
 						ErrorEndMark, ErrorEndMark+OldMark, -1)
 				}
 			}
@@ -136,7 +136,8 @@ func markErrorsInSource(cmd Command, args []string) {
 // isErrorComment returns true if the given line is an error comment
 func isErrorComment(line string) bool {
 	find := trim(line)
-	return str.HasPrefix(find, ErrorMark) && str.Contains(find, ErrorEndMark)
+	return strings.HasPrefix(find, ErrorMark) &&
+		strings.Contains(find, ErrorEndMark)
 } //                                                              isErrorComment
 
 // isRepeatComment returns true if msg already
@@ -170,14 +171,14 @@ func makePath(absPath, relPath string) string {
 		ret = relPath
 	default:
 		sep := env.PathSeparator()
-		abs := str.Split(absPath, sep)
-		rel := str.Split(relPath, sep)
+		abs := strings.Split(absPath, sep)
+		rel := strings.Split(relPath, sep)
 		for len(rel) > 0 && rel[0] == ".." {
 			abs = abs[:len(abs)-1]
 			rel = rel[1:]
 		}
 		abs = append(abs, rel...)
-		ret = str.Join(abs, sep)
+		ret = strings.Join(abs, sep)
 	}
 	return ret
 } //                                                                    makePath
@@ -192,9 +193,9 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 	}
 	// fill issues array:
 	m := map[string]bool{}
-	lines := str.Split(string(data), LF)
+	lines := strings.Split(string(data), LF)
 	for _, s := range lines {
-		ar := str.Split(s, ":")
+		ar := strings.Split(s, ":")
 		if len(ar) < 4 { //                                     skip short lines
 			continue
 		}
@@ -206,7 +207,7 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 			File: trim(ar[0]),
 			Line: zr.Int(ar[1]),
 			Col:  zr.Int(ar[2]),
-			Msg:  trim(str.Join(ar[3:], ":")),
+			Msg:  trim(strings.Join(ar[3:], ":")),
 		})
 	}
 	return ret
@@ -217,7 +218,7 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 func removeOldErrorComments(lines []string) []string {
 	var ret []string
 	for _, line := range lines {
-		if isErrorComment(line) && str.HasSuffix(line, OldMark) {
+		if isErrorComment(line) && strings.HasSuffix(line, OldMark) {
 			continue
 		}
 		ret = append(ret, line)
@@ -233,7 +234,7 @@ func saveFile(buildPath, filename string, lines []string) {
 	lines = removeOldErrorComments(lines)
 	env.WriteFile(
 		makePath(buildPath, filename),
-		[]byte(str.Join(lines, LF)),
+		[]byte(strings.Join(lines, LF)),
 	)
 } //                                                                    saveFile
 
