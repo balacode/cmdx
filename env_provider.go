@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 C6EDCA                         cmdx/[env_provider.go]
+// :v: 2019-05-01 23:41:00 5C61A9                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -54,6 +54,11 @@ type EnvProvider interface {
 
 	// -------------------------------------------------------------------------
 	// # File Operations
+
+	// NewDirWatcher returns a new DirWatcher that contains
+	// a channel that be sent the name of a file every time
+	// a file in the folder or one of its subfolders changes.
+	NewDirWatcher(dir string) (*fs.DirWatcher, error)
 
 	// DeleteFile deletes 'filename' and returns true if it no longer exists.
 	DeleteFile(filename string) bool
@@ -265,7 +270,7 @@ func (Env) PathSeparator() string {
 }
 
 // NewDirWatcher __
-func (Env) NewDirWatcher(dir string) *fs.DirWatcher {
+func (Env) NewDirWatcher(dir string) (*fs.DirWatcher, error) {
 	return fs.NewDirWatcher(dir)
 }
 

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-04-07 08:19:08 D98A97                      cmdx/[run_interactive.go]
+// :v: 2019-05-01 23:41:00 61E2F5                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,7 +36,6 @@ import (
 	"sync"
 
 	"github.com/balacode/zr"
-	fs "github.com/balacode/zr-fs"
 )
 
 // Runner joins all subfunctions used by runInteractive(),
@@ -53,7 +52,7 @@ type Runner struct {
 // for changes. When it detects text processing commands,
 // it applies these commands to the applicable source files.
 func runInteractive(cmd Command, args []string) {
-	watcher, err := NewDirWatcher(RootPath)
+	watcher, err := env.NewDirWatcher(RootPath)
 	if err != nil {
 		zr.Error(err)
 		return
