@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 4E99F0                                 cmdx/[main.go]
+// :v: 2019-05-06 06:03:40 2C8654                                 cmdx/[main.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -51,6 +51,6 @@ func main() {
 	env.Printf("unknown command: %s", cmdName)
 } //                                                                        main
 
-//TODO: create a core package
+// TODO: create a core package
 
 //end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:41:00 5C61A9                         cmdx/[env_provider.go]
+// :v: 2019-05-06 06:03:40 A2E4EB                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -205,7 +205,7 @@ func (Env) ReadFileChunks(
 
 // ReadFileLines __
 func (Env) ReadFileLines(filename string) []string {
-	//TODO: add error return value to fs.ReadFileLines, add bool return here
+	// TODO: add error return value to fs.ReadFileLines, add bool return here
 	return fs.ReadFileLines(filename)
 }
 
@@ -279,7 +279,7 @@ func (Env) TextFileExts() []string {
 	return fs.TextFileExts
 }
 
-//TODO: env_provider.go: add the following:
+// TODO: env_provider.go: add the following:
 // fs.IsTextFile
 // fs.WalkPath
 // os.Args

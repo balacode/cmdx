@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 AFAAF0                 cmdx/[list_identical_files.go]
+// :v: 2019-05-06 06:03:40 6973F0                 cmdx/[list_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -66,8 +66,8 @@ func listIdenticalFiles(cmd Command, args []string) {
 	}
 } //                                                          listIdenticalFiles
 
-//TODO: add a function to call when each duplicate is found.
+// TODO: add a function to call when each duplicate is found.
 
-//TODO: can be moved to 'fs' with some changes
+// TODO: can be moved to 'fs' with some changes
 
 //end

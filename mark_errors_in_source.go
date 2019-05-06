@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 556895                cmdx/[mark_errors_in_source.go]
+// :v: 2019-05-06 06:03:40 7EEB82                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -39,7 +39,7 @@ import (
 
 // markErrorsInSource __
 func markErrorsInSource(cmd Command, args []string) {
-	//TODO: change to use 'args' instead of reading flags
+	// TODO: change to use 'args' instead of reading flags
 	//
 	// read command-line arguments
 	var buildPath, libPath, buildLog string
@@ -238,6 +238,6 @@ func saveFile(buildPath, filename string, lines []string) {
 	)
 } //                                                                    saveFile
 
-//TODO: use saveFile() in github.com/balacode/zr-fs
+// TODO: use saveFile() in github.com/balacode/zr-fs
 
 //end

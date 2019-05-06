@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 464FFA          cmdx/[delete_identical_files_test.go]
+// :v: 2019-05-06 06:03:40 1BE940          cmdx/[delete_identical_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -30,7 +30,7 @@ func Test_dlif_deleteIdenticalFiles_(t *testing.T) {
 		cmd Command, args []string,
 	) {
 		deleteIdenticalFiles(cmd, args)
-		//TODO: implement Test_dlif_deleteIdenticalFiles_()
+		// TODO: implement Test_dlif_deleteIdenticalFiles_()
 	}
 	test(Command{}, []string{})
 } //                                             Test_dlif_deleteIdenticalFiles_

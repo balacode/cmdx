@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 C12CD1                        cmdx/[words_in_file.go]
+// :v: 2019-05-06 06:03:40 446D2C                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -77,10 +77,10 @@ func wordsInFile(cmd Command, args []string) {
 	for word, count := range words {
 		env.Println(word, gap, count)
 	}
-} //                                                              wordsInFile
+} //                                                                 wordsInFile
 
-//TODO: create Words() function in Zircon-Go lib
+// TODO: create Words() function in Zircon-Go lib
 
-//TODO: create a text module or 'tstr'.
+// TODO: create a text module or 'tstr'.
 
 //end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 998EE0                                 cmdx/[func.go]
+// :v: 2019-05-06 06:03:40 00DFD8                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -44,7 +44,7 @@ func filterLongLines(
 func getFilesMap(dir, filter string) FilesMap {
 	filter = strings.ToLower(filter)
 	ret := make(FilesMap, 1000)
-	//TODO: use fs.WalkPath() instead of this; then remove "os" dependency
+	// TODO: use fs.WalkPath() instead of this; then remove "os" dependency
 	filepath.Walk(
 		dir, func(path string, info os.FileInfo, err error) error {
 			if strings.Contains(path, "$RECYCLE.BIN") {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 D332A5           cmdx/[mark_errors_in_source_test.go]
+// :v: 2019-05-06 06:03:40 907904           cmdx/[mark_errors_in_source_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -43,7 +43,7 @@ func Test_meis_markErrorsInSource_(t *testing.T) {
 		cmd Command, args []string,
 	) {
 		markErrorsInSource(cmd, args)
-		//TODO: implement unit test
+		// TODO: implement unit test
 	}
 	test(Command{}, []string{})
 } //                                               Test_meis_markErrorsInSource_

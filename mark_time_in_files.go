@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 67E686                   cmdx/[mark_time_in_files.go]
+// :v: 2019-05-06 06:03:40 307750                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -130,7 +130,7 @@ func getTimeLogPath(path string) string {
 // processDir calls processFile() for each file in 'dir' and its subfolders.
 func processDir(dir string, changeTime bool) {
 	log.SetFlags(log.Lshortfile)
-	//TODO: use fs.WalkPath() instead of this; then remove "os" dependency
+	// TODO: use fs.WalkPath() instead of this; then remove "os" dependency
 	err := filepath.Walk(
 		dir, func(path string, info os.FileInfo, err error) error {
 			if err != nil {
@@ -183,7 +183,7 @@ func processFile(path, name string, modTime time.Time) error {
 // modTime:  File's last modification time.
 //           If it is zero-valued, does not change the timestamp.
 func replaceVersion(s, path, filename string, modTime time.Time) string {
-	//TODO: in replaceVersion(), 'path' is already including the filename.
+	// TODO: in replaceVersion(), 'path' is already including the filename.
 	//      Then remove 'filename' argument.
 	var loc []int
 	{

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 C4F925               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-06 06:03:40 9BB346               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -12,7 +12,7 @@ import (
 
 // getConfigBool __
 func getConfigBool(s, keyword string) (value, exists bool) {
-	//TODO: apply this function in replaceStringsInFiles
+	// TODO: apply this function in replaceStringsInFiles
 	s = strings.ToUpper(s)
 	keyword = strings.ToUpper(keyword)
 	for i, ar := range [][]string{
@@ -30,15 +30,15 @@ func getConfigBool(s, keyword string) (value, exists bool) {
 
 // hasConfigBool __
 func hasConfigBool(s, keyword string) (ret bool) {
-	//TODO: apply this function in replaceStringsInFiles
+	// TODO: apply this function in replaceStringsInFiles
 	_, ret = getConfigBool(s, keyword)
 	return ret
 } //                                                               hasConfigBool
 
 // readConfigFileLines __
 func readConfigFileLines(configFile string) (configLines []string) {
-	//TODO: use this function in replaceStringsInFiles()
-	//TODO: do away with this function, use env.ReadFileLines() instead
+	// TODO: use this function in replaceStringsInFiles()
+	// TODO: do away with this function, use env.ReadFileLines() instead
 	var err error
 	configFile, err = filepath.Abs(configFile)
 	if err != nil {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 BBDDE1                      cmdx/[run_interactive.go]
+// :v: 2019-05-06 06:03:40 AD242F                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -115,7 +115,7 @@ func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 			ret = append(ret, []string{"", "", ""}...) // three blank lines
 			b = 0
 		case strings.HasSuffix(ts, CommandMark+LT):
-			//TODO: IMPLEMENT
+			// TODO: IMPLEMENT
 		case strings.HasPrefix(ts, CommandMark) &&
 			zr.IsNumber(ts[len(CommandMark):]):
 			b = zr.Int(ts[len(CommandMark):])

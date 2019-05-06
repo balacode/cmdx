@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-11-04 12:46:35 4059B8                            cmdx/[hardcoded.go]
+// :v: 2019-05-06 06:18:26 0FF9B2                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -63,7 +63,5 @@ var hardcodedIgnoreFilenamesWith = []string{
 }
 
 const hardcodedWordListFile = `c:\__DEBDESK\words_alpha.txt`
-
-var hardcodedReplaceManyPath = `X:\user\projects\code\go\src\base\zr\ReplaceMany`
 
 //end

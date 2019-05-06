@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 CAEFF8             cmdx/[replace_strings_in_files.go]
+// :v: 2019-05-06 06:03:40 27E5FA             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -166,9 +166,9 @@ func hasBool(s, keyword string) (ret bool) {
 
 // replaceAsync __
 func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
-	//TODO: you can remove configFile arg, and add an if condition in caller
+	// TODO: you can remove configFile arg, and add an if condition in caller
 	if task == nil {
-		zr.Error("") //TODO: add error message (replaceAsync())
+		zr.Error("") // TODO: add error message (replaceAsync())
 	}
 	if task != nil {
 		defer task.Done()
