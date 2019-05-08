@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 AD242F                      cmdx/[run_interactive.go]
+// :v: 2019-05-08 11:24:44 A7552C                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -106,7 +106,7 @@ loop:
 func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 	b := 0 // <- remaining lines in block
 	for i, s := range lines {
-		ts := strings.ToUpper(strings.Trim(s, SPACES))
+		ts := strings.ToUpper(strings.TrimSpace(s))
 		switch {
 		case strings.HasPrefix(ts, CommandMark+BB): // begin block
 			b = -1
@@ -236,7 +236,7 @@ func (ob Runner) stripErrorMarks(
 ) {
 	modLines = make([]string, 0, len(lines))
 	for _, s := range lines {
-		if strings.HasPrefix(strings.Trim(s, SPACES), ErrorMark) {
+		if strings.HasPrefix(strings.TrimSpace(s), ErrorMark) {
 			altered = true
 			continue
 		}

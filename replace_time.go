@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 C7CC0B                         cmdx/[replace_time.go]
+// :v: 2019-05-08 11:24:44 054CE4                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -30,7 +30,7 @@ func replaceTime(cmd Command, args []string) {
 			if !done {
 				return
 			}
-			content := strings.Trim(string(data), SPACES)
+			content := strings.TrimSpace(string(data))
 			ar = strings.Split(content, LF)
 		}
 		for _, s := range ar {
@@ -49,7 +49,7 @@ func replaceTime(cmd Command, args []string) {
 		if !done {
 			return
 		}
-		s := strings.Trim(string(data), SPACES)
+		s := strings.TrimSpace(string(data))
 		toLines = strings.Split(s, LF)
 	}
 	var out bytes.Buffer

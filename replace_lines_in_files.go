@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 374184               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-08 11:24:44 B55B37               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -128,16 +128,16 @@ func (M replaceLinesInFilesM) getFindRepls(
 	for _, line := range configLines {
 		// lines that begin with the marker are configuration or comments:
 		if strings.HasPrefix(line, mark) {
-			line = strings.Trim(line[len(mark):], SPACES)
+			line = strings.TrimSpace(line[len(mark):])
 			switch {
 			case strings.HasPrefix(line, "path"):
-				path = strings.Trim(line[5:], SPACES)
+				path = strings.TrimSpace(line[5:])
 				env.Println("SET PATH:", path)
 			case strings.HasPrefix(line, "exts"):
 				exts = strings.Fields(line[5:])
 				env.Println("SET EXTS:", exts)
 			case strings.HasPrefix(line, "mark"):
-				mark = strings.Trim(line[5:], SPACES)
+				mark = strings.TrimSpace(line[5:])
 				if mark == "" {
 					mark = DefaultMark
 				}
@@ -238,12 +238,12 @@ func (M replaceLinesInFilesM) replaceFileAsync(
 // Lines that only contain white spaces are treated as blank lines.
 func (M replaceLinesInFilesM) trimBlankLines(lines []string) []string {
 	// trim leading blank lines
-	for len(lines) > 0 && strings.Trim(lines[0], SPACES) == "" {
+	for len(lines) > 0 && strings.TrimSpace(lines[0]) == "" {
 		lines = lines[1:]
 	}
 	// trim trailing blank lines
 	for len(lines) > 0 &&
-		strings.Trim(lines[len(lines)-1], SPACES) == "" {
+		strings.TrimSpace(lines[len(lines)-1]) == "" {
 		lines = lines[:len(lines)-1]
 	}
 	return lines
@@ -252,7 +252,7 @@ func (M replaceLinesInFilesM) trimBlankLines(lines []string) []string {
 // trimStrings removes leading and trailing spaces from each line in strs.
 func (M replaceLinesInFilesM) trimStrings(ar []string) []string {
 	for i, s := range ar {
-		ar[i] = strings.Trim(s, SPACES)
+		ar[i] = strings.TrimSpace(s)
 	}
 	return ar
 } //                                                                 trimStrings

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 0763C2                        cmdx/[replace_lines.go]
+// :v: 2019-05-08 11:24:44 87A1CF                        cmdx/[replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -146,7 +146,7 @@ func (M replaceLinesM) getTree(
 		node := &ret
 		last := len(find) - 1
 		for i, line := range find {
-			line = strings.Trim(line, SPACES)
+			line = strings.TrimSpace(line)
 			if caseMode == zr.IgnoreCase {
 				line = strings.ToLower(line)
 			}
@@ -187,7 +187,7 @@ func (M replaceLinesM) replaceMany(
 	prev := 0
 	var ret []string
 	for i := 0; i < linesLen; i++ {
-		line := strings.Trim(lines[i], SPACES)
+		line := strings.TrimSpace(lines[i])
 		if caseMode == zr.IgnoreCase {
 			line = strings.ToLower(line)
 		}

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 27E5FA             cmdx/[replace_strings_in_files.go]
+// :v: 2019-05-08 11:24:44 853F39             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -69,7 +69,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			return
 		}
 		s := string(data)
-		s = strings.Trim(s, SPACES)
+		s = strings.TrimSpace(s)
 		s = strings.Replace(s, "\r"+LF, LF, -1)
 		for strings.Contains(s, LF+LF) {
 			s = strings.Replace(s, LF+LF, LF, -1)
@@ -84,7 +84,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 	items := []ReplItem{}
 	env.Println(strings.Repeat("-", 80))
 	for lineNo, s := range configLines {
-		s = strings.Trim(s, SPACES)
+		s = strings.TrimSpace(s)
 		//
 		// blank lines initiate replacement:
 		if s == "" && len(items) > 0 {
@@ -115,8 +115,8 @@ func replaceStringsInFiles(cmd Command, args []string) {
 		i := strings.Index(s, cfg.mark)
 		if i > 0 {
 			item := ReplItem{
-				Find:     strings.Trim(s[:i], SPACES),
-				Repl:     strings.Trim(s[i+len(cfg.mark):], SPACES),
+				Find:     strings.TrimSpace(s[:i]),
+				Repl:     strings.TrimSpace(s[i+len(cfg.mark):]),
 				CaseMode: cfg.caseMode,
 				WordMode: cfg.wordMode,
 			}
@@ -240,10 +240,10 @@ func replaceFileAsync(
 
 // setReplConfig __
 func setReplConfig(s string, cfg *replConfig) {
-	s = strings.Trim(s[len(cfg.mark):], SPACES)
+	s = strings.TrimSpace(s[len(cfg.mark):])
 	switch {
 	case strings.HasPrefix(s, "path"):
-		cfg.path = strings.Trim(s[5:], SPACES)
+		cfg.path = strings.TrimSpace(s[5:])
 		env.Println("SET PATH:", cfg.path)
 	//
 	case strings.HasPrefix(s, "exts"):
@@ -251,7 +251,7 @@ func setReplConfig(s string, cfg *replConfig) {
 		env.Println("SET EXTS:", cfg.exts)
 	//
 	case strings.HasPrefix(s, "mark"):
-		cfg.mark = strings.Trim(s[5:], SPACES)
+		cfg.mark = strings.TrimSpace(s[5:])
 		if cfg.mark == "" {
 			cfg.mark = DefaultMark
 		}

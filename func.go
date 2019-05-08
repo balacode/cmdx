@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 00DFD8                                 cmdx/[func.go]
+// :v: 2019-05-08 11:24:44 A2B246                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -106,7 +106,7 @@ func splitArgsFilter(args []string) (retArgs []string, filter string) {
 
 // trim removes all leading and trailing white-spaces from a string
 func trim(s string) string {
-	return strings.Trim(s, SPACES)
+	return strings.TrimSpace(s)
 } //                                                                        trim
 
 //end
