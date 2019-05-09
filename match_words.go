@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 05:41:53 EA12E0                          cmdx/[match_words.go]
+// :v: 2019-05-09 18:06:19 C592C0                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -27,11 +27,11 @@ func matchWords(cmd Command, args []string) {
 			return
 		}
 		s := string(data)
-		s = strings.Replace(s, "\r"+LF, LF, -1)
-		for strings.Contains(s, LF+LF) {
-			s = strings.Replace(s, LF+LF, LF, -1)
+		s = strings.Replace(s, "\r\n", "\n", -1)
+		for strings.Contains(s, "\n\n") {
+			s = strings.Replace(s, "\n\n", "\n", -1)
 		}
-		words = strings.Split(s, LF)
+		words = strings.Split(s, "\n")
 	}
 	for _, word := range words {
 		if len(word) != length {

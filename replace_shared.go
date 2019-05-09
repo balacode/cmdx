@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 894A20               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-09 18:06:19 FBD29D               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -52,11 +52,11 @@ func readConfigFileLines(configFile string) (configLines []string) {
 	}
 	s := string(data)
 	s = strings.TrimSpace(s)
-	s = strings.Replace(s, CR+LF, LF, -1)
-	for strings.Contains(s, LF+LF) {
-		s = strings.Replace(s, LF+LF, LF, -1)
+	s = strings.Replace(s, "\r\n", "\n", -1)
+	for strings.Contains(s, "\n\n") {
+		s = strings.Replace(s, "\n\n", "\n", -1)
 	}
-	configLines = strings.Split(s, LF)
+	configLines = strings.Split(s, "\n")
 	configLines = append(configLines, "") // initiates replacement
 	return configLines
 } //                                                         readConfigFileLines

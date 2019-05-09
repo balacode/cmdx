@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 054CE4                         cmdx/[replace_time.go]
+// :v: 2019-05-09 18:06:19 FC4154                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -31,7 +31,7 @@ func replaceTime(cmd Command, args []string) {
 				return
 			}
 			content := strings.TrimSpace(string(data))
-			ar = strings.Split(content, LF)
+			ar = strings.Split(content, "\n")
 		}
 		for _, s := range ar {
 			if len(s) < 16 {
@@ -50,7 +50,7 @@ func replaceTime(cmd Command, args []string) {
 			return
 		}
 		s := strings.TrimSpace(string(data))
-		toLines = strings.Split(s, LF)
+		toLines = strings.Split(s, "\n")
 	}
 	var out bytes.Buffer
 	{
@@ -64,18 +64,18 @@ func replaceTime(cmd Command, args []string) {
 				tmPrev = tm
 				if from, exist := fromLines[tm]; exist {
 					for _, s := range from {
-						out.WriteString(s + LF)
+						out.WriteString(s + "\n")
 					}
 					continue
 				}
 			}
-			out.WriteString(s + LF)
+			out.WriteString(s + "\n")
 		}
 	}
 	if !env.WriteFile(toFile, out.Bytes()) {
 		return
 	}
-	env.Printf("written '%s'"+LF, toFile)
+	env.Printf("written '%s'\n", toFile)
 } //                                                                 replaceTime
 
 //end

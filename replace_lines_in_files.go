@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 B55B37               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-09 18:06:19 0F3927               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -68,7 +68,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	// group batches of items by their path and extensions (using a map)
 	for _, it := range findRepls {
 		// join path and extensions list to give a map key
-		key := it.Path + LF + strings.Join(it.Exts, LF)
+		key := it.Path + "\n" + strings.Join(it.Exts, "\n")
 		pathExtsMap[key] = append(pathExtsMap[key], it)
 	}
 	env.Println(divider)
@@ -77,7 +77,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	var task sync.WaitGroup
 	var changesAtomic int32
 	for key, items := range pathExtsMap {
-		ar := strings.Split(key, LF) // read details back from key
+		ar := strings.Split(key, "\n") // read details back from key
 		path := ar[0]
 		exts := ar[1:]
 		fileList := env.GetFilePaths(path, exts...)

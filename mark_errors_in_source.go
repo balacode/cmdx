@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 7EEB82                cmdx/[mark_errors_in_source.go]
+// :v: 2019-05-09 18:06:19 2CDB3D                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -69,7 +69,7 @@ func markErrorsInSource(cmd Command, args []string) {
 	}
 	// print all issues/errors on the screen
 	for i, issue := range issues {
-		env.Printf("ISSUE %d file:%s line:%d msg:%s"+LF,
+		env.Printf("ISSUE %d file:%s line:%d msg:%s\n",
 			i, issue.File, issue.Line, issue.Msg)
 	}
 	var lines []string
@@ -92,7 +92,7 @@ func markErrorsInSource(cmd Command, args []string) {
 				return
 			}
 			// mark existing error comments (for later removal)
-			lines = strings.Split(string(data), LF)
+			lines = strings.Split(string(data), "\n")
 			for i, line := range lines {
 				if isErrorComment(line) {
 					lines[i] = strings.Replace(lines[i],
@@ -193,7 +193,7 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 	}
 	// fill issues array:
 	m := map[string]bool{}
-	lines := strings.Split(string(data), LF)
+	lines := strings.Split(string(data), "\n")
 	for _, s := range lines {
 		ar := strings.Split(s, ":")
 		if len(ar) < 4 { //                                     skip short lines
@@ -234,7 +234,7 @@ func saveFile(buildPath, filename string, lines []string) {
 	lines = removeOldErrorComments(lines)
 	env.WriteFile(
 		makePath(buildPath, filename),
-		[]byte(strings.Join(lines, LF)),
+		[]byte(strings.Join(lines, "\n")),
 	)
 } //                                                                    saveFile
 

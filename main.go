@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 2C8654                                 cmdx/[main.go]
+// :v: 2019-05-09 18:06:19 878560                                 cmdx/[main.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -21,12 +21,12 @@ func main() {
 		const Format = "%-3s  %-11s  %-65s" //               layout and headings
 		Div := strings.Repeat("-", 80)
 		env.Print(
-			Div, LF,
-			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), LF,
-			Div, LF,
+			Div, "\n",
+			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), "\n",
+			Div, "\n",
 		)
 		for cat := 1; cat <= 3; cat++ { //            group commands by category
-			env.Print(LF, strings.ToUpper(AllCategories[cat])+":", LF)
+			env.Print("\n", strings.ToUpper(AllCategories[cat])+":\n")
 			for _, cmd := range AllCommands {
 				if cmd.Category == cat {
 					env.Println(fmt.Sprintf(Format,

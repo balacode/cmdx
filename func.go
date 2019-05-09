@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 A2B246                                 cmdx/[func.go]
+// :v: 2019-05-09 18:06:19 50D97F                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -51,7 +51,7 @@ func getFilesMap(dir, filter string) FilesMap {
 				return nil
 			}
 			if err != nil {
-				env.Printf("in path %s: %s"+LF, path, err)
+				env.Printf("in path %s: %s\n", path, err)
 				return nil
 			}
 			if info.IsDir() {

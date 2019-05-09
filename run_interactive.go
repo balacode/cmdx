@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 A7552C                      cmdx/[run_interactive.go]
+// :v: 2019-05-09 18:06:19 A03E2F                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -161,7 +161,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			s = zr.ReplaceI(s, CommandMark+BC, CommandMark+" DONE "+BC)
 			lines[ln] = s
 			env.Println(strings.Repeat("~", len(file.Path+":")))
-			env.Println(file.Path + ":" + LF + LF + LF)
+			env.Println(file.Path + ":\n\n\n")
 			for _, s := range ob.getMarkedBlocks(file.Lines) {
 				env.Println(s)
 			}
@@ -269,14 +269,14 @@ loop:
 			for _, line := range file.Lines {
 				line = strings.ToUpper(line)
 				if strings.Contains(line, id) {
-					fmt.Print("regenerating non-unique ID:", id, LF)
+					fmt.Print("regenerating non-unique ID:", id, "\n")
 					continue loop
 				}
 				lineCount++
 			}
 		}
 		fmt.Print(
-			"Created ID:", id, " (checked ", lineCount, " LOC)", LF,
+			"Created ID:", id, " (checked ", lineCount, " LOC)", "\n",
 		)
 		modLines[ln] = s[:col] + id + s[col+len(CommandMark+ID):]
 		break

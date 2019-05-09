@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-28 16:18:03 48C317                            cmdx/[constants.go]
+// :v: 2019-05-09 18:06:19 ED05C5                            cmdx/[constants.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -30,9 +30,6 @@ MRK  ---------------------------------------------------------------------------
 // CR is a string with a single carriage return
 // character (decimal 13, hex 0D)
 const CR = "\r"
-
-// LF specifies a line feed string ("\n").
-const LF = "\n"
 
 // SPACES is a string of all white-space characters,
 // which includes spaces, tabs, and newline characters.

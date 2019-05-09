@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 307750                   cmdx/[mark_time_in_files.go]
+// :v: 2019-05-09 18:06:19 3D63EA                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -45,7 +45,7 @@ func markTimeInFiles(cmd Command, args []string) {
 		case "hash-only":
 			changeTime = false
 		default:
-			env.Printf("unknown argument '%s'"+LF, arg)
+			env.Printf("unknown argument '%s'\n", arg)
 			return
 		}
 	}
@@ -85,13 +85,13 @@ func autoTimeLog(path string, timestamp string) {
 	//
 	// show timestamp and file
 	filename := filepath.Base(path)
-	env.Printf("on %s %s"+LF, timestamp, filename)
+	env.Printf("on %s %s\n", timestamp, filename)
 	//
 	//
 	logPath := strings.ToLower(getTimeLogPath(path))
 	//
 	// the entry written in the log file:
-	entry := strings.ToLower(timestamp + " " + path + LF)
+	entry := strings.ToLower(timestamp + " " + path + "\n")
 	if strings.Contains(entry, logPath) {
 		entry = strings.Replace(entry, logPath, "", -1)
 	}
