@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 9A9F93                          cmdx/[time_report.go]
+// :v: 2019-05-11 04:25:01 3A5837                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -297,9 +297,11 @@ func trptPrintFaults(ar []TimeItem) {
 
 // trptPrintTimeItems __
 func trptPrintTimeItems(entries []TimeItem) {
-	var prev string
-	var total time.Duration
-	var grand time.Duration
+	var (
+		prev  string
+		total time.Duration
+		grand time.Duration
+	)
 	prt := func(a ...interface{}) {
 		env.Printf("%s %7.2f %11s: %s\n", a...)
 	}

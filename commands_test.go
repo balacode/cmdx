@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 E19515                        cmdx/[commands_test.go]
+// :v: 2019-05-11 04:25:01 DD5DCB                        cmdx/[commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -65,9 +65,11 @@ func Test_cmds_AllCategories_(t *testing.T) {
 
 // go test --run Test_cmds_AllCommands_
 func Test_cmds_AllCommands_(t *testing.T) {
-	shortNames := make(map[string]bool, len(AllCommands))
-	fullNames := make(map[string]bool, len(AllCommands))
-	handlers := make(map[uintptr]bool, len(AllCommands))
+	var (
+		shortNames = make(map[string]bool, len(AllCommands))
+		fullNames  = make(map[string]bool, len(AllCommands))
+		handlers   = make(map[uintptr]bool, len(AllCommands))
+	)
 	isValidName := func(s string) bool {
 		for _, ch := range s {
 			if (ch < 'a' || ch > 'z') && ch != '-' {

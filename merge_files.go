@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 15:48:29 D9AC29                          cmdx/[merge_files.go]
+// :v: 2019-05-11 04:25:01 BE2DFD                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -70,8 +70,10 @@ func mergeFiles(cmd Command, args []string) {
 	// store the files in a memory buffer
 	var buf bytes.Buffer
 	for _, iter := range files {
-		filename := iter.Str("file")
-		fileMode := iter.Str("mode")
+		var (
+			filename = iter.Str("file")
+			fileMode = iter.Str("mode")
+		)
 		if fileMode != "" && fileMode != mode {
 			continue
 		}

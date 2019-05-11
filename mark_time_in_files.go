@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 3D63EA                   cmdx/[mark_time_in_files.go]
+// :v: 2019-05-11 04:25:01 C3A740                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,14 +36,20 @@ import (
 // markTimeInFiles __
 // The 'cmd' argument is not used.
 func markTimeInFiles(cmd Command, args []string) {
-	repeat := false
-	changeTime := true
+	var (
+		repeat     = false
+		changeTime = true
+	)
 	for _, arg := range args {
 		switch strings.ToLower(strings.Trim(arg, SPACES+"-/")) {
 		case "repeat", "r":
-			repeat = true
+			{
+				repeat = true
+			}
 		case "hash-only":
-			changeTime = false
+			{
+				changeTime = false
+			}
 		default:
 			env.Printf("unknown argument '%s'\n", arg)
 			return
@@ -66,7 +72,9 @@ func markTimeInFiles(cmd Command, args []string) {
 		for {
 			select {
 			case <-ticker.C: // sends time which is not used
-				processDir(dir, changeTime)
+				{
+					processDir(dir, changeTime)
+				}
 			case <-stop:
 				return
 			}

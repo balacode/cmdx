@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 2CDB3D                cmdx/[mark_errors_in_source.go]
+// :v: 2019-05-11 04:25:01 78CF67                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -166,13 +166,19 @@ func makePath(absPath, relPath string) string {
 	var ret string
 	switch {
 	case relPath == "":
-		ret = absPath
+		{
+			ret = absPath
+		}
 	case path.IsAbs(relPath):
-		ret = relPath
+		{
+			ret = relPath
+		}
 	default:
-		sep := env.PathSeparator()
-		abs := strings.Split(absPath, sep)
-		rel := strings.Split(relPath, sep)
+		var (
+			sep = env.PathSeparator()
+			abs = strings.Split(absPath, sep)
+			rel = strings.Split(relPath, sep)
+		)
 		for len(rel) > 0 && rel[0] == ".." {
 			abs = abs[:len(abs)-1]
 			rel = rel[1:]

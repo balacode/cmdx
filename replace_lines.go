@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-08 11:24:44 87A1CF                        cmdx/[replace_lines.go]
+// :v: 2019-05-11 04:25:01 D1D26E                        cmdx/[replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -82,8 +82,10 @@ func replaceLines(
 		caseMode = zr.MatchCase
 	}
 	// copy [][]string to []Lines. Lis there a way to cast?
-	findLines := make([]Lines, len(finds))
-	replLines := make([]Lines, len(repls))
+	var (
+		findLines = make([]Lines, len(finds))
+		replLines = make([]Lines, len(repls))
+	)
 	for i, find := range finds {
 		findLines = append(findLines, find)
 		replLines = append(replLines, repls[i])
@@ -180,11 +182,13 @@ func (M replaceLinesM) replaceMany(
 	changedLines Lines,
 	changes int,
 ) {
-	linesLen := len(lines)
-	root := M.getTree(finds, repls, caseMode)
-	node := &root // *tree pointing to current branch
-	match := 0    // <- number of matching characters
-	prev := 0
+	var (
+		linesLen = len(lines)
+		root     = M.getTree(finds, repls, caseMode)
+		node     = &root // *tree pointing to current branch
+		match    = 0     // <- number of matching characters
+		prev     = 0
+	)
 	var ret []string
 	for i := 0; i < linesLen; i++ {
 		line := strings.TrimSpace(lines[i])

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 C592C0                          cmdx/[match_words.go]
+// :v: 2019-05-11 04:25:01 07A48A                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -38,8 +38,10 @@ func matchWords(cmd Command, args []string) {
 			continue
 		}
 		word = strings.ToLower(word)
-		used := 0
-		letters := strings.Split(letterSet, "")
+		var (
+			used    = 0
+			letters = strings.Split(letterSet, "")
+		)
 		for _, wordLetter := range strings.Split(word, "") {
 			for i, letter := range letters {
 				if wordLetter == letter {

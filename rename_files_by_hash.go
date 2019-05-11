@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 0B968C                 cmdx/[rename_files_by_hash.go]
+// :v: 2019-05-11 04:25:01 8D37DD                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,24 +32,28 @@ func renameFilesByHash(cmd Command, args []string) {
 	}
 	for _, files := range getFilesMap(args[0], filter) {
 		for i, file := range files {
-			name := filepath.Base(file.Path)
-			data, done := env.ReadFile(file.Path)
+			var (
+				name       = filepath.Base(file.Path)
+				data, done = env.ReadFile(file.Path)
+			)
 			if !done {
 				continue
 			}
 			hash := zr.HexStringOfBytes(zr.FoldXorBytes(
-				hashOfBytes(data, []byte{}), 4,
-			))
-			hash = strings.ToLower(hash)
-			//
+				hashOfBytes(data, []byte{}), 4))
+			{
+				hash = strings.ToLower(hash)
+			}
 			// skip filenames that already contain the hash
 			if strings.Contains(strings.ToLower(name), hash) {
 				continue
 			}
-			newName := hash + "." + name
-			newPath := filepath.Dir(file.Path) +
-				env.PathSeparator() +
-				newName
+			var (
+				newName = hash + "." + name
+				newPath = filepath.Dir(file.Path) +
+					env.PathSeparator() +
+					newName
+			)
 			env.RenameFile(file.Path, newPath)
 			env.Println("renamed", file.Path, " -> ", newName)
 			files[i].Path = newPath

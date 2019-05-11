@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-25 21:40:20 FEC179                          cmdx/[part_backup.go]
+// :v: 2019-05-11 04:25:01 A2E5BC                          cmdx/[part_backup.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -49,9 +49,11 @@ func partBackup(cmd Command, args []string) {
 				delete(list, filename)
 				continue
 			}
-			srcSize := fileSize(name)
-			bakFile := name + ".bk"
-			bakSize := fileSize(bakFile)
+			var (
+				srcSize = fileSize(name)
+				bakFile = name + ".bk"
+				bakSize = fileSize(bakFile)
+			)
 			if bakSize >= srcSize {
 				continue
 			}

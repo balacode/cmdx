@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 29EB0E             cmdx/[replace_strings_in_files.go]
+// :v: 2019-05-11 04:25:01 0583E7             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -199,11 +199,12 @@ func replaceFileAsync(
 	if filename == configFile {
 		return
 	}
-	oldContent := content
-	max := 100 / float64(len(items))
-	percent := ""
-	newContent := content
-	//
+	var (
+		oldContent = content
+		max        = 100 / float64(len(items))
+		percent    = ""
+		newContent = content
+	)
 	for _, cm := range []zr.CaseMode{zr.MatchCase, zr.IgnoreCase} {
 		for _, wm := range []zr.WordMode{zr.MatchWord, zr.IgnoreWord} {
 			var finds, repls []string

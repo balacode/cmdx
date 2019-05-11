@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-01 23:45:26 DD29D8                      cmdx/[sort_file_lines.go]
+// :v: 2019-05-11 04:25:01 9B0E8B                      cmdx/[sort_file_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,10 +18,11 @@ func sortFileLines(cmd Command, args []string) {
 		return
 	}
 	// read the file
-	filename := args[0]
-	lines := env.ReadFileLines(filename)
-	oldContent := strings.Join(lines, "\n")
-	//
+	var (
+		filename   = args[0]
+		lines      = env.ReadFileLines(filename)
+		oldContent = strings.Join(lines, "\n")
+	)
 	// remove non-unique lines
 	if true {
 		unique := make(map[string]bool, len(lines))

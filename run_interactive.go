@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 A03E2F                      cmdx/[run_interactive.go]
+// :v: 2019-05-11 04:25:01 0797B0                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -288,9 +288,11 @@ loop:
 // replaces the command marker, and modifies lines in-place.
 // Always returns true in altered.
 func (ob Runner) insertTimestamp(ln, col int, lines []string) (altered bool) {
-	s := lines[ln]
-	aft := s[col+len(CommandMark+T):]
-	now := zr.Timestamp()
+	var (
+		s   = lines[ln]
+		aft = s[col+len(CommandMark+T):]
+		now = zr.Timestamp()
+	)
 	if !strings.HasPrefix(aft, " ") {
 		now += " "
 	}

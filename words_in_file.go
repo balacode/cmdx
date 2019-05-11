@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 446D2C                        cmdx/[words_in_file.go]
+// :v: 2019-05-11 04:25:01 2D5A7B                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -28,20 +28,22 @@ func wordsInFile(cmd Command, args []string) {
 		)
 		return
 	}
-	filename := args[0]
-	//
-	fragNo := 0
-	word := [LongestWord]rune{}
-	words := make(map[string]int)
-	//
+	var (
+		filename = args[0]
+		fragNo   = 0
+		word     = [LongestWord]rune{}
+		words    = make(map[string]int)
+	)
 	_ = fs.ReadFileChunks(filename, FileChunkSize+LongestWord,
 		func(chunk []byte) int64 {
 			fragNo++
 			env.Print(" ", fragNo)
 			// store words in map
-			var wordLen int
-			var hasA bool
-			var hasD bool
+			var (
+				wordLen int
+				hasA    bool
+				hasD    bool
+			)
 			for _, ch := range []rune(string(chunk)) {
 				isA, isD := unicode.IsLetter(ch), unicode.IsDigit(ch)
 				if isA {

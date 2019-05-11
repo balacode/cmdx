@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 0F3927               cmdx/[replace_lines_in_files.go]
+// :v: 2019-05-11 04:25:01 01715A               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -52,13 +52,14 @@ func replaceLinesInFiles(cmd Command, args []string) {
 		env.Println("requires <command-file> parameter")
 		return
 	}
-	var M replaceLinesInFilesM
-	divider := strings.Repeat("-", 80)
-	configFile := args[0]
-	pathExtsMap := map[string][]FindReplLines{}
-	findRepls := M.getFindRepls(env.ReadFileLines(configFile))
-	var err error
-	//
+	var (
+		divider     = strings.Repeat("-", 80)
+		configFile  = args[0]
+		pathExtsMap = map[string][]FindReplLines{}
+		M           replaceLinesInFilesM
+		findRepls   = M.getFindRepls(env.ReadFileLines(configFile))
+		err         error
+	)
 	configFile, err = filepath.Abs(configFile)
 	env.Println(divider)
 	if err != nil {
@@ -77,10 +78,12 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	var task sync.WaitGroup
 	var changesAtomic int32
 	for key, items := range pathExtsMap {
-		ar := strings.Split(key, "\n") // read details back from key
-		path := ar[0]
-		exts := ar[1:]
-		fileList := env.GetFilePaths(path, exts...)
+		var (
+			ar       = strings.Split(key, "\n") // read details back from key
+			path     = ar[0]
+			exts     = ar[1:]
+			fileList = env.GetFilePaths(path, exts...)
+		)
 		for _, filename := range fileList {
 			if filename == configFile {
 				continue // must not overwrite the config file itself
@@ -113,18 +116,21 @@ func replaceLinesInFiles(cmd Command, args []string) {
 func (M replaceLinesInFilesM) getFindRepls(
 	configLines []string,
 ) (ret []FindReplLines) {
-	const FreeMode = 0
-	const FindMode = 1
-	const ReplMode = 2
-	//
-	mark := DefaultMark
-	path := DefaultPath
-	exts := DefaultExts
-	undo := false
-	mode := FreeMode
-	caseMode := zr.MatchCase
-	var findGroup []string
-	var replGroup []string
+	const (
+		FreeMode = 0
+		FindMode = 1
+		ReplMode = 2
+	)
+	var (
+		mark      = DefaultMark
+		path      = DefaultPath
+		exts      = DefaultExts
+		undo      = false
+		mode      = FreeMode
+		caseMode  = zr.MatchCase
+		findGroup []string
+		replGroup []string
+	)
 	for _, line := range configLines {
 		// lines that begin with the marker are configuration or comments:
 		if strings.HasPrefix(line, mark) {
