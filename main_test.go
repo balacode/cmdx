@@ -1,18 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 80213E                            cmdx/[main_test.go]
+// :v: 2019-05-12 16:56:18 75DAAE                            cmdx/[main_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-/*
-to test all items in main.go use:
-    go test --run Test_main_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in main.go use:
+//      go test --run Test_main_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"

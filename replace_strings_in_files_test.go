@@ -1,18 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 3E7749        cmdx/[replace_strings_in_files_test.go]
+// :v: 2019-05-12 16:56:18 3ED451        cmdx/[replace_strings_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-/*
-to test all items in replace_strings_in_files.go use:
-    go test --run Test_rsif_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in replace_strings_in_files.go use:
+//      go test --run Test_rsif_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"sync"

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 E4FFBF                               cmdx/[module.go]
+// :v: 2019-05-12 16:56:18 8C9680                               cmdx/[module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -76,29 +76,27 @@ const HeaderSignatureRX = `:v: \d{4}-\d{2}-\d{2}` +
 // HeaderTimePos __
 const HeaderTimePos = 4
 
-/*
-TODO: Create command to convert all literal strings to $string constants.
-      Requires a list of input JS files to modify, and a
-      constants.js file where to write the constants.
-
-TODO: JS Unconstifier: replaces all $string constants with normal strings.
-
-TODO: in replaceLinesInFiles():
-      - Add number of files changed
-      - Check if FIND and REPL already exists, then no need to add it.
-      - Remember the indentation of each line.
-      - Store line number in _REPL_LINES.TXT and use it as an ID.
-      - Write time, file and numbers of replacements made to logfile.
-      - Add an option to tag changed lines.
-
-TODO: Add a command to harvest lines to change from source.
-
-      F - find
-      R - replace
-      I - ignore case
-      W - whole word
-      B - block mode
-      M - multiple line replacement
-*/
+// TODO: Create command to convert all literal strings to $string constants.
+//       Requires a list of input JS files to modify, and a
+//       constants.js file where to write the constants.
+//
+// TODO: JS Unconstifier: replaces all $string constants with normal strings.
+//
+// TODO: in replaceLinesInFiles():
+//       - Add number of files changed
+//       - Check if FIND and REPL already exists, then no need to add it.
+//       - Remember the indentation of each line.
+//       - Store line number in _REPL_LINES.TXT and use it as an ID.
+//       - Write time, file and numbers of replacements made to logfile.
+//       - Add an option to tag changed lines.
+//
+// TODO: Add a command to harvest lines to change from source.
+//
+//       F - find
+//       R - replace
+//       I - ignore case
+//       W - whole word
+//       B - block mode
+//       M - multiple line replacement
 
 //end

@@ -1,18 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 06796D                 cmdx/[sort_file_lines_test.go]
+// :v: 2019-05-12 16:56:18 B42348                 cmdx/[sort_file_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-/*
-to test all items in sort_file_lines.go use:
-    go test --run Test_sfln_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in sort_file_lines.go use:
+//      go test --run Test_sfln_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"

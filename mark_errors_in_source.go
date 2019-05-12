@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 78CF67                cmdx/[mark_errors_in_source.go]
+// :v: 2019-05-12 16:56:18 7C89C9                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -13,15 +13,13 @@ import (
 	"github.com/balacode/zr"
 )
 
-/*
-   to test this manually:
-       remove any errors, and compile cx.exe:
-           build.bat
-       add some errors in source, then:
-           go build -gcflags="-e" -o tmp.exe 2> build.log
-           cx mark-errors -buildlog=.\build.log
-           del tmp.exe
-*/
+//  to test this manually:
+//      remove any errors, and compile cx.exe:
+//          build.bat
+//      add some errors in source, then:
+//          go build -gcflags="-e" -o tmp.exe 2> build.log
+//          cx mark-errors -buildlog=.\build.log
+//          del tmp.exe
 
 // # Command Handler
 //   markErrorsInSource(cmd Command, args []string)

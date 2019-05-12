@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 270841              cmdx/[mark_time_in_files_test.go]
+// :v: 2019-05-12 16:56:18 021DC1              cmdx/[mark_time_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -15,14 +15,12 @@ package main
 //   Test_mtif_processFile_(t *testing.T)
 //   Test_mtif_replaceVersion_(t *testing.T)
 
-/*
-to test all items in mark_time_in_files.go use:
-    go test --run Test_mtif_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in mark_time_in_files.go use:
+//      go test --run Test_mtif_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"

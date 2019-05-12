@@ -1,18 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 75791F                     cmdx/[merge_files_test.go]
+// :v: 2019-05-12 16:56:18 2F89E0                     cmdx/[merge_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-/*
-to test all items in merge_files.go use:
-    go test --run Test_mgfl_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in merge_files.go use:
+//      go test --run Test_mgfl_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"

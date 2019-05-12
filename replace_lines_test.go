@@ -1,18 +1,16 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 CFAFD2                   cmdx/[replace_lines_test.go]
+// :v: 2019-05-12 16:56:18 A04102                   cmdx/[replace_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-/*
-to test all items in replace_lines.go use:
-    go test --run Test_rpln_
-
-to generate a test coverage report for the whole module use:
-    go test -coverprofile cover.out
-    go tool cover -html=cover.out
-*/
+//  to test all items in replace_lines.go use:
+//      go test --run Test_rpln_
+//
+//  to generate a test coverage report for the whole module use:
+//      go test -coverprofile cover.out
+//      go tool cover -html=cover.out
 
 import (
 	"testing"
