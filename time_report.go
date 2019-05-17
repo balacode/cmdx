@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 3A5837                          cmdx/[time_report.go]
+// :v: 2019-05-17 19:41:21 9AD427                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -29,7 +29,7 @@ package main
 // # Helper Functions
 //   dateStr(val time.Time) string
 //   dateTimeStr(val time.Time) string
-//   timeOf(val interface{}) time.Time
+//   timeOf(value interface{}) time.Time
 
 import (
 	"fmt"
@@ -398,40 +398,44 @@ func dateTimeStr(val time.Time) string {
 //
 // In both cases the returned Time type will contain only the date
 // part without the time or time zone components.
-func timeOf(val interface{}) time.Time {
-	switch val := val.(type) {
+func timeOf(value interface{}) time.Time {
+	switch v := value.(type) {
 	case time.Time:
-		return val
+		{
+			return v
+		}
 	case string:
-		if val == "" {
+		{
+			if v == "" {
+				return time.Time{}
+			}
+			var tm time.Time
+			var err error
+			if len(v) == 10 {
+				tm, err = time.Parse("2006-01-02", v)
+				if err == nil && !tm.IsZero() {
+					return timeOf(tm)
+				}
+			}
+			if len(v) == 19 {
+				tm, err = time.Parse("2006-01-02 15:04:05", v)
+				if err == nil && !tm.IsZero() {
+					return timeOf(tm)
+				}
+			}
+			if err != nil {
+				zr.Error(err)
+			}
 			return time.Time{}
 		}
-		var dt time.Time
-		var err error
-		if len(val) == 10 {
-			dt, err = time.Parse("2006-01-02", val)
-			if err == nil && !dt.IsZero() {
-				return timeOf(dt)
-			}
-		}
-		if len(val) == 19 {
-			dt, err = time.Parse("2006-01-02 15:04:05", val)
-			if err == nil && !dt.IsZero() {
-				return timeOf(dt)
-			}
-		}
-		if err != nil {
-			zr.Error(err)
-		}
-		return time.Time{}
 	case *string:
-		if val != nil {
-			return timeOf(*val)
+		if v != nil {
+			return timeOf(*v)
 		}
 	case fmt.Stringer:
-		return timeOf(val.String())
+		return timeOf(v.String())
 	}
-	zr.Error("Can not convert", reflect.TypeOf(val), "to int:", val)
+	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
 	return time.Time{}
 } //                                                                      timeOf
 
