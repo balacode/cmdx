@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 A2E4EB                         cmdx/[env_provider.go]
+// :v: 2019-05-18 17:59:44 33EF2C                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,11 +18,13 @@ import (
 // All IO is channelled through calls on the 'env' variable.
 type Env struct{}
 
-// env is the one instance of Env
-var env EnvProvider = Env{}
+var (
+	// env is the one instance of Env
+	env EnvProvider = Env{}
 
-// PL is env.Println() but is used only for debugging.
-var PL = env.Println
+	// PL is env.Println() but is used only for debugging.
+	PL = env.Println
+)
 
 // -----------------------------------------------------------------------------
 // # Interface
