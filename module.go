@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 8C9680                               cmdx/[module.go]
+// :v: 2019-05-20 11:10:53 446DB9                               cmdx/[module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -16,52 +16,58 @@ import (
 // -----------------------------------------------------------------------------
 // # Constants: Source Markers
 
-// CommandMark __
-const CommandMark = "/" + "/" + "/"
+const (
+	// CommandMark __
+	CommandMark = "/" + "/" + "/"
 
-// DefaultMark __
-const DefaultMark = "~" + "~"
+	// DefaultMark __
+	DefaultMark = "~" + "~"
 
-// ErrorMark __
-const ErrorMark = "//" + "^ "
+	// ErrorMark __
+	ErrorMark = "//" + "^ "
 
-// ErrorEndMark __
-const ErrorEndMark = " " + "`" + "`" + "`" + "`"
+	// ErrorEndMark __
+	ErrorEndMark = " " + "`" + "`" + "`" + "`"
 
-// OldMark __
-const OldMark = "OLD"
+	// OldMark __
+	OldMark = "OLD"
+)
 
 // -----------------------------------------------------------------------------
 // # Limiting Constants: these constants don't need to be changed normally.
 
-// ColumnsNorm is the expected number of columns in source files.
-// The 'copy long lines' command (CLL) lists all lines longer than this.
-const ColumnsNorm = 80
+const (
+	// ColumnsNorm is the expected number of columns in source files.
+	// The 'copy long lines' command (CLL) lists all lines longer than this.
+	ColumnsNorm = 80
 
-// FileChunkSize specifies the size of __
-const FileChunkSize = 2 * 1024 * 1024 // 2 MB chunk
+	// FileChunkSize specifies the size of __
+	FileChunkSize = 2 * 1024 * 1024 // 2 MB chunk
 
-// LongestLine ignore lines exceeding this # of columns.
-const LongestLine = 2048
+	// LongestLine ignore lines exceeding this # of columns.
+	LongestLine = 2048
 
-// LongestWord __
-const LongestWord = 256
+	// LongestWord __
+	LongestWord = 256
 
-// RecentFiles __
-const RecentFiles = 10
+	// RecentFiles __
+	RecentFiles = 10
 
-// ShownResultsLimit __
-const ShownResultsLimit = 50
+	// ShownResultsLimit __
+	ShownResultsLimit = 50
+)
 
 // -----------------------------------------------------------------------------
 // # Debugging and Related Constants:
 
-// DebugReplaceLines global flag specifies if arguments and return
-// value of ReplaceLines() should be sent to the console.
-const DebugReplaceLines = false
+const (
+	// DebugReplaceLines global flag specifies if arguments and return
+	// value of ReplaceLines() should be sent to the console.
+	DebugReplaceLines = false
 
-// ShowProgressIndicator __
-const ShowProgressIndicator = false
+	// ShowProgressIndicator __
+	ShowProgressIndicator = false
+)
 
 // VL is zr.VerboseLog() but is used only for debugging.
 var VL = zr.VerboseLog
@@ -69,12 +75,14 @@ var VL = zr.VerboseLog
 // -----------------------------------------------------------------------------
 // # Constants: Other
 
-// HeaderSignatureRX __
-const HeaderSignatureRX = `:v: \d{4}-\d{2}-\d{2}` +
-	` \d{2}:\d{2}:\d{2} [0-9A-Fa-f]{6}`
+const (
+	// HeaderSignatureRX __
+	HeaderSignatureRX = `:v: \d{4}-\d{2}-\d{2}` +
+		` \d{2}:\d{2}:\d{2} [0-9A-Fa-f]{6}`
 
-// HeaderTimePos __
-const HeaderTimePos = 4
+	// HeaderTimePos __
+	HeaderTimePos = 4
+)
 
 // TODO: Create command to convert all literal strings to $string constants.
 //       Requires a list of input JS files to modify, and a

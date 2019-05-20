@@ -1,11 +1,21 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:18:26 0FF9B2                            cmdx/[hardcoded.go]
+// :v: 2019-05-20 11:10:53 4C7C96                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 // TODO: all the paths in this file will be written in config files later
+
+const (
+	hardcodedDefaultLibPathOnLinux = `/x/user/projects/code/go/src/base`
+
+	hardcodedDefaultLibPathOnWindows = `X:\user\projects\code\go\src\base`
+
+	hardcodedRootPath = `X:\user\projects\code\go\src\base`
+
+	hardcodedWordListFile = `c:\__DEBDESK\words_alpha.txt`
+)
 
 var hardcodedAutologFiles = []string{
 	`X:\user\projects\code\android\autotime.log`,
@@ -25,12 +35,6 @@ var hardcodedManualLogFiles = []string{
 	`X:\user\projects\code\go\src\base\client\mnlhq\timelog.txt`,
 	`X:\user\projects\code\go\src\base\timelog.txt`,
 }
-
-const hardcodedDefaultLibPathOnLinux = `/x/user/projects/code/go/src/base`
-
-const hardcodedDefaultLibPathOnWindows = `X:\user\projects\code\go\src\base`
-
-const hardcodedRootPath = `X:\user\projects\code\go\src\base`
 
 var hardcodedTimeLogPaths = []string{
 	`X:\user\projects\code\android\Shila`,
@@ -61,7 +65,5 @@ var hardcodedIgnoreFilenamesWith = []string{
 	"`",
 	"tmp.",
 }
-
-const hardcodedWordListFile = `c:\__DEBDESK\words_alpha.txt`
 
 //end

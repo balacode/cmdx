@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-12-26 05:38:15 543683                             cmdx/[commands.go]
+// :v: 2019-05-20 11:10:53 C97FAA                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -18,42 +18,43 @@ type Command struct {
 // Interactive Commands:
 
 // blocks
+const (
+	// BB is the Begin Block command.
+	BB = "BB"
 
-// BB is the Begin Block command.
-const BB = "BB"
+	// BC is the Blocks Copy command. (same as CB)
+	BC = "BC"
 
-// BC is the Blocks Copy command. (same as CB)
-const BC = "BC"
+	// BE is the Block End command (same as EB)
+	BE = "BE"
 
-// BE is the Block End command (same as EB)
-const BE = "BE"
+	// CB is the Copy Blocks command (same as BC)
+	CB = "CB"
 
-// CB is the Copy Blocks command (same as BC)
-const CB = "CB"
+	// CLL copies all extra-long lines in source
+	CLL = "CLL"
 
-// CLL copies all extra-long lines in source
-const CLL = "CLL"
+	// EB is the End Block (same as BE) command
+	EB = "EB"
 
-// EB is the End Block (same as BE) command
-const EB = "EB"
+	// FF is the Find in Files command
+	FF = "FF"
 
-// FF is the Find in Files command
-const FF = "FF"
+	// ID is the ID (insert) command
+	ID = "ID"
 
-// ID is the ID (insert) command
-const ID = "ID"
+	// UUID is the UUID (insert) command
+	UUID = "UUID"
 
-// UUID is the UUID (insert) command
-const UUID = "UUID"
+	// LT is the Less-Than sign (command applies to same line)
+	LT = "<"
 
-// LT is the Less-Than sign (command applies to same line)
-const LT = "<"
+	// T timestamp (insert)
+	T = "T"
 
-// T timestamp (insert)
-const T = "T"
-
-// XE is the Remove Error markers
-const XE = "XE"
+	// XE is the Remove Error markers
+	XE = "XE"
+)
 
 // AllCategories __
 var AllCategories = map[int]string{

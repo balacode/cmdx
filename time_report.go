@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-17 19:41:21 9AD427                          cmdx/[time_report.go]
+// :v: 2019-05-20 11:10:53 841717                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -43,8 +43,10 @@ import (
 
 type trptMode bool
 
-const trptAuto = 1
-const trptManual = 2
+const (
+	trptAuto   = 1
+	trptManual = 2
+)
 
 var trptAutoLogFiles = hardcodedAutologFiles
 
