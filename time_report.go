@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-20 11:10:53 841717                          cmdx/[time_report.go]
+// :v: 2019-05-20 11:12:12 66FE32                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -400,6 +400,10 @@ func dateTimeStr(val time.Time) string {
 //
 // In both cases the returned Time type will contain only the date
 // part without the time or time zone components.
+//
+// Note: fmt.Stringer (or fmt.GoStringer) interfaces are not treated as
+// strings to avoid bugs from implicit conversion. Use the String method.
+//
 func timeOf(value interface{}) time.Time {
 	switch v := value.(type) {
 	case time.Time:
@@ -434,8 +438,6 @@ func timeOf(value interface{}) time.Time {
 		if v != nil {
 			return timeOf(*v)
 		}
-	case fmt.Stringer:
-		return timeOf(v.String())
 	}
 	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
 	return time.Time{}
