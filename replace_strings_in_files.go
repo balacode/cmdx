@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 0583E7             cmdx/[replace_strings_in_files.go]
+// :v: 2020-06-20 09:58:17 1DB854             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -29,7 +29,7 @@ import (
 // -----------------------------------------------------------------------------
 // # Command Handler
 
-// replConfig __
+// replConfig _ _
 type replConfig struct {
 	configFile string
 	path       string
@@ -40,7 +40,7 @@ type replConfig struct {
 	wordMode   zr.WordMode
 } //                                                                  replConfig
 
-// replaceStringsInFiles __
+// replaceStringsInFiles _ _
 func replaceStringsInFiles(cmd Command, args []string) {
 	if len(args) != 1 {
 		env.Println("requires <command-file> parameter")
@@ -141,7 +141,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
 
-// getBool __
+// getBool _ _
 func getBool(s, keyword string) (value, exists bool) {
 	s = strings.ToUpper(s)
 	keyword = strings.ToUpper(keyword)
@@ -158,13 +158,13 @@ func getBool(s, keyword string) (value, exists bool) {
 	return false, false
 } //                                                                     getBool
 
-// hasBool __
+// hasBool _ _
 func hasBool(s, keyword string) (ret bool) {
 	_, ret = getBool(s, keyword)
 	return ret
 } //                                                                     hasBool
 
-// replaceAsync __
+// replaceAsync _ _
 func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
 	// TODO: you can remove configFile arg, and add an if condition in caller
 	if task == nil {
@@ -185,7 +185,7 @@ func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
 	}
 } //                                                                replaceAsync
 
-// replaceFileAsync __
+// replaceFileAsync _ _
 func replaceFileAsync(
 	task *sync.WaitGroup,
 	configFile string,
@@ -239,7 +239,7 @@ func replaceFileAsync(
 	env.Println("changed ", filename)
 } //                                                            replaceFileAsync
 
-// setReplConfig __
+// setReplConfig _ _
 func setReplConfig(s string, cfg *replConfig) {
 	s = strings.TrimSpace(s[len(cfg.mark):])
 	switch {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 692371                    cmdx/[loaded_text_files.go]
+// :v: 2020-06-20 09:58:17 D6D9BA                    cmdx/[loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -13,7 +13,7 @@ import (
 	"github.com/balacode/zr"
 )
 
-// LoadedTextFiles __
+// LoadedTextFiles _ _
 type LoadedTextFiles struct {
 	m map[string]*TextFile
 } //                                                             LoadedTextFiles

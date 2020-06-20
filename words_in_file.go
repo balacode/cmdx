@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 2D5A7B                        cmdx/[words_in_file.go]
+// :v: 2020-06-20 09:58:17 BF1E8D                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -12,7 +12,7 @@ import (
 	fs "github.com/balacode/zr-fs"
 )
 
-// wordsInFile __
+// wordsInFile _ _
 // run cmdx with 'fw' or 'file-words'
 // cx fw test_file.txt
 //

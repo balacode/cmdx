@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 0797B0                      cmdx/[run_interactive.go]
+// :v: 2020-06-20 09:58:17 AB286A                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -129,7 +129,7 @@ func (ob Runner) getMarkedBlocks(lines []string) (ret []string) {
 	return ret
 } //                                                             getMarkedBlocks
 
-// processFile __
+// processFile _ _
 // The lines slice is modified in-place.
 func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 	var ln int   // current line number

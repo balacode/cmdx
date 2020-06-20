@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-06 06:03:40 6973F0                 cmdx/[list_identical_files.go]
+// :v: 2020-06-20 09:58:17 C69DCD                 cmdx/[list_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,7 +9,7 @@ import (
 	"bytes"
 )
 
-// listIdenticalFiles __
+// listIdenticalFiles _ _
 func listIdenticalFiles(cmd Command, args []string) {
 	var filter string
 	args, filter = splitArgsFilter(args)

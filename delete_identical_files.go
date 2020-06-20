@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 81C9E2               cmdx/[delete_identical_files.go]
+// :v: 2020-06-20 09:58:17 86F0FA               cmdx/[delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -9,7 +9,7 @@ import (
 	"bytes"
 )
 
-// deleteIdenticalFiles __
+// deleteIdenticalFiles _ _
 func deleteIdenticalFiles(cmd Command, args []string) {
 	var filter string
 	args, filter = splitArgsFilter(args)

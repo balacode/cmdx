@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 C3A740                   cmdx/[mark_time_in_files.go]
+// :v: 2020-06-20 09:58:17 945AA9                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -33,7 +33,7 @@ import (
 // -----------------------------------------------------------------------------
 // # Command Handler
 
-// markTimeInFiles __
+// markTimeInFiles _ _
 // The 'cmd' argument is not used.
 func markTimeInFiles(cmd Command, args []string) {
 	var (
@@ -119,7 +119,7 @@ func checksum(s string) string {
 	return fmt.Sprintf("%06X", chk)
 } //                                                                    checksum
 
-// getTimeLogPath __
+// getTimeLogPath _ _
 func getTimeLogPath(path string) string {
 	path = strings.ToLower(path)
 	max := -1

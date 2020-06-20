@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 8C1362                         cmdx/[replace_time.go]
+// :v: 2020-06-20 09:58:17 EEC0FC                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// replaceTime __
+// replaceTime _ _
 func replaceTime(cmd Command, args []string) {
 	if len(args) < 2 {
 		env.Println("'replace-time' requires: <source file> and <target file>")

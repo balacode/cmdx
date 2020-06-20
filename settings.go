@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-02-26 14:45:21 28B927                             cmdx/[settings.go]
+// :v: 2020-06-20 09:58:17 158E21                             cmdx/[settings.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -20,13 +20,13 @@ var DefaultLibPath = func() string {
 	return hardcodedDefaultLibPathOnWindows
 }()
 
-// DefaultPath __
+// DefaultPath _ _
 var DefaultPath = "."
 
-// RootPath __
+// RootPath _ _
 var RootPath = hardcodedRootPath
 
-// TimeLogPaths __
+// TimeLogPaths _ _
 var TimeLogPaths = hardcodedTimeLogPaths
 
 // IgnoreFilenamesWith specifies file names ignored by such
@@ -35,7 +35,7 @@ var TimeLogPaths = hardcodedTimeLogPaths
 // substrings, the file will not be processed.
 var IgnoreFilenamesWith = hardcodedIgnoreFilenamesWith
 
-// WordListFile __
+// WordListFile _ _
 var WordListFile = hardcodedWordListFile
 
 //end

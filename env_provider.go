@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-18 17:59:44 33EF2C                         cmdx/[env_provider.go]
+// :v: 2020-06-20 09:58:17 053852                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -36,20 +36,20 @@ type EnvProvider interface {
 	// -------------------------------------------------------------------------
 	// # Console Output
 
-	// Print __
+	// Print _ _
 	Print(a ...interface{}) (n int, err error)
 
-	// Printf __
+	// Printf _ _
 	Printf(format string, a ...interface{}) (n int, err error)
 
-	// Println __
+	// Println _ _
 	Println(a ...interface{}) (n int, err error)
 
 	// -------------------------------------------------------------------------
 	// # Error Logging
 
 	// Error outputs an error message to the standard output and to a
-	// log file named 'run.log' saved in the program's current directory,
+	// log file named "<process>.log" in the program's current directory,
 	// It also outputs the call stack (names and line numbers of callers.)
 	// Returns an error value initialized with the message.
 	Error(args ...interface{}) error
@@ -93,16 +93,16 @@ type EnvProvider interface {
 		reader func(chunk []byte) int64,
 	) error
 
-	// ReadFileLines __
+	// ReadFileLines _ _
 	ReadFileLines(filename string) []string
 
-	// RenameFile __
+	// RenameFile _ _
 	RenameFile(oldpath, newpath string) bool
 
-	// WriteFile __
+	// WriteFile _ _
 	WriteFile(filename string, data []byte) bool
 
-	// WriteFileLines __
+	// WriteFileLines _ _
 	WriteFileLines(filename string, lines []string) bool
 
 	// # File System Info
@@ -118,7 +118,7 @@ type EnvProvider interface {
 	// Getwd returns the current working directory.
 	Getwd() string
 
-	// PathSeparator __
+	// PathSeparator _ _
 	PathSeparator() string
 
 	// TextFileExts returns a list of all text file extensions.
@@ -128,17 +128,17 @@ type EnvProvider interface {
 // -----------------------------------------------------------------------------
 // # Console Output
 
-// Print __
+// Print _ _
 func (Env) Print(a ...interface{}) (n int, err error) {
 	return fmt.Print(a...)
 }
 
-// Printf __
+// Printf _ _
 func (Env) Printf(format string, a ...interface{}) (n int, err error) {
 	return fmt.Printf(format, a...)
 }
 
-// Println __
+// Println _ _
 func (Env) Println(a ...interface{}) (n int, err error) {
 	return fmt.Println(a...)
 }
@@ -147,7 +147,7 @@ func (Env) Println(a ...interface{}) (n int, err error) {
 // # Error Logging
 
 // Error outputs an error message to the standard output and to a
-// log file named 'run.log' saved in the program's current directory,
+// log file named "<process>.log" in the program's current directory,
 // It also outputs the call stack (names and line numbers of callers.)
 // Returns an error value initialized with the message.
 func (Env) Error(args ...interface{}) error {
@@ -205,13 +205,13 @@ func (Env) ReadFileChunks(
 	return fs.ReadFileChunks(filename, chunkSize, reader)
 }
 
-// ReadFileLines __
+// ReadFileLines _ _
 func (Env) ReadFileLines(filename string) []string {
 	// TODO: add error return value to fs.ReadFileLines, add bool return here
 	return fs.ReadFileLines(filename)
 }
 
-// RenameFile __
+// RenameFile _ _
 func (Env) RenameFile(oldpath, newpath string) bool {
 	err := os.Rename(oldpath, newpath)
 	if err != nil {
@@ -221,7 +221,7 @@ func (Env) RenameFile(oldpath, newpath string) bool {
 	return true
 }
 
-// WriteFile __
+// WriteFile _ _
 func (Env) WriteFile(filename string, data []byte) bool {
 	err := ioutil.WriteFile(filename, data, 0644)
 	if err != nil {
@@ -231,7 +231,7 @@ func (Env) WriteFile(filename string, data []byte) bool {
 	return true
 }
 
-// WriteFileLines __
+// WriteFileLines _ _
 func (Env) WriteFileLines(filename string, lines []string) bool {
 	err := fs.WriteFileLines(filename, lines)
 	if err != nil {
@@ -266,12 +266,12 @@ func (Env) Getwd() string {
 	return dir
 }
 
-// PathSeparator __
+// PathSeparator _ _
 func (Env) PathSeparator() string {
 	return string(os.PathSeparator)
 }
 
-// NewDirWatcher __
+// NewDirWatcher _ _
 func (Env) NewDirWatcher(dir string) (*fs.DirWatcher, error) {
 	return fs.NewDirWatcher(dir)
 }

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-20 11:10:53 446DB9                               cmdx/[module.go]
+// :v: 2020-06-20 09:58:17 39EAAF                               cmdx/[module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -17,19 +17,19 @@ import (
 // # Constants: Source Markers
 
 const (
-	// CommandMark __
+	// CommandMark _ _
 	CommandMark = "/" + "/" + "/"
 
-	// DefaultMark __
+	// DefaultMark _ _
 	DefaultMark = "~" + "~"
 
-	// ErrorMark __
+	// ErrorMark _ _
 	ErrorMark = "//" + "^ "
 
-	// ErrorEndMark __
+	// ErrorEndMark _ _
 	ErrorEndMark = " " + "`" + "`" + "`" + "`"
 
-	// OldMark __
+	// OldMark _ _
 	OldMark = "OLD"
 )
 
@@ -41,19 +41,19 @@ const (
 	// The 'copy long lines' command (CLL) lists all lines longer than this.
 	ColumnsNorm = 80
 
-	// FileChunkSize specifies the size of __
+	// FileChunkSize specifies the size of _ _
 	FileChunkSize = 2 * 1024 * 1024 // 2 MB chunk
 
 	// LongestLine ignore lines exceeding this # of columns.
 	LongestLine = 2048
 
-	// LongestWord __
+	// LongestWord _ _
 	LongestWord = 256
 
-	// RecentFiles __
+	// RecentFiles _ _
 	RecentFiles = 10
 
-	// ShownResultsLimit __
+	// ShownResultsLimit _ _
 	ShownResultsLimit = 50
 )
 
@@ -65,7 +65,7 @@ const (
 	// value of ReplaceLines() should be sent to the console.
 	DebugReplaceLines = false
 
-	// ShowProgressIndicator __
+	// ShowProgressIndicator _ _
 	ShowProgressIndicator = false
 )
 
@@ -76,11 +76,11 @@ var VL = zr.VerboseLog
 // # Constants: Other
 
 const (
-	// HeaderSignatureRX __
+	// HeaderSignatureRX _ _
 	HeaderSignatureRX = `:v: \d{4}-\d{2}-\d{2}` +
 		` \d{2}:\d{2}:\d{2} [0-9A-Fa-f]{6}`
 
-	// HeaderTimePos __
+	// HeaderTimePos _ _
 	HeaderTimePos = 4
 )
 

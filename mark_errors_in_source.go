@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 7C89C9                cmdx/[mark_errors_in_source.go]
+// :v: 2020-06-20 09:58:17 A6DDF8                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -35,7 +35,7 @@ import (
 // -----------------------------------------------------------------------------
 // # Command Handler
 
-// markErrorsInSource __
+// markErrorsInSource _ _
 func markErrorsInSource(cmd Command, args []string) {
 	// TODO: change to use 'args' instead of reading flags
 	//

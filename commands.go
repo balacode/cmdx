@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-20 11:10:53 C97FAA                             cmdx/[commands.go]
+// :v: 2020-06-20 09:58:16 4AE4D9                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-// Command __
+// Command _ _
 type Command struct {
 	ShortName string
 	FullName  string
@@ -56,14 +56,14 @@ const (
 	XE = "XE"
 )
 
-// AllCategories __
+// AllCategories _ _
 var AllCategories = map[int]string{
 	1: "File Manipulation",
 	2: "Text Manipulation",
 	3: "Other",
 }
 
-// AllCommands __
+// AllCommands _ _
 // The commands are grouped by category
 var AllCommands = []Command{
 	// File Manipulation:

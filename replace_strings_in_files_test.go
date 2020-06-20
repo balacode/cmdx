@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 3ED451        cmdx/[replace_strings_in_files_test.go]
+// :v: 2020-06-20 09:58:17 90FC39        cmdx/[replace_strings_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -51,11 +51,11 @@ func Test_rsif_replaceAsync_(t *testing.T) {
 // go test --run Test_rsif_replaceFileAsync_
 func Test_rsif_replaceFileAsync_(t *testing.T) {
 	//  replaceFileAsync(
-	//  	task *sync.WaitGroup,
-	//  	configFile string,
-	//  	filename string,
-	//  	content string,
-	//  	items []ReplItem,
+	//      task *sync.WaitGroup,
+	//      configFile string,
+	//      filename string,
+	//      content string,
+	//      items []ReplItem,
 	//  )
 	zr.TBegin(t)
 	test := func(

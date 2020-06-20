@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 D1D26E                        cmdx/[replace_lines.go]
+// :v: 2020-06-20 09:58:17 DB241F                        cmdx/[replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -112,7 +112,7 @@ func replaceLines(
 // -----------------------------------------------------------------------------
 // # Subfunctions
 
-// getBatches __
+// getBatches _ _
 func (M replaceLinesM) getBatches(
 	finds, repls []Lines,
 ) (
@@ -172,7 +172,7 @@ func (M replaceLinesM) getTree(
 	return ret
 } //                                                                     getTree
 
-// replaceMany __
+// replaceMany _ _
 func (M replaceLinesM) replaceMany(
 	lines []string,
 	finds []Lines,

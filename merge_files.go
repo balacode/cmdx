@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 BE2DFD                          cmdx/[merge_files.go]
+// :v: 2020-06-20 09:58:17 405968                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -13,7 +13,7 @@ import (
 	rgon "github.com/balacode/go-rgon"
 )
 
-// mergeFiles __
+// mergeFiles _ _
 func mergeFiles(cmd Command, args []string) {
 	// read parameters
 	var from, to, mode string

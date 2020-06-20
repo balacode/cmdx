@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:06:19 50D97F                                 cmdx/[func.go]
+// :v: 2020-06-20 09:58:17 340C2D                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -21,7 +21,7 @@ import (
 	"strings"
 )
 
-// filterLongLines __
+// filterLongLines _ _
 func filterLongLines(
 	lines []string,
 	longerThan int,
@@ -40,7 +40,7 @@ func filterLongLines(
 	return ret
 } //                                                             filterLongLines
 
-// getFilesMap __
+// getFilesMap _ _
 func getFilesMap(dir, filter string) FilesMap {
 	filter = strings.ToLower(filter)
 	ret := make(FilesMap, 1000)

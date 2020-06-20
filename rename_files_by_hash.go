@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 8D37DD                 cmdx/[rename_files_by_hash.go]
+// :v: 2020-06-20 09:58:17 268A34                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -13,7 +13,7 @@ import (
 	"github.com/balacode/zr"
 )
 
-// renameFilesByHash __
+// renameFilesByHash _ _
 func renameFilesByHash(cmd Command, args []string) {
 	var filter string
 	args, filter = splitArgsFilter(args)

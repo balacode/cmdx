@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 01715A               cmdx/[replace_lines_in_files.go]
+// :v: 2020-06-20 09:58:17 C584C3               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -46,7 +46,7 @@ type replaceLinesInFilesM struct{}
 // -----------------------------------------------------------------------------
 // # Command Handler
 
-// replaceLinesInFiles __
+// replaceLinesInFiles _ _
 func replaceLinesInFiles(cmd Command, args []string) {
 	if len(args) != 1 {
 		env.Println("requires <command-file> parameter")
@@ -112,7 +112,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 // -----------------------------------------------------------------------------
 // # Subfunctions
 
-// getFindRepls __
+// getFindRepls _ _
 func (M replaceLinesInFilesM) getFindRepls(
 	configLines []string,
 ) (ret []FindReplLines) {
@@ -204,7 +204,7 @@ func (M replaceLinesInFilesM) getFindRepls(
 	return ret
 } //                                                                getFindRepls
 
-// replaceFileAsync __
+// replaceFileAsync _ _
 func (M replaceLinesInFilesM) replaceFileAsync(
 	task *sync.WaitGroup,
 	changesAtomic *int32,

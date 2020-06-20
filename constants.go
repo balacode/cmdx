@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-09 18:19:47 14DA3B                            cmdx/[constants.go]
+// :v: 2020-06-20 09:58:17 BD6689                            cmdx/[constants.go]
 // -----------------------------------------------------------------------------
 
 package main
 
-// FindInFilesDialog __
+// FindInFilesDialog _ _
 const FindInFilesDialog = `
 MRK  ---------------------------------------------------------------------------
 MRK |  FIND IN FILES:    (to find multiple strings place them on multiple lines)

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2018-05-24 03:05:23 4240A1                                 cmdx/[type.go]
+// :v: 2020-06-20 09:58:17 D3AF94                                 cmdx/[type.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -34,7 +34,7 @@ type FindReplLinesBatch struct {
 	ReplLines []Lines
 } //                                                          FindReplLinesBatch
 
-// FindReplLines __
+// FindReplLines _ _
 type FindReplLines struct {
 	Path      string
 	Exts      []string
@@ -43,14 +43,14 @@ type FindReplLines struct {
 	CaseMode  zr.CaseMode
 } //                                                               FindReplLines
 
-// FindReplLinesTree __
+// FindReplLinesTree _ _
 type FindReplLinesTree struct {
 	FindLines Lines                         // what to find
 	ReplLines Lines                         // what to replace with
 	Sub       map[string]*FindReplLinesTree // a 'branch' of the tree
 } //                                                           FindReplLinesTree
 
-// Lines __
+// Lines _ _
 type Lines []string
 
 // PathAndSize stores a fully-qualified file name and the file's size.
@@ -59,7 +59,7 @@ type PathAndSize struct {
 	Size int64
 } //                                                                 PathAndSize
 
-// ReplCmd __
+// ReplCmd _ _
 type ReplCmd struct {
 	Path  string
 	Exts  []string
@@ -67,7 +67,7 @@ type ReplCmd struct {
 	Items []ReplItem
 } //                                                                     ReplCmd
 
-// ReplItem __
+// ReplItem _ _
 type ReplItem struct {
 	Find     string
 	Repl     string

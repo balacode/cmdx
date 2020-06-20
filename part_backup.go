@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 A2E5BC                          cmdx/[part_backup.go]
+// :v: 2020-06-20 09:58:17 ECFAEC                          cmdx/[part_backup.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -14,7 +14,7 @@ import (
 	"github.com/balacode/zr"
 )
 
-// partBackup __
+// partBackup _ _
 func partBackup(cmd Command, args []string) {
 	fileSize := func(filename string) int64 {
 		if !env.FileExists(filename) {

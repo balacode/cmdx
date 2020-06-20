@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 07A48A                          cmdx/[match_words.go]
+// :v: 2020-06-20 09:58:17 DE16F7                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -11,7 +11,7 @@ import (
 	"github.com/balacode/zr"
 )
 
-// matchWords __
+// matchWords _ _
 func matchWords(cmd Command, args []string) {
 	if len(args) != 2 {
 		env.Println("requires <word-length> and <letter-set> parameters")

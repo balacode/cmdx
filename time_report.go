@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-20 11:12:12 66FE32                          cmdx/[time_report.go]
+// :v: 2020-06-20 09:58:17 5FA480                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -66,7 +66,7 @@ var trptIgnoreProjects = []string{
 // -----------------------------------------------------------------------------
 // # Command Function
 
-// timeReport __
+// timeReport _ _
 func timeReport(cmd Command, args []string) {
 	var min, max string
 	/*
@@ -112,7 +112,7 @@ func timeReport(cmd Command, args []string) {
 // -----------------------------------------------------------------------------
 // # Report Functions
 
-// trptMonthlySummary __
+// trptMonthlySummary _ _
 func trptMonthlySummary(
 	caption string,
 	mode int,
@@ -140,7 +140,7 @@ func trptMonthlySummary(
 	env.Println()
 } //                                                          trptMonthlySummary
 
-// trptSummaryByDateText __
+// trptSummaryByDateText _ _
 func trptSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	var items []TimeItem
 	{
@@ -193,7 +193,7 @@ func trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 	return ret
 } //                                                               trptCalcSpent
 
-// trptFilterDates __
+// trptFilterDates _ _
 func trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
 	min := timeOf(minDate).String()[:10]
@@ -248,7 +248,7 @@ func trptGetTimeItems(lines []string) []TimeItem {
 	return ret
 } //                                                            trptGetTimeItems
 
-// trptIsTimeStart __
+// trptIsTimeStart _ _
 func trptIsTimeStart(s string) bool {
 	if strings.HasPrefix(s, "IN ") ||
 		strings.Contains(s, " IN ") ||
@@ -258,7 +258,7 @@ func trptIsTimeStart(s string) bool {
 	return false
 } //                                                             trptIsTimeStart
 
-// trptMergeFiles __
+// trptMergeFiles _ _
 func trptMergeFiles(filenames []string) (lines []string) {
 	for _, path := range filenames {
 		lines = append(lines, env.ReadFileLines(path)...)
@@ -266,7 +266,7 @@ func trptMergeFiles(filenames []string) (lines []string) {
 	return lines
 } //                                                              trptMergeFiles
 
-// trptPrintFaults __
+// trptPrintFaults _ _
 func trptPrintFaults(ar []TimeItem) {
 	//
 	var pdate string    // previous date
@@ -297,7 +297,7 @@ func trptPrintFaults(ar []TimeItem) {
 	}
 } //                                                             trptPrintFaults
 
-// trptPrintTimeItems __
+// trptPrintTimeItems _ _
 func trptPrintTimeItems(entries []TimeItem) {
 	var (
 		prev  string
@@ -331,7 +331,7 @@ func trptPrintTimeItems(entries []TimeItem) {
 	prt(prev, grand.Hours(), grand, "grand total")
 } //                                                          trptPrintTimeItems
 
-// trptSumByDate __
+// trptSumByDate _ _
 func trptSumByDate(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
@@ -352,7 +352,7 @@ func trptSumByDate(items []TimeItem) (ret []TimeItem) {
 	return ret
 } //                                                               trptSumByDate
 
-// trptSumByDateText __
+// trptSumByDateText _ _
 func trptSumByDateText(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
@@ -379,12 +379,12 @@ func trptSumByDateText(items []TimeItem) (ret []TimeItem) {
 // -----------------------------------------------------------------------------
 // # Helper Functions
 
-// dateStr __
+// dateStr _ _
 func dateStr(val time.Time) string {
 	return val.Format("2006-01-02")
 } //                                                                     dateStr
 
-// dateTimeStr __
+// dateTimeStr _ _
 func dateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
 } //                                                                 dateTimeStr

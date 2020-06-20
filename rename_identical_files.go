@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-03-18 01:07:59 0616B7               cmdx/[rename_identical_files.go]
+// :v: 2020-06-20 09:58:17 9B1867               cmdx/[rename_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 )
 
-// renameIdenticalFiles __
+// renameIdenticalFiles _ _
 func renameIdenticalFiles(cmd Command, args []string) {
 	if len(args) == 2 {
 		env.Println(`
