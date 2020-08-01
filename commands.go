@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:16 4AE4D9                             cmdx/[commands.go]
+// :v: 2020-08-01 22:31:18 A840C7                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -179,6 +179,13 @@ var AllCommands = []Command{
 		FullName:  "time-report",
 		ShortInfo: "Summarizes time from log files",
 		Handler:   timeReport,
+		Category:  3,
+	},
+	{
+		ShortName: "now",
+		FullName:  "time-now",
+		ShortInfo: "Displays current date/time in yyyy-mm-dd hh:nn:ss format",
+		Handler:   timeNow,
 		Category:  3,
 	},
 } //                                                                 AllCommands
