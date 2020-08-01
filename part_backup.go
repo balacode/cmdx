@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 ECFAEC                          cmdx/[part_backup.go]
+// :v: 2020-08-01 22:33:23 837B48                          cmdx/[part_backup.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -37,7 +37,7 @@ func partBackup(cmd Command, args []string) {
 				list[filename] = true
 			}
 		}
-		for filename, _ := range list {
+		for filename := range list {
 			name := filename
 			if !env.FileExists(name) {
 				if !strings.HasSuffix(name, ".part") {
