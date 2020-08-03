@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 5FA480                          cmdx/[time_report.go]
+// :v: 2020-08-03 23:29:50 502F84                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -11,20 +11,20 @@ package main
 //   timeReport(cmd Command, args []string)
 //
 // # Report Functions
-//   trptMonthlySummary(minDate, maxDate interface{}, files []string)
-//   trptSummaryByDateText(minDate, maxDate interface{}, files []string)
+//   trMonthlySummary(minDate, maxDate interface{}, files []string)
+//   trSummaryByDateText(minDate, maxDate interface{}, files []string)
 //
 // # Functions
-//   trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem
-//   trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem
-//   trptGetTimeItems(lines []string) []TimeItem
-//   trptIsTimeStart(s string) bool
-//   trptMergeFiles(filenames []string) (lines []string)
-//   trptPrintFaults(ar []TimeItem)
-//   trptPrintTimeItems(entries []TimeItem)
-//   trptSumByDate(items []TimeItem) (ret []TimeItem)
-//   trptSumByDateText(items []TimeItem) (ret []TimeItem)
-//   trptSummaryByDateText(minDate, maxDate interface{}, files []string)
+//   trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem
+//   trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem
+//   trGetTimeItems(lines []string) []TimeItem
+//   trIsTimeStart(s string) bool
+//   trMergeFiles(filenames []string) (lines []string)
+//   trPrintFaults(ar []TimeItem)
+//   trPrintTimeItems(entries []TimeItem)
+//   trSumByDate(items []TimeItem) (ret []TimeItem)
+//   trSumByDateText(items []TimeItem) (ret []TimeItem)
+//   trSummaryByDateText(minDate, maxDate interface{}, files []string)
 //
 // # Helper Functions
 //   dateStr(val time.Time) string
@@ -41,18 +41,18 @@ import (
 	"github.com/balacode/zr"
 )
 
-type trptMode bool
+type trMode bool
 
 const (
-	trptAuto   = 1
-	trptManual = 2
+	trAuto   = 1
+	trManual = 2
 )
 
-var trptAutoLogFiles = hardcodedAutologFiles
+var trAutoLogFiles = hardcodedAutologFiles
 
-var trptManualLogFiles = hardcodedManualLogFiles
+var trManualLogFiles = hardcodedManualLogFiles
 
-var trptIgnoreProjects = []string{
+var trIgnoreProjects = []string{
 	"cmdx",
 	"demo",
 	"dmd_app",
@@ -71,16 +71,16 @@ func timeReport(cmd Command, args []string) {
 	var min, max string
 	/*
 		min, max = "2017-11-24", "2017-11-30"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
+		trMonthlySummary(min, max, trAutoLogFiles)
+		trMonthlySummary(min, max, trManualLogFiles)
 		//
 		min, max = "2017-12-01", "2017-12-31"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
+		trMonthlySummary(min, max, trAutoLogFiles)
+		trMonthlySummary(min, max, trManualLogFiles)
 		//
 		min, max = "2018-01-01", "2018-01-31"
-		trptMonthlySummary(min, max, trptAutoLogFiles)
-		trptMonthlySummary(min, max, trptManualLogFiles)
+		trMonthlySummary(min, max, trAutoLogFiles)
+		trMonthlySummary(min, max, trManualLogFiles)
 	*/
 	min, max = "2017-11-24", "2018-02-18"
 	//``
@@ -88,9 +88,9 @@ func timeReport(cmd Command, args []string) {
 		min, max = "2018-01-13", "2018-01-14"
 	*/
 	/*
-		trptMonthlySummary("AUTO", trptAuto, min, max, trptAutoLogFiles)
+		trMonthlySummary("AUTO", trAuto, min, max, trAutoLogFiles)
 	*/
-	trptMonthlySummary("MANUAL", trptManual, min, max, trptManualLogFiles)
+	trMonthlySummary("MANUAL", trManual, min, max, trManualLogFiles)
 	return
 	//
 	min = dateStr(time.Now().Add(-24 * time.Hour))
@@ -106,30 +106,30 @@ func timeReport(cmd Command, args []string) {
 		min = dateStr(timeOf(args[0]))
 		max = dateStr(timeOf(args[1]))
 	}
-	//trptSummaryByDateText(min, max, trptAutoLogFiles)
+	//trSummaryByDateText(min, max, trAutoLogFiles)
 } //                                                                  timeReport
 
 // -----------------------------------------------------------------------------
 // # Report Functions
 
-// trptMonthlySummary _ _
-func trptMonthlySummary(
+// trMonthlySummary _ _
+func trMonthlySummary(
 	caption string,
 	mode int,
 	minDate, maxDate interface{},
 	files []string,
 ) {
-	lines := trptMergeFiles(files)
+	lines := trMergeFiles(files)
 	var items []TimeItem
-	items = trptGetTimeItems(lines)
-	items = trptFilterDates(items, minDate, maxDate)
-	if mode == trptAuto {
-		items = trptCalcSpent(items, true)
-	} else if mode == trptManual {
-		trptPrintFaults(items)
-		items = trptCalcSpent(items, false)
+	items = trGetTimeItems(lines)
+	items = trFilterDates(items, minDate, maxDate)
+	if mode == trAuto {
+		items = trCalcSpent(items, true)
+	} else if mode == trManual {
+		trPrintFaults(items)
+		items = trCalcSpent(items, false)
 	}
-	sums := trptSumByDate(items)
+	sums := trSumByDate(items)
 	env.Println(caption)
 	var cal zr.Calendar
 	for _, itm := range sums {
@@ -138,35 +138,35 @@ func trptMonthlySummary(
 	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", len(lines))
 	env.Println(cal.String())
 	env.Println()
-} //                                                          trptMonthlySummary
+} //                                                            trMonthlySummary
 
-// trptSummaryByDateText _ _
-func trptSummaryByDateText(minDate, maxDate interface{}, files []string) {
+// trSummaryByDateText _ _
+func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	var items []TimeItem
 	{
-		lines := trptMergeFiles(files)
-		items = trptGetTimeItems(lines)
-		items = trptFilterDates(items, minDate, maxDate)
+		lines := trMergeFiles(files)
+		items = trGetTimeItems(lines)
+		items = trFilterDates(items, minDate, maxDate)
 		//
 		env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", len(lines))
 	}
-	items = trptCalcSpent(items, true)
+	items = trCalcSpent(items, true)
 	if true {
 		for _, itm := range items {
 			env.Println(dateTimeStr(itm.Time), "->", itm.String())
 		}
 	}
-	sum := trptSumByDateText(items)
+	sum := trSumByDateText(items)
 	sort.Sort(TimeItemsByDateAndDescSpent(sum))
-	trptPrintTimeItems(sum)
-} //                                                       trptSummaryByDateText
+	trPrintTimeItems(sum)
+} //                                                         trSummaryByDateText
 
 // -----------------------------------------------------------------------------
 // # Functions
 
-// trptCalcSpent reads time entries from 'ar' and returns a
+// trCalcSpent reads time entries from 'ar' and returns a
 // copy with all time spent (Spent field) recalculated
-func trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
+func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 	var prev time.Time // previous time
 	var ret []TimeItem
 	//
@@ -179,7 +179,7 @@ func trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 		if autoTime && spent > 10*time.Minute {
 			spent = 0
 		}
-		if trptIsTimeStart(itm.Text) {
+		if trIsTimeStart(itm.Text) {
 			spent = 0
 		}
 		prev = itm.Time
@@ -191,10 +191,10 @@ func trptCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 		})
 	}
 	return ret
-} //                                                               trptCalcSpent
+} //                                                                 trCalcSpent
 
-// trptFilterDates _ _
-func trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
+// trFilterDates _ _
+func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
 	min := timeOf(minDate).String()[:10]
 	max := timeOf(maxDate).String()[:10]
@@ -206,12 +206,12 @@ func trptFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 		}
 	}
 	return ret
-} //                                                             trptFilterDates
+} //                                                               trFilterDates
 
-// trptGetTimeItems returns a TimeItem array from a string slice
+// trGetTimeItems returns a TimeItem array from a string slice
 // - entries in the result are in ascending order
 // - each date+time is unique
-func trptGetTimeItems(lines []string) []TimeItem {
+func trGetTimeItems(lines []string) []TimeItem {
 	//
 	// read lines into a unique date+time map
 	m := map[string]string{}
@@ -246,35 +246,35 @@ func trptGetTimeItems(lines []string) []TimeItem {
 		})
 	}
 	return ret
-} //                                                            trptGetTimeItems
+} //                                                              trGetTimeItems
 
-// trptIsTimeStart _ _
-func trptIsTimeStart(s string) bool {
+// trIsTimeStart _ _
+func trIsTimeStart(s string) bool {
 	if strings.HasPrefix(s, "IN ") ||
 		strings.Contains(s, " IN ") ||
 		strings.HasSuffix(s, " IN") {
 		return true
 	}
 	return false
-} //                                                             trptIsTimeStart
+} //                                                               trIsTimeStart
 
-// trptMergeFiles _ _
-func trptMergeFiles(filenames []string) (lines []string) {
+// trMergeFiles _ _
+func trMergeFiles(filenames []string) (lines []string) {
 	for _, path := range filenames {
 		lines = append(lines, env.ReadFileLines(path)...)
 	}
 	return lines
-} //                                                              trptMergeFiles
+} //                                                                trMergeFiles
 
-// trptPrintFaults _ _
-func trptPrintFaults(ar []TimeItem) {
+// trPrintFaults _ _
+func trPrintFaults(ar []TimeItem) {
 	//
 	var pdate string    // previous date
 	var ptime time.Time // previous date and time
 	//
 	for _, itm := range ar {
 		date := dateStr(itm.Time)
-		if trptIsTimeStart(itm.Text) {
+		if trIsTimeStart(itm.Text) {
 			pdate = date
 			ptime = itm.Time
 			continue
@@ -295,10 +295,10 @@ func trptPrintFaults(ar []TimeItem) {
 		pdate = date
 		ptime = itm.Time
 	}
-} //                                                             trptPrintFaults
+} //                                                               trPrintFaults
 
-// trptPrintTimeItems _ _
-func trptPrintTimeItems(entries []TimeItem) {
+// trPrintTimeItems _ _
+func trPrintTimeItems(entries []TimeItem) {
 	var (
 		prev  string
 		total time.Duration
@@ -329,10 +329,10 @@ func trptPrintTimeItems(entries []TimeItem) {
 	env.Println()
 	env.Println(strings.Repeat("=", 35))
 	prt(prev, grand.Hours(), grand, "grand total")
-} //                                                          trptPrintTimeItems
+} //                                                            trPrintTimeItems
 
-// trptSumByDate _ _
-func trptSumByDate(items []TimeItem) (ret []TimeItem) {
+// trSumByDate _ _
+func trSumByDate(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
 	m := map[string]*TimeItem{}
@@ -350,10 +350,10 @@ func trptSumByDate(items []TimeItem) (ret []TimeItem) {
 		ret = append(ret, *t)
 	}
 	return ret
-} //                                                               trptSumByDate
+} //                                                                 trSumByDate
 
-// trptSumByDateText _ _
-func trptSumByDateText(items []TimeItem) (ret []TimeItem) {
+// trSumByDateText _ _
+func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 	//
 	// grouping stage
 	m := map[string]*TimeItem{}
@@ -374,7 +374,7 @@ func trptSumByDateText(items []TimeItem) (ret []TimeItem) {
 		ret = append(ret, *t)
 	}
 	return ret
-} //                                                           trptSumByDateText
+} //                                                             trSumByDateText
 
 // -----------------------------------------------------------------------------
 // # Helper Functions
