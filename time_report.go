@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-04 00:22:16 7461A8                          cmdx/[time_report.go]
+// :v: 2020-08-04 00:27:24 691274                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -34,11 +34,13 @@ package main
 import (
 	"fmt"
 	"reflect"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
 
 	"github.com/balacode/zr"
+	"github.com/balacode/zr-fs"
 )
 
 type trMode bool
@@ -68,45 +70,31 @@ var trIgnoreProjects = []string{
 
 // timeReport _ _
 func timeReport(cmd Command, args []string) {
-	var min, max string
-	/*
-		min, max = "2017-11-24", "2017-11-30"
-		trMonthlySummary(min, max, trAutoLogFiles)
-		trMonthlySummary(min, max, trManualLogFiles)
-		//
-		min, max = "2017-12-01", "2017-12-31"
-		trMonthlySummary(min, max, trAutoLogFiles)
-		trMonthlySummary(min, max, trManualLogFiles)
-		//
-		min, max = "2018-01-01", "2018-01-31"
-		trMonthlySummary(min, max, trAutoLogFiles)
-		trMonthlySummary(min, max, trManualLogFiles)
-	*/
-	min, max = "2017-11-24", "2018-02-18"
-	//``
-	/*
-		min, max = "2018-01-13", "2018-01-14"
-	*/
-	/*
-		trMonthlySummary("AUTO", trAuto, min, max, trAutoLogFiles)
-	*/
-	trMonthlySummary("MANUAL", trManual, min, max, trManualLogFiles)
-	return
-	//
-	min = trDateStr(time.Now().Add(-24 * time.Hour))
-	max = trDateStr(time.Now())
-	if len(args) == 1 {
-		if strings.ToLower(args[0]) == "all" {
-			min = "2000-01-01"
+	min, max, files := "1900-01-01", "9999-12-31", []string{"timelog.txt"}
+	dates := 0
+	for _, arg := range args {
+		isDate, err := regexp.MatchString(`^\d{4}-\d{2}-\d{2}$`, arg)
+		if err != nil {
+			zr.Error("Failed matching^", arg, ":", err)
+		}
+		if isDate {
+			dates++
+			switch dates {
+			case 1:
+				min = arg
+			case 2:
+				max = arg
+			default:
+				fmt.Printf("Warning: ignoring date %q\n", arg)
+			}
+		} else if fs.FileExists(arg) {
+			files = append(files, arg)
 		} else {
-			min = trDateStr(trTimeOf(args[0]))
+			fmt.Printf("Warning: file %q doesn't exist\n", arg)
 		}
 	}
-	if len(args) == 2 {
-		min = trDateStr(trTimeOf(args[0]))
-		max = trDateStr(trTimeOf(args[1]))
-	}
-	//trSummaryByDateText(min, max, trAutoLogFiles)
+	trMonthlySummary("AUTO", trAuto, min, max, files)
+	trMonthlySummary("MANUAL", trManual, min, max, files)
 } //                                                                  timeReport
 
 // -----------------------------------------------------------------------------
