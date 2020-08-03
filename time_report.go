@@ -1,9 +1,7 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-04 00:27:24 691274                          cmdx/[time_report.go]
+// :v: 2020-08-04 00:29:24 1C1085                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
-
-// WORK-IN-PROGRESS: @2018-02-26 15:47
 
 package main
 
@@ -49,21 +47,6 @@ const (
 	trAuto   = 1
 	trManual = 2
 )
-
-var trAutoLogFiles = hardcodedAutologFiles
-
-var trManualLogFiles = hardcodedManualLogFiles
-
-var trIgnoreProjects = []string{
-	"cmdx",
-	"demo",
-	"dmd_app",
-	"lsrv",
-	"priveda",
-	"tex2",
-	"tlg",
-	"whois",
-}
 
 // -----------------------------------------------------------------------------
 // # Command Function
