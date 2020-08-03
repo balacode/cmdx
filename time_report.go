@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-03 23:29:50 502F84                          cmdx/[time_report.go]
+// :v: 2020-08-04 00:22:16 7461A8                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 // WORK-IN-PROGRESS: @2018-02-26 15:47
@@ -27,9 +27,9 @@ package main
 //   trSummaryByDateText(minDate, maxDate interface{}, files []string)
 //
 // # Helper Functions
-//   dateStr(val time.Time) string
-//   dateTimeStr(val time.Time) string
-//   timeOf(value interface{}) time.Time
+//   trDateStr(val time.Time) string
+//   trDateTimeStr(val time.Time) string
+//   trTimeOf(value interface{}) time.Time
 
 import (
 	"fmt"
@@ -93,18 +93,18 @@ func timeReport(cmd Command, args []string) {
 	trMonthlySummary("MANUAL", trManual, min, max, trManualLogFiles)
 	return
 	//
-	min = dateStr(time.Now().Add(-24 * time.Hour))
-	max = dateStr(time.Now())
+	min = trDateStr(time.Now().Add(-24 * time.Hour))
+	max = trDateStr(time.Now())
 	if len(args) == 1 {
 		if strings.ToLower(args[0]) == "all" {
 			min = "2000-01-01"
 		} else {
-			min = dateStr(timeOf(args[0]))
+			min = trDateStr(trTimeOf(args[0]))
 		}
 	}
 	if len(args) == 2 {
-		min = dateStr(timeOf(args[0]))
-		max = dateStr(timeOf(args[1]))
+		min = trDateStr(trTimeOf(args[0]))
+		max = trDateStr(trTimeOf(args[1]))
 	}
 	//trSummaryByDateText(min, max, trAutoLogFiles)
 } //                                                                  timeReport
@@ -153,7 +153,7 @@ func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	items = trCalcSpent(items, true)
 	if true {
 		for _, itm := range items {
-			env.Println(dateTimeStr(itm.Time), "->", itm.String())
+			env.Println(trDateTimeStr(itm.Time), "->", itm.String())
 		}
 	}
 	sum := trSumByDateText(items)
@@ -196,11 +196,11 @@ func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 // trFilterDates _ _
 func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
-	min := timeOf(minDate).String()[:10]
-	max := timeOf(maxDate).String()[:10]
+	min := trTimeOf(minDate).String()[:10]
+	max := trTimeOf(maxDate).String()[:10]
 	var ret []TimeItem
 	for _, t := range ar {
-		date := dateStr(t.Time)
+		date := trDateStr(t.Time)
 		if date >= min && date <= max {
 			ret = append(ret, t)
 		}
@@ -239,7 +239,7 @@ func trGetTimeItems(lines []string) []TimeItem {
 	var ret []TimeItem
 	for _, key := range times {
 		ret = append(ret, TimeItem{
-			Time:  timeOf(key),
+			Time:  trTimeOf(key),
 			Text:  m[key],
 			Count: 1,
 			Spent: 0,
@@ -273,14 +273,14 @@ func trPrintFaults(ar []TimeItem) {
 	var ptime time.Time // previous date and time
 	//
 	for _, itm := range ar {
-		date := dateStr(itm.Time)
+		date := trDateStr(itm.Time)
 		if trIsTimeStart(itm.Text) {
 			pdate = date
 			ptime = itm.Time
 			continue
 		}
 		if date != pdate {
-			env.Println("NO START:", dateTimeStr(itm.Time), itm.Text)
+			env.Println("NO START:", trDateTimeStr(itm.Time), itm.Text)
 		}
 		var spent time.Duration
 		if !ptime.IsZero() {
@@ -289,7 +289,7 @@ func trPrintFaults(ar []TimeItem) {
 		if spent > 3*time.Hour {
 			s := fmt.Sprintf("(%s)", spent)
 			if !strings.Contains(itm.Text, s) {
-				env.Println("TOO LONG:", dateTimeStr(itm.Time), itm.Text, s)
+				env.Println("TOO LONG:", trDateTimeStr(itm.Time), itm.Text, s)
 			}
 		}
 		pdate = date
@@ -308,7 +308,7 @@ func trPrintTimeItems(entries []TimeItem) {
 		env.Printf("%s %7.2f %11s: %s\n", a...)
 	}
 	for _, t := range entries {
-		date := dateStr(t.Time)
+		date := trDateStr(t.Time)
 		if date != prev {
 			if prev != "" {
 				env.Println(strings.Repeat("-", 35))
@@ -337,13 +337,13 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 	// grouping stage
 	m := map[string]*TimeItem{}
 	for _, t := range items {
-		dt := dateStr(t.Time)
+		dt := trDateStr(t.Time)
 		if _, exist := m[dt]; !exist {
-			m[dt] = &TimeItem{Time: timeOf(dt)}
+			m[dt] = &TimeItem{Time: trTimeOf(dt)}
 		}
 		m[dt].Count += t.Count
 		m[dt].Spent += t.Spent
-		//PL(dateTimeStr(t.Time), t.String(), "---->", m[dt].Spent) //``
+		//PL(trDateTimeStr(t.Time), t.String(), "---->", m[dt].Spent) //``
 	}
 	// extract items in map into slice
 	for _, t := range m {
@@ -358,11 +358,11 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 	// grouping stage
 	m := map[string]*TimeItem{}
 	for _, t := range items {
-		date := dateStr(t.Time)
+		date := trDateStr(t.Time)
 		k := date + "\t" + t.Text
 		if _, exist := m[k]; !exist {
 			m[k] = &TimeItem{
-				Time: timeOf(date),
+				Time: trTimeOf(date),
 				Text: t.Text,
 			}
 		}
@@ -379,17 +379,17 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 // -----------------------------------------------------------------------------
 // # Helper Functions
 
-// dateStr _ _
-func dateStr(val time.Time) string {
+// trDateStr _ _
+func trDateStr(val time.Time) string {
 	return val.Format("2006-01-02")
-} //                                                                     dateStr
+} //                                                                   trDateStr
 
-// dateTimeStr _ _
-func dateTimeStr(val time.Time) string {
+// trDateTimeStr _ _
+func trDateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
-} //                                                                 dateTimeStr
+} //                                                               trDateTimeStr
 
-// timeOf converts any string-like value to time.Time without returning
+// trTimeOf converts any string-like value to time.Time without returning
 // an error if the conversion failed, in which case it logs an error
 // and returns a zero-value time.Time.
 //
@@ -404,7 +404,7 @@ func dateTimeStr(val time.Time) string {
 // Note: fmt.Stringer (or fmt.GoStringer) interfaces are not treated as
 // strings to avoid bugs from implicit conversion. Use the String method.
 //
-func timeOf(value interface{}) time.Time {
+func trTimeOf(value interface{}) time.Time {
 	switch v := value.(type) {
 	case time.Time:
 		{
@@ -420,13 +420,13 @@ func timeOf(value interface{}) time.Time {
 			if len(v) == 10 {
 				tm, err = time.Parse("2006-01-02", v)
 				if err == nil && !tm.IsZero() {
-					return timeOf(tm)
+					return trTimeOf(tm)
 				}
 			}
 			if len(v) == 19 {
 				tm, err = time.Parse("2006-01-02 15:04:05", v)
 				if err == nil && !tm.IsZero() {
-					return timeOf(tm)
+					return trTimeOf(tm)
 				}
 			}
 			if err != nil {
@@ -436,11 +436,11 @@ func timeOf(value interface{}) time.Time {
 		}
 	case *string:
 		if v != nil {
-			return timeOf(*v)
+			return trTimeOf(*v)
 		}
 	}
 	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
 	return time.Time{}
-} //                                                                      timeOf
+} //                                                                    trTimeOf
 
 //end
