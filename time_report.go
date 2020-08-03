@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-04 00:29:24 1C1085                          cmdx/[time_report.go]
+// :v: 2020-08-04 00:34:41 D10418                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -101,7 +101,9 @@ func trMonthlySummary(
 		items = trCalcSpent(items, false)
 	}
 	sums := trSumByDate(items)
-	env.Println(caption)
+	if caption != "" {
+		env.Println(caption)
+	}
 	var cal zr.Calendar
 	for _, itm := range sums {
 		cal.Set(itm.Time, itm.Spent.Hours())
