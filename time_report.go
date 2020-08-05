@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-04 00:34:41 D10418                          cmdx/[time_report.go]
+// :v: 2020-08-05 08:32:10 CCB0B8                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -76,7 +76,7 @@ func timeReport(cmd Command, args []string) {
 			fmt.Printf("Warning: file %q doesn't exist\n", arg)
 		}
 	}
-	trMonthlySummary("AUTO", trAuto, min, max, files)
+	// trMonthlySummary("AUTO", trAuto, min, max, files)
 	trMonthlySummary("MANUAL", trManual, min, max, files)
 } //                                                                  timeReport
 
