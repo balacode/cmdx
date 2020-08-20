@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 86F0FA               cmdx/[delete_identical_files.go]
+// :v: 2020-08-20 19:58:02 1CC5E6               cmdx/[delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
 
 import (
 	"bytes"
+
+	"github.com/balacode/zr"
 )
 
 // deleteIdenticalFiles _ _
@@ -17,7 +19,12 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 		env.Println("'delete' requires: <source dir> and <target dir>")
 		return
 	}
-	var toFilesMap map[int64][]*PathAndSize = getFilesMap(args[1], filter)
+	var (
+		totalDeletedBytes = int64(0)
+		totalDeletedFiles = 0
+		toFilesMap        = getFilesMap(args[1], filter)
+		//                  ^ map[int64][]*PathAndSize
+	)
 	for size, fromFiles := range getFilesMap(args[0], filter) {
 		toFiles := toFilesMap[size]
 		if len(toFiles) == 0 {
@@ -42,9 +49,16 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 				if env.DeleteFile(to.Path) {
 					toFiles[i].Size = -1
 					env.Println("deleted", to.Path)
+					totalDeletedBytes += size
+					totalDeletedFiles++
 				}
 			}
 		}
+	}
+	if totalDeletedBytes > 0 || totalDeletedFiles > 0 {
+		nbytes := zr.ByteSizeString(totalDeletedBytes /*useSI=*/, false)
+		s := zr.IfString(totalDeletedFiles == 1, "", "s")
+		env.Println("deleted", nbytes, "in", totalDeletedFiles, "file"+s)
 	}
 } //                                                        deleteIdenticalFiles
 
