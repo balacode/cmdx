@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-05 08:32:10 CCB0B8                          cmdx/[time_report.go]
+// :v: 2021-02-08 02:34:22 29EFD7                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -38,7 +38,7 @@ import (
 	"time"
 
 	"github.com/balacode/zr"
-	"github.com/balacode/zr-fs"
+	fs "github.com/balacode/zr-fs"
 )
 
 type trMode bool
@@ -223,7 +223,8 @@ func trGetTimeItems(lines []string) []TimeItem {
 
 // trIsTimeStart _ _
 func trIsTimeStart(s string) bool {
-	if strings.HasPrefix(s, "IN ") ||
+	if strings.TrimSpace(s) == "IN" ||
+		strings.HasPrefix(s, "IN ") ||
 		strings.Contains(s, " IN ") ||
 		strings.HasSuffix(s, " IN") {
 		return true
