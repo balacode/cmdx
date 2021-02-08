@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-01 22:31:18 A840C7                             cmdx/[commands.go]
+// :v: 2020-11-09 10:16:41 76901D                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -136,6 +136,13 @@ var AllCommands = []Command{
 		FullName:  "rep-lines",
 		ShortInfo: "Replace lines in file(s). Requires <command-file>",
 		Handler:   replaceLinesInFiles,
+		Category:  2,
+	},
+	{
+		ShortName: "rdf",
+		FullName:  "repl-diffs",
+		ShortInfo: "Replace diffs in file(s). Requires <command-file>",
+		Handler:   replaceDiffsInFiles,
 		Category:  2,
 	},
 	{
