@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                         cmdx/[replace_shared.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:35:34 2CD991               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main

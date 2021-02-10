@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                        cmdx/[run_interactive.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:35:34 445390                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main

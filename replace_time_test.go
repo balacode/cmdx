@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                      cmdx/[replace_time_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 4B1D85                    cmdx/[replace_time_test.go]
 // -----------------------------------------------------------------------------
 
 package main

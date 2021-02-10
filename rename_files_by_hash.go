@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                   cmdx/[rename_files_by_hash.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 14D29F                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main

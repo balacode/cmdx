@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                cmdx/[mark_time_in_files_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 2178D6              cmdx/[mark_time_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main

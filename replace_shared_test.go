@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                    cmdx/[replace_shared_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 4A72AA                  cmdx/[replace_shared_test.go]
 // -----------------------------------------------------------------------------
 
 package main

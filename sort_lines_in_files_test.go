@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                               cmdx/[sort_lines_in_files_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 45F5F8                 cmdx/[sort_file_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main

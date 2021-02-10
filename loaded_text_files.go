@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                      cmdx/[loaded_text_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 B9CDBB                    cmdx/[loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main

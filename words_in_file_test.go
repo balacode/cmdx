@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                     cmdx/[words_in_file_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 8E0642                   cmdx/[words_in_file_test.go]
 // -----------------------------------------------------------------------------
 
 package main

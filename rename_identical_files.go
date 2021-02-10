@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                 cmdx/[rename_identical_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 342E80               cmdx/[rename_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main

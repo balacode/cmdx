@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                  cmdx/[mark_errors_in_source.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:35:34 6FE2DB                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main

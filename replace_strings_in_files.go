@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                               cmdx/[replace_strings_in_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:35:34 FEA81F             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main

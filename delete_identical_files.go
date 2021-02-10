@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                                 cmdx/[delete_identical_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 258979               cmdx/[delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main

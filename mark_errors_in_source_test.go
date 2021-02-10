@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
+// CMDX Utility                             cmdx/[mark_errors_in_source_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 58C50D           cmdx/[mark_errors_in_source_test.go]
 // -----------------------------------------------------------------------------
 
 package main
