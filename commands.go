@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 21:50:15 82BF80                             cmdx/[commands.go]
+// :v: 2021-02-10 21:53:19 59FF28                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -154,6 +154,13 @@ var AllCommands = []Command{
 		Category:  2,
 	},
 	// Time Logging:
+	{
+		ShortName: "lt",
+		FullName:  "log-time",
+		ShortInfo: "Logs timestamps of changed files to autotime.txt",
+		Handler:   logTime,
+		Category:  3,
+	},
 	{
 		ShortName: "mt",
 		FullName:  "mark-time",
