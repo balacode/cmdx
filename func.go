@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 54ED92                                 cmdx/[func.go]
+// :v: 2021-02-10 09:35:34 5AE6AF                                 cmdx/[func.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -30,7 +30,7 @@ func filterLongLines(
 ) {
 	for i, s := range lines {
 		if strings.Contains(s, "\t") {
-			s = strings.Replace(s, "\t", "    ", -1)
+			s = strings.ReplaceAll(s, "\t", "    ")
 		}
 		n := len(s)
 		if n > longerThan && n < LongestLine {

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 AD56F0                   cmdx/[mark_time_in_files.go]
+// :v: 2021-02-10 09:35:34 180312                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -101,9 +101,9 @@ func autoTimeLog(path string, timestamp string) {
 	// the entry written in the log file:
 	entry := strings.ToLower(timestamp + " " + path + "\n")
 	if strings.Contains(entry, logPath) {
-		entry = strings.Replace(entry, logPath, "", -1)
+		entry = strings.ReplaceAll(entry, logPath, "")
 	}
-	entry = strings.Replace(entry, "\\", "/", -1)
+	entry = strings.ReplaceAll(entry, "\\", "/")
 	//
 	// append to autotime.log
 	logPath += env.PathSeparator() + "autotime.log"

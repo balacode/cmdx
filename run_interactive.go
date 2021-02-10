@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 FD9BF4                      cmdx/[run_interactive.go]
+// :v: 2021-02-10 09:35:34 445390                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -169,7 +169,7 @@ func (ob Runner) processFile(file *TextFile) (retAltered bool) {
 			//
 		case zr.ContainsI(s, CommandMark+FF): // Find in Files
 			col := strings.Index(strings.ToUpper(s), CommandMark+FF)
-			dlg := strings.Replace(FindInFilesDialog, "MRK", CommandMark, -1)
+			dlg := strings.ReplaceAll(FindInFilesDialog, "MRK", CommandMark)
 			lines[ln] = s[:col] + dlg + s[col+len(CommandMark+FF):]
 			altered = true
 			//

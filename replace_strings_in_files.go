@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 4C6A60             cmdx/[replace_strings_in_files.go]
+// :v: 2021-02-10 09:35:34 FEA81F             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -70,9 +70,9 @@ func replaceStringsInFiles(cmd Command, args []string) {
 		}
 		s := string(data)
 		s = strings.TrimSpace(s)
-		s = strings.Replace(s, "\r\n", "\n", -1)
+		s = strings.ReplaceAll(s, "\r\n", "\n")
 		for strings.Contains(s, "\n\n") {
-			s = strings.Replace(s, "\n\n", "\n", -1)
+			s = strings.ReplaceAll(s, "\n\n", "\n")
 		}
 		configLines = strings.Split(s, "\n")
 		//

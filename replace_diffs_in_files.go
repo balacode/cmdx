@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 B981B9               cmdx/[replace_diffs_in_files.go]
+// :v: 2021-02-10 09:35:34 DDEDE0               cmdx/[replace_diffs_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -266,7 +266,7 @@ func (M replaceDiffsInFilesM) writeFileLines(
 		return false
 	}
 	s := strings.Join(lines, "\n")
-	s = strings.Replace(s, "\r\n", "\n", -1)
+	s = strings.ReplaceAll(s, "\r\n", "\n")
 	//
 	// terminate the last line with a newline
 	if !strings.HasSuffix(s, "\n") {

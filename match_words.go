@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 2346D2                          cmdx/[match_words.go]
+// :v: 2021-02-10 09:35:34 610EBB                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -27,9 +27,9 @@ func matchWords(cmd Command, args []string) {
 			return
 		}
 		s := string(data)
-		s = strings.Replace(s, "\r\n", "\n", -1)
+		s = strings.ReplaceAll(s, "\r\n", "\n")
 		for strings.Contains(s, "\n\n") {
-			s = strings.Replace(s, "\n\n", "\n", -1)
+			s = strings.ReplaceAll(s, "\n\n", "\n")
 		}
 		words = strings.Split(s, "\n")
 	}

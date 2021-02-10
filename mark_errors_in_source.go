@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 4BA0BE                cmdx/[mark_errors_in_source.go]
+// :v: 2021-02-10 09:35:34 6FE2DB                cmdx/[mark_errors_in_source.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -93,8 +93,8 @@ func markErrorsInSource(cmd Command, args []string) {
 			lines = strings.Split(string(data), "\n")
 			for i, line := range lines {
 				if isErrorComment(line) {
-					lines[i] = strings.Replace(lines[i],
-						ErrorEndMark, ErrorEndMark+OldMark, -1)
+					lines[i] = strings.ReplaceAll(lines[i],
+						ErrorEndMark, ErrorEndMark+OldMark)
 				}
 			}
 		}
