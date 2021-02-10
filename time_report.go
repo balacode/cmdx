@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 4FC6F9                          cmdx/[time_report.go]
+// :v: 2021-02-10 21:42:45 0C76B9                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -317,7 +317,6 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 		}
 		m[dt].Count += t.Count
 		m[dt].Spent += t.Spent
-		//PL(trDateTimeStr(t.Time), t.String(), "---->", m[dt].Spent) //``
 	}
 	// extract items in map into slice
 	for _, t := range m {

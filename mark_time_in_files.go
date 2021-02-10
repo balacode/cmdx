@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:35:34 180312                   cmdx/[mark_time_in_files.go]
+// :v: 2021-02-10 21:42:45 E5A779                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -79,9 +79,9 @@ func markTimeInFiles(cmd Command, args []string) {
 				return
 			}
 		}
-		return
+	} else {
+		processDir(dir, changeTime)
 	}
-	processDir(dir, changeTime)
 } //                                                             markTimeInFiles
 
 // -----------------------------------------------------------------------------
@@ -142,8 +142,7 @@ func processDir(dir string, changeTime bool) {
 	err := filepath.Walk(
 		dir, func(path string, info os.FileInfo, err error) error {
 			if err != nil {
-				zr.Error("Error reading path", path, "due to:", err)
-				return err
+				return zr.Error("Error reading path", path, "due to:", err)
 			}
 			if info.IsDir() {
 				return nil
