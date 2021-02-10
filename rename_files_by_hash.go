@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 268A34                 cmdx/[rename_files_by_hash.go]
+// :v: 2021-02-10 09:29:15 14D29F                 cmdx/[rename_files_by_hash.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -71,4 +71,4 @@ func hashOfBytes(ar []byte, salt []byte) []byte {
 	return hash[:]
 } //                                                                 hashOfBytes
 
-//end
+// end

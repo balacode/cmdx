@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 053852                         cmdx/[env_provider.go]
+// :v: 2021-02-10 09:29:15 7CAB94                         cmdx/[env_provider.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -291,4 +291,4 @@ func (Env) TextFileExts() []string {
 // os.Open(filename)
 // os.Stat(filename)
 
-//end
+// end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-01 22:33:23 837B48                          cmdx/[part_backup.go]
+// :v: 2021-02-10 09:29:15 F5DFA1                          cmdx/[part_backup.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -127,4 +127,4 @@ func partBackup(cmd Command, args []string) {
 	}
 } //                                                                  partBackup
 
-//end
+// end

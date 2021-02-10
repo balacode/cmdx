@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 A04102                   cmdx/[replace_lines_test.go]
+// :v: 2021-02-10 09:29:15 1B3EB0                   cmdx/[replace_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -51,4 +51,4 @@ func Test_rpln_replaceLines_(t *testing.T) {
 	)
 } //                                                     Test_rpln_replaceLines_
 
-//end
+// end

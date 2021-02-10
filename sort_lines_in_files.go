@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-11 04:25:01 9B0E8B                      cmdx/[sort_file_lines.go]
+// :v: 2021-02-10 09:29:15 DE1E77                      cmdx/[sort_file_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -45,4 +45,4 @@ func sortFileLines(cmd Command, args []string) {
 	env.WriteFileLines(filename, lines)
 } //                                                               sortFileLines
 
-//end
+// end

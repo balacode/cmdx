@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 DB241F                        cmdx/[replace_lines.go]
+// :v: 2021-02-10 09:29:15 007534                        cmdx/[replace_lines.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -233,4 +233,4 @@ func (M replaceLinesM) replaceMany(
 	return ret, changes
 } //                                                                 replaceMany
 
-//end
+// end

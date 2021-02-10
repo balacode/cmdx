@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 AEE64F          cmdx/[replace_lines_in_files_test.go]
+// :v: 2021-02-10 09:29:15 42EF3D          cmdx/[replace_lines_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_rlif_replaceLinesInFiles_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                              Test_rlif_replaceLinesInFiles_
 
-//end
+// end

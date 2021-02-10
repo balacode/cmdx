@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 D6D9BA                    cmdx/[loaded_text_files.go]
+// :v: 2021-02-10 09:29:15 B9CDBB                    cmdx/[loaded_text_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -117,4 +117,4 @@ func (ob *LoadedTextFiles) SortListByModTime(modFiles []string) {
 
 // TODO: GLOBAL: All doc. comments should not exceed 76 columns
 
-//end
+// end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 D3AF94                                 cmdx/[type.go]
+// :v: 2021-02-10 09:29:15 12DEEA                                 cmdx/[type.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -83,4 +83,4 @@ type TextFile struct {
 	Lines   []string
 } //                                                                    TextFile
 
-//end
+// end

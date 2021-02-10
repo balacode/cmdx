@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 B43753           cmdx/[mark_errors_in_source_test.go]
+// :v: 2021-02-10 09:29:15 58C50D           cmdx/[mark_errors_in_source_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -137,4 +137,4 @@ func Test_meis_saveFile_(t *testing.T) {
 	test("", "", []string{})
 } //                                                         Test_meis_saveFile_
 
-//end
+// end

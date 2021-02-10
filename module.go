@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 39EAAF                               cmdx/[module.go]
+// :v: 2021-02-10 09:29:15 652F27                               cmdx/[module.go]
 // -----------------------------------------------------------------------------
 
 // See TODO at the end
@@ -107,4 +107,4 @@ const (
 //       B - block mode
 //       M - multiple line replacement
 
-//end
+// end

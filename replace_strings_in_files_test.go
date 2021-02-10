@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 90FC39        cmdx/[replace_strings_in_files_test.go]
+// :v: 2021-02-10 09:29:15 7AF1D4        cmdx/[replace_strings_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -71,4 +71,4 @@ func Test_rsif_replaceFileAsync_(t *testing.T) {
 	test(nil, "", "", "", []ReplItem{})
 } //                                                 Test_rsif_replaceFileAsync_
 
-//end
+// end

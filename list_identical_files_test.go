@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 C66386            cmdx/[list_identical_files_test.go]
+// :v: 2021-02-10 09:29:15 9EB1BB            cmdx/[list_identical_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_lsif_listIdenticalFiles_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                               Test_lsif_listIdenticalFiles_
 
-//end
+// end

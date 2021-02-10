@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 DE16F7                          cmdx/[match_words.go]
+// :v: 2021-02-10 09:29:15 2346D2                          cmdx/[match_words.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -57,4 +57,4 @@ func matchWords(cmd Command, args []string) {
 	}
 } //                                                                  matchWords
 
-//end
+// end

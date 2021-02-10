@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 CEBCE1                            cmdx/[time_item.go]
+// :v: 2021-02-10 09:29:15 54F83E                            cmdx/[time_item.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -65,4 +65,4 @@ func (a TimeItemsByDateAndDescSpent) Less(i, j int) bool {
 	return false
 } //                                                                        Less
 
-//end
+// end

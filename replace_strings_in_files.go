@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 1DB854             cmdx/[replace_strings_in_files.go]
+// :v: 2021-02-10 09:29:15 4C6A60             cmdx/[replace_strings_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -282,4 +282,4 @@ func setReplConfig(s string, cfg *replConfig) {
 	}
 } //                                                               setReplConfig
 
-//end
+// end

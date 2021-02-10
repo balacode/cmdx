@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-11-18 13:07:58 C65779               cmdx/[replace_diffs_in_files.go]
+// :v: 2021-02-10 09:29:15 B981B9               cmdx/[replace_diffs_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -281,4 +281,4 @@ func (M replaceDiffsInFilesM) writeFileLines(
 	return true
 } //                                                              writeFileLines
 
-//end
+// end

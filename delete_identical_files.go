@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-08-20 19:58:02 1CC5E6               cmdx/[delete_identical_files.go]
+// :v: 2021-02-10 09:29:15 258979               cmdx/[delete_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -62,4 +62,4 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 	}
 } //                                                        deleteIdenticalFiles
 
-//end
+// end

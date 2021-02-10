@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 405968                          cmdx/[merge_files.go]
+// :v: 2021-02-10 09:29:15 BF0ACF                          cmdx/[merge_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -89,4 +89,4 @@ func mergeFiles(cmd Command, args []string) {
 	env.WriteFile(to, buf.Bytes())
 } //                                                                  mergeFiles
 
-//end
+// end

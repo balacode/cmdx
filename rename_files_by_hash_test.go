@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 9C06E1            cmdx/[rename_files_by_hash_test.go]
+// :v: 2021-02-10 09:29:15 8F48E0            cmdx/[rename_files_by_hash_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_rfbh_renameFilesByHash_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                Test_rfbh_renameFilesByHash_
 
-//end
+// end

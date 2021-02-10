@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 D982D5                   cmdx/[words_in_file_test.go]
+// :v: 2021-02-10 09:29:15 8E0642                   cmdx/[words_in_file_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_wdif_wordsInFile_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                      Test_wdif_wordsInFile_
 
-//end
+// end

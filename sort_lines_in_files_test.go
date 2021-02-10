@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 B42348                 cmdx/[sort_file_lines_test.go]
+// :v: 2021-02-10 09:29:15 45F5F8                 cmdx/[sort_file_lines_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_sfln_sortFileLines_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                    Test_sfln_sortFileLines_
 
-//end
+// end

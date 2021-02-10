@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 C2D35E                     cmdx/[match_words_test.go]
+// :v: 2021-02-10 09:29:15 94D41E                     cmdx/[match_words_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_mtcw_matchWords_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                       Test_mtcw_matchWords_
 
-//end
+// end

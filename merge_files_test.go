@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 2F89E0                     cmdx/[merge_files_test.go]
+// :v: 2021-02-10 09:29:15 421473                     cmdx/[merge_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_mgfl_mergeFiles_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                       Test_mgfl_mergeFiles_
 
-//end
+// end

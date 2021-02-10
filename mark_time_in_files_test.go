@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 021DC1              cmdx/[mark_time_in_files_test.go]
+// :v: 2021-02-10 09:29:15 2178D6              cmdx/[mark_time_in_files_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -146,4 +146,4 @@ func Test_mtif_replaceVersion_(t *testing.T) {
 		"")
 } //                                                   Test_mtif_replaceVersion_
 
-//end
+// end

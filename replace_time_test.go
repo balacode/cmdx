@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 0B4881                    cmdx/[replace_time_test.go]
+// :v: 2021-02-10 09:29:15 4B1D85                    cmdx/[replace_time_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_rptm_replaceTime_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                      Test_rptm_replaceTime_
 
-//end
+// end

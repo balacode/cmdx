@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 C584C3               cmdx/[replace_lines_in_files.go]
+// :v: 2021-02-10 09:29:15 1F3718               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -263,4 +263,4 @@ func (M replaceLinesInFilesM) trimStrings(ar []string) []string {
 	return ar
 } //                                                                 trimStrings
 
-//end
+// end

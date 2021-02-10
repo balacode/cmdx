@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 3FCEC2               cmdx/[replace_lines_in_files.go]
+// :v: 2021-02-10 09:29:15 9A325C               cmdx/[replace_lines_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -61,4 +61,4 @@ func readConfigFileLines(configFile string) (configLines []string) {
 	return configLines
 } //                                                         readConfigFileLines
 
-//end
+// end

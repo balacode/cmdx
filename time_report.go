@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-08 02:34:22 29EFD7                          cmdx/[time_report.go]
+// :v: 2021-02-10 09:29:15 4FC6F9                          cmdx/[time_report.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -417,4 +417,4 @@ func trTimeOf(value interface{}) time.Time {
 	return time.Time{}
 } //                                                                    trTimeOf
 
-//end
+// end

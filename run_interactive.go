@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 AB286A                      cmdx/[run_interactive.go]
+// :v: 2021-02-10 09:29:15 FD9BF4                      cmdx/[run_interactive.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -309,4 +309,4 @@ func (ob Runner) insertUUID(ln, col int, lines []string) (altered bool) {
 	return true
 } //                                                                  insertUUID
 
-//end
+// end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 75DAAE                            cmdx/[main_test.go]
+// :v: 2021-02-10 09:29:15 2D9A2C                            cmdx/[main_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_main_(t *testing.T) {
 	test()
 } //                                                                  Test_main_
 
-//end
+// end

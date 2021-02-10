@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 5B1B38                            cmdx/[func_test.go]
+// :v: 2021-02-10 09:29:15 406BAC                            cmdx/[func_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -70,4 +70,4 @@ func Test_func_trim_(t *testing.T) {
 		"")
 } //                                                             Test_func_trim_
 
-//end
+// end

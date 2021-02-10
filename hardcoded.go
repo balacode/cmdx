@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-20 11:10:53 4C7C96                            cmdx/[hardcoded.go]
+// :v: 2021-02-10 09:29:15 0F2619                            cmdx/[hardcoded.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -66,4 +66,4 @@ var hardcodedIgnoreFilenamesWith = []string{
 	"tmp.",
 }
 
-//end
+// end

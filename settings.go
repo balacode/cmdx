@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 158E21                             cmdx/[settings.go]
+// :v: 2021-02-10 09:29:15 95CA25                             cmdx/[settings.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -38,4 +38,4 @@ var IgnoreFilenamesWith = hardcodedIgnoreFilenamesWith
 // WordListFile _ _
 var WordListFile = hardcodedWordListFile
 
-//end
+// end

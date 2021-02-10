@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 46C357                        cmdx/[commands_test.go]
+// :v: 2021-02-10 09:29:15 EC2AF8                        cmdx/[commands_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -130,4 +130,4 @@ func Test_cmds_AllCommands_(t *testing.T) {
 	}
 } //                                                      Test_cmds_AllCommands_
 
-//end
+// end

@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 EEC0FC                         cmdx/[replace_time.go]
+// :v: 2021-02-10 09:29:15 C4A43D                         cmdx/[replace_time.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -80,4 +80,4 @@ func replaceTime(cmd Command, args []string) {
 	env.Printf("written '%s'\n", toFile)
 } //                                                                 replaceTime
 
-//end
+// end

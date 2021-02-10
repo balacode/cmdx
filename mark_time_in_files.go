@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 945AA9                   cmdx/[mark_time_in_files.go]
+// :v: 2021-02-10 09:29:15 AD56F0                   cmdx/[mark_time_in_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -230,4 +230,4 @@ func replaceVersion(s, path, filename string, modTime time.Time) string {
 	return s
 } //                                                              replaceVersion
 
-//end
+// end

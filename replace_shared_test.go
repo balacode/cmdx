@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 42A103                  cmdx/[replace_shared_test.go]
+// :v: 2021-02-10 09:29:15 4A72AA                  cmdx/[replace_shared_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -71,4 +71,4 @@ func Test_rsha_readConfigFileLines_(t *testing.T) {
 		[]string{})
 } //                                              Test_rsha_readConfigFileLines_
 
-//end
+// end

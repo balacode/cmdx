@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 BF1E8D                        cmdx/[words_in_file.go]
+// :v: 2021-02-10 09:29:15 6BF534                        cmdx/[words_in_file.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -85,4 +85,4 @@ func wordsInFile(cmd Command, args []string) {
 
 // TODO: create a text module or 'tstr'.
 
-//end
+// end

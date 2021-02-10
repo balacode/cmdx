@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2019-05-12 16:56:18 E9D31A                 cmdx/[run_interactive_test.go]
+// :v: 2021-02-10 09:29:15 A06CC1                 cmdx/[run_interactive_test.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -32,4 +32,4 @@ func Test_runi_runInteractive_(t *testing.T) {
 	test(Command{}, []string{})
 } //                                                   Test_runi_runInteractive_
 
-//end
+// end

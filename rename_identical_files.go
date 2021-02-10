@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2020-06-20 09:58:17 9B1867               cmdx/[rename_identical_files.go]
+// :v: 2021-02-10 09:29:15 342E80               cmdx/[rename_identical_files.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -76,4 +76,4 @@ files in <target> (the <source> is never changed). Run it with care.
 	}
 } //                                                        renameIdenticalFiles
 
-//end
+// end
