@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // (c) balarabe@protonmail.com                                    License: GPLv3
-// :v: 2021-02-10 09:29:15 BC9F38                             cmdx/[commands.go]
+// :v: 2021-02-10 21:50:15 82BF80                             cmdx/[commands.go]
 // -----------------------------------------------------------------------------
 
 package main
@@ -60,7 +60,8 @@ const (
 var AllCategories = map[int]string{
 	1: "File Manipulation",
 	2: "Text Manipulation",
-	3: "Other",
+	3: "Time Logging",
+	4: "Other",
 }
 
 // AllCommands _ _
@@ -118,24 +119,10 @@ var AllCommands = []Command{
 		Category:  2,
 	},
 	{
-		ShortName: "mt",
-		FullName:  "mark-time",
-		ShortInfo: "Change timestamps in source files. Requires path",
-		Handler:   markTimeInFiles,
-		Category:  2,
-	},
-	{
 		ShortName: "pb",
 		FullName:  "part-backup",
 		ShortInfo: "Continously back-up .part files streamed in current folder",
 		Handler:   partBackup,
-		Category:  2,
-	},
-	{
-		ShortName: "rl",
-		FullName:  "rep-lines",
-		ShortInfo: "Replace lines in file(s). Requires <command-file>",
-		Handler:   replaceLinesInFiles,
 		Category:  2,
 	},
 	{
@@ -146,17 +133,17 @@ var AllCommands = []Command{
 		Category:  2,
 	},
 	{
+		ShortName: "rl",
+		FullName:  "rep-lines",
+		ShortInfo: "Replace lines in file(s). Requires <command-file>",
+		Handler:   replaceLinesInFiles,
+		Category:  2,
+	},
+	{
 		ShortName: "rs",
 		FullName:  "replace-strings",
 		ShortInfo: "Replace strings in file(s). Requires <command-file>",
 		Handler:   replaceStringsInFiles,
-		Category:  2,
-	},
-	{
-		ShortName: "rt",
-		FullName:  "rep-time",
-		ShortInfo: "Replace time entries. requires <source-file> <target-file>",
-		Handler:   replaceTime,
 		Category:  2,
 	},
 	{
@@ -166,19 +153,26 @@ var AllCommands = []Command{
 		Handler:   sortFileLines,
 		Category:  2,
 	},
-	// Other:
+	// Time Logging:
 	{
-		ShortName: "ri",
-		FullName:  "run",
-		ShortInfo: "Runs in interactive mode",
-		Handler:   runInteractive,
+		ShortName: "mt",
+		FullName:  "mark-time",
+		ShortInfo: "Change timestamps in source files. Requires path",
+		Handler:   markTimeInFiles,
 		Category:  3,
 	},
 	{
-		ShortName: "mw",
-		FullName:  "match-words",
-		ShortInfo: "Lists all words that use all the specified letters.",
-		Handler:   matchWords,
+		ShortName: "now",
+		FullName:  "time-now",
+		ShortInfo: "Displays current date/time in yyyy-mm-dd hh:nn:ss format",
+		Handler:   timeNow,
+		Category:  3,
+	},
+	{
+		ShortName: "rt",
+		FullName:  "rep-time",
+		ShortInfo: "Replace time entries. requires <source-file> <target-file>",
+		Handler:   replaceTime,
 		Category:  3,
 	},
 	{
@@ -188,12 +182,20 @@ var AllCommands = []Command{
 		Handler:   timeReport,
 		Category:  3,
 	},
+	// Other:
 	{
-		ShortName: "now",
-		FullName:  "time-now",
-		ShortInfo: "Displays current date/time in yyyy-mm-dd hh:nn:ss format",
-		Handler:   timeNow,
-		Category:  3,
+		ShortName: "mw",
+		FullName:  "match-words",
+		ShortInfo: "Lists all words that use all the specified letters.",
+		Handler:   matchWords,
+		Category:  4,
+	},
+	{
+		ShortName: "ri",
+		FullName:  "run",
+		ShortInfo: "Runs in interactive mode",
+		Handler:   runInteractive,
+		Category:  4,
 	},
 } //                                                                 AllCommands
 
