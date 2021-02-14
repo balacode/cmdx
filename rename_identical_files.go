@@ -14,9 +14,9 @@ import (
 func renameIdenticalFiles(cmd Command, args []string) {
 	if len(args) == 2 {
 		env.Println(`
---------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 'rdup' or 'ren-dup' command: Rename identical files
---------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 
 Carries out very rapid bulk renaming of files.
 Requires a <source> and <target> folder.
@@ -32,7 +32,7 @@ folder and want to rename all matching files in another folder.
 
 Note: this command doesn't filter file extensions and affects all matching
 files in <target> (the <source> is never changed). Run it with care.
---------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------
 `)
 		return
 	}

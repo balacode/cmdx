@@ -77,19 +77,19 @@ func Test_mtif_getTimeLogPath(t *testing.T) {
 	// the function only processes strings, which are all specified here
 	oldPaths := TimeLogPaths
 	TimeLogPaths = []string{
-		`x:\tests`,
-		`x:\tests\sub`,
-		`x:\tests\sub\p1`,
-		`x:\tests\sub\p2`,
-		`x:\tests\sub\p3`,
-		`x:\tests\other`,
+		`X:\tests`,
+		`X:\tests\sub`,
+		`X:\tests\sub\p1`,
+		`X:\tests\sub\p2`,
+		`X:\tests\sub\p3`,
+		`X:\tests\other`,
 	}
 	fn := getTimeLogPath
-	zr.TEqual(t, fn(`x:\tests\sub\p2\main.go`),
-		`x:\tests\sub\p2`,
+	zr.TEqual(t, fn(`X:\tests\sub\p2\main.go`),
+		`X:\tests\sub\p2`,
 	)
-	zr.TEqual(t, fn(`x:\tests\file.txt`),
-		`x:\tests`,
+	zr.TEqual(t, fn(`X:\tests\file.txt`),
+		`X:\tests`,
 	)
 	TimeLogPaths = oldPaths
 } //                                                    Test_mtif_getTimeLogPath

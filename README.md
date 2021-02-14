@@ -9,32 +9,32 @@ so I created CMDX which means Command-line Extensions.
 Use `go get` to install the utility and its dependencies. (If you use `git clone`, you'll have to also clone `zr` and `zr_fs` manually and make sure they're in the github.com/balacode branch.)
 
     go get github.com/balacode/cmdx
-    
+
 This will also install *github.com/balacode/zr* and *github.com/balacode/zr_fs* libraries (Zircon-Go) which CMDX uses. Once installed, change to `{go src path}/github.com/balacode/cmdx` and type `go build`.
 
 ## Usage Guide:
 
 *I am in the process of adding a detailed explanation for the usage of each command. In the meantime, you can check the source code or ask me directly. Your questions will help make the documentation more concise.*
 
-Below is a brief summary of the available commands.  
+Below is a brief summary of the available commands.
 
 ## File Manipulation Commands:
 
-**DD (del-dup): Delete Duplicates**  
+**DD (del-dup): Delete Duplicates**
 
-    cmdx dd /source /target  
+    cmdx dd /source /target
 
-Deletes all files in /target that already exist in /source.  
-The command does not care about file names.  
-Instead it compares the contents of files with identical sizes.  
+Deletes all files in /target that already exist in /source.
+The command does not care about file names.
+Instead it compares the contents of files with identical sizes.
 
 **Use this command with care: files are deleted without going to trash can** :exclamation:
 
-**LD (list-dup): List Duplicate Files**  
-Lists duplicate files in the specified folder (or source and target folders).  
-Does not delete or change any files.  
+**LD (list-dup): List Duplicate Files**
+Lists duplicate files in the specified folder (or source and target folders).
+Does not delete or change any files.
 
-To list all identical files in /source folder:  
+To list all identical files in /source folder:
 
     cmdx ld /source
 
@@ -42,25 +42,25 @@ To list list all files in */target* that have identical files in */source*:
 
     cmdx ld /source /target
 
-**RD (ren-dup): Rename Duplicate Files**  
+**RD (ren-dup): Rename Duplicate Files**
 
-Given two folder paths: */source* and */target*,  
-this command finds files in /target that are identical to files  
-in /source and renames them to their file names in /source:  
+Given two folder paths: */source* and */target*,
+this command finds files in /target that are identical to files
+in /source and renames them to their file names in /source:
 
     cmdx rd /source /target
-    
-**RH (ren-hash): Rename-Hash**  
-Renames files by prefixing their name with a hash.  
+
+**RH (ren-hash): Rename-Hash**
+Renames files by prefixing their name with a hash.
 
 ## Text Manipulation Commands:
 
-**FW (file-words):**   
+**FW (file-words):**
 Lists all words with alphanumeric characters from {file}:
 
     cmdx fw {file}
 
-**ME (mark-errors):**   
+**ME (mark-errors):**
 Inserts build errors as comments at the source of the error,
 so you don't need to manually look-up the line numbers and
 file names to edit. Just use your editor to find all error
@@ -91,15 +91,15 @@ After you run the command, you will see comments such as the following:
     ...
 ```
 
-**MT (mark-time):**  
-Changes timestamps in source files.  
-Requires paths (in hardcoded.go) to be set up.  
+**MT (mark-time):**
+Changes timestamps in source files.
+Requires paths (in hardcoded.go) to be set up.
 
-**RL (rep-lines):**  
-Replaces lines in file(s). Requires {command-file}.  
-This command allows you to replace several blocks of code at once.  
+**RL (rep-lines):**
+Replaces lines in file(s). Requires {command-file}.
+This command allows you to replace several blocks of code at once.
 
-**RS (replace-strings):**  
+**RS (replace-strings):**
 Makes multiple (different) replacements simultaneously in multiple files.
 You can make thousands of simultaneous replacements as the command
 uses goroutines to search and replace multiple files concurrently
@@ -111,7 +111,7 @@ The path, the types of files and the replacements are
 specified in a replacements file. Example replacements file:
 
     mark ~~
-    path x:\path
+    path X:\path
     case on
     word on
 
@@ -128,25 +128,25 @@ specified in a replacements file. Example replacements file:
 - comments start with the marker.
 - text to find is on the left of '~~' and the replacement text on the right. You can list as many replacements as needed.
 
-**SF (sort-file):**  
+**SF (sort-file):**
 
     cmdx sf {filename}
 
 Sorts all lines in a file and deletes duplicate lines.
 This command is useful for sorting log files, dictionary lists, etc.
 
-## Other Commands:  
-More specifics on these commands will be provided later.  
+## Other Commands:
+More specifics on these commands will be provided later.
 
-**RT (rep-time):**  
-Replaces time entries in log files.  
+**RT (rep-time):**
+Replaces time entries in log files.
 
-**RI (run):**  
-Runs the tool in source-code interactive mode.  
+**RI (run):**
+Runs the tool in source-code interactive mode.
 
-**TR (time-report):**  
-Summarizes time from log files and presents it in a calendar format.  
-For example:  
+**TR (time-report):**
+Summarizes time from log files and presents it in a calendar format.
+For example:
 
     2018 FEBRUARY
     *--------------------------------------------------------------*

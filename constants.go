@@ -12,7 +12,7 @@ MRK |  FIND IN FILES:    (to find multiple strings place them on multiple lines)
 MRK  ---------------------------------------------------------------------------
 
 MRK  ---------------------------------------------------------------------------
-MRK |  find in path: x:/path/
+MRK |  find in path: X:/path/
 MRK |  subfolders:   y
 MRK |
 MRK |  ignore case:  y      mark in source (prefix):

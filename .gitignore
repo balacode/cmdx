@@ -1,31 +1,31 @@
-# ------------------------------------------------------------------------------
-# (c) balarabe@protonmail.com                                     License: GPLv3
-# :v: 2019-03-14 00:39:42 3156B6                               cmdx/[.gitignore]
-# ------------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
+## CMDX Utility                                                cmdx/[.gitignore]
+## (c) balarabe@protonmail.com                                    License: GPLv3
+## -----------------------------------------------------------------------------
 
-# ignore temp. files and drafts
+## temp. files and drafts
 *.go_
 *`*
 __*
 
-# ignore backup files
+## backup files
 *.go~
 
-# ignore logs, etc.
+## logs, etc.
 *.log
 cover.out
 
-# ignore auxiliary files
+## auxiliary files
 *.bat
 *.sh
 .idea
 /.vscode/launch.json
 
-# ignore binary files:
+## binary files
 *.exe
 *.exe*
 *.zip
 /cmdx
 app
 
-#end
+## end
