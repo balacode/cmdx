@@ -159,10 +159,12 @@ func ltProcessTextFilesInCurrentFolder(
 			if info.IsDir() {
 				return nil
 			}
+			// TODO: create a way for the user to specify files/paths to ignore
 			if strings.HasSuffix(path, ".log") {
 				return nil
 			}
-			if strings.Contains(path, sep+"node_modules"+sep) {
+			if strings.Contains(path, sep+"node_modules"+sep) ||
+				strings.Contains(path, "build"+sep+"intermediates"+sep) {
 				return nil
 			}
 			if !fs.IsTextFile(path) {
