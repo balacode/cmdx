@@ -19,7 +19,6 @@ cover.out
 *.bat
 *.sh
 .idea
-/.vscode/launch.json
 
 ## binary files
 *.exe
