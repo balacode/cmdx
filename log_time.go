@@ -15,6 +15,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/balacode/zr"
 	fs "github.com/balacode/zr-fs"
@@ -29,11 +30,23 @@ const AutotimeFilename = "autotime.log"
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	var (
+		backlog = "today"
+		verbose = false
+
+		now        = time.Now()
+		today      = now.Format("2006-01-02")
 		logFiles   = ltListAutotimeFiles()
 		logEntries = ltGetLogEntries(logFiles)
 		changes    = map[string]string{} // key:path value:modTime
 	)
 	ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
+		if backlog == "today" && modTime < today {
+			if verbose {
+				text := modTime + " SKIP: " + path
+				fmt.Println(text)
+			}
+			return
+		}
 		hasEntry := logEntries[path][modTime]
 		if !hasEntry {
 			changes[path] = modTime
