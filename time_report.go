@@ -27,11 +27,9 @@ package main
 // # Helper Functions
 //   trDateStr(val time.Time) string
 //   trDateTimeStr(val time.Time) string
-//   trTimeOf(value interface{}) time.Time
 
 import (
 	"fmt"
-	"reflect"
 	"regexp"
 	"sort"
 	"strings"
@@ -169,8 +167,8 @@ func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 // trFilterDates _ _
 func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
-	min := trTimeOf(minDate).String()[:10]
-	max := trTimeOf(maxDate).String()[:10]
+	min := parseTime(minDate).String()[:10]
+	max := parseTime(maxDate).String()[:10]
 	var ret []TimeItem
 	for _, t := range ar {
 		date := trDateStr(t.Time)
@@ -212,7 +210,7 @@ func trGetTimeItems(lines []string) []TimeItem {
 	var ret []TimeItem
 	for _, key := range times {
 		ret = append(ret, TimeItem{
-			Time:  trTimeOf(key),
+			Time:  parseTime(key),
 			Text:  m[key],
 			Count: 1,
 			Spent: 0,
@@ -313,7 +311,7 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 	for _, t := range items {
 		dt := trDateStr(t.Time)
 		if _, exist := m[dt]; !exist {
-			m[dt] = &TimeItem{Time: trTimeOf(dt)}
+			m[dt] = &TimeItem{Time: parseTime(dt)}
 		}
 		m[dt].Count += t.Count
 		m[dt].Spent += t.Spent
@@ -335,7 +333,7 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 		k := date + "\t" + t.Text
 		if _, exist := m[k]; !exist {
 			m[k] = &TimeItem{
-				Time: trTimeOf(date),
+				Time: parseTime(date),
 				Text: t.Text,
 			}
 		}
@@ -361,59 +359,5 @@ func trDateStr(val time.Time) string {
 func trDateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
 } //                                                               trDateTimeStr
-
-// trTimeOf converts any string-like value to time.Time without returning
-// an error if the conversion failed, in which case it logs an error
-// and returns a zero-value time.Time.
-//
-// If val is a zero-length string, returns a zero-value time.Time
-// but does not log a warning.
-//
-// It also accepts a time.Time as input.
-//
-// In both cases the returned Time type will contain only the date
-// part without the time or time zone components.
-//
-// Note: fmt.Stringer (or fmt.GoStringer) interfaces are not treated as
-// strings to avoid bugs from implicit conversion. Use the String method.
-//
-func trTimeOf(value interface{}) time.Time {
-	switch v := value.(type) {
-	case time.Time:
-		{
-			return v
-		}
-	case string:
-		{
-			if v == "" {
-				return time.Time{}
-			}
-			var tm time.Time
-			var err error
-			if len(v) == 10 {
-				tm, err = time.Parse("2006-01-02", v)
-				if err == nil && !tm.IsZero() {
-					return trTimeOf(tm)
-				}
-			}
-			if len(v) == 19 {
-				tm, err = time.Parse("2006-01-02 15:04:05", v)
-				if err == nil && !tm.IsZero() {
-					return trTimeOf(tm)
-				}
-			}
-			if err != nil {
-				zr.Error(err)
-			}
-			return time.Time{}
-		}
-	case *string:
-		if v != nil {
-			return trTimeOf(*v)
-		}
-	}
-	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
-	return time.Time{}
-} //                                                                    trTimeOf
 
 // end

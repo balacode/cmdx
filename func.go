@@ -10,6 +10,7 @@ package main
 //       maxLineLength int,
 //   ) (ret []string)
 //   getFilesMap(dir, filter string) FilesMap
+//   parseTime(value interface{}) time.Time
 //   sortUniqueStrings(a []string) []string
 //   splitArgsFilter(args []string) (retArgs []string, filter string)
 //   trim(s string) string
@@ -17,8 +18,12 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strings"
+	"time"
+
+	"github.com/balacode/zr"
 )
 
 // filterLongLines _ _
@@ -67,6 +72,60 @@ func getFilesMap(dir, filter string) FilesMap {
 	)
 	return ret
 } //                                                                 getFilesMap
+
+// parseTime converts any string-like value to time.Time without returning
+// an error if the conversion failed, in which case it logs an error
+// and returns a zero-value time.Time.
+//
+// If val is a zero-length string, returns a zero-value time.Time
+// but does not log a warning.
+//
+// It also accepts a time.Time as input.
+//
+// In both cases the returned Time type will contain only the date
+// part without the time or time zone components.
+//
+// Note: fmt.Stringer (or fmt.GoStringer) interfaces are not treated as
+// strings to avoid bugs from implicit conversion. Use the String method.
+//
+func parseTime(value interface{}) time.Time {
+	switch v := value.(type) {
+	case time.Time:
+		{
+			return v
+		}
+	case string:
+		{
+			if v == "" {
+				return time.Time{}
+			}
+			var tm time.Time
+			var err error
+			if len(v) == 10 {
+				tm, err = time.Parse("2006-01-02", v)
+				if err == nil && !tm.IsZero() {
+					return parseTime(tm)
+				}
+			}
+			if len(v) == 19 {
+				tm, err = time.Parse("2006-01-02 15:04:05", v)
+				if err == nil && !tm.IsZero() {
+					return parseTime(tm)
+				}
+			}
+			if err != nil {
+				zr.Error(err)
+			}
+			return time.Time{}
+		}
+	case *string:
+		if v != nil {
+			return parseTime(*v)
+		}
+	}
+	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
+	return time.Time{}
+} //                                                                   parseTime
 
 // sortUniqueStrings sorts string array 'a' and removes any repeated values
 func sortUniqueStrings(a []string) []string {
