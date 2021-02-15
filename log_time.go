@@ -39,12 +39,18 @@ func logTime(cmd Command, args []string) {
 			changes[path] = modTime
 		}
 	})
+	var prev string
 	for path, modTime := range changes {
 		text := modTime + " " + path
 		logFile := ltGetAutotimeFile(path)
 		zr.AppendToTextFile(logFile, text+"\n")
-		fmt.Println(text, "->", logFile)
+		if prev != logFile {
+			fmt.Println("\nLOGFILE ----------> " + logFile + ":")
+			prev = logFile
+		}
+		fmt.Println(text)
 	}
+	fmt.Println()
 } //                                                                     logTime
 
 // -----------------------------------------------------------------------------
