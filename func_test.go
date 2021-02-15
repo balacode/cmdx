@@ -34,7 +34,7 @@ func Test_func_checksum_(t *testing.T) {
 	}
 	test("",
 		// out:
-		"")
+		"000000")
 } //                                                         Test_func_checksum_
 
 // go test --run Test_func_getFilesMap_

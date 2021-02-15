@@ -41,7 +41,7 @@ func Test_cmds_consts_(t *testing.T) {
 func Test_cmds_AllCategories_(t *testing.T) {
 	categories := make(map[string]bool, len(AllCategories))
 	for key, cat := range AllCategories {
-		if key < 1 || key > 3 {
+		if key < 1 || key > 4 {
 			t.Error("Invalid category key:", key)
 		}
 		var exist bool
