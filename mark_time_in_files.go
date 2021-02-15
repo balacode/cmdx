@@ -10,7 +10,6 @@ package main
 //
 // # Support (File Scope)
 //   autoTimeLog(path string, timestamp string)
-//   checksum(s string) string
 //   getTimeLogPath(path string) string
 //   processDir(dir string, changeTime bool)
 //   processFile(path, name string, modTime time.Time) error
@@ -18,7 +17,6 @@ package main
 
 import (
 	"fmt"
-	"hash/crc32"
 	"log"
 	"os"
 	"path/filepath"
@@ -109,15 +107,6 @@ func autoTimeLog(path string, timestamp string) {
 	logPath += env.PathSeparator() + "autotime.log"
 	zr.AppendToTextFile(logPath, entry) // write to logName
 } //                                                                 autoTimeLog
-
-// checksum returns a shortened CRC32 checksum of the given string.
-// The returned checksum is a string made up of 6 hexadecimal digits,
-// shorter than the 8 hex digits required for a normal CRC32.
-func checksum(s string) string {
-	chk := crc32.ChecksumIEEE([]byte(s))
-	chk = (chk / 0x00FFFFFF) ^ (chk & 0x00FFFFFF) // <- from 4 to 3 bytes
-	return fmt.Sprintf("%06X", chk)
-} //                                                                    checksum
 
 // getTimeLogPath _ _
 func getTimeLogPath(path string) string {

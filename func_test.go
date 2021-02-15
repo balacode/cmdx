@@ -18,6 +18,25 @@ import (
 	"github.com/balacode/zr"
 )
 
+// go test --run Test_func_checksum_
+func Test_func_checksum_(t *testing.T) {
+	zr.TBegin(t)
+	// checksum(s string) string
+	//
+	test := func(
+		// in:
+		s string,
+		// out:
+		ret string,
+	) {
+		retT := checksum(s)
+		zr.TEqual(t, retT, (ret))
+	}
+	test("",
+		// out:
+		"")
+} //                                                         Test_func_checksum_
+
 // go test --run Test_func_getFilesMap_
 func Test_func_getFilesMap_(t *testing.T) {
 	zr.TBegin(t)

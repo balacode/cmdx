@@ -5,6 +5,7 @@
 
 package main
 
+//   checksum(s string) string
 //   filterLongLines(
 //       lines []string,
 //       maxLineLength int,
@@ -16,6 +17,8 @@ package main
 //   trim(s string) string
 
 import (
+	"fmt"
+	"hash/crc32"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -25,6 +28,15 @@ import (
 
 	"github.com/balacode/zr"
 )
+
+// checksum returns a shortened CRC32 checksum of the given string.
+// The returned checksum is a string made up of 6 hexadecimal digits,
+// shorter than the 8 hex digits required for a normal CRC32.
+func checksum(s string) string {
+	chk := crc32.ChecksumIEEE([]byte(s))
+	chk = (chk / 0x00FFFFFF) ^ (chk & 0x00FFFFFF) // <- from 4 to 3 bytes
+	return fmt.Sprintf("%06X", chk)
+} //                                                                    checksum
 
 // filterLongLines _ _
 func filterLongLines(

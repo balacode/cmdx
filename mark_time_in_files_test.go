@@ -9,7 +9,6 @@ package main
 //   Test_mtif_markTimeInFiles_(t *testing.T)
 //
 // # Support (File Scope)
-//   Test_mtif_checksum_(t *testing.T)
 //   Test_mtif_getTimeLogPath(t *testing.T)
 //   Test_mtif_processDir_(t *testing.T)
 //   Test_mtif_processFile_(t *testing.T)
@@ -48,25 +47,6 @@ func Test_mtif_markTimeInFiles_(t *testing.T) {
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
-
-// go test --run Test_mtif_checksum_
-func Test_mtif_checksum_(t *testing.T) {
-	zr.TBegin(t)
-	// checksum(s string) string
-	//
-	test := func(
-		// in:
-		s string,
-		// out:
-		ret string,
-	) {
-		retT := checksum(s)
-		zr.TEqual(t, retT, (ret))
-	}
-	test("",
-		// out:
-		"")
-} //                                                         Test_mtif_checksum_
 
 // go test --run Test_mtif_getTimeLogPath
 func Test_mtif_getTimeLogPath(t *testing.T) {
