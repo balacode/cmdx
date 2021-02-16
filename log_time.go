@@ -9,6 +9,7 @@ package main
 //   logTime(cmd Command, args []string)
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -17,6 +18,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/balacode/cmdx/cxfunc"
 	"github.com/balacode/zr"
 	fs "github.com/balacode/zr-fs"
 )
@@ -30,14 +32,30 @@ const AutotimeFilename = "autotime.log"
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	var (
-		backlogArg = "today"
+		backlogArg string
 		verboseArg = false
 		now        = time.Now()
 		today      = now.Format("2006-01-02")
 		logFiles   = ltListAutotimeFiles()
 		logEntries = ltGetLogEntries(logFiles)
 		changes    = map[string]string{} // key:path value:modTime
+		backlog    time.Duration
 	)
+	// read arguments
+	{
+		f := flag.NewFlagSet("", flag.ExitOnError)
+		backlog := f.String("backlog", "today", "")
+		f.Parse(args)
+		backlogArg = *backlog
+	}
+	if backlogArg != "today" {
+		var err error
+		backlog, err = cxfunc.ParseDuration(backlogArg)
+		if err != nil {
+			zr.Error(zr.EInvalidArg, "^backlog", ":^", backlog)
+			return
+		}
+	}
 	// detect modified files in the current folder and its subfolders
 	ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
 		if backlogArg == "today" && modTime < today {
@@ -46,6 +64,13 @@ func logTime(cmd Command, args []string) {
 				fmt.Println(text)
 			}
 			return
+		}
+		if backlog != 0 {
+			tm := parseTime(modTime)
+			diff := now.Sub(tm)
+			if diff > backlog {
+				return
+			}
 		}
 		hasEntry := logEntries[path][modTime]
 		if hasEntry {
