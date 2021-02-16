@@ -33,32 +33,47 @@ const AutotimeFilename = "autotime.log"
 func logTime(cmd Command, args []string) {
 	var (
 		backlogArg time.Duration
+		repeatArg  time.Duration
 		verboseArg bool
-		now        = time.Now()
-		today      = now.Format("2006-01-02")
-		logFiles   = ltListAutotimeFiles()
-		logEntries = ltGetLogEntries(logFiles)
-		changes    = map[string]string{} // key:path value:modTime
 	)
 	// read arguments
 	{
 		var (
 			fl      = flag.NewFlagSet("", flag.ExitOnError)
 			backlog = fl.String("backlog", "today", "")
+			repeat  = fl.String("repeat", "0seconds", "")
 			verbose = fl.Bool("verbose", false, "")
 		)
 		fl.Parse(args)
+		var err error
 		if *backlog != "today" {
-			var err error
 			backlogArg, err = cxfunc.ParseDuration(*backlog)
 			if err != nil {
 				zr.Error(zr.EInvalidArg, "^backlog", ":^", backlogArg)
 				return
 			}
 		}
+		repeatArg, err = cxfunc.ParseDuration(*repeat)
+		if err != nil {
+			zr.Error(zr.EInvalidArg, "^repeat", ":^", repeatArg)
+			return
+		}
+		if repeatArg > 0 {
+			fmt.Println("log-time will repeat every: " + repeatArg.String())
+		}
 		verboseArg = *verbose
 	}
 	for {
+		var (
+			now        = time.Now()
+			today      = now.Format("2006-01-02")
+			logFiles   = ltListAutotimeFiles()
+			logEntries = ltGetLogEntries(logFiles)
+			changes    = map[string]string{} // key:path value:modTime
+		)
+		if repeatArg > 0 {
+			fmt.Println("log-time at " + now.Format("2006-01-02 15:04:05"))
+		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
 			if backlogArg == 0 && modTime < today {
@@ -93,7 +108,11 @@ func logTime(cmd Command, args []string) {
 			}
 			fmt.Println(text)
 		}
-		break
+		if repeatArg > 0 {
+			time.Sleep(repeatArg)
+		} else {
+			break
+		}
 	}
 	fmt.Println()
 } //                                                                     logTime
