@@ -30,28 +30,30 @@ const AutotimeFilename = "autotime.log"
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	var (
-		backlog = "today"
-		verbose = false
-
+		backlogArg = "today"
+		verboseArg = false
 		now        = time.Now()
 		today      = now.Format("2006-01-02")
 		logFiles   = ltListAutotimeFiles()
 		logEntries = ltGetLogEntries(logFiles)
 		changes    = map[string]string{} // key:path value:modTime
 	)
+	// detect modified files in the current folder and its subfolders
 	ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
-		if backlog == "today" && modTime < today {
-			if verbose {
+		if backlogArg == "today" && modTime < today {
+			if verboseArg {
 				text := modTime + " SKIP: " + path
 				fmt.Println(text)
 			}
 			return
 		}
 		hasEntry := logEntries[path][modTime]
-		if !hasEntry {
-			changes[path] = modTime
+		if hasEntry {
+			return
 		}
+		changes[path] = modTime
 	})
+	// write changed timestamps and paths to the nearest ancestor log file
 	var prev string
 	for path, modTime := range changes {
 		text := modTime + " " + path

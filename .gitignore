@@ -22,9 +22,9 @@ cover.out
 
 ## binary files
 *.exe
-*.exe*
 *.zip
 /cmdx
 app
+debug.test
 
 ## end

@@ -16,7 +16,7 @@
             "mode": "debug",
             "program": "${fileDirname}",
             "env": {},
-            "args": ["log-time"],
+            "args": ["log-time", "--backlog=2days"],
 
         }
     ]
