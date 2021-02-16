@@ -11,6 +11,7 @@ package main
 //       maxLineLength int,
 //   ) (ret []string)
 //   getFilesMap(dir, filter string) FilesMap
+//   isHelpRequested(args []string)
 //   parseTime(value interface{}) time.Time
 //   sortUniqueStrings(a []string) []string
 //   splitArgsFilter(args []string) (retArgs []string, filter string)
@@ -84,6 +85,18 @@ func getFilesMap(dir, filter string) FilesMap {
 	)
 	return ret
 } //                                                                 getFilesMap
+
+// isHelpRequested returns true if args contains a help request.
+// That is '?', 'h', 'hlp', or 'help' (or '/help', '-help', etc.)
+func isHelpRequested(args []string) bool {
+	for _, arg := range args {
+		arg = strings.ToLower(strings.Trim(arg, "-/\\"))
+		if arg == "?" || arg == "h" || arg == "hlp" || arg == "help" {
+			return true
+		}
+	}
+	return false
+} //                                                             isHelpRequested
 
 // parseTime converts any string-like value to time.Time without returning
 // an error if the conversion failed, in which case it logs an error
