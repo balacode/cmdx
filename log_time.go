@@ -32,45 +32,45 @@ const AutotimeFilename = "autotime.log"
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	var (
-		backlogArg string
+		backlogArg time.Duration
 		verboseArg bool
 		now        = time.Now()
 		today      = now.Format("2006-01-02")
 		logFiles   = ltListAutotimeFiles()
 		logEntries = ltGetLogEntries(logFiles)
 		changes    = map[string]string{} // key:path value:modTime
-		backlog    time.Duration
 	)
 	// read arguments
 	{
-		f := flag.NewFlagSet("", flag.ExitOnError)
-		backlog := f.String("backlog", "today", "")
-		verbose := f.Bool("verbose", false, "")
-		f.Parse(args)
-		backlogArg = *backlog
-		verboseArg = *verbose
-	}
-	if backlogArg != "today" {
-		var err error
-		backlog, err = cxfunc.ParseDuration(backlogArg)
-		if err != nil {
-			zr.Error(zr.EInvalidArg, "^backlog", ":^", backlog)
-			return
+		var (
+			fl      = flag.NewFlagSet("", flag.ExitOnError)
+			backlog = fl.String("backlog", "today", "")
+			verbose = fl.Bool("verbose", false, "")
+		)
+		fl.Parse(args)
+		if *backlog != "today" {
+			var err error
+			backlogArg, err = cxfunc.ParseDuration(*backlog)
+			if err != nil {
+				zr.Error(zr.EInvalidArg, "^backlog", ":^", backlogArg)
+				return
+			}
 		}
+		verboseArg = *verbose
 	}
 	// detect modified files in the current folder and its subfolders
 	ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
-		if backlogArg == "today" && modTime < today {
+		if backlogArg == 0 && modTime < today {
 			if verboseArg {
 				text := modTime + " SKIP: " + path
 				fmt.Println(text)
 			}
 			return
 		}
-		if backlog != 0 {
+		if backlogArg != 0 {
 			tm := parseTime(modTime)
 			diff := now.Sub(tm)
-			if diff > backlog {
+			if diff > backlogArg {
 				return
 			}
 		}
