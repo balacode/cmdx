@@ -33,7 +33,7 @@ const AutotimeFilename = "autotime.log"
 func logTime(cmd Command, args []string) {
 	var (
 		backlogArg string
-		verboseArg = false
+		verboseArg bool
 		now        = time.Now()
 		today      = now.Format("2006-01-02")
 		logFiles   = ltListAutotimeFiles()
@@ -45,8 +45,10 @@ func logTime(cmd Command, args []string) {
 	{
 		f := flag.NewFlagSet("", flag.ExitOnError)
 		backlog := f.String("backlog", "today", "")
+		verbose := f.Bool("verbose", false, "")
 		f.Parse(args)
 		backlogArg = *backlog
+		verboseArg = *verbose
 	}
 	if backlogArg != "today" {
 		var err error
