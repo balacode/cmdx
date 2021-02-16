@@ -41,7 +41,7 @@ func logTime(cmd Command, args []string) {
 		var (
 			fl      = flag.NewFlagSet("", flag.ExitOnError)
 			backlog = fl.String("backlog", "today", "")
-			repeat  = fl.String("repeat", "0seconds", "")
+			repeat  = fl.String("repeat", "disabled", "")
 			verbose = fl.Bool("verbose", false, "")
 		)
 		fl.Parse(args)
@@ -53,12 +53,12 @@ func logTime(cmd Command, args []string) {
 				return
 			}
 		}
-		repeatArg, err = cxfunc.ParseDuration(*repeat)
-		if err != nil {
-			zr.Error(zr.EInvalidArg, "^repeat", ":^", repeatArg)
-			return
-		}
-		if repeatArg > 0 {
+		if *repeat != "disabled" {
+			repeatArg, err = cxfunc.ParseDuration(*repeat)
+			if err != nil {
+				zr.Error(zr.EInvalidArg, "^repeat", ":^", repeatArg)
+				return
+			}
 			fmt.Println("log-time will repeat every: " + repeatArg.String())
 		}
 		verboseArg = *verbose
@@ -72,7 +72,8 @@ func logTime(cmd Command, args []string) {
 			changes    = map[string]string{} // key:path value:modTime
 		)
 		if repeatArg > 0 {
-			fmt.Println("log-time at " + now.Format("2006-01-02 15:04:05"))
+			timestamp := now.Format("2006-01-02 15:04:05")
+			fmt.Println("\n" + "log-time ---------> " + timestamp)
 		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
@@ -103,7 +104,7 @@ func logTime(cmd Command, args []string) {
 			logFile := ltGetAutotimeFile(path)
 			zr.AppendToTextFile(logFile, text+"\n")
 			if prev != logFile {
-				fmt.Println("\nLOGFILE ----------> " + logFile + ":")
+				fmt.Println("\n" + "log file ---------> " + logFile + ":")
 				prev = logFile
 			}
 			fmt.Println(text)
