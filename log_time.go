@@ -58,39 +58,42 @@ func logTime(cmd Command, args []string) {
 		}
 		verboseArg = *verbose
 	}
-	// detect modified files in the current folder and its subfolders
-	ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
-		if backlogArg == 0 && modTime < today {
-			if verboseArg {
-				text := modTime + " SKIP: " + path
-				fmt.Println(text)
-			}
-			return
-		}
-		if backlogArg != 0 {
-			tm := parseTime(modTime)
-			diff := now.Sub(tm)
-			if diff > backlogArg {
+	for {
+		// detect modified files in the current folder and its subfolders
+		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
+			if backlogArg == 0 && modTime < today {
+				if verboseArg {
+					text := modTime + " SKIP: " + path
+					fmt.Println(text)
+				}
 				return
 			}
+			if backlogArg != 0 {
+				tm := parseTime(modTime)
+				diff := now.Sub(tm)
+				if diff > backlogArg {
+					return
+				}
+			}
+			hasEntry := logEntries[path][modTime]
+			if hasEntry {
+				return
+			}
+			changes[path] = modTime
+		})
+		// write changed timestamps and paths to the nearest ancestor log file
+		var prev string
+		for path, modTime := range changes {
+			text := modTime + " " + path
+			logFile := ltGetAutotimeFile(path)
+			zr.AppendToTextFile(logFile, text+"\n")
+			if prev != logFile {
+				fmt.Println("\nLOGFILE ----------> " + logFile + ":")
+				prev = logFile
+			}
+			fmt.Println(text)
 		}
-		hasEntry := logEntries[path][modTime]
-		if hasEntry {
-			return
-		}
-		changes[path] = modTime
-	})
-	// write changed timestamps and paths to the nearest ancestor log file
-	var prev string
-	for path, modTime := range changes {
-		text := modTime + " " + path
-		logFile := ltGetAutotimeFile(path)
-		zr.AppendToTextFile(logFile, text+"\n")
-		if prev != logFile {
-			fmt.Println("\nLOGFILE ----------> " + logFile + ":")
-			prev = logFile
-		}
-		fmt.Println(text)
+		break
 	}
 	fmt.Println()
 } //                                                                     logTime
