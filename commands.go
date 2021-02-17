@@ -191,6 +191,13 @@ var AllCommands = []Command{
 	},
 	// Other:
 	{
+		ShortName: "uuid",
+		FullName:  "print-uuid",
+		ShortInfo: "Generates and prints one or more UUIDs",
+		Handler:   printUUID,
+		Category:  4,
+	},
+	{
 		ShortName: "mw",
 		FullName:  "match-words",
 		ShortInfo: "Lists all words that use all the specified letters.",
