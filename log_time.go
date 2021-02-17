@@ -11,6 +11,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"hash/crc32"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -63,13 +64,17 @@ func logTime(cmd Command, args []string) {
 		}
 		verboseArg = *verbose
 	}
+	type LogEntry struct {
+		modTime  string
+		checksum string
+	}
 	for {
 		var (
 			now        = time.Now()
 			today      = now.Format("2006-01-02")
 			logFiles   = ltListAutotimeFiles()
 			logEntries = ltGetLogEntries(logFiles)
-			changes    = map[string]string{} // key:path value:modTime
+			changes    = map[string]LogEntry{}
 		)
 		if repeatArg > 0 {
 			timestamp := now.Format("2006-01-02 15:04:05")
@@ -95,12 +100,20 @@ func logTime(cmd Command, args []string) {
 			if hasEntry {
 				return
 			}
-			changes[path] = modTime
+			// calculate file's checksum
+			content, err := ioutil.ReadFile(path)
+			if err != nil {
+				zr.Error(err)
+				return
+			}
+			chk := fmt.Sprintf("%08X", crc32.ChecksumIEEE(content))
+			//
+			changes[path] = LogEntry{modTime: modTime, checksum: chk}
 		})
 		// write changed timestamps and paths to the nearest ancestor log file
 		var prev string
-		for path, modTime := range changes {
-			text := modTime + " " + path
+		for path, it := range changes {
+			text := it.modTime + " " + it.checksum + " " + path
 			logFile := ltGetAutotimeFile(path)
 			zr.AppendToTextFile(logFile, text+"\n")
 			if prev != logFile {
@@ -155,14 +168,17 @@ func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 		lines := strings.Split(string(content), "\n")
 		for _, line := range lines {
 			line = strings.TrimSpace(line)
-			var date, filename string
-			if len(line) >= 19 && zr.IsDate(line[:19]) {
-				date, filename = line[:19], line[20:] // YYYY-MM-DD hh:mm:ss
-			} else if len(line) >= 16 && zr.IsDate(line[:16]) {
-				date, filename = line[:16], line[17:] // YYYY-MM-DD hh:mm
+			var date, checksum, filename string
+			if len(line) >= 29 && zr.IsDate(line[:19]) {
+				// YYYY-MM-DD hh:mm:ss 00000000 /PATH
+				date, checksum, filename = line[:19], line[20:28], line[29:]
+			} else if len(line) >= 26 && zr.IsDate(line[:16]) {
+				// YYYY-MM-DD hh:mm 00000000 /PATH
+				date, checksum, filename = line[:16], line[17:25], line[26:]
 			} else {
 				continue
 			}
+			_ = checksum
 			filename = strings.TrimSpace(filename)
 			if ret[filename] == nil {
 				ret[filename] = map[string]bool{}
