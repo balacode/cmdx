@@ -64,7 +64,7 @@ func logTime(cmd Command, args []string) {
 		}
 		verboseArg = *verbose
 	}
-	type LogEntry struct {
+	type Change struct {
 		modTime  string
 		checksum string
 	}
@@ -74,7 +74,7 @@ func logTime(cmd Command, args []string) {
 			today      = now.Format("2006-01-02")
 			logFiles   = ltListAutotimeFiles()
 			logEntries = ltGetLogEntries(logFiles)
-			changes    = map[string]LogEntry{}
+			changes    = map[string]Change{}
 		)
 		if repeatArg > 0 {
 			timestamp := now.Format("2006-01-02 15:04:05")
@@ -96,8 +96,8 @@ func logTime(cmd Command, args []string) {
 					return
 				}
 			}
-			hasEntry := logEntries[path][modTime]
-			if hasEntry {
+			hasModTime := logEntries[path][modTime]
+			if hasModTime {
 				return
 			}
 			// calculate file's checksum
@@ -106,9 +106,13 @@ func logTime(cmd Command, args []string) {
 				zr.Error(err)
 				return
 			}
-			chk := fmt.Sprintf("%08X", crc32.ChecksumIEEE(content))
-			//
-			changes[path] = LogEntry{modTime: modTime, checksum: chk}
+			checksum := fmt.Sprintf("%08X", crc32.ChecksumIEEE(content))
+			hasChecksum := logEntries[path][checksum]
+			if hasChecksum {
+				return
+			}
+			// if the change is unique, add the file to
+			changes[path] = Change{modTime: modTime, checksum: checksum}
 		})
 		// write changed timestamps and paths to the nearest ancestor log file
 		var prev string
@@ -178,12 +182,12 @@ func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 			} else {
 				continue
 			}
-			_ = checksum
 			filename = strings.TrimSpace(filename)
 			if ret[filename] == nil {
 				ret[filename] = map[string]bool{}
 			}
 			ret[filename][date] = true
+			ret[filename][checksum] = true
 		}
 	}
 	return ret
