@@ -33,9 +33,9 @@ const AutotimeFilename = "autotime.log"
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	var (
-		backlogArg time.Duration
-		repeatArg  time.Duration
-		verboseArg bool
+		backlogDur time.Duration
+		repeatDur  time.Duration
+		isVerbose  bool
 	)
 	// allow zr.Error() to print before exiting (it uses a goroutine to output)
 	defer time.Sleep(1 * time.Second)
@@ -49,29 +49,33 @@ func logTime(cmd Command, args []string) {
 			verbose = fl.Bool("verbose", false, "")
 		)
 		fl.Parse(args)
+		//
+		// --backlog
 		var err error
 		if *backlog != "today" {
-			backlogArg, err = cxfunc.ParseDuration(*backlog)
+			backlogDur, err = cxfunc.ParseDuration(*backlog)
 			if err != nil {
-				zr.Error(zr.EInvalidArg, "^backlog", ":^", backlogArg)
+				zr.Error(zr.EInvalidArg, "^backlog", ":^", *backlog)
 				return
 			}
 		}
+		// --repeat
 		if *repeat != "disabled" {
-			repeatArg, err = cxfunc.ParseDuration(*repeat)
+			repeatDur, err = cxfunc.ParseDuration(*repeat)
 			if err != nil {
-				zr.Error(zr.EInvalidArg, "^repeat", ":^", repeatArg)
+				zr.Error(zr.EInvalidArg, "^repeat", ":^", *repeat)
 				return
 			}
-			fmt.Println("\n" + "log-time repeat --> " + repeatArg.String())
+			fmt.Println("\n" + "log-time repeat --> " + repeatDur.String())
 		}
-		verboseArg = *verbose
-	}
-	type Change struct {
-		modTime  string
-		checksum string
+		// --verbose
+		isVerbose = *verbose
 	}
 	for {
+		type Change struct {
+			modTime  string
+			checksum string
+		}
 		var (
 			now        = time.Now()
 			today      = now.Format("2006-01-02")
@@ -79,23 +83,23 @@ func logTime(cmd Command, args []string) {
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
 		)
-		if repeatArg > 0 {
+		if repeatDur > 0 {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time scan ----> " + timestamp)
 		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
-			if backlogArg == 0 && modTime < today {
-				if verboseArg {
+			if backlogDur == 0 && modTime < today {
+				if isVerbose {
 					text := modTime + " SKIP: " + path
 					fmt.Println(text)
 				}
 				return
 			}
-			if backlogArg != 0 {
+			if backlogDur != 0 {
 				tm := parseTime(modTime)
 				diff := now.Sub(tm)
-				if diff > backlogArg {
+				if diff > backlogDur {
 					return
 				}
 			}
@@ -130,10 +134,10 @@ func logTime(cmd Command, args []string) {
 			fmt.Println(text)
 		}
 		// continue looping if '--repeat' has been specified, exit otherwise
-		if repeatArg > 0 {
+		if repeatDur > 0 {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time done ----> " + timestamp)
-			time.Sleep(repeatArg)
+			time.Sleep(repeatDur)
 			continue
 		}
 		break
