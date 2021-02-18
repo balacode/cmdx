@@ -15,9 +15,14 @@
             "request": "launch",
             "mode": "debug",
             "program": "${fileDirname}",
+            "cwd": "${fileDirname}",
             "env": {},
-            "args": ["log-time", "--backlog=2days"],
-
+            "args": [
+                "log-time",
+                "--backlog=24hours",
+                "--repeat=disabled",
+                "--verbose=false"
+            ]
         }
     ]
 }
