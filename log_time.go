@@ -45,6 +45,11 @@ func logTime(cmd Command, args []string) {
 	defer time.Sleep(1 * time.Second)
 	//
 	var cfg = ltParseArgs(args)
+	if cfg.isVerbose {
+		fmt.Println("log-time --verbose=true")
+		fmt.Println("log-time --backlog=" + cfg.backlogDur.String())
+		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
+	}
 	for {
 		type Change struct {
 			modTime  string
@@ -234,7 +239,6 @@ func ltParseArgs(args []string) logTimeConfig {
 			zr.Error(zr.EInvalidArg, "^repeat", ":^", *repeat)
 			return logTimeConfig{isValid: false}
 		}
-		fmt.Println("\n" + "log-time repeat --> " + ret.repeatDur.String())
 	}
 	// --verbose
 	ret.isVerbose = *verbose
