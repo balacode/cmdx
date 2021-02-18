@@ -37,6 +37,9 @@ func logTime(cmd Command, args []string) {
 		repeatArg  time.Duration
 		verboseArg bool
 	)
+	// allow zr.Error() to print before exiting (it uses a goroutine to output)
+	defer time.Sleep(1 * time.Second)
+	//
 	// read arguments
 	{
 		var (
@@ -169,7 +172,7 @@ func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 	for _, path := range logFiles {
 		content, err := ioutil.ReadFile(path)
 		if err != nil {
-			fmt.Println("ERROR: ", err)
+			zr.Error(err)
 			continue
 		}
 		lines := strings.Split(string(content), "\n")
@@ -240,7 +243,7 @@ func ltProcessTextFilesInCurrentFolder(
 ) {
 	currentFolder, err := os.Getwd()
 	if err != nil {
-		fmt.Println(zr.Error(err))
+		zr.Error(err)
 		return
 	}
 	sep := string(os.PathSeparator)
@@ -270,7 +273,7 @@ func ltProcessTextFilesInCurrentFolder(
 		},
 	)
 	if err != nil {
-		fmt.Println(zr.Error(err))
+		zr.Error(err)
 	}
 } //                                           ltProcessTextFilesInCurrentFolder
 
