@@ -44,7 +44,7 @@ func logTime(cmd Command, args []string) {
 	{
 		var (
 			fl      = flag.NewFlagSet("", flag.ExitOnError)
-			backlog = fl.String("backlog", "today", "")
+			backlog = fl.String("backlog", "24hours", "")
 			repeat  = fl.String("repeat", "disabled", "")
 			verbose = fl.Bool("verbose", false, "")
 		)
@@ -52,12 +52,10 @@ func logTime(cmd Command, args []string) {
 		//
 		// --backlog
 		var err error
-		if *backlog != "today" {
-			backlogDur, err = cxfunc.ParseDuration(*backlog)
-			if err != nil {
-				zr.Error(zr.EInvalidArg, "^backlog", ":^", *backlog)
-				return
-			}
+		backlogDur, err = cxfunc.ParseDuration(*backlog)
+		if err != nil {
+			zr.Error(zr.EInvalidArg, "^backlog", ":^", *backlog)
+			return
 		}
 		// --repeat
 		if *repeat != "disabled" {
@@ -78,7 +76,6 @@ func logTime(cmd Command, args []string) {
 		}
 		var (
 			now        = time.Now()
-			today      = now.Format("2006-01-02")
 			logFiles   = ltListAutotimeFiles()
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
@@ -89,19 +86,14 @@ func logTime(cmd Command, args []string) {
 		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
-			if backlogDur == 0 && modTime < today {
+			tm := parseTime(modTime)
+			diff := now.Sub(tm)
+			if diff > backlogDur {
 				if isVerbose {
-					text := modTime + " SKIP: " + path
+					text := modTime + " skip: " + path
 					fmt.Println(text)
 				}
 				return
-			}
-			if backlogDur != 0 {
-				tm := parseTime(modTime)
-				diff := now.Sub(tm)
-				if diff > backlogDur {
-					return
-				}
 			}
 			hasModTime := logEntries[path][modTime]
 			if hasModTime {
