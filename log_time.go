@@ -60,7 +60,7 @@ func logTime(cmd Command, args []string) {
 				zr.Error(zr.EInvalidArg, "^repeat", ":^", repeatArg)
 				return
 			}
-			fmt.Println("log-time will repeat every: " + repeatArg.String())
+			fmt.Println("\n" + "log-time repeat --> " + repeatArg.String())
 		}
 		verboseArg = *verbose
 	}
@@ -77,8 +77,8 @@ func logTime(cmd Command, args []string) {
 			changes    = map[string]Change{}
 		)
 		if repeatArg > 0 {
-			timestamp := now.Format("2006-01-02 15:04:05")
-			fmt.Println("\n" + "log-time ---------> " + timestamp)
+			timestamp := time.Now().Format("2006-01-02 15:04:05")
+			fmt.Println("\n" + "log-time scan ----> " + timestamp)
 		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
@@ -121,16 +121,19 @@ func logTime(cmd Command, args []string) {
 			logFile := ltGetAutotimeFile(path)
 			zr.AppendToTextFile(logFile, text+"\n")
 			if prev != logFile {
-				fmt.Println("\n" + "log file ---------> " + logFile + ":")
+				fmt.Println("\n" + "log-time file ----> " + logFile + ":")
 				prev = logFile
 			}
 			fmt.Println(text)
 		}
+		// continue looping if '--repeat' has been specified, exit otherwise
 		if repeatArg > 0 {
+			timestamp := time.Now().Format("2006-01-02 15:04:05")
+			fmt.Println("\n" + "log-time done ----> " + timestamp)
 			time.Sleep(repeatArg)
-		} else {
-			break
+			continue
 		}
+		break
 	}
 	fmt.Println()
 } //                                                                     logTime
