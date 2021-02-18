@@ -40,7 +40,10 @@ type logTimeConfig struct {
 
 // logTime _ _
 func logTime(cmd Command, args []string) {
-	//
+	if isHelpRequested(args) {
+		fmt.Println(logTimeHelp)
+		return
+	}
 	// allow zr.Error() to print before exiting (it uses a goroutine to output)
 	defer time.Sleep(1 * time.Second)
 	//
@@ -286,5 +289,50 @@ func ltProcessTextFilesInCurrentFolder(
 		zr.Error(err)
 	}
 } //                                           ltProcessTextFilesInCurrentFolder
+
+const logTimeHelp = `
+--------------------------------------------------------------------------------
+LOG-TIME UTILITY
+--------------------------------------------------------------------------------
+Checks all text files in the current folder for changes and logs the timestamp,
+CRC-32 checksum and file path of changed files to the nearest 'autotime.log'.
+
+The nearest 'autotime.log' file can be located either in the current folder,
+or in one of its direct parent folders.
+
+If a given file's checksum is already logged in the log file, the new change
+will not be logged even if the file has a newer modification time. This
+prevents reverted files (e.g. by GIT) from getting logged as new changes.
+
+Accepts the following options:
+
+--backlog=<duration>
+
+    Specifies how far back from the current time to look for changes.
+    Older changes will be ignored.
+
+    Default:    24hours
+    Examples:   --backlog=12hours  -backlog=1.5months  -backlog=1year
+
+--repeat=disabled or --repeat=<duration>
+
+    When not specified, or 'disabled', the utility runs once and exits.
+
+    When specified with a time duration, the utility will keep repeating,
+    scanning for changes, then idling for the given duration. You will
+    need to press CTRL+C or close the terminal to stop this loop.
+
+    Default:    disabled
+    Examples:   --duration=1minute  -duration=1.5hours -duration=30seconds
+
+--verbose=false or --verbose=true
+
+    When true, displays additional information such as the value of each
+    configuration parameter and the time when each scan starts and stops.
+
+    Default:    false
+
+--------------------------------------------------------------------------------
+` //                                                                 logTimeHelp
 
 // end
