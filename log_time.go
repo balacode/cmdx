@@ -27,48 +27,24 @@ import (
 // AutotimeFilename _ _
 const AutotimeFilename = "autotime.log"
 
+// logTimeConfig _ _
+type logTimeConfig struct {
+	isValid    bool
+	isVerbose  bool
+	backlogDur time.Duration
+	repeatDur  time.Duration
+} //                                                               logTimeConfig
+
 // -----------------------------------------------------------------------------
 // # Command Function
 
 // logTime _ _
 func logTime(cmd Command, args []string) {
-	var (
-		backlogDur time.Duration
-		repeatDur  time.Duration
-		isVerbose  bool
-	)
+	//
 	// allow zr.Error() to print before exiting (it uses a goroutine to output)
 	defer time.Sleep(1 * time.Second)
 	//
-	// read arguments
-	{
-		var (
-			fl      = flag.NewFlagSet("", flag.ExitOnError)
-			backlog = fl.String("backlog", "24hours", "")
-			repeat  = fl.String("repeat", "disabled", "")
-			verbose = fl.Bool("verbose", false, "")
-		)
-		fl.Parse(args)
-		//
-		// --backlog
-		var err error
-		backlogDur, err = cxfunc.ParseDuration(*backlog)
-		if err != nil {
-			zr.Error(zr.EInvalidArg, "^backlog", ":^", *backlog)
-			return
-		}
-		// --repeat
-		if *repeat != "disabled" {
-			repeatDur, err = cxfunc.ParseDuration(*repeat)
-			if err != nil {
-				zr.Error(zr.EInvalidArg, "^repeat", ":^", *repeat)
-				return
-			}
-			fmt.Println("\n" + "log-time repeat --> " + repeatDur.String())
-		}
-		// --verbose
-		isVerbose = *verbose
-	}
+	var cfg = ltParseArgs(args)
 	for {
 		type Change struct {
 			modTime  string
@@ -80,7 +56,7 @@ func logTime(cmd Command, args []string) {
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
 		)
-		if repeatDur > 0 {
+		if cfg.repeatDur > 0 {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time scan ----> " + timestamp)
 		}
@@ -88,8 +64,8 @@ func logTime(cmd Command, args []string) {
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
 			tm := parseTime(modTime)
 			diff := now.Sub(tm)
-			if diff > backlogDur {
-				if isVerbose {
+			if diff > cfg.backlogDur {
+				if cfg.isVerbose {
 					text := modTime + " skip: " + path
 					fmt.Println(text)
 				}
@@ -126,10 +102,10 @@ func logTime(cmd Command, args []string) {
 			fmt.Println(text)
 		}
 		// continue looping if '--repeat' has been specified, exit otherwise
-		if repeatDur > 0 {
+		if cfg.repeatDur > 0 {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time done ----> " + timestamp)
-			time.Sleep(repeatDur)
+			time.Sleep(cfg.repeatDur)
 			continue
 		}
 		break
@@ -232,6 +208,40 @@ func ltListAutotimeFiles() []string {
 	})
 	return ret
 } //                                                         ltListAutotimeFiles
+
+// ltParseArgs _ _
+func ltParseArgs(args []string) logTimeConfig {
+	var (
+		fl      = flag.NewFlagSet("", flag.ExitOnError)
+		backlog = fl.String("backlog", "24hours", "")
+		repeat  = fl.String("repeat", "disabled", "")
+		verbose = fl.Bool("verbose", false, "")
+		ret     logTimeConfig
+	)
+	fl.Parse(args)
+	//
+	// --backlog
+	var err error
+	ret.backlogDur, err = cxfunc.ParseDuration(*backlog)
+	if err != nil {
+		zr.Error(zr.EInvalidArg, "^backlog", ":^", *backlog)
+		return logTimeConfig{isValid: false}
+	}
+	// --repeat
+	if *repeat != "disabled" {
+		ret.repeatDur, err = cxfunc.ParseDuration(*repeat)
+		if err != nil {
+			zr.Error(zr.EInvalidArg, "^repeat", ":^", *repeat)
+			return logTimeConfig{isValid: false}
+		}
+		fmt.Println("\n" + "log-time repeat --> " + ret.repeatDur.String())
+	}
+	// --verbose
+	ret.isVerbose = *verbose
+	//
+	ret.isValid = true
+	return ret
+} //                                                                 ltParseArgs
 
 // ltProcessTextFilesInCurrentFolder _ _
 func ltProcessTextFilesInCurrentFolder(
