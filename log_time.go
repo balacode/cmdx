@@ -94,16 +94,19 @@ func logTime(cmd Command, args []string) {
 			changes[path] = Change{modTime: modTime, checksum: checksum}
 		})
 		// write changed timestamps and paths to the nearest ancestor log file
-		var prev string
-		for path, it := range changes {
-			text := it.modTime + " " + it.checksum + " " + path
+		logs := map[string][]string{}
+		for path, info := range changes {
 			logFile := ltGetAutotimeFile(path)
-			zr.AppendToTextFile(logFile, text+"\n")
-			if prev != logFile {
-				fmt.Println("\n" + "log-time file ----> " + logFile + ":")
-				prev = logFile
-			}
-			fmt.Println(text)
+			text := info.modTime + " " + info.checksum + " " + path
+			logs[logFile] = append(logs[logFile], text)
+		}
+		for logFile, lines := range logs {
+			sort.Slice(lines, func(i, j int) bool {
+				return lines[i] < lines[j]
+			})
+			text := strings.Join(lines, "\n") + "\n"
+			zr.AppendToTextFile(logFile, text)
+			fmt.Println("\n" + "log-time file ----> " + logFile + ":\n" + text)
 		}
 		if cfg.repeatDur > 0 || cfg.isVerbose {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
