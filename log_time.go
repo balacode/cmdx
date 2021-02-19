@@ -90,7 +90,7 @@ func logTime(cmd Command, args []string) {
 			if hasChecksum {
 				return
 			}
-			// if the change is unique, add the file to
+			// if the change is unique, add the file to changes list
 			changes[path] = Change{modTime: modTime, checksum: checksum}
 		})
 		// write changed timestamps and paths to the nearest ancestor log file
@@ -108,6 +108,7 @@ func logTime(cmd Command, args []string) {
 			zr.AppendToTextFile(logFile, text)
 			fmt.Println("\n" + "log-time file ----> " + logFile + ":\n" + text)
 		}
+		// display scan completion message
 		if cfg.repeatDur > 0 || cfg.isVerbose {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time done ----> " + timestamp)
@@ -118,7 +119,7 @@ func logTime(cmd Command, args []string) {
 			continue
 		}
 		break
-	}
+	} // for
 	fmt.Println()
 } //                                                                     logTime
 
