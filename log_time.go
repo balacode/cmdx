@@ -54,6 +54,10 @@ func logTime(cmd Command, args []string) {
 		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
 	}
 	for {
+		if cfg.repeatDur > 0 || cfg.isVerbose {
+			timestamp := time.Now().Format("2006-01-02 15:04:05")
+			fmt.Println("\n" + "log-time scan ----> " + timestamp)
+		}
 		type Change struct {
 			modTime  string
 			checksum string
@@ -64,19 +68,11 @@ func logTime(cmd Command, args []string) {
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
 		)
-		if cfg.repeatDur > 0 {
-			timestamp := time.Now().Format("2006-01-02 15:04:05")
-			fmt.Println("\n" + "log-time scan ----> " + timestamp)
-		}
 		// detect modified files in the current folder and its subfolders
 		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
 			tm := parseTime(modTime)
 			diff := now.Sub(tm)
 			if diff > cfg.backlogDur {
-				if cfg.isVerbose {
-					text := modTime + " skip: " + path
-					fmt.Println(text)
-				}
 				return
 			}
 			hasModTime := logEntries[path][modTime]
@@ -109,10 +105,12 @@ func logTime(cmd Command, args []string) {
 			}
 			fmt.Println(text)
 		}
-		// continue looping if '--repeat' has been specified, exit otherwise
-		if cfg.repeatDur > 0 {
+		if cfg.repeatDur > 0 || cfg.isVerbose {
 			timestamp := time.Now().Format("2006-01-02 15:04:05")
 			fmt.Println("\n" + "log-time done ----> " + timestamp)
+		}
+		// continue looping if '--repeat' has been specified, exit otherwise
+		if cfg.repeatDur > 0 {
 			time.Sleep(cfg.repeatDur)
 			continue
 		}
