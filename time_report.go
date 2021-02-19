@@ -104,7 +104,11 @@ func trMonthlySummary(
 	}
 	var cal zr.Calendar
 	for _, itm := range sums {
-		cal.Set(itm.Time, itm.Spent.Hours())
+		if itm.Spent < 0 {
+			cal.Set(itm.Time, "** >24")
+		} else {
+			cal.Set(itm.Time, itm.Spent.Hours())
+		}
 	}
 	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", len(lines))
 	env.Println(cal.String())
@@ -313,8 +317,17 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 		if _, exist := m[dt]; !exist {
 			m[dt] = &TimeItem{Time: parseTime(dt)}
 		}
+		if m[dt].Spent == -1 {
+			continue
+		}
 		m[dt].Count += t.Count
-		m[dt].Spent += t.Spent
+		sum := m[dt].Spent + t.Spent
+		if t.Spent > time.Hour*24 {
+			env.Println("> 24 HRS:", dt, t.Spent)
+			m[dt].Spent = -1
+		} else {
+			m[dt].Spent = sum
+		}
 	}
 	// extract items in map into slice
 	for _, t := range m {
