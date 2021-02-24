@@ -83,13 +83,6 @@ var AllCommands = []Command{
 		Category:  1,
 	},
 	{
-		ShortName: "mg",
-		FullName:  "merge",
-		ShortInfo: "Merge files in 'source=' into 'target=' (use merge.rgon)",
-		Handler:   mergeFiles,
-		Category:  1,
-	},
-	{
 		ShortName: "rd",
 		FullName:  "ren-dup",
 		ShortInfo: "Rename identical files: read <source>, rename in <target>",
