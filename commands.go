@@ -197,13 +197,6 @@ var AllCommands = []Command{
 		Handler:   matchWords,
 		Category:  4,
 	},
-	{
-		ShortName: "ri",
-		FullName:  "run",
-		ShortInfo: "Runs in interactive mode",
-		Handler:   runInteractive,
-		Category:  4,
-	},
 } //                                                                 AllCommands
 
 // end

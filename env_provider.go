@@ -57,11 +57,6 @@ type EnvProvider interface {
 	// -------------------------------------------------------------------------
 	// # File Operations
 
-	// NewDirWatcher returns a new DirWatcher that contains
-	// a channel that be sent the name of a file every time
-	// a file in the folder or one of its subfolders changes.
-	NewDirWatcher(dir string) (*fs.DirWatcher, error)
-
 	// DeleteFile deletes 'filename' and returns true if it no longer exists.
 	DeleteFile(filename string) bool
 
@@ -269,11 +264,6 @@ func (Env) Getwd() string {
 // PathSeparator _ _
 func (Env) PathSeparator() string {
 	return string(os.PathSeparator)
-}
-
-// NewDirWatcher _ _
-func (Env) NewDirWatcher(dir string) (*fs.DirWatcher, error) {
-	return fs.NewDirWatcher(dir)
 }
 
 // TextFileExts returns a list of all text file extensions.

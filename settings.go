@@ -29,8 +29,8 @@ var RootPath = hardcodedRootPath
 // TimeLogPaths _ _
 var TimeLogPaths = hardcodedTimeLogPaths
 
-// IgnoreFilenamesWith specifies file names ignored by such
-// functions as markTimeInFiles() and runInteractive().
+// IgnoreFilenamesWith specifies file names ignored
+// by such functions as markTimeInFiles().
 // I.e. if any part of a file's path contains one of these
 // substrings, the file will not be processed.
 var IgnoreFilenamesWith = hardcodedIgnoreFilenamesWith
