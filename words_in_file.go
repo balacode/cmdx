@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                          cmdx/[words_in_file.go]
+// CMDX Utilities Suite                                  cmdx/[words_in_file.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

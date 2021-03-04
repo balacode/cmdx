@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                            cmdx/[part_backup.go]
+// CMDX Utilities Suite                                    cmdx/[part_backup.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

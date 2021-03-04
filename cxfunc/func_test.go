@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                       cmdx/cxfunc/[func_test.go]
+// CMDX Utilities Suite                               cmdx/cxfunc/[func_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                          cmdx/[replace_lines.go]
+// CMDX Utilities Suite                                  cmdx/[replace_lines.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

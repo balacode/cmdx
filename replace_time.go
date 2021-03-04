@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                           cmdx/[replace_time.go]
+// CMDX Utilities Suite                                   cmdx/[replace_time.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

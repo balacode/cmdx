@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                           cmdx/[env_provider.go]
+// CMDX Utilities Suite                                   cmdx/[env_provider.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

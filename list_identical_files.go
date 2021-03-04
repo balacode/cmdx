@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                   cmdx/[list_identical_files.go]
+// CMDX Utilities Suite                           cmdx/[list_identical_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                    cmdx/[sort_lines_in_files.go]
+// CMDX Utilities Suite                            cmdx/[sort_lines_in_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

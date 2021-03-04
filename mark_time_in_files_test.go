@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                cmdx/[mark_time_in_files_test.go]
+// CMDX Utilities Suite                        cmdx/[mark_time_in_files_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

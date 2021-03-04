@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                            cmdx/[rename_identical_files_test.go]
+// CMDX Utilities Suite                    cmdx/[rename_identical_files_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

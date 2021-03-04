@@ -1,4 +1,4 @@
-# CMDX Tool
+# CMDX Utilities Suite
 A command line tool to manage files and process source code.
 
 This tool is a sort of Swiss-Army-Knife for managing files and text processing.

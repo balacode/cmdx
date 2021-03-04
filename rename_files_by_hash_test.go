@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                              cmdx/[rename_files_by_hash_test.go]
+// CMDX Utilities Suite                      cmdx/[rename_files_by_hash_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

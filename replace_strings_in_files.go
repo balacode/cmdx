@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                               cmdx/[replace_strings_in_files.go]
+// CMDX Utilities Suite                       cmdx/[replace_strings_in_files.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

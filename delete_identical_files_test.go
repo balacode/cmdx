@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                            cmdx/[delete_identical_files_test.go]
+// CMDX Utilities Suite                    cmdx/[delete_identical_files_test.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

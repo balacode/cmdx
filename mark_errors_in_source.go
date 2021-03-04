@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                  cmdx/[mark_errors_in_source.go]
+// CMDX Utilities Suite                          cmdx/[mark_errors_in_source.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 

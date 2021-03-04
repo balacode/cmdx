@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// CMDX Utility                                              cmdx/[hardcoded.go]
+// CMDX Utilities Suite                                      cmdx/[hardcoded.go]
 // (c) balarabe@protonmail.com                                    License: GPLv3
 // -----------------------------------------------------------------------------
 
