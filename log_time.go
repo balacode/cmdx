@@ -30,6 +30,7 @@ const AutotimeFilename = "autotime.log"
 // logTimeConfig _ _
 type logTimeConfig struct {
 	isValid    bool
+	path       string
 	backlogDur time.Duration
 	repeatDur  time.Duration
 	isVerbose  bool
@@ -49,6 +50,7 @@ func logTime(cmd Command, args []string) {
 	//
 	var cfg = ltParseArgs(args)
 	if cfg.isVerbose {
+		fmt.Println("log-time --path=" + cfg.path)
 		fmt.Println("log-time --backlog=" + cfg.backlogDur.String())
 		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
 		fmt.Println("log-time --verbose=true")
@@ -69,7 +71,7 @@ func logTime(cmd Command, args []string) {
 			changes    = map[string]Change{}
 		)
 		// detect modified files in the current folder and its subfolders
-		ltProcessTextFilesInCurrentFolder(func(path, modTime string) {
+		ltProcessTextFilesInPath(cfg.path, func(path, modTime string) {
 			tm := parseTime(modTime)
 			diff := now.Sub(tm)
 			if diff > cfg.backlogDur {
@@ -223,6 +225,7 @@ func ltListAutotimeFiles() []string {
 func ltParseArgs(args []string) logTimeConfig {
 	var (
 		fl      = flag.NewFlagSet("", flag.ExitOnError)
+		path    = fl.String("path", ".", "")
 		backlog = fl.String("backlog", "24hours", "")
 		repeat  = fl.String("repeat", "disabled", "")
 		verbose = fl.Bool("verbose", false, "")
@@ -230,6 +233,16 @@ func ltParseArgs(args []string) logTimeConfig {
 	)
 	fl.Parse(args)
 	//
+	// path
+	ret.path = *path
+	if ret.path == "" || ret.path == "." {
+		var err error
+		ret.path, err = os.Getwd()
+		if err != nil {
+			zr.Error(err)
+			return logTimeConfig{isValid: false}
+		}
+	}
 	// --backlog
 	var err error
 	ret.backlogDur, err = cxfunc.ParseDuration(*backlog)
@@ -252,18 +265,14 @@ func ltParseArgs(args []string) logTimeConfig {
 	return ret
 } //                                                                 ltParseArgs
 
-// ltProcessTextFilesInCurrentFolder _ _
-func ltProcessTextFilesInCurrentFolder(
+// ltProcessTextFilesInPath _ _
+func ltProcessTextFilesInPath(
+	scanPath string,
 	processFile func(path string, modTime string),
 ) {
-	currentFolder, err := os.Getwd()
-	if err != nil {
-		zr.Error(err)
-		return
-	}
 	sep := string(os.PathSeparator)
-	err = filepath.Walk(
-		currentFolder,
+	err := filepath.Walk(
+		scanPath,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return zr.Error("Error reading path", path, "due to:", err)
@@ -290,7 +299,7 @@ func ltProcessTextFilesInCurrentFolder(
 	if err != nil {
 		zr.Error(err)
 	}
-} //                                           ltProcessTextFilesInCurrentFolder
+} //                                                    ltProcessTextFilesInPath
 
 const logTimeHelp = `
 --------------------------------------------------------------------------------
