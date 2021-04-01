@@ -30,9 +30,9 @@ const AutotimeFilename = "autotime.log"
 // logTimeConfig _ _
 type logTimeConfig struct {
 	isValid    bool
-	isVerbose  bool
 	backlogDur time.Duration
 	repeatDur  time.Duration
+	isVerbose  bool
 } //                                                               logTimeConfig
 
 // -----------------------------------------------------------------------------
@@ -49,9 +49,9 @@ func logTime(cmd Command, args []string) {
 	//
 	var cfg = ltParseArgs(args)
 	if cfg.isVerbose {
-		fmt.Println("log-time --verbose=true")
 		fmt.Println("log-time --backlog=" + cfg.backlogDur.String())
 		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
+		fmt.Println("log-time --verbose=true")
 	}
 	for {
 		if cfg.repeatDur > 0 || cfg.isVerbose {
