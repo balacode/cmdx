@@ -271,11 +271,14 @@ func ltProcessTextFilesInPath(
 	processFile func(path string, modTime string),
 ) {
 	sep := string(os.PathSeparator)
-	err := filepath.Walk(
+	var err1, err2 error
+	err1 = filepath.Walk(
 		scanPath,
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
-				return zr.Error("Error reading path", path, "due to:", err)
+				// log, print and return an error, stopping the scan
+				err2 = zr.Error("Failed reading path:", path, "error:", err)
+				return err2
 			}
 			if info.IsDir() {
 				return nil
@@ -296,8 +299,8 @@ func ltProcessTextFilesInPath(
 			return nil
 		},
 	)
-	if err != nil {
-		zr.Error(err)
+	if err1 != nil && err1 != err2 {
+		zr.Error(err1)
 	}
 } //                                                    ltProcessTextFilesInPath
 
