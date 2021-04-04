@@ -39,6 +39,7 @@ func checksum(s string) string {
 	return fmt.Sprintf("%06X", chk)
 } //                                                                    checksum
 
+/*UNUSED:
 // filterLongLines _ _
 func filterLongLines(
 	lines []string,
@@ -57,6 +58,7 @@ func filterLongLines(
 	}
 	return ret
 } //                                                             filterLongLines
+:UNUSED*/
 
 // getFilesMap _ _
 func getFilesMap(dir, filter string) FilesMap {

@@ -30,7 +30,6 @@ package main
 import (
 	"fmt"
 	"regexp"
-	"sort"
 	"strings"
 	"time"
 
@@ -112,6 +111,7 @@ func trMonthlySummary(
 	env.Println()
 } //                                                            trMonthlySummary
 
+/*UNUSED:
 // trSummaryByDateText _ _
 func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	var items []TimeItem
@@ -132,6 +132,7 @@ func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	sort.Sort(TimeItemsByDateAndDescSpent(sum))
 	trPrintTimeItems(sum)
 } //                                                         trSummaryByDateText
+:UNUSED*/
 
 // -----------------------------------------------------------------------------
 // # Functions
@@ -270,6 +271,7 @@ func trPrintFaults(ar []TimeItem) {
 	}
 } //                                                               trPrintFaults
 
+/*UNUSED:
 // trPrintTimeItems _ _
 func trPrintTimeItems(entries []TimeItem) {
 	var (
@@ -303,6 +305,7 @@ func trPrintTimeItems(entries []TimeItem) {
 	env.Println(strings.Repeat("=", 35))
 	prt(prev, grand.Hours(), grand, "grand total")
 } //                                                            trPrintTimeItems
+:UNUSED*/
 
 // trSumByDate _ _
 func trSumByDate(items []TimeItem) (ret []TimeItem) {
@@ -333,6 +336,7 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 	return ret
 } //                                                                 trSumByDate
 
+/*UNUSED:
 // trSumByDateText _ _
 func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 	//
@@ -356,6 +360,7 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 	}
 	return ret
 } //                                                             trSumByDateText
+:UNUSED*/
 
 // -----------------------------------------------------------------------------
 // # Helper Functions
