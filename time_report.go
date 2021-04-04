@@ -22,7 +22,6 @@ package main
 //   trPrintTimeItems(entries []TimeItem)
 //   trSumByDate(items []TimeItem) (ret []TimeItem)
 //   trSumByDateText(items []TimeItem) (ret []TimeItem)
-//   trSummaryByDateText(minDate, maxDate interface{}, files []string)
 //
 // # Helper Functions
 //   trDateStr(val time.Time) string
@@ -38,8 +37,6 @@ import (
 	"github.com/balacode/zr"
 	fs "github.com/balacode/zr-fs"
 )
-
-type trMode bool
 
 const (
 	trAuto   = 1

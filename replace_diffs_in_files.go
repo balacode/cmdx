@@ -116,11 +116,6 @@ func replaceDiffsInFiles(cmd Command, args []string) {
 func (M replaceDiffsInFilesM) getFindRepls(
 	configLines []string,
 ) (ret []FindReplLines) {
-	const (
-		FreeMode = 0
-		FindMode = 1
-		ReplMode = 2
-	)
 	var (
 		mark      = DefaultMark
 		path      = DefaultPath
