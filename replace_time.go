@@ -62,11 +62,12 @@ func replaceTime(cmd Command, args []string) {
 		for _, line := range toLines {
 			if validTime.MatchString(line) {
 				tm := line[:TR_TIME_LEN]
-				if tm == tmPrev {
-					continue
-				}
-				tmPrev = tm
-				if from, exist := fromLines[tm]; exist {
+				from, exist := fromLines[tm]
+				if exist {
+					if tm == tmPrev {
+						continue
+					}
+					tmPrev = tm
 					for _, s := range from {
 						out.WriteString(s + "\n")
 					}
