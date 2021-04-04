@@ -11,8 +11,6 @@ import (
 	"strings"
 )
 
-const TR_TIME_LEN = 16 // length of 'YYYY-MM-DD hh:mm' in characters
-
 // replaceTime _ _
 func replaceTime(cmd Command, args []string) {
 	if len(args) < 2 {
@@ -20,10 +18,8 @@ func replaceTime(cmd Command, args []string) {
 		return
 	}
 	var (
-		fromFile  = args[0]
-		toFile    = args[1]
-		validTime = regexp.MustCompile(`^\d{4}-\d\d-\d\d \d\d:\d\d`)
-		//                             `YYYY-MM-DD hh:mm` ^
+		fromFile = args[0]
+		toFile   = args[1]
 	)
 	var fromLines = map[string][]string{}
 	{
@@ -37,13 +33,10 @@ func replaceTime(cmd Command, args []string) {
 			lines = strings.Split(content, "\n")
 		}
 		for _, line := range lines {
-			if len(line) < TR_TIME_LEN {
+			tm := rtExtractTime(line)
+			if tm == "" {
 				continue
 			}
-			if !validTime.MatchString(line) {
-				continue
-			}
-			tm := line[:TR_TIME_LEN]
 			fromLines[tm] = append(fromLines[tm], line)
 		}
 	}
@@ -60,8 +53,8 @@ func replaceTime(cmd Command, args []string) {
 	{
 		var tmPrev string
 		for _, line := range toLines {
-			if validTime.MatchString(line) {
-				tm := line[:TR_TIME_LEN]
+			tm := rtExtractTime(line)
+			if tm != "" {
 				from, exist := fromLines[tm]
 				if exist {
 					if tm == tmPrev {
@@ -82,5 +75,23 @@ func replaceTime(cmd Command, args []string) {
 	}
 	env.Printf("written '%s'\n", toFile)
 } //                                                                 replaceTime
+
+var (
+	// `YYYY-MM-DD hh:mm ` and `YYYY-MM-DD hh:mm:ss ` (note the ending space)
+	rtValidTime1 = regexp.MustCompile(`^\d{4}-\d\d-\d\d \d\d:\d\d `)
+	rtValidTime2 = regexp.MustCompile(`^\d{4}-\d\d-\d\d \d\d:\d\d:\d\d `)
+)
+
+// rtExtractTime _ _
+func rtExtractTime(line string) string {
+	var ret string
+	switch {
+	case rtValidTime2.MatchString(line):
+		ret = line[:19] + ":00" // 19 = length of 'YYYY-MM-DD hh:mm:ss'
+	case rtValidTime1.MatchString(line):
+		ret = line[:16] // 16 = length of 'YYYY-MM-DD hh:mm' in characters'
+	}
+	return ret
+} //                                                               rtExtractTime
 
 // end
