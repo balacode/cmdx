@@ -11,6 +11,8 @@ import (
 	"strings"
 )
 
+const TR_TIME_LEN = 16 // length of 'YYYY-MM-DD hh:mm' in characters
+
 // replaceTime _ _
 func replaceTime(cmd Command, args []string) {
 	if len(args) < 2 {
@@ -20,8 +22,8 @@ func replaceTime(cmd Command, args []string) {
 	var (
 		fromFile  = args[0]
 		toFile    = args[1]
-		validTime = regexp.MustCompile( // YYYY-MM-DD hh:mm
-			"^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} ")
+		validTime = regexp.MustCompile(`^\d{4}-\d\d-\d\d \d\d:\d\d`)
+		//                             `YYYY-MM-DD hh:mm` ^
 	)
 	var fromLines = map[string][]string{}
 	{
@@ -35,13 +37,13 @@ func replaceTime(cmd Command, args []string) {
 			lines = strings.Split(content, "\n")
 		}
 		for _, line := range lines {
-			if len(line) < 16 {
+			if len(line) < TR_TIME_LEN {
 				continue
 			}
 			if !validTime.MatchString(line) {
 				continue
 			}
-			tm := line[:16]
+			tm := line[:TR_TIME_LEN]
 			fromLines[tm] = append(fromLines[tm], line)
 		}
 	}
@@ -59,7 +61,7 @@ func replaceTime(cmd Command, args []string) {
 		var tmPrev string
 		for _, line := range toLines {
 			if validTime.MatchString(line) {
-				tm := line[:16]
+				tm := line[:TR_TIME_LEN]
 				if tm == tmPrev {
 					continue
 				}
