@@ -44,7 +44,7 @@ func wordsInFile(cmd Command, args []string) {
 				hasA    bool
 				hasD    bool
 			)
-			for _, ch := range []rune(string(chunk)) {
+			for _, ch := range string(chunk) {
 				isA, isD := unicode.IsLetter(ch), unicode.IsDigit(ch)
 				if isA {
 					hasA = true

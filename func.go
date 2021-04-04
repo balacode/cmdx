@@ -77,7 +77,7 @@ func getFilesMap(dir, filter string) FilesMap {
 			if info.IsDir() {
 				return nil
 			}
-			if strings.Index(strings.ToLower(path), filter) == -1 {
+			if !strings.Contains(strings.ToLower(path), filter) {
 				return nil
 			}
 			size := info.Size()

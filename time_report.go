@@ -26,7 +26,7 @@ package main
 // # Helper Functions
 //   trDateStr(val time.Time) string
 //   trDateTimeStr(val time.Time) string
-
+//
 import (
 	"fmt"
 	"regexp"
@@ -49,11 +49,9 @@ const (
 func timeReport(cmd Command, args []string) {
 	min, max, files := "1900-01-01", "9999-12-31", []string{"timelog.txt"}
 	dates := 0
+	re := regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
 	for _, arg := range args {
-		isDate, err := regexp.MatchString(`^\d{4}-\d{2}-\d{2}$`, arg)
-		if err != nil {
-			zr.Error("Failed matching^", arg, ":", err)
-		}
+		isDate := re.MatchString(arg)
 		if isDate {
 			dates++
 			switch dates {

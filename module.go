@@ -77,8 +77,7 @@ var VL = zr.VerboseLog
 
 const (
 	// HeaderSignatureRX _ _
-	HeaderSignatureRX = `:v: \d{4}-\d{2}-\d{2}` +
-		` \d{2}:\d{2}:\d{2} [0-9A-Fa-f]{6}`
+	HeaderSignatureRX = `:v: \d{4}-\d\d-\d\d \d\d:\d\d:\d\d [0-9A-Fa-f]{6}`
 
 	// HeaderTimePos _ _
 	HeaderTimePos = 4

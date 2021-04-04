@@ -23,6 +23,10 @@
                 "--backlog=24hours",
                 "--repeat=disabled",
                 "--verbose=false"
+
+                // "rt",
+                // "X:\\user\\plan\\read.file",
+                // "X:\\user\\plan\\write.file"
             ]
         }
     ]

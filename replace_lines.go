@@ -94,7 +94,7 @@ func replaceLines(
 	var M replaceLinesM
 	descLineCounts, batches := M.getBatches(findLines, replLines)
 	for _, batchSize := range descLineCounts {
-		b, _ := batches[batchSize]
+		b := batches[batchSize]
 		n := 0
 		lines, n = M.replaceMany(lines, b.FindLines, b.ReplLines, caseMode)
 		changes += n
@@ -122,12 +122,12 @@ func (M replaceLinesM) getBatches(
 	batches := map[int]*FindReplLinesBatch{}
 	for i, find := range finds {
 		n := len(find)
-		b, has := batches[n]
+		_, has := batches[n]
 		if !has {
 			batches[n] = &FindReplLinesBatch{}
 			lineCounts = append(lineCounts, n)
 		}
-		b, _ = batches[n]
+		b := batches[n]
 		b.FindLines = append(b.FindLines, find)
 		b.ReplLines = append(b.ReplLines, repls[i])
 	}

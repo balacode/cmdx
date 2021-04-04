@@ -20,33 +20,33 @@ func replaceTime(cmd Command, args []string) {
 	var (
 		fromFile  = args[0]
 		toFile    = args[1]
-		fromLines = map[string][]string{}
-		toLines   []string
 		validTime = regexp.MustCompile( // YYYY-MM-DD hh:mm
 			"^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2} ")
 	)
-	{ // fill 'fromLines' array
-		var ar []string
+	var fromLines = map[string][]string{}
+	{
+		var lines []string
 		{
 			data, done := env.ReadFile(fromFile)
 			if !done {
 				return
 			}
 			content := strings.TrimSpace(string(data))
-			ar = strings.Split(content, "\n")
+			lines = strings.Split(content, "\n")
 		}
-		for _, s := range ar {
-			if len(s) < 16 {
+		for _, line := range lines {
+			if len(line) < 16 {
 				continue
 			}
-			if !validTime.MatchString(s) {
+			if !validTime.MatchString(line) {
 				continue
 			}
-			tm := s[:16]
-			fromLines[tm] = append(fromLines[tm], s)
+			tm := line[:16]
+			fromLines[tm] = append(fromLines[tm], line)
 		}
 	}
-	{ // fill 'toLines' array
+	var toLines []string
+	{
 		data, done := env.ReadFile(toFile)
 		if !done {
 			return
@@ -57,9 +57,9 @@ func replaceTime(cmd Command, args []string) {
 	var out bytes.Buffer
 	{
 		var tmPrev string
-		for _, s := range toLines {
-			if validTime.MatchString(s) {
-				tm := s[:16]
+		for _, line := range toLines {
+			if validTime.MatchString(line) {
+				tm := line[:16]
 				if tm == tmPrev {
 					continue
 				}
@@ -71,7 +71,7 @@ func replaceTime(cmd Command, args []string) {
 					continue
 				}
 			}
-			out.WriteString(s + "\n")
+			out.WriteString(line + "\n")
 		}
 	}
 	if !env.WriteFile(toFile, out.Bytes()) {
