@@ -19,9 +19,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/balacode/cmdx/cxfunc"
 	"github.com/balacode/zr"
 	fs "github.com/balacode/zr-fs"
+
+	"github.com/balacode/cmdx/cxfunc"
 )
 
 // AutotimeFilename _ _
@@ -77,6 +78,10 @@ func logTime(cmd Command, args []string) {
 			if diff > cfg.backlogDur {
 				return
 			}
+			_, hasPath := logEntries[path]
+			if !hasPath {
+				return
+			}
 			hasModTime := logEntries[path][modTime]
 			if hasModTime {
 				return
@@ -109,6 +114,15 @@ func logTime(cmd Command, args []string) {
 			text := strings.Join(lines, "\n") + "\n"
 			zr.AppendToTextFile(logFile, text)
 			fmt.Println("\n" + "log-time file ----> " + logFile + ":\n" + text)
+		}
+		// update logEntries with new changes
+		for path, info := range changes {
+			_, hasPath := logEntries[path]
+			if !hasPath {
+				logEntries[path] = map[string]bool{}
+			}
+			logEntries[path][info.modTime] = true
+			logEntries[path][info.checksum] = true
 		}
 		// display scan completion message
 		if cfg.repeatDur > 0 || cfg.isVerbose {
