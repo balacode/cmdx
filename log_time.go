@@ -31,7 +31,7 @@ const AutotimeFilename = "autotime.log"
 // logTimeConfig _ _
 type logTimeConfig struct {
 	isValid    bool
-	path       string
+	rootPath   string
 	backlogDur time.Duration
 	repeatDur  time.Duration
 	isVerbose  bool
@@ -51,7 +51,7 @@ func logTime(cmd Command, args []string) {
 	//
 	var cfg = ltParseArgs(args)
 	if cfg.isVerbose {
-		fmt.Println("log-time --path=" + cfg.path)
+		fmt.Println("log-time --path=" + cfg.rootPath)
 		fmt.Println("log-time --backlog=" + cfg.backlogDur.String())
 		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
 		fmt.Println("log-time --verbose=true")
@@ -67,12 +67,12 @@ func logTime(cmd Command, args []string) {
 		}
 		var (
 			now        = time.Now()
-			logFiles   = ltListAutotimeFiles(cfg.path)
+			logFiles   = ltListAutotimeFiles(cfg.rootPath)
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
 		)
 		// detect modified files in the current folder and its subfolders
-		ltProcessTextFilesInPath(cfg.path, func(path, modTime string) {
+		ltProcessTextFilesInPath(cfg.rootPath, func(path, modTime string) {
 			tm := parseTime(modTime)
 			diff := now.Sub(tm)
 			if diff > cfg.backlogDur {
@@ -242,10 +242,10 @@ func ltParseArgs(args []string) logTimeConfig {
 	fl.Parse(args)
 	//
 	// path
-	ret.path = *path
-	if ret.path == "" || ret.path == "." {
+	ret.rootPath = *path
+	if ret.rootPath == "" || ret.rootPath == "." {
 		var err error
-		ret.path, err = os.Getwd()
+		ret.rootPath, err = os.Getwd()
 		if err != nil {
 			zr.Error(err)
 			return logTimeConfig{isValid: false}
