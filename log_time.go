@@ -67,7 +67,7 @@ func logTime(cmd Command, args []string) {
 		}
 		var (
 			now        = time.Now()
-			logFiles   = ltListAutotimeFiles()
+			logFiles   = ltListAutotimeFiles(cfg.path)
 			logEntries = ltGetLogEntries(logFiles)
 			changes    = map[string]Change{}
 		)
@@ -198,17 +198,12 @@ func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 } //                                                             ltGetLogEntries
 
 // ltListAutotimeFiles _ _
-func ltListAutotimeFiles() []string {
-	currentDir, err := os.Getwd()
-	if err != nil {
-		zr.Error(err)
-		return nil
-	}
+func ltListAutotimeFiles(rootPath string) []string {
 	ret := []string{}
 	sep := string(os.PathSeparator)
 	//
 	// list all time log files in parent folders of the current folder
-	parentPaths := strings.Split(currentDir, sep)
+	parentPaths := strings.Split(rootPath, sep)
 	for len(parentPaths) > 1 {
 		parentPaths = parentPaths[:len(parentPaths)-1]
 		path := strings.Join(parentPaths, sep) + sep + AutotimeFilename
@@ -217,7 +212,7 @@ func ltListAutotimeFiles() []string {
 		}
 	}
 	// list all time log files in or under the current folder
-	for _, path := range fs.GetFilePaths(currentDir, "log") {
+	for _, path := range fs.GetFilePaths(rootPath, "log") {
 		name := path
 		if strings.Contains(name, sep) {
 			ar := strings.Split(name, sep)
