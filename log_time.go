@@ -78,9 +78,8 @@ func logTime(cmd Command, args []string) {
 			if diff > cfg.backlogDur {
 				return
 			}
-			_, hasPath := logEntries[path]
-			if !hasPath {
-				return
+			if _, hasPath := logEntries[path]; !hasPath {
+				logEntries[path] = map[string]bool{}
 			}
 			hasModTime := logEntries[path][modTime]
 			if hasModTime {
