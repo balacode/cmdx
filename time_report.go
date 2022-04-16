@@ -55,8 +55,8 @@ func timeReport(cmd Command, args []string) {
 		dateRX = regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
 	)
 	for _, arg := range args {
-		isDate := dateRX.MatchString(arg)
-		if isDate {
+		switch {
+		case dateRX.MatchString(arg):
 			dates++
 			switch dates {
 			case 1:
@@ -66,9 +66,9 @@ func timeReport(cmd Command, args []string) {
 			default:
 				fmt.Printf("Warning: ignoring date %q\n", arg)
 			}
-		} else if fs.FileExists(arg) {
+		case fs.FileExists(arg):
 			files = append(files, arg)
-		} else {
+		default:
 			fmt.Printf("Warning: file %q doesn't exist\n", arg)
 		}
 	}
