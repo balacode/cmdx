@@ -8,8 +8,8 @@ module github.com/balacode/cmdx
 go 1.16
 
 require (
-	github.com/balacode/zr v1.0.0
-	github.com/balacode/zr-fs v1.0.0
+	github.com/balacode/zr v1.1.0
+	github.com/balacode/zr-fs v1.0.1
 )
 
 // end
