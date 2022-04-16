@@ -49,7 +49,8 @@ func (ob *LoadedTextFiles) LoadAll(
 ) (
 	changedFiles []string,
 ) {
-	paths := env.GetFilePaths(path, env.TextFileExts()...)
+	exts := append(env.TextFileExts(), ExtraTextFileExts...)
+	paths := env.GetFilePaths(path, exts...)
 	for _, filename := range paths {
 		_, changed := ob.LoadFile(filename, fsMx)
 		if changed {

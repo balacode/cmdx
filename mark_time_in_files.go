@@ -25,7 +25,6 @@ import (
 	"time"
 
 	"github.com/balacode/zr"
-	fs "github.com/balacode/zr-fs"
 )
 
 // -----------------------------------------------------------------------------
@@ -153,7 +152,7 @@ func processDir(dir string, changeTime bool) {
 //
 // path is the full path and file name
 func processFile(path, name string, modTime time.Time) error {
-	if !fs.IsTextFile(path) {
+	if !isTextFile(path) {
 		return nil
 	}
 	data, done := env.ReadFile(path)

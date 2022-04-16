@@ -298,7 +298,7 @@ func ltProcessTextFilesInPath(
 				strings.Contains(path, "build"+sep+"intermediates"+sep) {
 				return nil
 			}
-			if !fs.IsTextFile(path) {
+			if !isTextFile(path) {
 				return nil
 			}
 			modTime := info.ModTime().Format("2006-01-02 15:04:05")

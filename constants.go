@@ -31,4 +31,20 @@ MRK  ---------------------------------------------------------------------------
 // which includes spaces, tabs, and newline characters.
 const SPACES = " \a\b\f\n\r\t\v"
 
-//eof
+// ExtraTextFileExts contains additonal text file
+// extensions not listed in (zr-fs) fs.TextFileExts
+var ExtraTextFileExts = []string{
+	//
+	// Go module files
+	"mod",
+	"sum",
+	//
+	// YAML files // TODO: remove after upgrading zr/fs
+	"yml",
+	"yaml",
+	//
+	// Google Protocol Buffer files
+	"proto",
+}
+
+// end

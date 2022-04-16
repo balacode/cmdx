@@ -271,7 +271,6 @@ func (Env) TextFileExts() []string {
 }
 
 // TODO: env_provider.go: add the following:
-// fs.IsTextFile
 // fs.WalkPath
 // os.Args
 // os.Exit
