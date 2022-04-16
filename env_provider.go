@@ -271,7 +271,15 @@ func (Env) TextFileExts() []string {
 }
 
 // TODO: env_provider.go: add the following:
+// fs.FileExists
+// fs.GetFilePaths
+// fs.IsFileExt
+// fs.IsTextFile
+// fs.ReadFileChunks
+// fs.ReadFileLines
+// fs.TextFileExts
 // fs.WalkPath
+// fs.WriteFileLines
 // os.Args
 // os.Exit
 // os.File

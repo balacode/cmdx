@@ -72,7 +72,6 @@ func timeReport(cmd Command, args []string) {
 			fmt.Printf("Warning: file %q doesn't exist\n", arg)
 		}
 	}
-	// trMonthlySummary("AUTO", trAuto, min, max, files)
 	trMonthlySummary("MANUAL", trManual, min, max, files)
 } //                                                                  timeReport
 
