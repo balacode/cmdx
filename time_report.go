@@ -48,11 +48,12 @@ const (
 // timeReport _ _
 func timeReport(cmd Command, args []string) {
 	var (
-		min    = "1900-01-01"
-		max    = "9999-12-31"
-		files  = []string{"timelog.txt"}
-		dates  = 0
-		dateRX = regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
+		min      = "1900-01-01"
+		max      = "9999-12-31"
+		files    = []string{"timelog.txt"}
+		contains = []string{}
+		dates    = 0
+		dateRX   = regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
 	)
 	for _, arg := range args {
 		switch {
@@ -64,15 +65,19 @@ func timeReport(cmd Command, args []string) {
 			case 2:
 				max = arg
 			default:
-				fmt.Printf("Warning: ignoring date %q\n", arg)
+				fmt.Printf("Error: too many dates")
+				return
 			}
+		case strings.HasPrefix(arg, "="):
+			contains = append(contains, arg[1:])
 		case fs.FileExists(arg):
 			files = append(files, arg)
 		default:
-			fmt.Printf("Warning: file %q doesn't exist\n", arg)
+			fmt.Printf("Error: file %q doesn't exist\n", arg)
+			return
 		}
 	}
-	trMonthlySummary("MANUAL", trManual, min, max, files)
+	trMonthlySummary("MANUAL", trManual, min, max, files, contains)
 } //                                                                  timeReport
 
 // -----------------------------------------------------------------------------
@@ -84,8 +89,9 @@ func trMonthlySummary(
 	mode int,
 	minDate, maxDate interface{},
 	files []string,
+	contains []string,
 ) {
-	lines := trMergeFiles(files)
+	lines := trMergeFiles(files, contains)
 	var items []TimeItem
 	items = trGetTimeItems(lines)
 	items = trFilterDates(items, minDate, maxDate)
@@ -233,10 +239,26 @@ func trIsTimeStart(s string) bool {
 	return false
 } //                                                               trIsTimeStart
 
-// trMergeFiles _ _
-func trMergeFiles(filenames []string) (lines []string) {
+// trMergeFiles reads and filters lines from the specified filenames and
+// returns the combined lines as a slice of strings. If 'contains' is
+// specified, only returns lines that contain the string(s) it contains.
+// If 'contains' is zero-length, returns all lines.
+func trMergeFiles(filenames, contains []string) (lines []string) {
 	for _, path := range filenames {
-		lines = append(lines, env.ReadFileLines(path)...)
+		fileLines := env.ReadFileLines(path)
+		if len(contains) == 0 {
+			lines = append(lines, fileLines...)
+			continue
+		}
+		for _, ln := range fileLines {
+		nextLine:
+			for _, sub := range contains {
+				if strings.Contains(strings.ToLower(ln), strings.ToLower(sub)) {
+					lines = append(lines, ln)
+					continue nextLine
+				}
+			}
+		}
 	}
 	return lines
 } //                                                                trMergeFiles
