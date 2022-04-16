@@ -11,6 +11,8 @@ import (
 	"strings"
 )
 
+const Version = "v1.1.0"
+
 // -----------------------------------------------------------------------------
 // # Main Function
 
@@ -22,6 +24,8 @@ func main() {
 		Div := strings.Repeat("-", 80)
 		env.Print(
 			Div, "\n",
+			"CMDX Utility "+Version, "\n",
+			"\n",
 			fmt.Sprintf(Format, "AB.", "FULL", "DESCRIPTION OF COMMAND"), "\n",
 			Div, "\n",
 		)
