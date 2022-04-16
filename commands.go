@@ -56,6 +56,8 @@ const (
 	XE = "XE"
 )
 
+const Margin = "                  " // 18 spaces
+
 // AllCategories _ _
 var AllCategories = map[int]string{
 	1: "File Manipulation",
@@ -114,7 +116,7 @@ var AllCommands = []Command{
 	{
 		ShortName: "pb",
 		FullName:  "part-backup",
-		ShortInfo: "Continously back-up .part files streamed in current folder",
+		ShortInfo: "Continuously back-up .part files streamed in current folder",
 		Handler:   partBackup,
 		Category:  2,
 	},
@@ -178,9 +180,10 @@ var AllCommands = []Command{
 	{
 		ShortName: "tr",
 		FullName:  "time-report",
-		ShortInfo: "Summarizes time from log files",
-		Handler:   timeReport,
-		Category:  3,
+		ShortInfo: "Summarizes time from log files.\n" +
+			Margin + "tr <date1> <date2> \"=<contains>\"... <source-file>",
+		Handler:  timeReport,
+		Category: 3,
 	},
 	// Other:
 	{
