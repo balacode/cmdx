@@ -9,7 +9,7 @@ package main
 // # Paths and Files
 
 // DefaultExts specifies file types that CMDX processes.
-// By default this compreises of all known text file extensions.
+// By default this comprises of all known text file extensions.
 var DefaultExts = env.TextFileExts()
 
 // DefaultLibPath specifies the default path of the Zircon-Go library.

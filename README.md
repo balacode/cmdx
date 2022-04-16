@@ -121,7 +121,7 @@ specified in a replacements file. Example replacements file:
     find2 ~~ replace2
     for (var i = 0; i < 10; i++) {  ~~  for i := 0; i < 10; i++ {
 
-- mark: the delimiter to denote comments and separate seach and replacement text.
+- mark: the delimiter to denote comments and separate search and replacement text.
 - path: the replacement path (also replaces subfolders). You can only specify one path, for now.
 - case: set 'on' to match case, or 'off' to ignore case.
 - word: set 'on' to match whole words, or 'off' to replace substrings.

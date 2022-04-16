@@ -24,7 +24,7 @@ import (
 func wordsInFile(cmd Command, args []string) {
 	if len(args) < 1 || len(args) > 2 {
 		env.Println(
-			"requires <input-file> and optional <oputput-file> parameters",
+			"requires <input-file> and optional <output-file> parameters",
 		)
 		return
 	}
