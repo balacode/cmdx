@@ -42,7 +42,7 @@ type logTimeConfig struct {
 // logTime _ _
 func logTime(cmd Command, args []string) {
 	if isHelpRequested(args) {
-		fmt.Println(logTimeHelp)
+		fmt.Print(logTimeHelp)
 		return
 	}
 	// allow zr.Error() to print before exiting (it uses a goroutine to output)
