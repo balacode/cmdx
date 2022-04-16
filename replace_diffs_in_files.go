@@ -6,7 +6,7 @@
 package main
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 	"sync"
@@ -268,7 +268,7 @@ func (M replaceDiffsInFilesM) writeFileLines(
 		s += "\n"
 	}
 	// save the file
-	err := ioutil.WriteFile(filename, []byte(s), 0644)
+	err := os.WriteFile(filename, []byte(s), 0644)
 	if err != nil {
 		env.Println("Failed writing", filename, "due to:", err)
 		return false

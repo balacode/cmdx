@@ -12,7 +12,6 @@ import (
 	"flag"
 	"fmt"
 	"hash/crc32"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
@@ -86,7 +85,7 @@ func logTime(cmd Command, args []string) {
 				return
 			}
 			// calculate file's checksum
-			content, err := ioutil.ReadFile(path)
+			content, err := os.ReadFile(path)
 			if err != nil {
 				zr.Error(err)
 				return
@@ -167,7 +166,7 @@ func ltGetAutotimeFile(path string) string {
 func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 	ret := map[string]map[string]bool{}
 	for _, path := range logFiles {
-		content, err := ioutil.ReadFile(path)
+		content, err := os.ReadFile(path)
 		if err != nil {
 			zr.Error(err)
 			continue

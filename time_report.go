@@ -47,11 +47,15 @@ const (
 
 // timeReport _ _
 func timeReport(cmd Command, args []string) {
-	min, max, files := "1900-01-01", "9999-12-31", []string{"timelog.txt"}
-	dates := 0
-	re := regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
+	var (
+		min    = "1900-01-01"
+		max    = "9999-12-31"
+		files  = []string{"timelog.txt"}
+		dates  = 0
+		dateRX = regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
+	)
 	for _, arg := range args {
-		isDate := re.MatchString(arg)
+		isDate := dateRX.MatchString(arg)
 		if isDate {
 			dates++
 			switch dates {
@@ -241,22 +245,22 @@ func trMergeFiles(filenames []string) (lines []string) {
 // trPrintFaults _ _
 func trPrintFaults(ar []TimeItem) {
 	//
-	var pdate string    // previous date
-	var ptime time.Time // previous date and time
+	var prevDate string    // previous date
+	var prevTime time.Time // previous date and time
 	//
 	for _, itm := range ar {
 		date := trDateStr(itm.Time)
 		if trIsTimeStart(itm.Text) {
-			pdate = date
-			ptime = itm.Time
+			prevDate = date
+			prevTime = itm.Time
 			continue
 		}
-		if date != pdate {
+		if date != prevDate {
 			env.Println("NO START:", trDateTimeStr(itm.Time), itm.Text)
 		}
 		var spent time.Duration
-		if !ptime.IsZero() {
-			spent = itm.Time.Sub(ptime)
+		if !prevTime.IsZero() {
+			spent = itm.Time.Sub(prevTime)
 		}
 		if spent > 3*time.Hour {
 			s := fmt.Sprintf("(%s)", spent)
@@ -264,8 +268,8 @@ func trPrintFaults(ar []TimeItem) {
 				env.Println("TOO LONG:", trDateTimeStr(itm.Time), itm.Text, s)
 			}
 		}
-		pdate = date
-		ptime = itm.Time
+		prevDate = date
+		prevTime = itm.Time
 	}
 } //                                                               trPrintFaults
 

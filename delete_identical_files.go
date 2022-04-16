@@ -56,9 +56,9 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 		}
 	}
 	if totalDeletedBytes > 0 || totalDeletedFiles > 0 {
-		nbytes := zr.ByteSizeString(totalDeletedBytes /*useSI=*/, false)
+		nBytes := zr.ByteSizeString(totalDeletedBytes /*useSI=*/, false)
 		s := zr.IfString(totalDeletedFiles == 1, "", "s")
-		env.Println("deleted", nbytes, "in", totalDeletedFiles, "file"+s)
+		env.Println("deleted", nBytes, "in", totalDeletedFiles, "file"+s)
 	}
 } //                                                        deleteIdenticalFiles
 

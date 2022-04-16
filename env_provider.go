@@ -7,7 +7,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/balacode/zr"
@@ -167,7 +166,7 @@ func (Env) DeleteFile(filename string) bool {
 // Otherwise returns an empty byte array and false.
 func (Env) ReadFile(filename string) (data []byte, done bool) {
 	var err error
-	data, err = ioutil.ReadFile(filename)
+	data, err = os.ReadFile(filename)
 	if err != nil {
 		env.Println("Failed reading", filename, "due to:", err)
 		return []byte{}, false
@@ -218,7 +217,7 @@ func (Env) RenameFile(oldpath, newpath string) bool {
 
 // WriteFile _ _
 func (Env) WriteFile(filename string, data []byte) bool {
-	err := ioutil.WriteFile(filename, data, 0644)
+	err := os.WriteFile(filename, data, 0644)
 	if err != nil {
 		env.Println("Failed writing", filename, "due to:", err)
 		return false
