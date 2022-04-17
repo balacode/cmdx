@@ -149,7 +149,7 @@ func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 // # Functions
 
 // trCalcSpent reads time entries from 'ar' and returns a
-// copy with all time spent (Spent field) recalculated
+// copy with all time spent (Spent field) recalculated.
 func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 	var prev time.Time // previous time
 	var ret []TimeItem
@@ -177,7 +177,8 @@ func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 	return ret
 } //                                                                 trCalcSpent
 
-// trFilterDates _ _
+// trFilterDates filters times in 'ar' and returns a new slice
+// of times that fall within the specified date range.
 func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 	//
 	min := parseTime(minDate).String()[:10]
@@ -195,6 +196,7 @@ func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 // trGetTimeItems returns a TimeItem array from a string slice
 // - entries in the result are in ascending order
 // - each date+time is unique
+//
 func trGetTimeItems(lines []string) []TimeItem {
 	//
 	// read lines into a unique date+time map
@@ -392,12 +394,13 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 // -----------------------------------------------------------------------------
 // # Helper Functions
 
-// trDateStr _ _
+// trDateStr returns a date-only string ("2006-01-02" format) from a Time value.
 func trDateStr(val time.Time) string {
 	return val.Format("2006-01-02")
 } //                                                                   trDateStr
 
-// trDateTimeStr _ _
+// trDateTimeStr returns a date-time string
+// ("2006-01-02 15:04:05" format) from a Time value.
 func trDateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
 } //                                                               trDateTimeStr
