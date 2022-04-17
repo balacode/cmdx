@@ -109,6 +109,7 @@ func trMonthlySummary(
 		env.Println(caption)
 	}
 	var cal zr.Calendar
+	cal.SetWeekTotals(true)
 	for _, itm := range sums {
 		if itm.Spent < 0 {
 			cal.Set(itm.Time, "** >24")
