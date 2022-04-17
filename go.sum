@@ -1,5 +1,5 @@
 github.com/balacode/zr v1.1.0/go.mod h1:Gek772GtTXR/nDElnIYqB8kHcg3nKhjzTt1yZNUVnmA=
-github.com/balacode/zr v1.1.1 h1:WJr7k8th34FPAESvt4tG4V3yHWWM8jmZ4S0nnA4Kt5g=
-github.com/balacode/zr v1.1.1/go.mod h1:hN/XmTlDUdBTg3nd6sfc65aCrdKpVd1Y4sTYInF+T+U=
+github.com/balacode/zr v1.1.2 h1:DtZYCKtSTw8Giw/uv8zwkr2wb+C0Y7tx+947M077Ly0=
+github.com/balacode/zr v1.1.2/go.mod h1:hN/XmTlDUdBTg3nd6sfc65aCrdKpVd1Y4sTYInF+T+U=
 github.com/balacode/zr-fs v1.0.1 h1:pId/9Id9YQakpJjXJDtR0p+DQvGmpV0HHGBYJOtKGV4=
 github.com/balacode/zr-fs v1.0.1/go.mod h1:N5LLiI6OWfiInxHLe+P6qEWmZoVVVxGrcJYvp6BjTr8=
