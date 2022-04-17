@@ -95,16 +95,19 @@ func trMonthlySummary(
 	contains []string,
 ) {
 	lines := trMergeFiles(files, contains)
-	var items []TimeItem
-	items = trGetTimeItems(lines)
-	items = trFilterDates(items, minDate, maxDate)
-	if mode == trAuto {
-		items = trCalcSpent(items, true)
-	} else if mode == trManual {
-		trPrintFaults(items)
-		items = trCalcSpent(items, false)
+	var sums []TimeItem
+	{
+		var a []TimeItem
+		a = trGetTimeItems(lines)
+		a = trFilterDates(a, minDate, maxDate)
+		if mode == trAuto {
+			a = trCalcSpent(a, true)
+		} else if mode == trManual {
+			trPrintFaults(a)
+			a = trCalcSpent(a, false)
+		}
+		sums = trSumByDate(a)
 	}
-	sums := trSumByDate(items)
 	if caption != "" {
 		env.Println(caption)
 	}
