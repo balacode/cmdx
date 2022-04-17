@@ -50,7 +50,7 @@ func timeReport(cmd Command, args []string) {
 	var (
 		min      = "1900-01-01"
 		max      = "9999-12-31"
-		files    = []string{"timelog.txt"}
+		files    = []string{}
 		contains = []string{}
 		dates    = 0
 		dateRX   = regexp.MustCompile(`^\d{4}-\d\d-\d\d$`)
@@ -76,6 +76,9 @@ func timeReport(cmd Command, args []string) {
 			fmt.Printf("Error: file %q doesn't exist\n", arg)
 			return
 		}
+	}
+	if len(files) < 1 {
+		files = []string{"timelog.txt"}
 	}
 	trMonthlySummary("MANUAL", trManual, min, max, files, contains)
 } //                                                                  timeReport
