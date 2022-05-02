@@ -30,6 +30,6 @@ func Test_rptm_replaceTime_(t *testing.T) {
 		replaceTime(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                      Test_rptm_replaceTime_
+}
 
 // end

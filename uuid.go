@@ -41,6 +41,6 @@ func printUUID(cmd Command, args []string) {
 		fmt.Println(s)
 		count--
 	}
-} //                                                                   printUUID
+}
 
 // end

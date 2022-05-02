@@ -33,7 +33,7 @@ func Test_cmds_consts_(t *testing.T) {
 	zr.TEqual(t, LT, ("<"))
 	zr.TEqual(t, T, ("T"))
 	zr.TEqual(t, XE, ("XE"))
-} //                                                           Test_cmds_consts_
+}
 
 // -----------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ func Test_cmds_AllCategories_(t *testing.T) {
 		}
 		categories[cat] = true
 	}
-} //                                                    Test_cmds_AllCategories_
+}
 
 // -----------------------------------------------------------------------------
 
@@ -128,6 +128,6 @@ func Test_cmds_AllCommands_(t *testing.T) {
 		}
 		handlers[addr] = true
 	}
-} //                                                      Test_cmds_AllCommands_
+}
 
 // end

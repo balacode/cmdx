@@ -125,6 +125,6 @@ func partBackup(cmd Command, args []string) {
 		}
 		time.Sleep(10 * time.Second)
 	}
-} //                                                                  partBackup
+}
 
 // end

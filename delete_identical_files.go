@@ -60,6 +60,6 @@ func deleteIdenticalFiles(cmd Command, args []string) {
 		s := zr.IfString(totalDeletedFiles == 1, "", "s")
 		env.Println("deleted", nBytes, "in", totalDeletedFiles, "file"+s)
 	}
-} //                                                        deleteIdenticalFiles
+}
 
 // end

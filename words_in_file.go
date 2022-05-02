@@ -79,7 +79,7 @@ func wordsInFile(cmd Command, args []string) {
 	for word, count := range words {
 		env.Println(word, gap, count)
 	}
-} //                                                                 wordsInFile
+}
 
 // TODO: create Words() function in Zircon-Go lib
 

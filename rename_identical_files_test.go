@@ -30,6 +30,6 @@ func Test_ridf_renameIdenticalFiles_(t *testing.T) {
 		renameIdenticalFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                             Test_ridf_renameIdenticalFiles_
+}
 
 // end

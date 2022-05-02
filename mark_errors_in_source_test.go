@@ -42,7 +42,7 @@ func Test_meis_markErrorsInSource_(t *testing.T) {
 		// TODO: implement unit test
 	}
 	test(Command{}, []string{})
-} //                                               Test_meis_markErrorsInSource_
+}
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
@@ -64,7 +64,7 @@ func Test_meis_isErrorComment_(t *testing.T) {
 	test("",
 		// out:
 		false)
-} //                                                   Test_meis_isErrorComment_
+}
 
 // go test --run Test_meis_makePath_
 func Test_meis_makePath_(t *testing.T) {
@@ -83,7 +83,7 @@ func Test_meis_makePath_(t *testing.T) {
 	test("", "",
 		// out:
 		"")
-} //                                                         Test_meis_makePath_
+}
 
 // go test --run Test_meis_readBuildIssues_
 func Test_meis_readBuildIssues_(t *testing.T) {
@@ -102,7 +102,7 @@ func Test_meis_readBuildIssues_(t *testing.T) {
 	test("",
 		// out:
 		[]BuildIssue{})
-} //                                                  Test_meis_readBuildIssues_
+}
 
 // go test --run Test_meis_removeOldErrorComments_
 func Test_meis_removeOldErrorComments_(t *testing.T) {
@@ -121,7 +121,7 @@ func Test_meis_removeOldErrorComments_(t *testing.T) {
 	test([]string{},
 		// out:
 		[]string{})
-} //                                           Test_meis_removeOldErrorComments_
+}
 
 // go test --run Test_meis_saveFile_
 func Test_meis_saveFile_(t *testing.T) {
@@ -135,6 +135,6 @@ func Test_meis_saveFile_(t *testing.T) {
 		saveFile(buildPath, filename, lines)
 	}
 	test("", "", []string{})
-} //                                                         Test_meis_saveFile_
+}
 
 // end

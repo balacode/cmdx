@@ -74,7 +74,7 @@ func replaceTime(cmd Command, args []string) {
 		return
 	}
 	env.Printf("written '%s'\n", toFile)
-} //                                                                 replaceTime
+}
 
 var (
 	// `YYYY-MM-DD hh:mm ` and `YYYY-MM-DD hh:mm:ss ` (note the ending space)
@@ -92,6 +92,6 @@ func rtExtractTime(line string) string {
 		ret = line[:16] // 16 = length of 'YYYY-MM-DD hh:mm' in characters'
 	}
 	return ret
-} //                                                               rtExtractTime
+}
 
 // end

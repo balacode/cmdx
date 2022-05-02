@@ -37,7 +37,7 @@ func checksum(s string) string {
 	chk := crc32.ChecksumIEEE([]byte(s))
 	chk = (chk / 0x00FFFFFF) ^ (chk & 0x00FFFFFF) // <- from 4 to 3 bytes
 	return fmt.Sprintf("%06X", chk)
-} //                                                                    checksum
+}
 
 /*UNUSED:
 // filterLongLines _ _
@@ -57,7 +57,7 @@ func filterLongLines(
 		}
 	}
 	return ret
-} //                                                             filterLongLines
+}
 :UNUSED*/
 
 // getFilesMap _ _
@@ -86,7 +86,7 @@ func getFilesMap(dir, filter string) FilesMap {
 		},
 	)
 	return ret
-} //                                                                 getFilesMap
+}
 
 // isHelpRequested returns true if args contains a help request.
 // That is '?', 'h', 'hlp', or 'help' (or '/help', '-help', etc.)
@@ -98,7 +98,7 @@ func isHelpRequested(args []string) bool {
 		}
 	}
 	return false
-} //                                                             isHelpRequested
+}
 
 // parseTime converts any string-like value to time.Time without returning
 // an error if the conversion failed, in which case it logs an error
@@ -152,7 +152,7 @@ func parseTime(value interface{}) time.Time {
 	}
 	zr.Error("Can not convert", reflect.TypeOf(value), "to int:", value)
 	return time.Time{}
-} //                                                                   parseTime
+}
 
 // sortUniqueStrings sorts string array 'a' and removes any repeated values
 func sortUniqueStrings(a []string) []string {
@@ -167,7 +167,7 @@ func sortUniqueStrings(a []string) []string {
 	// sort the lines
 	sort.Strings(ret)
 	return ret
-} //                                                           sortUniqueStrings
+}
 
 // splitArgsFilter extracts '-filter expr' or '--filter expr' from args,
 // and returns args with the option removed, and the extracted filter value.
@@ -188,11 +188,11 @@ func splitArgsFilter(args []string) (retArgs []string, filter string) {
 		}
 	}
 	return args, filter
-} //                                                             splitArgsFilter
+}
 
 // trim removes all leading and trailing white-spaces from a string
 func trim(s string) string {
 	return strings.TrimSpace(s)
-} //                                                                        trim
+}
 
 // end

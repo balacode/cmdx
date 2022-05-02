@@ -64,7 +64,7 @@ func listIdenticalFiles(cmd Command, args []string) {
 			}
 		}
 	}
-} //                                                          listIdenticalFiles
+}
 
 // TODO: add a function to call when each duplicate is found.
 

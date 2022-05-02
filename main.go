@@ -53,7 +53,7 @@ func main() {
 		}
 	}
 	env.Printf("unknown command: %s", cmdName)
-} //                                                                        main
+}
 
 // TODO: create a core package
 

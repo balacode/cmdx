@@ -107,7 +107,7 @@ func replaceDiffsInFiles(cmd Command, args []string) {
 	} else {
 		env.Println(n, "TOTAL")
 	}
-} //                                                         replaceDiffsInFiles
+}
 
 // -----------------------------------------------------------------------------
 // # Subfunctions
@@ -198,7 +198,7 @@ func (M replaceDiffsInFilesM) getFindRepls(
 		}
 	}
 	return ret
-} //                                                                getFindRepls
+}
 
 // replaceFileAsync _ _
 func (M replaceDiffsInFilesM) replaceFileAsync(
@@ -233,7 +233,7 @@ func (M replaceDiffsInFilesM) replaceFileAsync(
 	}
 	env.Println(changes, "replacement in", filename)
 	atomic.AddInt32(changesAtomic, int32(changes))
-} //                                                            replaceFileAsync
+}
 
 // trimBlankLines removes leading and trailing blank lines in a
 // string slice. Does not remove blank lines between non-blank lines.
@@ -248,7 +248,7 @@ func (M replaceDiffsInFilesM) trimBlankLines(lines []string) []string {
 		lines = lines[:len(lines)-1]
 	}
 	return lines
-} //                                                              trimBlankLines
+}
 
 // writeFileLines writes lines to filename using UNIX (LF) line endings.
 func (M replaceDiffsInFilesM) writeFileLines(
@@ -274,6 +274,6 @@ func (M replaceDiffsInFilesM) writeFileLines(
 		return false
 	}
 	return true
-} //                                                              writeFileLines
+}
 
 // end

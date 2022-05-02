@@ -79,7 +79,7 @@ func markTimeInFiles(cmd Command, args []string) {
 	} else {
 		processDir(dir, changeTime)
 	}
-} //                                                             markTimeInFiles
+}
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
@@ -105,7 +105,7 @@ func autoTimeLog(path string, timestamp string) {
 	// append to autotime.log
 	logPath += env.PathSeparator() + "autotime.log"
 	zr.AppendToTextFile(logPath, entry) // write to logName
-} //                                                                 autoTimeLog
+}
 
 // getTimeLogPath _ _
 func getTimeLogPath(path string) string {
@@ -121,7 +121,7 @@ func getTimeLogPath(path string) string {
 		max = len(s)
 	}
 	return ret
-} //                                                              getTimeLogPath
+}
 
 // processDir calls processFile() for each file in 'dir' and its subfolders.
 func processDir(dir string, changeTime bool) {
@@ -145,7 +145,7 @@ func processDir(dir string, changeTime bool) {
 	if err != nil {
 		zr.Error(err.Error())
 	}
-} //                                                                  processDir
+}
 
 // processFile is called by processDir() to update timestamps
 // in the named file. It ignores files that are not text files.
@@ -168,7 +168,7 @@ func processFile(path, name string, modTime time.Time) error {
 		return zr.Error(zr.EFailedWriting, "file", path)
 	}
 	return nil
-} //                                                                 processFile
+}
 
 // replaceVersion replaces the timestamp within a string
 //
@@ -215,6 +215,6 @@ func replaceVersion(s, path, filename string, modTime time.Time) string {
 	// (writing the file is done by the caller)
 	s = s[:loc[0]] + ":v: " + now + " " + chk + s[loc[1]:]
 	return s
-} //                                                              replaceVersion
+}
 
 // end

@@ -26,14 +26,14 @@ func getConfigBool(s, keyword string) (value, exists bool) {
 		}
 	}
 	return false, false
-} //                                                               getConfigBool
+}
 
 // hasConfigBool _ _
 func hasConfigBool(s, keyword string) (ret bool) {
 	// TODO: apply this function in replaceStringsInFiles
 	_, ret = getConfigBool(s, keyword)
 	return ret
-} //                                                               hasConfigBool
+}
 
 // readConfigFileLines _ _
 func readConfigFileLines(configFile string) (configLines []string) {
@@ -59,6 +59,6 @@ func readConfigFileLines(configFile string) (configLines []string) {
 	configLines = strings.Split(s, "\n")
 	configLines = append(configLines, "") // initiates replacement
 	return configLines
-} //                                                         readConfigFileLines
+}
 
 // end

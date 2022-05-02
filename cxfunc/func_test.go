@@ -137,7 +137,7 @@ func Test_func_ParseDuration_(t *testing.T) {
 	) {
 		test(s, 2*Day, NoE)
 	}
-} //                                                    Test_func_ParseDuration_
+}
 
 // permuteStrings returns all combinations of strings in 'parts'
 func permuteStrings(parts ...[]string) (ret []string) {
@@ -174,6 +174,6 @@ loop:
 		at[len(parts)-1]++
 	}
 	return ret
-} //                                                              permuteStrings
+}
 
 // end

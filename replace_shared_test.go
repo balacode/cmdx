@@ -36,7 +36,7 @@ func Test_rsha_getConfigBool_(t *testing.T) {
 	test("", "",
 		// out:
 		false, false)
-} //                                                    Test_rsha_getConfigBool_
+}
 
 // go test --run Test_rsha_hasConfigBool_
 func Test_rsha_hasConfigBool_(t *testing.T) {
@@ -50,7 +50,7 @@ func Test_rsha_hasConfigBool_(t *testing.T) {
 	test("", "",
 		// out:
 		false)
-} //                                                    Test_rsha_hasConfigBool_
+}
 
 // go test --run Test_rsha_readConfigFileLines_
 func Test_rsha_readConfigFileLines_(t *testing.T) {
@@ -69,6 +69,6 @@ func Test_rsha_readConfigFileLines_(t *testing.T) {
 	test("",
 		// out:
 		[]string{})
-} //                                              Test_rsha_readConfigFileLines_
+}
 
 // end

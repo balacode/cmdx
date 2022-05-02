@@ -49,6 +49,6 @@ func Test_rpln_replaceLines_(t *testing.T) {
 		// out:
 		[]string{}, 0,
 	)
-} //                                                     Test_rpln_replaceLines_
+}
 
 // end

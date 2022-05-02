@@ -107,7 +107,7 @@ func replaceLines(
 		zr.DV("--------------------------------------------------")
 	}
 	return lines, changes
-} //                                                                replaceLines
+}
 
 // -----------------------------------------------------------------------------
 // # Subfunctions
@@ -133,7 +133,7 @@ func (M replaceLinesM) getBatches(
 	}
 	sort.Sort(sort.Reverse(sort.IntSlice(lineCounts)))
 	return lineCounts, batches
-} //                                                                  getBatches
+}
 
 // getTree builds a tree from a slice of strings to find and to replace.
 // The branches of the tree are made from each line in batches of repls.
@@ -170,7 +170,7 @@ func (M replaceLinesM) getTree(
 		}
 	}
 	return ret
-} //                                                                     getTree
+}
 
 // replaceMany _ _
 func (M replaceLinesM) replaceMany(
@@ -231,6 +231,6 @@ func (M replaceLinesM) replaceMany(
 		ret = append(ret, lines[prev:]...)
 	}
 	return ret, changes
-} //                                                                 replaceMany
+}
 
 // end

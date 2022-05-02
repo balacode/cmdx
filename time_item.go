@@ -23,7 +23,7 @@ func (ob *TimeItem) String() string {
 	date := ob.Time.Format("2006-01-02")
 	hours := ob.Spent.Hours()
 	return fmt.Sprintf("%s %7.2f %11s: %s", date, hours, ob.Spent, ob.Text)
-} //                                                                      String
+}
 
 // -----------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ func (a TimeItemsByTime) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
 // Less _ _
 func (a TimeItemsByTime) Less(i, j int) bool {
 	return a[i].Time.Sub(a[j].Time) < 0
-} //                                                                        Less
+}
 
 // -----------------------------------------------------------------------------
 
@@ -63,6 +63,6 @@ func (a TimeItemsByDateAndDescSpent) Less(i, j int) bool {
 		return a[i].Spent > a[j].Spent // descending
 	}
 	return false
-} //                                                                        Less
+}
 
 // end

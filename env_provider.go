@@ -117,7 +117,7 @@ type EnvProvider interface {
 
 	// TextFileExts returns a list of all text file extensions.
 	TextFileExts() []string
-} //                                                                 EnvProvider
+}
 
 // -----------------------------------------------------------------------------
 // # Console Output

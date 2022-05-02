@@ -74,6 +74,6 @@ files in <target> (the <source> is never changed). Run it with care.
 			}
 		}
 	}
-} //                                                        renameIdenticalFiles
+}
 
 // end

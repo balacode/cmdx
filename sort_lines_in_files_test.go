@@ -30,6 +30,6 @@ func Test_sfln_sortFileLines_(t *testing.T) {
 		sortFileLines(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                    Test_sfln_sortFileLines_
+}
 
 // end

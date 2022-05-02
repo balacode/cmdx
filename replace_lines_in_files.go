@@ -107,7 +107,7 @@ func replaceLinesInFiles(cmd Command, args []string) {
 	} else {
 		env.Println(n, "TOTAL")
 	}
-} //                                                         replaceLinesInFiles
+}
 
 // -----------------------------------------------------------------------------
 // # Subfunctions
@@ -202,7 +202,7 @@ func (M replaceLinesInFilesM) getFindRepls(
 		}
 	}
 	return ret
-} //                                                                getFindRepls
+}
 
 // replaceFileAsync _ _
 func (M replaceLinesInFilesM) replaceFileAsync(
@@ -237,7 +237,7 @@ func (M replaceLinesInFilesM) replaceFileAsync(
 	}
 	env.Println(changes, "replacement in", filename)
 	atomic.AddInt32(changesAtomic, int32(changes))
-} //                                                            replaceFileAsync
+}
 
 // trimBlankLines removes leading and trailing blank lines in a
 // string slice. Does not remove blank lines between non-blank lines.
@@ -253,7 +253,7 @@ func (M replaceLinesInFilesM) trimBlankLines(lines []string) []string {
 		lines = lines[:len(lines)-1]
 	}
 	return lines
-} //                                                              trimBlankLines
+}
 
 // trimStrings removes leading and trailing spaces from each line in strs.
 func (M replaceLinesInFilesM) trimStrings(ar []string) []string {
@@ -261,6 +261,6 @@ func (M replaceLinesInFilesM) trimStrings(ar []string) []string {
 		ar[i] = strings.TrimSpace(s)
 	}
 	return ar
-} //                                                                 trimStrings
+}
 
 // end

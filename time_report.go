@@ -81,7 +81,7 @@ func timeReport(cmd Command, args []string) {
 		files = []string{"timelog.txt"}
 	}
 	trMonthlySummary("MANUAL", trManual, min, max, files, contains)
-} //                                                                  timeReport
+}
 
 // -----------------------------------------------------------------------------
 // # Report Functions
@@ -123,7 +123,7 @@ func trMonthlySummary(
 	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", len(lines))
 	env.Println(cal.String())
 	env.Println()
-} //                                                            trMonthlySummary
+}
 
 /*UNUSED:
 // trSummaryByDateText _ _
@@ -145,7 +145,7 @@ func trSummaryByDateText(minDate, maxDate interface{}, files []string) {
 	sum := trSumByDateText(items)
 	sort.Sort(TimeItemsByDateAndDescSpent(sum))
 	trPrintTimeItems(sum)
-} //                                                         trSummaryByDateText
+}
 :UNUSED*/
 
 // -----------------------------------------------------------------------------
@@ -178,7 +178,7 @@ func trCalcSpent(ar []TimeItem, autoTime bool) []TimeItem {
 		})
 	}
 	return ret
-} //                                                                 trCalcSpent
+}
 
 // trFilterDates filters times in 'ar' and returns a new slice
 // of times that fall within the specified date range.
@@ -194,7 +194,7 @@ func trFilterDates(ar []TimeItem, minDate, maxDate interface{}) []TimeItem {
 		}
 	}
 	return ret
-} //                                                               trFilterDates
+}
 
 // trGetTimeItems returns a TimeItem array from a string slice
 // - entries in the result are in ascending order
@@ -235,7 +235,7 @@ func trGetTimeItems(lines []string) []TimeItem {
 		})
 	}
 	return ret
-} //                                                              trGetTimeItems
+}
 
 // trIsTimeStart _ _
 func trIsTimeStart(s string) bool {
@@ -246,7 +246,7 @@ func trIsTimeStart(s string) bool {
 		return true
 	}
 	return false
-} //                                                               trIsTimeStart
+}
 
 // trMergeFiles reads and filters lines from the specified filenames and
 // returns the combined lines as a slice of strings. If 'contains' is
@@ -270,7 +270,7 @@ func trMergeFiles(filenames, contains []string) (lines []string) {
 		}
 	}
 	return lines
-} //                                                                trMergeFiles
+}
 
 // trPrintFaults _ _
 func trPrintFaults(ar []TimeItem) {
@@ -301,7 +301,7 @@ func trPrintFaults(ar []TimeItem) {
 		prevDate = date
 		prevTime = itm.Time
 	}
-} //                                                               trPrintFaults
+}
 
 /*UNUSED:
 // trPrintTimeItems _ _
@@ -336,7 +336,7 @@ func trPrintTimeItems(entries []TimeItem) {
 	env.Println()
 	env.Println(strings.Repeat("=", 35))
 	prt(prev, grand.Hours(), grand, "grand total")
-} //                                                            trPrintTimeItems
+}
 :UNUSED*/
 
 // trSumByDate _ _
@@ -366,7 +366,7 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 		ret = append(ret, *t)
 	}
 	return ret
-} //                                                                 trSumByDate
+}
 
 /*UNUSED:
 // trSumByDateText _ _
@@ -391,7 +391,7 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 		ret = append(ret, *t)
 	}
 	return ret
-} //                                                             trSumByDateText
+}
 :UNUSED*/
 
 // -----------------------------------------------------------------------------
@@ -400,12 +400,12 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 // trDateStr returns a date-only string ("2006-01-02" format) from a Time value.
 func trDateStr(val time.Time) string {
 	return val.Format("2006-01-02")
-} //                                                                   trDateStr
+}
 
 // trDateTimeStr returns a date-time string
 // ("2006-01-02 15:04:05" format) from a Time value.
 func trDateTimeStr(val time.Time) string {
 	return val.Format("2006-01-02 15:04:05")
-} //                                                               trDateTimeStr
+}
 
 // end

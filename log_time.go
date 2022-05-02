@@ -34,7 +34,7 @@ type logTimeConfig struct {
 	backlogDur time.Duration
 	repeatDur  time.Duration
 	isVerbose  bool
-} //                                                               logTimeConfig
+}
 
 // -----------------------------------------------------------------------------
 // # Command Function
@@ -133,9 +133,9 @@ func logTime(cmd Command, args []string) {
 			continue
 		}
 		break
-	} // for
+	}
 	fmt.Println()
-} //                                                                     logTime
+}
 
 // -----------------------------------------------------------------------------
 // # Internal Functions
@@ -160,7 +160,7 @@ func ltGetAutotimeFile(path string) string {
 		ret = dir + sep + AutotimeFilename
 	}
 	return ret
-} //                                                           ltGetAutotimeFile
+}
 
 // ltGetLogEntries _ _
 func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
@@ -193,7 +193,7 @@ func ltGetLogEntries(logFiles []string) map[string]map[string]bool {
 		}
 	}
 	return ret
-} //                                                             ltGetLogEntries
+}
 
 // ltListAutotimeFiles _ _
 func ltListAutotimeFiles(rootPath string) []string {
@@ -226,7 +226,7 @@ func ltListAutotimeFiles(rootPath string) []string {
 		return len(a) > len(b) || (len(a) == len(b) && a > b)
 	})
 	return ret
-} //                                                         ltListAutotimeFiles
+}
 
 // ltParseArgs _ _
 func ltParseArgs(args []string) logTimeConfig {
@@ -270,7 +270,7 @@ func ltParseArgs(args []string) logTimeConfig {
 	//
 	ret.isValid = true
 	return ret
-} //                                                                 ltParseArgs
+}
 
 // ltProcessTextFilesInPath _ _
 func ltProcessTextFilesInPath(
@@ -309,7 +309,7 @@ func ltProcessTextFilesInPath(
 	if err1 != nil && err1 != err2 {
 		zr.Error(err1)
 	}
-} //                                                    ltProcessTextFilesInPath
+}
 
 const logTimeHelp = `
 --------------------------------------------------------------------------------

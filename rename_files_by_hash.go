@@ -58,7 +58,7 @@ func renameFilesByHash(cmd Command, args []string) {
 			files[i].Path = newPath
 		}
 	}
-} //                                                           renameFilesByHash
+}
 
 // hashOfBytes returns the SHA-512 hash of a byte slice.
 // It also requires a 'salt' argument.
@@ -68,6 +68,6 @@ func hashOfBytes(ar []byte, salt []byte) []byte {
 	input = append(input, ar...)
 	hash := sha512.Sum512(input)
 	return hash[:]
-} //                                                                 hashOfBytes
+}
 
 // end

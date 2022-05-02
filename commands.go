@@ -13,7 +13,7 @@ type Command struct {
 	FullInfo  string
 	Category  int
 	Handler   func(cmd Command, args []string)
-} //                                                                     Command
+}
 
 // Interactive Commands:
 
@@ -200,6 +200,6 @@ var AllCommands = []Command{
 		Handler:   matchWords,
 		Category:  4,
 	},
-} //                                                                 AllCommands
+}
 
 // end

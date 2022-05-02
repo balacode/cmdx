@@ -30,6 +30,6 @@ func Test_main_(t *testing.T) {
 		// TODO: main()
 	}
 	test()
-} //                                                                  Test_main_
+}
 
 // end

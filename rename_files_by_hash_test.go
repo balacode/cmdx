@@ -30,6 +30,6 @@ func Test_rfbh_renameFilesByHash_(t *testing.T) {
 		renameFilesByHash(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                Test_rfbh_renameFilesByHash_
+}
 
 // end

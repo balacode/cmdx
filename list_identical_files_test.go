@@ -30,6 +30,6 @@ func Test_lsif_listIdenticalFiles_(t *testing.T) {
 		listIdenticalFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                               Test_lsif_listIdenticalFiles_
+}
 
 // end

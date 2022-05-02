@@ -30,6 +30,6 @@ func Test_mtcw_matchWords_(t *testing.T) {
 		matchWords(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                       Test_mtcw_matchWords_
+}
 
 // end

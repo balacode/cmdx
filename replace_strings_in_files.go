@@ -38,7 +38,7 @@ type replConfig struct {
 	undo       bool
 	caseMode   zr.CaseMode
 	wordMode   zr.WordMode
-} //                                                                  replConfig
+}
 
 // replaceStringsInFiles _ _
 func replaceStringsInFiles(cmd Command, args []string) {
@@ -136,7 +136,7 @@ func replaceStringsInFiles(cmd Command, args []string) {
 			items = append(items, item)
 		}
 	}
-} //                                                       replaceStringsInFiles
+}
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
@@ -156,13 +156,13 @@ func getBool(s, keyword string) (value, exists bool) {
 		}
 	}
 	return false, false
-} //                                                                     getBool
+}
 
 // hasBool _ _
 func hasBool(s, keyword string) (ret bool) {
 	_, ret = getBool(s, keyword)
 	return ret
-} //                                                                     hasBool
+}
 
 // replaceAsync _ _
 func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
@@ -183,7 +183,7 @@ func replaceAsync(task *sync.WaitGroup, configFile string, cmd ReplCmd) {
 		}
 		go replaceFileAsync(task, configFile, filename, string(data), cmd.Items)
 	}
-} //                                                                replaceAsync
+}
 
 // replaceFileAsync _ _
 func replaceFileAsync(
@@ -237,7 +237,7 @@ func replaceFileAsync(
 		return
 	}
 	env.Println("changed ", filename)
-} //                                                            replaceFileAsync
+}
 
 // setReplConfig _ _
 func setReplConfig(s string, cfg *replConfig) {
@@ -280,6 +280,6 @@ func setReplConfig(s string, cfg *replConfig) {
 			cfg.wordMode = zr.IgnoreWord
 		}
 	}
-} //                                                               setReplConfig
+}
 
 // end

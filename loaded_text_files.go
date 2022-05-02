@@ -16,7 +16,7 @@ import (
 // LoadedTextFiles _ _
 type LoadedTextFiles struct {
 	m map[string]*TextFile
-} //                                                             LoadedTextFiles
+}
 
 // GetFile returns the named file stored in LoadedTextFiles
 func (ob *LoadedTextFiles) GetFile(filename string) *TextFile {
@@ -25,7 +25,7 @@ func (ob *LoadedTextFiles) GetFile(filename string) *TextFile {
 		return &TextFile{}
 	}
 	return ob.m[filename]
-} //                                                                     GetFile
+}
 
 // GetAllFilenames returns a list of all loaded file names
 func (ob *LoadedTextFiles) GetAllFilenames() []string {
@@ -38,7 +38,7 @@ func (ob *LoadedTextFiles) GetAllFilenames() []string {
 		ret = append(ret, key)
 	}
 	return ret
-} //                                                             GetAllFilenames
+}
 
 // LoadAll loads all text files in 'path' into a map in memory.
 // On repeated calls it reloads only files that changed after the last call.
@@ -59,7 +59,7 @@ func (ob *LoadedTextFiles) LoadAll(
 	}
 	ob.SortListByModTime(changedFiles)
 	return changedFiles
-} //                                                                     LoadAll
+}
 
 // LoadFile reads a file into the map of loaded files.
 // The contents of the file are retained in memory.
@@ -98,7 +98,7 @@ func (ob *LoadedTextFiles) LoadFile(
 	file.ModTime = info.ModTime()
 	file.Lines = env.ReadFileLines(file.Path)
 	return file, true
-} //                                                                    LoadFile
+}
 
 // SortListByModTime sorts a list of file names by time modified.
 // 'modFiles' is the slice of file names being sorted.
@@ -114,7 +114,7 @@ func (ob *LoadedTextFiles) SortListByModTime(modFiles []string) {
 		}
 		return a.ModTime.After(b.ModTime)
 	})
-} //                                                           SortListByModTime
+}
 
 // TODO: GLOBAL: All doc. comments should not exceed 76 columns
 

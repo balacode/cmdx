@@ -43,7 +43,7 @@ func Test_mtif_markTimeInFiles_(t *testing.T) {
 		markTimeInFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                  Test_mtif_markTimeInFiles_
+}
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
@@ -72,7 +72,7 @@ func Test_mtif_getTimeLogPath(t *testing.T) {
 		`X:\tests`,
 	)
 	TimeLogPaths = oldPaths
-} //                                                    Test_mtif_getTimeLogPath
+}
 
 // go test --run Test_mtif_processDir_
 func Test_mtif_processDir_(t *testing.T) {
@@ -86,7 +86,7 @@ func Test_mtif_processDir_(t *testing.T) {
 		processDir(dir, changeTime)
 	}
 	test("", false)
-} //                                                       Test_mtif_processDir_
+}
 
 // go test --run Test_mtif_processFile_
 func Test_mtif_processFile_(t *testing.T) {
@@ -105,7 +105,7 @@ func Test_mtif_processFile_(t *testing.T) {
 	test("", "", time.Time{},
 		// out:
 		nil)
-} //                                                      Test_mtif_processFile_
+}
 
 // go test --run Test_mtif_replaceVersion_
 func Test_mtif_replaceVersion_(t *testing.T) {
@@ -124,6 +124,6 @@ func Test_mtif_replaceVersion_(t *testing.T) {
 	test("", "", "", time.Time{},
 		// out:
 		"")
-} //                                                   Test_mtif_replaceVersion_
+}
 
 // end

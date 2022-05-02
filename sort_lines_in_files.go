@@ -43,6 +43,6 @@ func sortFileLines(cmd Command, args []string) {
 	}
 	// save the file
 	env.WriteFileLines(filename, lines)
-} //                                                               sortFileLines
+}
 
 // end

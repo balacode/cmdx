@@ -31,7 +31,7 @@ func Test_rsif_replaceStringsInFiles_(t *testing.T) {
 		replaceStringsInFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                            Test_rsif_replaceStringsInFiles_
+}
 
 // go test --run Test_rsif_replaceAsync_
 func Test_rsif_replaceAsync_(t *testing.T) {
@@ -46,7 +46,7 @@ func Test_rsif_replaceAsync_(t *testing.T) {
 	}
 	cmd := ReplCmd{}
 	test(nil, "", cmd)
-} //                                                     Test_rsif_replaceAsync_
+}
 
 // go test --run Test_rsif_replaceFileAsync_
 func Test_rsif_replaceFileAsync_(t *testing.T) {
@@ -69,6 +69,6 @@ func Test_rsif_replaceFileAsync_(t *testing.T) {
 		replaceFileAsync(task, configFile, filename, content, items)
 	}
 	test(nil, "", "", "", []ReplItem{})
-} //                                                 Test_rsif_replaceFileAsync_
+}
 
 // end

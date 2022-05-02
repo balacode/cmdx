@@ -22,6 +22,6 @@ import (
 func Test_mdle_(t *testing.T) {
 	zr.TBegin(t)
 	// module
-} //                                                                  Test_mdle_
+}
 
 // end

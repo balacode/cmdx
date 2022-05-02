@@ -30,6 +30,6 @@ func Test_wdif_wordsInFile_(t *testing.T) {
 		wordsInFile(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                                      Test_wdif_wordsInFile_
+}
 
 // end

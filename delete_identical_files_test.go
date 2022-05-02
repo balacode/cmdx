@@ -31,6 +31,6 @@ func Test_dlif_deleteIdenticalFiles_(t *testing.T) {
 		// TODO: implement Test_dlif_deleteIdenticalFiles_()
 	}
 	test(Command{}, []string{})
-} //                                             Test_dlif_deleteIdenticalFiles_
+}
 
 // end

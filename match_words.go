@@ -55,6 +55,6 @@ func matchWords(cmd Command, args []string) {
 			}
 		}
 	}
-} //                                                                  matchWords
+}
 
 // end

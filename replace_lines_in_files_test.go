@@ -30,6 +30,6 @@ func Test_rlif_replaceLinesInFiles_(t *testing.T) {
 		replaceLinesInFiles(cmd, args)
 	}
 	test(Command{}, []string{})
-} //                                              Test_rlif_replaceLinesInFiles_
+}
 
 // end

@@ -35,7 +35,7 @@ func Test_func_checksum_(t *testing.T) {
 	test("",
 		// out:
 		"000000")
-} //                                                         Test_func_checksum_
+}
 
 // go test --run Test_func_getFilesMap_
 func Test_func_getFilesMap_(t *testing.T) {
@@ -53,7 +53,7 @@ func Test_func_getFilesMap_(t *testing.T) {
 	test("", "",
 		// out:
 		FilesMap{})
-} //                                                      Test_func_getFilesMap_
+}
 
 // go test --run Test_func_splitArgsFilter_
 func Test_func_splitArgsFilter_(t *testing.T) {
@@ -73,7 +73,7 @@ func Test_func_splitArgsFilter_(t *testing.T) {
 	test([]string{},
 		// out:
 		[]string{}, "")
-} //                                                  Test_func_splitArgsFilter_
+}
 
 // go test --run Test_func_trim_
 func Test_func_trim_(t *testing.T) {
@@ -87,6 +87,6 @@ func Test_func_trim_(t *testing.T) {
 	test("",
 		// out:
 		"")
-} //                                                             Test_func_trim_
+}
 
 // end

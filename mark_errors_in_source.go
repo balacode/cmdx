@@ -126,7 +126,7 @@ func markErrorsInSource(cmd Command, args []string) {
 		lines[issue.Line] = msg
 	}
 	saveFile(buildPath, prevFile, lines)
-} //                                                          markErrorsInSource
+}
 
 // -----------------------------------------------------------------------------
 // # Support (File Scope)
@@ -136,7 +136,7 @@ func isErrorComment(line string) bool {
 	find := trim(line)
 	return strings.HasPrefix(find, ErrorMark) &&
 		strings.Contains(find, ErrorEndMark)
-} //                                                              isErrorComment
+}
 
 // isRepeatComment returns true if msg already
 // exists at or adjacent to the line at lineNo.
@@ -156,7 +156,7 @@ func isRepeatComment(msg string, lineNo int, lines []string) bool {
 		return true
 	}
 	return false
-} //                                                             isRepeatComment
+}
 
 // makePath combines an absolute and relative path,
 // returning an absolute path.
@@ -185,7 +185,7 @@ func makePath(absPath, relPath string) string {
 		ret = strings.Join(abs, sep)
 	}
 	return ret
-} //                                                                    makePath
+}
 
 // readBuildIssues reads file given by 'buildLog'
 // and returns an array of issues.
@@ -215,7 +215,7 @@ func readBuildIssues(buildLog string) (ret []BuildIssue) {
 		})
 	}
 	return ret
-} //                                                             readBuildIssues
+}
 
 // removeOldErrorComments returns an array of lines,
 // removing all error comments
@@ -228,7 +228,7 @@ func removeOldErrorComments(lines []string) []string {
 		ret = append(ret, line)
 	}
 	return ret
-} //                                                      removeOldErrorComments
+}
 
 // saveFile saves 'filename' in 'buildPath' using 'lines' for its content
 func saveFile(buildPath, filename string, lines []string) {
@@ -240,7 +240,7 @@ func saveFile(buildPath, filename string, lines []string) {
 		makePath(buildPath, filename),
 		[]byte(strings.Join(lines, "\n")),
 	)
-} //                                                                    saveFile
+}
 
 // TODO: use saveFile() in github.com/balacode/zr-fs
 
