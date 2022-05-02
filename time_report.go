@@ -26,7 +26,16 @@ package main
 // # Helper Functions
 //   trDateStr(val time.Time) string
 //   trDateTimeStr(val time.Time) string
-//
+
+// For debugging, you can set "args:" in launch.json. E.g:
+// "args": [
+//     "time-report",
+//     "2022-01-01",
+//     "2022-31-12",
+//     "=admin/",
+//     "/x/user/admin/timelog.txt",
+// ]
+
 import (
 	"fmt"
 	"regexp"
@@ -362,7 +371,7 @@ func trSumByDate(items []TimeItem) (ret []TimeItem) {
 			m[dt].Spent = sum
 		}
 	}
-	// extract items in map into slice
+	// convert items map into slice
 	for _, t := range m {
 		ret = append(ret, *t)
 	}
@@ -387,7 +396,7 @@ func trSumByDateText(items []TimeItem) (ret []TimeItem) {
 		m[k].Count += t.Count
 		m[k].Spent += t.Spent
 	}
-	// extract items in map into slice
+	// convert items map into slice
 	for _, t := range m {
 		ret = append(ret, *t)
 	}
