@@ -94,33 +94,34 @@ func trMonthlySummary(
 	files []string,
 	contains []string,
 ) {
-	lines := trMergeFiles(files, contains)
-	var sums []TimeItem
+	var (
+		lenLines = 0
+		cal      zr.Calendar
+	)
 	{
-		var a []TimeItem
-		a = trGetTimeItems(lines)
-		a = trFilterDates(a, minDate, maxDate)
+		lines := trMergeFiles(files, contains)
+		lenLines = len(lines)
+		items := trFilterDates(trGetTimeItems(lines), minDate, maxDate)
 		if mode == trAuto {
-			a = trCalcSpent(a, true)
+			items = trCalcSpent(items, true)
 		} else if mode == trManual {
-			trPrintFaults(a)
-			a = trCalcSpent(a, false)
+			trPrintFaults(items)
+			items = trCalcSpent(items, false)
 		}
-		sums = trSumByDate(a)
+		sums := trSumByDate(items)
+		cal.SetWeekTotals(true)
+		for _, itm := range sums {
+			if itm.Spent < 0 {
+				cal.Set(itm.Time, "** >24")
+			} else {
+				cal.Set(itm.Time, itm.Spent.Hours())
+			}
+		}
 	}
 	if caption != "" {
 		env.Println(caption)
 	}
-	var cal zr.Calendar
-	cal.SetWeekTotals(true)
-	for _, itm := range sums {
-		if itm.Spent < 0 {
-			cal.Set(itm.Time, "** >24")
-		} else {
-			cal.Set(itm.Time, itm.Spent.Hours())
-		}
-	}
-	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", len(lines))
+	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", lenLines)
 	env.Println(cal.String())
 	env.Println()
 }
