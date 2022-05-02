@@ -349,6 +349,28 @@ func trPrintTimeItems(entries []TimeItem) {
 }
 :UNUSED*/
 
+// trSumByCategory _ _
+func trSumByCategory(items []TimeItem) (ret []TimeItem) {
+	m := map[string]*TimeItem{}
+	for _, t := range items {
+		k := t.Text
+		i := strings.Index(k, ":")
+		if i > -1 {
+			k = k[:i]
+		}
+		if _, exist := m[k]; !exist {
+			m[k] = &TimeItem{Text: k}
+		}
+		m[k].Count += t.Count
+		m[k].Spent += t.Spent
+	}
+	// convert items map into slice
+	for _, t := range m {
+		ret = append(ret, *t)
+	}
+	return ret
+}
+
 // trSumByDate _ _
 func trSumByDate(items []TimeItem) (ret []TimeItem) {
 	//
