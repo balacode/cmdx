@@ -105,12 +105,13 @@ func trMonthlySummary(
 ) {
 	var (
 		lenLines = 0
+		items    []TimeItem
 		cal      zr.Calendar
 	)
 	{
 		lines := trMergeFiles(files, contains)
 		lenLines = len(lines)
-		items := trFilterDates(trGetTimeItems(lines), minDate, maxDate)
+		items = trFilterDates(trGetTimeItems(lines), minDate, maxDate)
 		if mode == trAuto {
 			items = trCalcSpent(items, true)
 		} else if mode == trManual {
@@ -132,6 +133,16 @@ func trMonthlySummary(
 	}
 	env.Println("FROM:", minDate, "TO:", maxDate, "LINES:", lenLines)
 	env.Println(cal.String())
+	{
+		env.Println("Summary by category:")
+		var totalHours float64
+		for _, t := range trSumByCategory(items) {
+			hours := float64(int(t.Spent.Hours()*10)) / 10.0
+			env.Println(t.Text, hours)
+			totalHours += hours
+		}
+		env.Println("Total Hours:", totalHours)
+	}
 	env.Println()
 }
 
