@@ -27,10 +27,6 @@ MRK |                                                                 WAITING...
 MRK  ---------------------------------------------------------------------------
 `
 
-// Spaces is a string of all white-space characters,
-// which includes spaces, tabs, and newline characters.
-const Spaces = " \a\b\f\n\r\t\v"
-
 // ExtraTextFileExts contains additional text file
 // extensions not listed in (zr-fs) fs.TextFileExts
 var ExtraTextFileExts = []string{
@@ -49,5 +45,9 @@ var ExtraTextFileExts = []string{
 
 // NoHelp indicates missing help text.
 const NoHelp = ""
+
+// Spaces is a string of all white-space characters,
+// which includes spaces, tabs, and newline characters.
+const Spaces = " \a\b\f\n\r\t\v"
 
 // end
