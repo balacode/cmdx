@@ -33,6 +33,7 @@ type logTimeConfig struct {
 	rootPath   string
 	backlogDur time.Duration
 	repeatDur  time.Duration
+	tag        string
 	isVerbose  bool
 }
 
@@ -53,7 +54,15 @@ func logTime(cmd Command, args []string) {
 		fmt.Println("log-time --path=" + cfg.rootPath)
 		fmt.Println("log-time --backlog=" + cfg.backlogDur.String())
 		fmt.Println("log-time --repeat=" + cfg.repeatDur.String())
+		fmt.Println("log-time --tag=" + cfg.tag)
 		fmt.Println("log-time --verbose=true")
+	}
+	tag := " "
+	if cfg.tag != "" {
+		tag = cfg.tag
+		if !zr.IsWhiteSpace(tag) {
+			tag = " " + tag + " "
+		}
 	}
 	for {
 		if cfg.repeatDur > 0 || cfg.isVerbose {
@@ -102,7 +111,7 @@ func logTime(cmd Command, args []string) {
 		logs := map[string][]string{}
 		for path, info := range changes {
 			logFile := ltGetAutotimeFile(path)
-			text := info.modTime + " " + info.checksum + " " + path
+			text := info.modTime + tag + info.checksum + " " + path
 			logs[logFile] = append(logs[logFile], text)
 		}
 		for logFile, lines := range logs {
@@ -235,6 +244,7 @@ func ltParseArgs(args []string) logTimeConfig {
 		path    = fl.String("path", ".", NoHelp)
 		backlog = fl.String("backlog", "24hours", NoHelp)
 		repeat  = fl.String("repeat", "disabled", NoHelp)
+		tag     = fl.String("tag", "", NoHelp)
 		verbose = fl.Bool("verbose", false, NoHelp)
 		ret     logTimeConfig
 	)
@@ -264,6 +274,10 @@ func ltParseArgs(args []string) logTimeConfig {
 			zr.Error(zr.EInvalidArg, "^repeat", ":^", *repeat)
 			return logTimeConfig{isValid: false}
 		}
+	}
+	// --tag
+	if *tag != "" {
+		ret.tag = *tag
 	}
 	// --verbose
 	ret.isVerbose = *verbose
