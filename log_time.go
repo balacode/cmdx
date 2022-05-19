@@ -232,10 +232,10 @@ func ltListAutotimeFiles(rootPath string) []string {
 func ltParseArgs(args []string) logTimeConfig {
 	var (
 		fl      = flag.NewFlagSet("", flag.ExitOnError)
-		path    = fl.String("path", ".", "")
-		backlog = fl.String("backlog", "24hours", "")
-		repeat  = fl.String("repeat", "disabled", "")
-		verbose = fl.Bool("verbose", false, "")
+		path    = fl.String("path", ".", NoHelp)
+		backlog = fl.String("backlog", "24hours", NoHelp)
+		repeat  = fl.String("repeat", "disabled", NoHelp)
+		verbose = fl.Bool("verbose", false, NoHelp)
 		ret     logTimeConfig
 	)
 	fl.Parse(args)

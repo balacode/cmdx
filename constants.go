@@ -47,4 +47,7 @@ var ExtraTextFileExts = []string{
 	"proto",
 }
 
+// NoHelp indicates missing help text.
+const NoHelp = ""
+
 // end
