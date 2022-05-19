@@ -81,9 +81,9 @@ func partBackup(cmd Command, args []string) {
 					hasErr = true
 					break
 				}
-				// read the next chunk (nread = number of bytes read)
-				nread, err := src.Read(chunk[:])
-				if nread == 0 {
+				// read the next chunk (nRead = number of bytes read)
+				nRead, err := src.Read(chunk[:])
+				if nRead == 0 {
 					break
 				}
 				if err != nil {
@@ -99,10 +99,10 @@ func partBackup(cmd Command, args []string) {
 					break
 				}
 				// write the file
-				nwrit, err := bak.Write(chunk[:nread])
-				if nwrit != nread {
+				nWrit, err := bak.Write(chunk[:nRead])
+				if nWrit != nRead {
 					zr.Error("Failed writing", bakFile,
-						"read:", nread, "written:", nwrit)
+						"read:", nRead, "written:", nWrit)
 					hasErr = true
 					break
 				}
@@ -111,7 +111,7 @@ func partBackup(cmd Command, args []string) {
 					hasErr = true
 					break
 				}
-				pos += int64(nwrit)
+				pos += int64(nWrit)
 			}
 			src.Close()
 			bak.Sync()

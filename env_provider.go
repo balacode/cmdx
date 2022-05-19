@@ -91,7 +91,7 @@ type EnvProvider interface {
 	ReadFileLines(filename string) []string
 
 	// RenameFile _ _
-	RenameFile(oldpath, newpath string) bool
+	RenameFile(oldPath, newPath string) bool
 
 	// WriteFile _ _
 	WriteFile(filename string, data []byte) bool
@@ -206,10 +206,10 @@ func (Env) ReadFileLines(filename string) []string {
 }
 
 // RenameFile _ _
-func (Env) RenameFile(oldpath, newpath string) bool {
-	err := os.Rename(oldpath, newpath)
+func (Env) RenameFile(oldPath, newPath string) bool {
+	err := os.Rename(oldPath, newPath)
 	if err != nil {
-		env.Println("Failed renaming", oldpath, " to ", newpath, "due to:", err)
+		env.Println("Failed renaming", oldPath, " to ", newPath, "due to:", err)
 		return false
 	}
 	return true

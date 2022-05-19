@@ -14,7 +14,7 @@ const (
 
 	hardcodedRootPath = `X:\user\projects\code\go\src\base`
 
-	hardcodedWordListFile = `c:\__DEBDESK\words_alpha.txt`
+	hardcodedWordListFile = `X:\user\words_alpha.txt`
 )
 
 var hardcodedTimeLogPaths = []string{
