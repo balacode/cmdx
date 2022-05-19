@@ -94,7 +94,7 @@ const (
 //       - Check if FIND and REPL already exists, then no need to add it.
 //       - Remember the indentation of each line.
 //       - Store line number in _REPL_LINES.TXT and use it as an ID.
-//       - Write time, file and numbers of replacements made to logfile.
+//       - Write time, file and numbers of replacements made to log file.
 //       - Add an option to tag changed lines.
 //
 // TODO: Add a command to harvest lines to change from source.

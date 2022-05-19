@@ -162,7 +162,7 @@ loop:
 				at[i-1]++
 			}
 		}
-		// construct permutated string
+		// construct permuted string
 		buf.Reset()
 		for i, ar := range parts {
 			j := at[i]

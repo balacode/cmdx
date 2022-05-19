@@ -31,7 +31,7 @@ MRK  ---------------------------------------------------------------------------
 // which includes spaces, tabs, and newline characters.
 const Spaces = " \a\b\f\n\r\t\v"
 
-// ExtraTextFileExts contains additonal text file
+// ExtraTextFileExts contains additional text file
 // extensions not listed in (zr-fs) fs.TextFileExts
 var ExtraTextFileExts = []string{
 	//
