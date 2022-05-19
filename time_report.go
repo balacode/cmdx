@@ -237,7 +237,7 @@ func trGetTimeItems(lines []string) []TimeItem {
 		}
 		// store each line in a unique date+time key
 		// (any previous entry with same date+time gets overwritten)
-		m[line[:19]] = strings.Trim(line[20:], SPACES+"/\\")
+		m[line[:19]] = strings.Trim(line[20:], Spaces+"/\\")
 	}
 	// create a sorted array of keys
 	times := make([]string, 0, len(m))

@@ -27,9 +27,9 @@ MRK |                                                                 WAITING...
 MRK  ---------------------------------------------------------------------------
 `
 
-// SPACES is a string of all white-space characters,
+// Spaces is a string of all white-space characters,
 // which includes spaces, tabs, and newline characters.
-const SPACES = " \a\b\f\n\r\t\v"
+const Spaces = " \a\b\f\n\r\t\v"
 
 // ExtraTextFileExts contains additonal text file
 // extensions not listed in (zr-fs) fs.TextFileExts

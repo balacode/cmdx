@@ -38,7 +38,7 @@ func markTimeInFiles(cmd Command, args []string) {
 		changeTime = true
 	)
 	for _, arg := range args {
-		switch strings.ToLower(strings.Trim(arg, SPACES+"-/")) {
+		switch strings.ToLower(strings.Trim(arg, Spaces+"-/")) {
 		case "repeat", "r":
 			{
 				repeat = true
